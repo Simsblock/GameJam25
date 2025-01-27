@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,17 +29,24 @@ public class Dealer : MonoBehaviour
         OpenCard = card.Key;
         DealerHand.Add(card.Key,card.Value);
         //Pull second hidden Card
-        card = deck.PullCard();
+        do {
+            card = deck.PullCard();
+        }while(card.Key==OpenCard);
         DealerHand.Add(card.Key, card.Value);
     }
     public void PullRest()
     {
         KeyValuePair<string, int> card;
-        do
+        while (TotalValue < 17)
         {
-            card = deck.PullCard();
-            DealerHand.Add(card.Key, card.Value);
-        }while (TotalValue<17);
+            {
+                card = deck.PullCard();
+                if (!DealerHand.ContainsKey(card.Key))
+                {
+                    DealerHand.Add(card.Key, card.Value);
+                }
+            }
+        }
         foreach (string key in DealerHand.Keys)
         {
             if (key.Contains("A") && DealerHand.Values.Sum() > 21)
@@ -46,7 +54,7 @@ public class Dealer : MonoBehaviour
                 DealerHand[key] = 1;
             }
         }
-        if(TotalValue<17) PullRest();
+        if (TotalValue < 17) PullRest();
     }
 
     public void ClearHand()
