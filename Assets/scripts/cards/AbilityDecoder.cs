@@ -40,6 +40,9 @@ public class AbilityDecoder : MonoBehaviour
                         if (details[2] == "P") playerHandler.PullMulti(int.Parse(details[1]));
                         if (details[2] == "D") Dealer.PullMulti(int.Parse(details[1]));
                         break;
+                    case "remove":
+                        //maby
+                        break;
                 }
             }
         }

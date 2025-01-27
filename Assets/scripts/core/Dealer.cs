@@ -75,5 +75,6 @@ public class Dealer : MonoBehaviour
                 DealerHand[key] = 1;
             }
         }
+        
     }
 }
