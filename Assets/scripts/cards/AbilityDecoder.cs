@@ -13,11 +13,7 @@ public class AbilityDecoder : MonoBehaviour
         playerHandler = GameObject.Find("Player").GetComponent<PlayerHandler>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 
     public void Use(string Effect)
     {
@@ -42,6 +38,12 @@ public class AbilityDecoder : MonoBehaviour
                         break;
                     case "remove":
                         //maby
+                        break;
+                        //for diceroll n= n1-n2
+                    case "diceRoll":
+                        string[] numbers = details[1].Split("-");
+                        System.Random rand = new System.Random();
+                        playerHandler.curSum+=(rand.Next(int.Parse(numbers[0]), int.Parse(numbers[1])));
                         break;
                 }
             }

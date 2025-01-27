@@ -9,11 +9,10 @@ public class Dealer : MonoBehaviour
 {
     [SerializeField]
     Deck deck;
-    
+    [Tooltip("to determin the playstyle of the Dealer")]
+    [SerializeField] private int MaxVal;
     // Start is called before the first frame update
     void Start(){}
-    // Update is called once per frame
-    void Update(){}
 
     public void PullInit()
     {
@@ -28,7 +27,7 @@ public class Dealer : MonoBehaviour
     public void PullRest()
     {
         KeyValuePair<string, int> card;
-        while (TotalValue < 17)
+        while (TotalValue < MaxVal)
         {
             {
                 card = deck.PullCard();
@@ -45,7 +44,7 @@ public class Dealer : MonoBehaviour
                 DealerHand[key] = 1;
             }
         }
-        if (TotalValue < 17) PullRest();
+        if (TotalValue < MaxVal) PullRest();
     }
 
     public void ClearHand()
@@ -76,5 +75,10 @@ public class Dealer : MonoBehaviour
             }
         }
         
+    }
+
+    public void UseAbilitys()
+    {
+
     }
 }

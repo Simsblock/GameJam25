@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerButtonHandler : MonoBehaviour
 {
     [SerializeField]
-    private GameObject player;
+    private GameObject player,Dealer;
     public void Pull()
     {
         player.GetComponent<PlayerHandler>().PullMulti(1);
@@ -13,6 +13,6 @@ public class PlayerButtonHandler : MonoBehaviour
 
     public void Stand()
     {
-        
+        Dealer.GetComponent<Dealer>().PullRest();
     }
 }
