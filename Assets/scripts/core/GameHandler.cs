@@ -9,38 +9,50 @@ public class GameHandler : MonoBehaviour
     private GameObject Player,Dealer;
     private PlayerHandler playerHandler;
     private Dealer dealer;
-    private long money; //playermoney
+    private long money=1000; //playermoney
+    private long Bet { get; set; }
 
     // Start is called before the first frame update
     void Start()
     {
         playerHandler = Player.GetComponent<PlayerHandler>();
         dealer = Dealer.GetComponent<Dealer>();
+        //Bet = Bet Component getti
     }
 
     public void EndGame()
     {
         if (dealer.TotalValue > 21)
         {
-            //victory for player
+            money += Bet; //win
         }
         else if (playerHandler.curSum > 21)
         {
-            //loss for player
+            money -= Bet; //loss
         }
         else if (playerHandler.curSum < dealer.TotalValue)
         {
-            //loss for player
+            money -= Bet; //loss
         }
         else if (playerHandler.curSum > dealer.TotalValue)
         {
-            //victory for player
+            money += Bet; //win
         }
         else if (playerHandler.curSum == dealer.TotalValue)
         {
             //draw
         }
+        CheckGameOver();
     }
+
+    public void CheckGameOver()
+    {
+        if (money <= 0)
+        {
+            SceneManager.LoadScene("GameOver"); //to be made UwU
+        }
+    }
+
 
     public void Stand()
     {
