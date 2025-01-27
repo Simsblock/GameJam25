@@ -11,16 +11,9 @@ public class Dealer : MonoBehaviour
     Deck deck;
     
     // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
+    void Start(){}
     // Update is called once per frame
-    void Update()
-    {
-
-    }
+    void Update(){}
 
     public void PullInit()
     {
@@ -29,9 +22,7 @@ public class Dealer : MonoBehaviour
         OpenCard = card.Key;
         DealerHand.Add(card.Key,card.Value);
         //Pull second hidden Card
-        do {
-            card = deck.PullCard();
-        }while(card.Key==OpenCard);
+        card = deck.PullCard();
         DealerHand.Add(card.Key, card.Value);
     }
     public void PullRest()
