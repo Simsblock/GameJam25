@@ -18,9 +18,14 @@ public class Deck : MonoBehaviour
         {
             pulled = DeckCards.ElementAt(rand.Next(DeckCards.Count));
         }
-        while (!PulledCards.Contains(pulled.Key));
+        while (PulledCards.Contains(pulled.Key));
         PulledCards.Add(pulled.Key);
         return pulled;
+    }
+
+    public void Clear()
+    {
+        PulledCards.Clear();
     }
 
     public List<string> PulledCards = new List<string>();
