@@ -7,6 +7,7 @@ public class SpecialCardsList : MonoBehaviour
     [SerializeField]
     private List<GameObject> SpecialCards;
     public Dictionary<string, GameObject> SpecialCardsUi;
+    public Dictionary<string, string> SpecialCardsDescription;
 
     // Start is called before the first frame update
     void Start()
@@ -16,11 +17,11 @@ public class SpecialCardsList : MonoBehaviour
         {
             ["test"] = SpecialCards[0]
         };
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        SpecialCardsDescription = new Dictionary<string, string>()
+        {
+            ["test"] = "idfk *shrugs*"
+        };
     }
 }
+
+
