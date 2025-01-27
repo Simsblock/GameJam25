@@ -18,8 +18,6 @@ public class GameHandler : MonoBehaviour
         dealer = Dealer.GetComponent<Dealer>();
     }
 
-
-
     public void EndGame()
     {
         if (dealer.TotalValue > 21)

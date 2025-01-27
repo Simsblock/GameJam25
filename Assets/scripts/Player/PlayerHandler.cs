@@ -7,7 +7,7 @@ public class PlayerHandler : MonoBehaviour
 {
     private List<string> specialCards;
     private Dictionary<string,int> playerCards;
-    private int curSum; //Total Hand Value
+    public int curSum; //Total Hand Value
     [SerializeField]
     private Deck Deck;
     // Start is called before the first frame update
