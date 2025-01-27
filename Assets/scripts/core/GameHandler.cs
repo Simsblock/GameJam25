@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,6 +11,8 @@ public class GameHandler : MonoBehaviour
     private PlayerHandler playerHandler;
     private Dealer dealer;
     private long money=1000; //playermoney
+    [SerializeField]
+    private TMP_Text bet_text;
     private long Bet { get; set; }
 
     // Start is called before the first frame update
@@ -17,7 +20,12 @@ public class GameHandler : MonoBehaviour
     {
         playerHandler = Player.GetComponent<PlayerHandler>();
         dealer = Dealer.GetComponent<Dealer>();
-        //Bet = Bet Component getti
+    }
+
+    //SetBet 
+    public void SetBet()
+    {
+        Bet = long.Parse(bet_text.text);
     }
 
     public void EndGame()
@@ -52,7 +60,6 @@ public class GameHandler : MonoBehaviour
             SceneManager.LoadScene("GameOver"); //to be made UwU
         }
     }
-
 
     public void Stand()
     {
