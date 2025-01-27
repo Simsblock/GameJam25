@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,28 +11,34 @@ public class BetBtn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        btn = GetComponent<Button>();
     }
     // Update is called once per frame
     void Update()
     {
        
     }
-
-    Button btn;
     long bet;
+    [SerializeField]
+    int amount;
     [SerializeField]
     private TMP_Text bet_text;
 
-    public void OnPress()
+    public void Raise()
     {
-        bet = long.Parse(bet_text.text);
-        if (btn.name.Contains("Raise"))
+        if (bet + amount < 10000)
         {
-            bet += 100;
-        }else if (btn.name.Contains("Lower"))
+            bet = long.Parse(bet_text.text);
+            bet += amount;
+            bet_text.text = bet.ToString();
+        }
+    }
+    public void Lower()
+    {
+        if (bet - amount > amount)
         {
-            bet -= 100;
+            bet = long.Parse(bet_text.text);
+            bet -= amount;
+            bet_text.text = bet.ToString();
         }
     }
 }
