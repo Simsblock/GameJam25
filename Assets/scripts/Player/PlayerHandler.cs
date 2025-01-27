@@ -7,7 +7,7 @@ public class PlayerHandler : MonoBehaviour
 {
     private List<string> specialCards;
     private Dictionary<string,int> playerCards;
-    private int curSum; //Total Hand Value
+    public int curSum; //Total Hand Value
     [SerializeField]
     private Deck Deck;
     // Start is called before the first frame update
@@ -15,6 +15,15 @@ public class PlayerHandler : MonoBehaviour
     {
         if(specialCards == null) specialCards = new List<string>();
         if(playerCards == null) playerCards = new Dictionary<string,int>();
+    }
+
+    public void PullMulti(int count)
+    {
+        while (count > 0)
+        {
+            PullCard();
+            count--;
+        }
     }
 
     public void PullCard()
