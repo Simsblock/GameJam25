@@ -66,4 +66,23 @@ public class Dealer : MonoBehaviour
     public string OpenCard { get; set; }
     public int TotalValue => DealerHand.Values.Sum();
 
+
+    public void PullMulti(int count)
+    {
+        while (count > 0)
+        {
+            KeyValuePair<string, int> card = deck.PullCard();
+            DealerHand.Add(card.Key, card.Value);
+            count--;
+        }
+        
+
+        foreach (string key in DealerHand.Keys)
+        {
+            if (key.Contains("A") && DealerHand.Values.Sum() > 21)
+            {
+                DealerHand[key] = 1;
+            }
+        }
+    }
 }

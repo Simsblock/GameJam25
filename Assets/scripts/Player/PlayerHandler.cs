@@ -17,9 +17,16 @@ public class PlayerHandler : MonoBehaviour
         if(playerCards == null) playerCards = new Dictionary<string,int>();
     }
 
-   
+   public void PullMulti(int count)
+    {
+        while (count > 0)
+        {
+            PullCard();
+            count--;
+        }
+    }
 
-    public void PullCard()
+    private void PullCard()
     {
         var card = Deck.PullCard();
         playerCards.Add(card.Key, card.Value );
