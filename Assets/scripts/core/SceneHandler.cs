@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneHandler : MonoBehaviour
+public class GameHandler : MonoBehaviour
 {
     [SerializeField]
     private GameObject Player,Dealer;
     private PlayerHandler playerHandler;
     private Dealer dealer;
+    private long money; //playermoney
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +17,8 @@ public class SceneHandler : MonoBehaviour
         playerHandler = Player.GetComponent<PlayerHandler>();
         dealer = Dealer.GetComponent<Dealer>();
     }
+
+
 
     public void EndGame()
     {
