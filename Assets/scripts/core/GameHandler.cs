@@ -10,6 +10,8 @@ public class GameHandler : MonoBehaviour
 {
     [SerializeField]
     private GameObject Player,Dealer,ShopKeep;
+    [SerializeField]
+    private Canvas GameUI, ShopUI;
     private PlayerHandler playerHandler;
     private Dealer dealer;
     [SerializeField]
