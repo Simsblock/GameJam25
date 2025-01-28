@@ -15,7 +15,7 @@ public class BetBtn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        if(bet>GlobalData.money) bet = GlobalData.money;
     }
     long bet;
     [SerializeField]
@@ -25,7 +25,7 @@ public class BetBtn : MonoBehaviour
 
     public void Raise()
     {
-        if (bet + amount < 10000)
+        if (bet + amount < 10000 || bet+amount < GlobalData.money)
         {
             bet = long.Parse(bet_text.text);
             bet += amount;
