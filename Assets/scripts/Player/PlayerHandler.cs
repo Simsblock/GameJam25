@@ -104,21 +104,22 @@ public class PlayerHandler : MonoBehaviour
         card.transform.SetParent(CardParent.transform);
         Vector3 cardPos = new Vector3(0f, 0f, 0f);
         int childrenAmt = CardParent.transform.childCount;
+        Debug.Log(childrenAmt);
         // Check if first
-        if (childrenAmt == 0)
+        if (childrenAmt == 1)
         {
             cardPos = new Vector3(-0.65f, 0f, 0f);
             leftCardPos = cardPos;
             rightCardPos = cardPos;
         }
-        else if(childrenAmt % 2 != 0)
+        else if(childrenAmt % 2 == 0)
         {
-            cardPos = rightCardPos + new Vector3(cardSpace,0f,0f);
+            cardPos = rightCardPos + new Vector3(cardSpace*2,0f,0f);
             rightCardPos = cardPos;
         }
-        else if (childrenAmt % 2 == 0)
+        else if (childrenAmt % 2 != 0)
         {
-            cardPos = leftCardPos + new Vector3(-cardSpace, 0f, 0f);
+            cardPos = leftCardPos + new Vector3(-cardSpace*2, 0f, 0f);
             leftCardPos = cardPos;
         }
         card.transform.localPosition = cardPos;
