@@ -16,6 +16,7 @@ public class PlayerHandler : MonoBehaviour
     private DisplaySpecial DisplaySpecial;
     [SerializeField]
     private GameObject CardPrefab, CardParent;
+    private CardManager CM;
     private float cardSpace = 0.65f;
     private Vector3 leftCardPos;
     private Vector3 rightCardPos;
@@ -25,6 +26,7 @@ public class PlayerHandler : MonoBehaviour
         if(specialCards == null) specialCards = new List<string>();
         if(playerCards == null) playerCards = new Dictionary<string,int>();
         DisplaySpecial = CardHand.GetComponent<DisplaySpecial>();
+        CM = CardParent.GetComponent<CardManager>();
     }
 
     public void PullMulti(int count)
@@ -40,7 +42,7 @@ public class PlayerHandler : MonoBehaviour
     {
         var card = Deck.PullCard();
         playerCards.Add(card.Key, card.Value );
-        DisplayPlayerCards();
+        DisplayPlayerCards(card.Key);
         curSum += card.Value;
         //checks for aces n shit
         if (playerCards.Keys.Any(k => k.Contains("A"))&&curSum>21)
@@ -98,7 +100,7 @@ public class PlayerHandler : MonoBehaviour
 
         DisplaySpecial.Draw(specialCards);
     }
-    public void DisplayPlayerCards()
+    public void DisplayPlayerCards(string cardKey)
     {
         GameObject card = Instantiate(CardPrefab);
         card.transform.SetParent(CardParent.transform);
@@ -123,9 +125,12 @@ public class PlayerHandler : MonoBehaviour
             leftCardPos = cardPos;
         }
         card.transform.localPosition = cardPos;
-        // Create the SpriteRenderer component for the card
-        SpriteRenderer spriteRenderer = card.AddComponent<SpriteRenderer>();
-        //spriteRenderer.sprite = 
+        CardManager.DeckConverter(cardKey, out string suit, out int rank);
+        Debug.Log(suit + " " + rank);
+        Sprite s= CM.GetCardSprite(suit, rank);
+        card.AddComponent<SpriteRenderer>();
+        SpriteRenderer spriteRenderer = card.GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = s;
     }
 
 }

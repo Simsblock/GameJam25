@@ -14,16 +14,16 @@ public class CardManager : MonoBehaviour
         switch (key[0])
         {
             case 'H':
-                suit = "Heart";
+                suit = "hearts";
                 break;
             case 'D':
-                suit = "Diamodnds";
+                suit = "diamonds";
                 break;
             case 'C':
-                suit = "Clubs";
+                suit = "clubs";
                 break;
             case 'S':
-                suit = "Spades";
+                suit = "spades";
                 break;
             default:
                 throw new ArgumentException("Wallah Billa, was hast du getan??");
@@ -61,22 +61,7 @@ public class CardManager : MonoBehaviour
             Debug.LogError("Invalid rank: " + rank);
             return null;
         }
-
+        Debug.Log(selectedSuit);
         return selectedSuit[rank - 1]; // Return the sprite for the given rank
-    }
-
-    void Start()
-    {
-        // Example of how to use this method
-        string suit = "spades"; // For example, 'spades'
-        int rank = 3; // For example, '3'
-
-        Sprite cardSprite = GetCardSprite(suit, rank);
-
-        if (cardSprite != null)
-        {
-            // Do something with the sprite, e.g., display it on a UI element
-            Debug.Log("Card Sprite: " + cardSprite.name);
-        }
     }
 }
