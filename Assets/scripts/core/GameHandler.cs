@@ -39,8 +39,8 @@ public class GameHandler : MonoBehaviour
         Debug.Log("start");
         Console.WriteLine("staart");
         //clear old Cards
-        dealer.ClearHand();
-        playerHandler.ClearPlayerCards();
+        //dealer.ClearHand();
+        //playerHandler.ClearPlayerCards();
         SetBet();
         LoadShop();
         //wait ig n such
