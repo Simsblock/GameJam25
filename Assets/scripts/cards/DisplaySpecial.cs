@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 
 public class DisplaySpecial : MonoBehaviour
@@ -9,72 +10,49 @@ public class DisplaySpecial : MonoBehaviour
     private GameObject GameHandler;
     private SpecialCardsList SpecialCards;
     [SerializeField]
-    private float spaicingAngle, radius;
+    private float spaicingAngle, radius, totalAngle;
+    private float spaicingInternal;
     private void Start()
     {
-        SpecialCards= GameHandler.GetComponent<SpecialCardsList>();
+        SpecialCards = GameHandler.GetComponent<SpecialCardsList>();
     }
     public void Draw(List<string> cards)
     {
-        int tracker = 0;
+        float spaicing = 0;
+        float startDeg = 0;
         GameObject card;
         Vector3 position;
-        Quaternion rotation = Quaternion.Euler(0, 0, 2);
+
         //clears current cards
-        if (transform.childCount>0)
+        if (transform.childCount > 0)
         {
             foreach (Transform child in transform)
             {
                 Destroy(child.gameObject);
             }
         }
-
-        if (cards.Count == 2)
+        if ((cards.Count - 1) * spaicingAngle <= totalAngle)
         {
-           position = new Vector3(
-                Mathf.Sin(Mathf.Deg2Rad * spaicingAngle/2 * tracker) * radius,
-                Mathf.Cos(Mathf.Deg2Rad * spaicingAngle/2 * tracker) * radius,
-                0
-                );
-            card = Instantiate(SpecialCards.SpecialCardsUi[cards[0]], position, rotation, transform);
-            card.transform.up = transform.position - card.transform.position;
+            spaicingInternal = spaicingAngle;
+            spaicing = (totalAngle - ((cards.Count - 1) * spaicingInternal)) / 2;
+            startDeg = -totalAngle/2+spaicing;
+        }
+        else { spaicingInternal = totalAngle / cards.Count; startDeg =-totalAngle/2; }
+            cards.ForEach(c =>
+            {
+                    position = new Vector3(
+                        transform.position.x + (Mathf.Sin(Mathf.Deg2Rad * startDeg) * radius),
+                        transform.position.y + (Mathf.Cos(Mathf.Deg2Rad * startDeg) * radius),
+                        -1
+                        );
+                card = Instantiate(SpecialCards.SpecialCardsUi.Where(s => s.Key.Equals(c)).First().Value, position, Quaternion.identity, transform);
+                card.transform.up = transform.position - card.transform.position;
+                card.transform.rotation = Quaternion.Euler(card.transform.rotation.x,-15, card.transform.rotation.z);
 
-            position = new Vector3(
-                Mathf.Sin(Mathf.Deg2Rad * spaicingAngle / 2 * tracker) * -radius,
-                Mathf.Cos(Mathf.Deg2Rad * spaicingAngle / 2 * tracker) * radius,
-                0
-                );
-            card.transform.up = transform.position - card.transform.position;
-        }
-        else { 
-        cards.ForEach(c =>
-        {
-            GameObject curCard = SpecialCards.SpecialCardsUi.Where(s => s.Key.Equals(c)).First().Value;
-            if (tracker == 0)
-            {
-                position = new Vector3(
-                0,radius,0
-                );
-            }
-            else if(tracker%2==0)
-            {
-                position = new Vector3(
-                Mathf.Sin(Mathf.Deg2Rad * spaicingAngle * tracker) * radius,
-                Mathf.Cos(Mathf.Deg2Rad * spaicingAngle * tracker) * radius,
-                0
-                );
-            }
-            else
-            {
-                position = new Vector3(
-                Mathf.Sin(Mathf.Deg2Rad * spaicingAngle * tracker) * -radius,
-                Mathf.Cos(Mathf.Deg2Rad * spaicingAngle * tracker) * radius,
-                0
-                );
-            }
-            card = Instantiate(curCard, position, rotation, transform);
-            card.transform.up = transform.position - card.transform.position;
-        });
-        }
+                startDeg+=spaicingInternal;
+            });
+        
+
+        
     }
 }

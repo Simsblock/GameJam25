@@ -84,11 +84,9 @@ public class PlayerHandler : MonoBehaviour
 
     public void DisplaySpecialCards()
     {
-        Debug.Log("triggered");
         //tmp
-        AddSpecialCard("Test1");
-        AddSpecialCard("Test2");
-
+        //AddSpecialCard("Test1");
+        //AddSpecialCard("Test2");
         DisplaySpecial.Draw(specialCards);
     }
     public void DisplayPlayerCards()
