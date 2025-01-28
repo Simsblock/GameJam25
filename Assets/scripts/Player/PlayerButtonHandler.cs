@@ -17,6 +17,6 @@ public class PlayerButtonHandler : MonoBehaviour
     {
         Dealer.GetComponent<Dealer>().PullRest();
         //Animation for Dealer shit
-
+        
     }
 }
