@@ -11,6 +11,8 @@ public class PlayerHandler : MonoBehaviour
     [SerializeField]
     private GameObject GameHandler;
     private Deck Deck;
+    [SerializeField]
+    private GameObject CardHand;
     private DisplaySpecial DisplaySpecial;
     // Start is called before the first frame update
     void Start()
@@ -18,7 +20,7 @@ public class PlayerHandler : MonoBehaviour
         if(specialCards == null) specialCards = new List<string>();
         if(playerCards == null) playerCards = new Dictionary<string,int>();
         Deck=GameHandler.GetComponent<Deck>();
-        DisplaySpecial = GameHandler.GetComponent<DisplaySpecial>();
+        DisplaySpecial = CardHand.GetComponent<DisplaySpecial>();
     }
 
     public void PullMulti(int count)
@@ -77,8 +79,17 @@ public class PlayerHandler : MonoBehaviour
         specialCards = new List<string>();
     }
 
+    public void AddSpecialCard(string name)
+    {
+        specialCards.Add(name);
+    }
+
     public void DisplaySpecialCards()
     {
+        //tmp
+        AddSpecialCard("Test1");
+        AddSpecialCard("Test2");
+
         DisplaySpecial.Draw(specialCards);
     }
     public void DisplayPlayerCards()
