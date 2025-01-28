@@ -6,13 +6,24 @@ using UnityEngine.UI;
 
 public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDragHandler
 {
-    public Transform postDragParent;
+    [HideInInspector]public Transform postDragParent;
     [SerializeField]
     private Image image;
+    private CanvasGroup canvasGroup;
+    private Transform Content;
     public void OnBeginDrag(PointerEventData eventData)
     {
         image.raycastTarget = false;
-        postDragParent = transform.parent;
+        canvasGroup.blocksRaycasts = false;
+        //canvasGroup.interactable = false;
+        if (postDragParent != null&&postDragParent.name.Contains("SPCSlot"))
+        {
+            postDragParent = Content;
+        }
+        else
+        {
+            postDragParent = transform.parent;
+        }
         transform.SetParent(transform.root);
         transform.SetAsLastSibling();
     }
@@ -24,14 +35,19 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        Debug.Log(postDragParent.name);
         transform.SetParent(postDragParent);
         image.raycastTarget = true;
+
+        canvasGroup.blocksRaycasts = true;
+        //canvasGroup.interactable = true;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        canvasGroup = GetComponent<CanvasGroup>();
+        Content = transform.parent;
     }
 
     // Update is called once per frame

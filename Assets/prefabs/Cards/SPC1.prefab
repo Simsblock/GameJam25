@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8288876729783814090}
   - component: {fileID: 493469450505085819}
   - component: {fileID: 4063127585393327047}
+  - component: {fileID: 4914126706244869290}
   m_Layer: 5
   m_Name: SPC1
   m_TagString: Untagged
@@ -106,6 +107,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   postDragParent: {fileID: 0}
   image: {fileID: 8288876729783814090}
+--- !u!225 &4914126706244869290
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3431958805245865501}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &8929574669890062905
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,6 +130,7 @@ GameObject:
   - component: {fileID: 4447195009738831802}
   - component: {fileID: 643944206283289278}
   - component: {fileID: 575084006684515897}
+  - component: {fileID: 245990178163719205}
   m_Layer: 5
   m_Name: Description
   m_TagString: Untagged
@@ -240,3 +254,15 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!225 &245990178163719205
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8929574669890062905}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0

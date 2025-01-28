@@ -31,14 +31,13 @@ public class DisplaySpecial : MonoBehaviour
             Destroy(t.gameObject);
         }
 
-        Debug.Log(Cards);
+        
         ViewField.SetActive(true);
         Cards.ForEach(c =>
         {
-            Debug.Log(c);
-            Debug.Log(SpecialCards.SpecialCardsUi[c]);
+            
            GameObject card= Instantiate(SpecialCards.SpecialCardsUi[c], content);
-            Debug.Log(card);
+        
             card.transform.localScale = Vector3.one;
         });
 

@@ -5,14 +5,17 @@ using UnityEngine.EventSystems;
 
 public class DropHandler : MonoBehaviour, IDropHandler
 {
-    [SerializeField]
     
     public void OnDrop(PointerEventData eventData)
     {
-        GameObject Dropped = eventData.pointerDrag;
-        if(Dropped != null)
+        Debug.Log(transform.name);
+        if (transform.childCount == 0)
         {
-            Dropped.GetComponent<DragHandler>().postDragParent = transform;
+            GameObject Dropped = eventData.pointerDrag;
+            if (Dropped != null)
+            {
+                Dropped.GetComponent<DragHandler>().postDragParent = transform;
+            }
         }
     }
 }
