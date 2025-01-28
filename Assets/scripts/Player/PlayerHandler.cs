@@ -10,7 +10,6 @@ public class PlayerHandler : MonoBehaviour
     public int curSum; //Total Hand Value
     [SerializeField]
     private GameObject GameHandler;
-    private Deck Deck;
     [SerializeField]
     private GameObject CardHand;
     private DisplaySpecial DisplaySpecial;
@@ -19,7 +18,6 @@ public class PlayerHandler : MonoBehaviour
     {
         if(specialCards == null) specialCards = new List<string>();
         if(playerCards == null) playerCards = new Dictionary<string,int>();
-        Deck=GameHandler.GetComponent<Deck>();
         DisplaySpecial = CardHand.GetComponent<DisplaySpecial>();
     }
 

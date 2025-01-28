@@ -3,14 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Deck : MonoBehaviour
+public static class Deck
 {
-    // Start is called before the first frame update
-    void Start(){}
-    // Update is called once per frame
-    void Update(){}
-
-    public KeyValuePair<string, int> PullCard()
+    public static KeyValuePair<string, int> PullCard()
     {
         System.Random rand = new System.Random();
         KeyValuePair<string, int> pulled;
@@ -23,14 +18,14 @@ public class Deck : MonoBehaviour
         return pulled;
     }
 
-    public void Clear()
+    public static void Clear()
     {
         PulledCards.Clear();
     }
 
-    public List<string> PulledCards = new List<string>();
+    public static List<string> PulledCards = new List<string>();
 
-    public readonly Dictionary<string, int> DeckCards = new Dictionary<string, int>
+    public static readonly Dictionary<string, int> DeckCards = new Dictionary<string, int>
     {
         // Hearts
         ["H2"] = 2,

@@ -8,20 +8,22 @@ using UnityEngine;
 public class Dealer : MonoBehaviour
 {
     [SerializeField]
-    Deck deck;
+    private GameObject GameHandler;
     [Tooltip("to determin the playstyle of the Dealer")]
     [SerializeField] private int MaxVal;
     // Start is called before the first frame update
-    void Start(){}
+    void Start()
+    {
+    }
 
     public void PullInit()
     {
         //Pull open first Card
-        KeyValuePair<string, int> card = deck.PullCard();
+        KeyValuePair<string, int> card = Deck.PullCard();
         OpenCard = card.Key;
         DealerHand.Add(card.Key,card.Value);
         //Pull second hidden Card
-        card = deck.PullCard();
+        card = Deck.PullCard();
         DealerHand.Add(card.Key, card.Value);
     }
     public void PullRest()
@@ -30,7 +32,7 @@ public class Dealer : MonoBehaviour
         while (TotalValue < MaxVal)
         {
             {
-                card = deck.PullCard();
+                card = Deck.PullCard();
                 if (!DealerHand.ContainsKey(card.Key))
                 {
                     DealerHand.Add(card.Key, card.Value);
@@ -61,7 +63,7 @@ public class Dealer : MonoBehaviour
     {
         while (count > 0)
         {
-            KeyValuePair<string, int> card = deck.PullCard();
+            KeyValuePair<string, int> card = Deck.PullCard();
             DealerHand.Add(card.Key, card.Value);
             count--;
         }
@@ -77,7 +79,7 @@ public class Dealer : MonoBehaviour
         
     }
 
-    public void UseAbilitys()
+    public void UseAbilities()
     {
 
     }
