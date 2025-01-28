@@ -15,7 +15,7 @@ public class GameHandler : MonoBehaviour
     private PlayerHandler playerHandler;
     private Dealer dealer;
     [SerializeField]
-    private TMP_Text bet_text, money, score;
+    private TMP_Text bet_text, money, score, dealerScore;
     private int OffCamerPos=16;
 
     // Start is called before the first frame updatet a
