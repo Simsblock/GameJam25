@@ -15,8 +15,8 @@ public class PlayerHandler : MonoBehaviour
     private GameObject CardHand;
     private DisplaySpecial DisplaySpecial;
     [SerializeField]
-    private GameObject CardPrefab;
-    private float cardSpace = 0.5f;
+    private GameObject CardPrefab, CardParent;
+    private float cardSpace = 0.65f;
     private Vector3 leftCardPos;
     private Vector3 rightCardPos;
 
@@ -101,13 +101,13 @@ public class PlayerHandler : MonoBehaviour
     public void DisplayPlayerCards()
     {
         GameObject card = Instantiate(CardPrefab);
-        card.transform.SetParent(CardPrefab.transform);
-        Vector3 cardPos = CardPrefab.transform.position;
-        int childrenAmt = CardPrefab.transform.childCount;
+        card.transform.SetParent(CardParent.transform);
+        Vector3 cardPos = new Vector3(0f, 0f, 0f);
+        int childrenAmt = CardParent.transform.childCount;
         // Check if first
         if (childrenAmt == 0)
         {
-            cardPos = new Vector3(-0.25f, 0f, 0f);
+            cardPos = new Vector3(-0.65f, 0f, 0f);
             leftCardPos = cardPos;
             rightCardPos = cardPos;
         }
@@ -121,7 +121,7 @@ public class PlayerHandler : MonoBehaviour
             cardPos = leftCardPos + new Vector3(-cardSpace, 0f, 0f);
             leftCardPos = cardPos;
         }
-        card.transform.position = cardPos;
+        card.transform.localPosition = cardPos;
         // Create the SpriteRenderer component for the card
         SpriteRenderer spriteRenderer = card.AddComponent<SpriteRenderer>();
         //spriteRenderer.sprite = 
