@@ -23,7 +23,9 @@ public class GameHandler : MonoBehaviour
     {
         playerHandler = Player.GetComponent<PlayerHandler>();
         dealer = Dealer.GetComponent<Dealer>();
-        LoadShop();
+        ShopUI.enabled = false;
+
+        //LoadShop();
     }
 
     private void Update()
@@ -60,6 +62,8 @@ public class GameHandler : MonoBehaviour
             //draw
         }
         CheckGameOver();
+        //animations n stuff
+        LoadShop();
     }
 
     public void CheckGameOver()
@@ -84,18 +88,16 @@ public class GameHandler : MonoBehaviour
 
     public void LoadShop()
     {
-        Console.WriteLine("aaa");
-        Debug.Log("load");
         Vector3 target=new Vector3(0,0,0);
         if (Dealer.transform.position.x == OffCamerPos - OffCamerPos) target = Dealer.transform.position + new Vector3(OffCamerPos, 0, 0);
         else if (Dealer.transform.position.x == OffCamerPos) target = Dealer.transform.position - new Vector3(OffCamerPos, 0, 0);
-        //Unload Game UI
-        
+        //Un/load Game UI
+        GameUI.enabled = !GameUI.enabled;
         //Move Dealer and ShopKeep
         StartCoroutine(MoveObjectOffCamera(Dealer,target));
         StartCoroutine(MoveObjectOffCamera(ShopKeep,target-new Vector3(OffCamerPos,0,0)));
-
-        //Load Shop UI
+        //Un/Load Shop UI
+        ShopUI.enabled = !GameUI.enabled;
     }
 
     private IEnumerator MoveObjectOffCamera(GameObject obj, Vector3 target)
