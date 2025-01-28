@@ -5,14 +5,12 @@ using UnityEngine;
 
 public class DisplaySpecial : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject GameHandler;
     private SpecialCardsList SpecialCards;
     [SerializeField]
     private float spaicingAngle, radius;
     private void Start()
     {
-        SpecialCards= gameObject.AddComponent<SpecialCardsList>();
+        SpecialCards= GetComponent<SpecialCardsList>();
     }
     public void Draw(List<string> cards)
     {
@@ -21,9 +19,12 @@ public class DisplaySpecial : MonoBehaviour
         Vector3 position;
         Quaternion rotation = Quaternion.Euler(0, 0, 2);
         //clears current cards
-        foreach (Transform child in transform)
+        if (transform.childCount>0)
         {
-            Destroy(child.gameObject);
+            foreach (Transform child in transform)
+            {
+                Destroy(child.gameObject);
+            }
         }
 
         if (cards.Count == 2)
