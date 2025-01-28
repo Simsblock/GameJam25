@@ -23,7 +23,7 @@ public class GameHandler : MonoBehaviour
     {
         playerHandler = Player.GetComponent<PlayerHandler>();
         dealer = Dealer.GetComponent<Dealer>();
-        ShopUI.enabled = false;
+        GameUI.enabled = false;
 
         //LoadShop();
     }
@@ -31,6 +31,14 @@ public class GameHandler : MonoBehaviour
     private void Update()
     {
         
+    }
+    
+    //Start Round
+    public void StartRound() 
+    {
+        Debug.Log("start");
+        SetBet();
+        LoadShop();
     }
 
     //SetBet 
@@ -88,6 +96,7 @@ public class GameHandler : MonoBehaviour
 
     public void LoadShop()
     {
+        Debug.Log("load");
         Vector3 target=new Vector3(0,0,0);
         if (Dealer.transform.position.x == OffCamerPos - OffCamerPos) target = Dealer.transform.position + new Vector3(OffCamerPos, 0, 0);
         else if (Dealer.transform.position.x == OffCamerPos) target = Dealer.transform.position - new Vector3(OffCamerPos, 0, 0);
