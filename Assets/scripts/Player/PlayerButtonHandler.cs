@@ -6,6 +6,8 @@ public class PlayerButtonHandler : MonoBehaviour
 {
     [SerializeField]
     private GameObject player,Dealer;
+    [SerializeField]
+    private GameObject GameHandler;
     public void Pull()
     {
         player.GetComponent<PlayerHandler>().PullMulti(1);
@@ -14,5 +16,7 @@ public class PlayerButtonHandler : MonoBehaviour
     public void Stand()
     {
         Dealer.GetComponent<Dealer>().PullRest();
+        //Animation for Dealer shit
+
     }
 }
