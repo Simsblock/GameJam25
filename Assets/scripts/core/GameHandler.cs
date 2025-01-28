@@ -1,23 +1,32 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static UnityEngine.GraphicsBuffer;
 
 public class GameHandler : MonoBehaviour
 {
     [SerializeField]
-    private GameObject Player,Dealer;
+    private GameObject Player,Dealer,ShopKeep;
     private PlayerHandler playerHandler;
     private Dealer dealer;
     [SerializeField]
     private TMP_Text bet_text;
+    private int OffCamerPos=16;
 
     // Start is called before the first frame updatet a
     void Start()
     {
         playerHandler = Player.GetComponent<PlayerHandler>();
         dealer = Dealer.GetComponent<Dealer>();
+        LoadShop();
+    }
+
+    private void Update()
+    {
+        
     }
 
     //SetBet 
@@ -58,11 +67,6 @@ public class GameHandler : MonoBehaviour
             SceneManager.LoadScene("GameOver"); //to be made UwU
         }
     }
-    public void Stand()
-    {
-        dealer.PullRest();
-        //special card from dealer
-    }
 
     public void Setup()
     {
@@ -74,6 +78,34 @@ public class GameHandler : MonoBehaviour
         //Init new starting cards
         dealer.PullInit();
         playerHandler.PullMulti(2); //Init
+    }
+
+    public void LoadShop()
+    {
+        Console.WriteLine("aaa");
+        Debug.Log("load");
+        Vector3 target=new Vector3(0,0,0);
+        if (Dealer.transform.position.x == OffCamerPos - OffCamerPos) target = Dealer.transform.position + new Vector3(OffCamerPos, 0, 0);
+        else if (Dealer.transform.position.x == OffCamerPos) target = Dealer.transform.position - new Vector3(OffCamerPos, 0, 0);
+        //Unload Game UI
+        
+        //Move Dealer and ShopKeep
+        StartCoroutine(MoveObjectOffCamera(Dealer,target));
+        StartCoroutine(MoveObjectOffCamera(ShopKeep,target-new Vector3(OffCamerPos,0,0)));
+
+        //Load Shop UI
+    }
+
+    private IEnumerator MoveObjectOffCamera(GameObject obj, Vector3 target)
+    {
+        while (Vector3.Distance(obj.transform.position, target) > 0.01f)
+        {
+            obj.transform.position = Vector3.MoveTowards(obj.transform.position, target, 5f * Time.deltaTime);
+            yield return null; // Wait for the next frame
+        }
+
+        // Snap to the exact target position (to handle floating-point imprecision)
+        obj.transform.position = target;
     }
 
 }
