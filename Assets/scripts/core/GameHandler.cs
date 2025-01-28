@@ -36,16 +36,16 @@ public class GameHandler : MonoBehaviour
     public int stand = 0;
     private void Update()
     {
-        money.text = $"Money: {GlobalData.money}";
-        score.text = $"Score: {playerHandler.curSum}";
-        if (stand == 1)
-        {
-            dealerScore.text = $"Dealer Score: {dealer.TotalValue}";
-            //Animationshit
-            EndGame();
-        }
-        else if (stand == 0) dealerScore.text = $"Dealer Score: {dealer.OpenCard.Value}";
-        else { }
+        //money.text = $"Money: {GlobalData.money}";
+        //score.text = $"Score: {playerHandler.curSum}";
+        //if (stand == 1)
+        //{
+        //    dealerScore.text = $"Dealer Score: {dealer.TotalValue}";
+        //    //Animationshit
+        //    EndGame();
+        //}
+        //else if (stand == 0) dealerScore.text = $"Dealer Score: {dealer.OpenCard.Value}";
+        //else { }
     }
 
     //Start Round

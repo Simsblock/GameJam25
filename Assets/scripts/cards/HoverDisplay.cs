@@ -32,14 +32,14 @@ public class HoverDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                 Vector3 worldPos;
                 RectTransformUtility.ScreenPointToWorldPointInRectangle(
                     canvas.GetComponent<RectTransform>(), Input.mousePosition, canvas.worldCamera, out worldPos);
-                descriptionRect.transform.position = new Vector3(worldPos.x, worldPos.y + 2, worldPos.z);
+                descriptionRect.transform.position = new Vector3(worldPos.x-5, worldPos.y + 12, worldPos.z);
             }
             else
             {
                 Vector3 worldPos;
                 RectTransformUtility.ScreenPointToWorldPointInRectangle(
                     canvas.GetComponent<RectTransform>(), Input.mousePosition, canvas.worldCamera, out worldPos);
-                descriptionRect.transform.position = new Vector3(worldPos.x, worldPos.y - 35, worldPos.z);
+                descriptionRect.transform.position = new Vector3(worldPos.x-5, worldPos.y - 35, worldPos.z);
             }
         }
     }
@@ -57,11 +57,8 @@ public class HoverDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (descriptionText != null)
-        {
+       
             hovering = false;
-            descriptionText.SetActive(false); // Hide the description
-        }
+            descriptionText.SetActive(false);
     }
-
 }
