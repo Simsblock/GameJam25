@@ -10,12 +10,10 @@ public class GameHandler : MonoBehaviour
     private GameObject Player,Dealer;
     private PlayerHandler playerHandler;
     private Dealer dealer;
-    private long money=1000; //playermoney
     [SerializeField]
     private TMP_Text bet_text;
-    private long Bet { get; set; }
 
-    // Start is called before the first frame update
+    // Start is called before the first frame updatet a
     void Start()
     {
         playerHandler = Player.GetComponent<PlayerHandler>();
@@ -25,26 +23,26 @@ public class GameHandler : MonoBehaviour
     //SetBet 
     public void SetBet()
     {
-        Bet = long.Parse(bet_text.text);
+        GlobalData.bet = long.Parse(bet_text.text);
     }
 
     public void EndGame()
     {
         if (dealer.TotalValue > 21)
         {
-            money += Bet; //win
+            GlobalData.money += GlobalData.bet; //win
         }
         else if (playerHandler.curSum > 21)
         {
-            money -= Bet; //loss
+            GlobalData.money -= GlobalData.bet; //loss
         }
         else if (playerHandler.curSum < dealer.TotalValue)
         {
-            money -= Bet; //loss
+            GlobalData.money -= GlobalData.bet; //loss
         }
         else if (playerHandler.curSum > dealer.TotalValue)
         {
-            money += Bet; //win
+            GlobalData.money += GlobalData.bet; //win
         }
         else if (playerHandler.curSum == dealer.TotalValue)
         {
@@ -55,15 +53,27 @@ public class GameHandler : MonoBehaviour
 
     public void CheckGameOver()
     {
-        if (money <= 0)
+        if (GlobalData.money <= 0)
         {
             SceneManager.LoadScene("GameOver"); //to be made UwU
         }
     }
-
     public void Stand()
     {
         dealer.PullRest();
         //special card from dealer
     }
+
+    public void Setup()
+    {
+        //clear old Cards
+        dealer.ClearHand();
+        playerHandler.ClearPlayerCards();
+        //set Bets
+        SetBet();
+        //Init new starting cards
+        dealer.PullInit();
+        playerHandler.PullMulti(2); //Init
+    }
+
 }
