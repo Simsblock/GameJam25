@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class DisplaySpecial : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject GameHandler;
     private SpecialCardsList SpecialCards;
     [SerializeField]
     private float spaicingAngle, radius;
     private void Start()
     {
-        SpecialCards= GetComponent<SpecialCardsList>();
+        SpecialCards= GameHandler.GetComponent<SpecialCardsList>();
     }
     public void Draw(List<string> cards)
     {

@@ -205,7 +205,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1801515065}
         m_TargetAssemblyTypeName: PlayerHandler, Assembly-CSharp
         m_MethodName: DisplaySpecialCards
         m_Mode: 1
@@ -439,7 +439,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1418116610}
         m_TargetAssemblyTypeName: PlayerButtonHandler, Assembly-CSharp
         m_MethodName: Pull
         m_Mode: 1
@@ -690,7 +690,7 @@ MonoBehaviour:
   Player: {fileID: 1801515063}
   Dealer: {fileID: 1225717591}
   ShopKeep: {fileID: 1579593748}
-  GameUI: {fileID: 0}
+  GameUI: {fileID: 666013057}
   ShopUI: {fileID: 0}
   bet_text: {fileID: 0}
 --- !u!4 &571277395
@@ -984,8 +984,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cf4563ca544c484b96fb497b429672f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spaicingAngle: 0
-  radius: 0
+  GameHandler: {fileID: 571277393}
+  spaicingAngle: 1
+  radius: 20
 --- !u!4 &623070984
 Transform:
   m_ObjectHideFlags: 0
@@ -2637,7 +2638,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1418116610}
         m_TargetAssemblyTypeName: PlayerButtonHandler, Assembly-CSharp
         m_MethodName: Stand
         m_Mode: 1
