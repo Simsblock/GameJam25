@@ -53,6 +53,7 @@ public class Dealer : MonoBehaviour
     public void ClearHand()
     {
         DealerHand.Clear();
+        OpenCard = new KeyValuePair<string, int>();
     }
 
     public Dictionary<string, int> DealerHand = new Dictionary<string, int>();

@@ -21,7 +21,7 @@ public class PlayerButtonHandler : MonoBehaviour
 
     public void Stand()
     {
-        GameHandlerScript.stand = true;
+        GameHandlerScript.stand = 1;
         Dealer.GetComponent<Dealer>().PullRest();
     }
 }

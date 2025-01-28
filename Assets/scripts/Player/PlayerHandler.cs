@@ -82,10 +82,6 @@ public class PlayerHandler : MonoBehaviour
         }
     }
 
-    public void ClearPlayerCards()
-    {
-        playerCards = new Dictionary<string, int>();
-    }
     public void ClearSpecialCards()
     {
         specialCards = new List<string>();
@@ -134,6 +130,16 @@ public class PlayerHandler : MonoBehaviour
         card.AddComponent<SpriteRenderer>();
         SpriteRenderer spriteRenderer = card.GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = s;
+    }
+
+    public void ClearBaseCards()
+    {
+        curSum = 0;
+        playerCards = new Dictionary<string, int>();
+        foreach (Transform card in CardParent.transform)
+        {
+            GameObject.Destroy(card.gameObject);
+        }
     }
 
 }

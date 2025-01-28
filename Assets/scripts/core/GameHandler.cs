@@ -17,10 +17,15 @@ public class GameHandler : MonoBehaviour
     [SerializeField]
     private TMP_Text bet_text, money, score, dealerScore;
     private int OffCamerPos=16;
+    [SerializeField]
+    private GameObject win, loose;
+    private bool isShop = true;
 
     // Start is called before the first frame updatet a
     void Start()
     {
+        win.SetActive(false);
+        loose.SetActive(false);
         playerHandler = Player.GetComponent<PlayerHandler>();
         dealer = Dealer.GetComponent<Dealer>();
         GameUI.SetActive(false);
@@ -28,23 +33,27 @@ public class GameHandler : MonoBehaviour
         //LoadShop();
     }
 
-    public bool stand = false;
+    public int stand = 0;
     private void Update()
     {
         money.text = $"Money: {GlobalData.money}";
         score.text = $"Score: {playerHandler.curSum}";
-        if (stand) dealerScore.text = $"Dealer Score: {dealer.TotalValue}";
-        else dealerScore.text = $"Dealer Score: {dealer.OpenCard.Value}";
+        if (stand == 1)
+        {
+            dealerScore.text = $"Dealer Score: {dealer.TotalValue}";
+            //Animationshit
+            EndGame();
+        }
+        else if (stand == 0) dealerScore.text = $"Dealer Score: {dealer.OpenCard.Value}";
+        else { }
     }
 
     //Start Round
     public void StartRound() 
     {
         //clear old Cards
-        dealer.ClearHand();
-        playerHandler.ClearPlayerCards();
         SetBet();
-        LoadShop();
+        StartCoroutine(LoadShop());
         //wait ig n such
         dealer.PullInit();
         playerHandler.PullMulti(2); //Init
@@ -58,29 +67,57 @@ public class GameHandler : MonoBehaviour
 
     public void EndGame()
     {
-        if (dealer.TotalValue > 21)
+        HideUI();
+        stand = 3;
+        dealerScore.text = $"Dealer Score: {dealer.TotalValue}";
+        if (dealer.TotalValue > 21 && playerHandler.curSum <= 21)
         {
             GlobalData.money += GlobalData.bet; //win
+            win.SetActive(true);
         }
         else if (playerHandler.curSum > 21)
         {
             GlobalData.money -= GlobalData.bet; //loss
+            loose.SetActive(true);
         }
         else if (playerHandler.curSum < dealer.TotalValue)
         {
             GlobalData.money -= GlobalData.bet; //loss
+            loose.SetActive(true);
         }
         else if (playerHandler.curSum > dealer.TotalValue)
         {
             GlobalData.money += GlobalData.bet; //win
+            win.SetActive(true);
         }
         else if (playerHandler.curSum == dealer.TotalValue)
         {
             //draw
         }
+        else
+        {
+            //draw
+        }
         CheckGameOver();
         //animations n stuff
-        LoadShop();
+        StartCoroutine(EndGameSequence());
+    }
+
+    private IEnumerator EndGameSequence()
+    {
+        // Wait for animations or other delays
+        yield return new WaitForSeconds(1f);
+        playerHandler.ClearBaseCards();
+        dealer.ClearHand();
+        // Reset win/lose states
+        win.SetActive(false);
+        loose.SetActive(false);
+
+        // Load the shop
+        stand = 0;
+        yield return StartCoroutine(LoadShop());
+
+        Debug.Log("EndGameSequence is complete");
     }
 
     public void CheckGameOver()
@@ -90,18 +127,25 @@ public class GameHandler : MonoBehaviour
             SceneManager.LoadScene("GameOver"); //to be made UwU
         }
     }
-    public void LoadShop()
+    public IEnumerator LoadShop()
     {
+        HideUI();
         Vector3 target=new Vector3(0,0,0);
         if (Dealer.transform.position.x == OffCamerPos - OffCamerPos) target = Dealer.transform.position + new Vector3(OffCamerPos, 0, 0);
         else if (Dealer.transform.position.x == OffCamerPos) target = Dealer.transform.position - new Vector3(OffCamerPos, 0, 0);
-        //Un/load Game UI
-        GameUI.SetActive(!GameUI.active);
         //Move Dealer and ShopKeep
         StartCoroutine(MoveObjectOffCamera(Dealer,target));
-        StartCoroutine(MoveObjectOffCamera(ShopKeep,target-new Vector3(OffCamerPos,0,0)));
+        yield return StartCoroutine(MoveObjectOffCamera(ShopKeep,target-new Vector3(OffCamerPos,0,0)));
         //Un/Load Shop UI
-        ShopUI.SetActive(!GameUI.active);
+        GameUI.SetActive(isShop);
+        ShopUI.SetActive(!isShop);
+        isShop=!isShop;
+    }
+
+    private void HideUI()
+    {
+        GameUI.SetActive(false);
+        ShopUI.SetActive(false);
     }
 
     private IEnumerator MoveObjectOffCamera(GameObject obj, Vector3 target)
@@ -114,6 +158,8 @@ public class GameHandler : MonoBehaviour
 
         // Snap to the exact target position (to handle floating-point imprecision)
         obj.transform.position = target;
+        Debug.Log("MoveObjectOffCamera: Object reached target.");
     }
+
 
 }
