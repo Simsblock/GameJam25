@@ -9,14 +9,16 @@ public class PlayerHandler : MonoBehaviour
     private Dictionary<string,int> playerCards;
     public int curSum; //Total Hand Value
     [SerializeField]
-    private GameObject DeckHandler;
+    private GameObject GameHandler;
     private Deck Deck;
+    private DisplaySpecial DisplaySpecial;
     // Start is called before the first frame update
     void Start()
     {
         if(specialCards == null) specialCards = new List<string>();
         if(playerCards == null) playerCards = new Dictionary<string,int>();
-        Deck=DeckHandler.GetComponent<Deck>();
+        Deck=GameHandler.GetComponent<Deck>();
+        DisplaySpecial = GameHandler.GetComponent<DisplaySpecial>();
     }
 
     public void PullMulti(int count)
@@ -77,7 +79,7 @@ public class PlayerHandler : MonoBehaviour
 
     public void DisplaySpecialCards()
     {
-
+        DisplaySpecial.Draw(specialCards);
     }
     public void DisplayPlayerCards()
     {

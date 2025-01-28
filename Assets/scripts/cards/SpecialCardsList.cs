@@ -6,21 +6,24 @@ public class SpecialCardsList : MonoBehaviour
 {
     [SerializeField]
     private List<GameObject> SpecialCards;
+    [SerializeField]
+    private List<string> CardNames,CardDescription;
     public Dictionary<string, GameObject> SpecialCardsUi;
     public Dictionary<string, string> SpecialCardsDescription;
 
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log(CardNames);
         //maps the card names to prefabs
-        SpecialCardsUi = new Dictionary<string, GameObject>()
+        for (int i = 0; i < CardNames.Count; i++)
         {
-            ["test"] = SpecialCards[0]
-        };
-        SpecialCardsDescription = new Dictionary<string, string>()
-        {
-            ["test"] = "idfk *shrugs*"
-        };
+            if(CardNames[i] != null && SpecialCards[i] != null && CardDescription[i]!=null)
+            {
+                SpecialCardsUi.Add(CardNames[i],SpecialCards[i]);
+                SpecialCardsDescription.Add(CardNames[i],CardDescription[i]);
+            }
+        }
     }
 }
 
