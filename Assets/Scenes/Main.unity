@@ -699,6 +699,7 @@ MonoBehaviour:
   bet_text: {fileID: 1658026345}
   money: {fileID: 1816425542}
   score: {fileID: 2083024209}
+  dealerScore: {fileID: 1362019739}
 --- !u!4 &571277395
 Transform:
   m_ObjectHideFlags: 0

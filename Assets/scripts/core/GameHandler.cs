@@ -28,12 +28,15 @@ public class GameHandler : MonoBehaviour
         //LoadShop();
     }
 
+    public bool stand = false;
     private void Update()
     {
         money.text = $"Money: {GlobalData.money}";
         score.text = $"Score: {playerHandler.curSum}";
+        if (stand) dealerScore.text = $"Dealer Score: {dealer.TotalValue}";
+        else dealerScore.text = $"Dealer Score: {dealer.OpenCard.Value}";
     }
-    
+
     //Start Round
     public void StartRound() 
     {

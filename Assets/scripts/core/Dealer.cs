@@ -18,9 +18,10 @@ public class Dealer : MonoBehaviour
 
     public void PullInit()
     {
+        Debug.Log("INIT");
         //Pull open first Card
         KeyValuePair<string, int> card = Deck.PullCard();
-        OpenCard = card.Key;
+        OpenCard = card;
         DealerHand.Add(card.Key,card.Value);
         //Pull second hidden Card
         card = Deck.PullCard();
@@ -55,7 +56,7 @@ public class Dealer : MonoBehaviour
     }
 
     public Dictionary<string, int> DealerHand = new Dictionary<string, int>();
-    public string OpenCard { get; set; }
+    public KeyValuePair<string, int> OpenCard { get; set; }
     public int TotalValue => DealerHand.Values.Sum();
 
 
