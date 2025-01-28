@@ -14,6 +14,8 @@ public class SpecialCardsList : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SpecialCardsUi = new Dictionary<string, GameObject>();
+        SpecialCardsDescription = new Dictionary<string, string>();
         Debug.Log(CardNames);
         //maps the card names to prefabs
         for (int i = 0; i < CardNames.Count; i++)
