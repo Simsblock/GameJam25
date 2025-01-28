@@ -27,6 +27,10 @@ public class PlayerHandler : MonoBehaviour
         if(playerCards == null) playerCards = new Dictionary<string,int>();
         DisplaySpecial = CardHand.GetComponent<DisplaySpecial>();
         CM = CardParent.GetComponent<CardManager>();
+
+        AddSpecialCard("Test1");
+        AddSpecialCard("Test1");
+        AddSpecialCard("Test1");
     }
 
     public void PullMulti(int count)
@@ -94,10 +98,7 @@ public class PlayerHandler : MonoBehaviour
 
     public void DisplaySpecialCards()
     {
-        //tmp
-        //AddSpecialCard("Test1");
-        //AddSpecialCard("Test2");
-        DisplaySpecial.Draw(specialCards);
+        DisplaySpecial.Display(specialCards);
     }
     public void DisplayPlayerCards(string cardKey)
     {
