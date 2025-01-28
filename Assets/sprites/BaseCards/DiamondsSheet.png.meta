@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ddfb3e2e30a6610468bb67052f91d3f5
+guid: 66d1fd2e1ce669f458ee449269eb9fea
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BaseCardsClubs_0
+      name: DiamondsSheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -111,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ca15257fadb48a47801d5530aa813d3
-      internalID: 962434014
+      spriteID: 1a85d9c4bbacf774f8f7602527e4aef9
+      internalID: 604104879
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BaseCardsClubs_1
+      name: DiamondsSheet_1
       rect:
         serializedVersion: 2
         x: 48
@@ -132,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de63d28ecb341c74ba01d1d28d88b7df
-      internalID: 756682250
+      spriteID: a1817878c48528c47bce41b87f9ee701
+      internalID: -160250870
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BaseCardsClubs_2
+      name: DiamondsSheet_2
       rect:
         serializedVersion: 2
         x: 96
@@ -153,14 +153,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d666181651dd6e24ca5431f6d95ebd53
-      internalID: -2054417315
+      spriteID: b7bca7cdba0c09a488234353cbf83f78
+      internalID: 1548141728
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BaseCardsClubs_3
+      name: DiamondsSheet_3
       rect:
         serializedVersion: 2
         x: 144
@@ -174,14 +174,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 06cbc8c4a6cd0604fa1b0ba24ce4b2d1
-      internalID: 1415761293
+      spriteID: c19b7d8ddcd16574db0509973ae77993
+      internalID: -1705337741
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BaseCardsClubs_4
+      name: DiamondsSheet_4
       rect:
         serializedVersion: 2
         x: 192
@@ -195,14 +195,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ddddb0b891795bb40be71f4f107015be
-      internalID: 665473617
+      spriteID: d448a823fae7080439a856e0ea6adca0
+      internalID: 808161239
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BaseCardsClubs_5
+      name: DiamondsSheet_5
       rect:
         serializedVersion: 2
         x: 240
@@ -216,14 +216,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 75c4075e5cbdb034689305b28b33f597
-      internalID: 723968040
+      spriteID: 16abd897370caca4e86440ec39cd6b25
+      internalID: -1542192901
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BaseCardsClubs_6
+      name: DiamondsSheet_6
       rect:
         serializedVersion: 2
         x: 288
@@ -237,14 +237,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: df1a944de98befb44a098d72a670903e
-      internalID: 434490841
+      spriteID: fd3ba67d6dd798f4d8d85047a521bc17
+      internalID: -1979573114
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BaseCardsClubs_7
+      name: DiamondsSheet_7
       rect:
         serializedVersion: 2
         x: 336
@@ -258,14 +258,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8053a899532079141bbe6c7d0b07c989
-      internalID: 1540631128
+      spriteID: d72c91bc98a841d4cb71c922087c1a22
+      internalID: 1915045692
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BaseCardsClubs_8
+      name: DiamondsSheet_8
       rect:
         serializedVersion: 2
         x: 384
@@ -279,14 +279,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4be11cd57b700d545a70db16465766e3
-      internalID: 374668366
+      spriteID: 27f6da3d8da43774c9837842650ac86e
+      internalID: 454659752
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BaseCardsClubs_9
+      name: DiamondsSheet_9
       rect:
         serializedVersion: 2
         x: 432
@@ -300,14 +300,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5c587c761f03cd547bf020b7e2a5760e
-      internalID: 325069045
+      spriteID: 85f72e6bf17de944ba8832bc4112b502
+      internalID: 905801412
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BaseCardsClubs_10
+      name: DiamondsSheet_10
       rect:
         serializedVersion: 2
         x: 480
@@ -321,14 +321,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: addebc7a70639f745a2ff8b10b10bc3d
-      internalID: 958164500
+      spriteID: cc32392f918d6094abe16fe8b7f1de70
+      internalID: 578861700
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BaseCardsClubs_11
+      name: DiamondsSheet_11
       rect:
         serializedVersion: 2
         x: 528
@@ -342,14 +342,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c50560b84e34524c8d2c62b259ab43e
-      internalID: 284853064
+      spriteID: 10b6ca5c65ec5dc45afec9203f0397e3
+      internalID: 1188349697
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BaseCardsClubs_12
+      name: DiamondsSheet_12
       rect:
         serializedVersion: 2
         x: 576
@@ -363,8 +363,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0840aafa55f928b458fbcf28eaf394f3
-      internalID: 1529066346
+      spriteID: ab2a0b83b7579244998a0da697f6bacb
+      internalID: 1273327621
       vertices: []
       indices: 
       edges: []
@@ -380,19 +380,19 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BaseCardsClubs_0: 962434014
-      BaseCardsClubs_1: 756682250
-      BaseCardsClubs_10: 958164500
-      BaseCardsClubs_11: 284853064
-      BaseCardsClubs_12: 1529066346
-      BaseCardsClubs_2: -2054417315
-      BaseCardsClubs_3: 1415761293
-      BaseCardsClubs_4: 665473617
-      BaseCardsClubs_5: 723968040
-      BaseCardsClubs_6: 434490841
-      BaseCardsClubs_7: 1540631128
-      BaseCardsClubs_8: 374668366
-      BaseCardsClubs_9: 325069045
+      DiamondsSheet_0: 604104879
+      DiamondsSheet_1: -160250870
+      DiamondsSheet_10: 578861700
+      DiamondsSheet_11: 1188349697
+      DiamondsSheet_12: 1273327621
+      DiamondsSheet_2: 1548141728
+      DiamondsSheet_3: -1705337741
+      DiamondsSheet_4: 808161239
+      DiamondsSheet_5: -1542192901
+      DiamondsSheet_6: -1979573114
+      DiamondsSheet_7: 1915045692
+      DiamondsSheet_8: 454659752
+      DiamondsSheet_9: 905801412
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
