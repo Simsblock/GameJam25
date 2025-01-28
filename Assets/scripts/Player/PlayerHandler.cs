@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerHandler : MonoBehaviour
@@ -13,12 +14,19 @@ public class PlayerHandler : MonoBehaviour
     [SerializeField]
     private GameObject CardHand;
     private DisplaySpecial DisplaySpecial;
-    // Start is called before the first frame update
+    [SerializeField]
+    private GameObject CardPrefab, CardParent;
+    private CardManager CM;
+    private float cardSpace = 0.65f;
+    private Vector3 leftCardPos;
+    private Vector3 rightCardPos;
+
     void Start()
     {
         if(specialCards == null) specialCards = new List<string>();
         if(playerCards == null) playerCards = new Dictionary<string,int>();
         DisplaySpecial = CardHand.GetComponent<DisplaySpecial>();
+        CM = CardParent.GetComponent<CardManager>();
     }
 
     public void PullMulti(int count)
@@ -34,6 +42,7 @@ public class PlayerHandler : MonoBehaviour
     {
         var card = Deck.PullCard();
         playerCards.Add(card.Key, card.Value );
+        DisplayPlayerCards(card.Key);
         curSum += card.Value;
         //checks for aces n shit
         if (playerCards.Keys.Any(k => k.Contains("A"))&&curSum>21)
@@ -89,8 +98,37 @@ public class PlayerHandler : MonoBehaviour
         //AddSpecialCard("Test2");
         DisplaySpecial.Draw(specialCards);
     }
-    public void DisplayPlayerCards()
+    public void DisplayPlayerCards(string cardKey)
     {
-
+        GameObject card = Instantiate(CardPrefab);
+        card.transform.SetParent(CardParent.transform);
+        Vector3 cardPos = new Vector3(0f, 0f, 0f);
+        int childrenAmt = CardParent.transform.childCount;
+        Debug.Log(childrenAmt);
+        // Check if first
+        if (childrenAmt == 1)
+        {
+            cardPos = new Vector3(-0.65f, 0f, 0f);
+            leftCardPos = cardPos;
+            rightCardPos = cardPos;
+        }
+        else if(childrenAmt % 2 == 0)
+        {
+            cardPos = rightCardPos + new Vector3(cardSpace*2,0f,0f);
+            rightCardPos = cardPos;
+        }
+        else if (childrenAmt % 2 != 0)
+        {
+            cardPos = leftCardPos + new Vector3(-cardSpace*2, 0f, 0f);
+            leftCardPos = cardPos;
+        }
+        card.transform.localPosition = cardPos;
+        CardManager.DeckConverter(cardKey, out string suit, out int rank);
+        Debug.Log(suit + " " + rank);
+        Sprite s= CM.GetCardSprite(suit, rank);
+        card.AddComponent<SpriteRenderer>();
+        SpriteRenderer spriteRenderer = card.GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = s;
     }
+
 }

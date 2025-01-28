@@ -36,8 +36,6 @@ public class GameHandler : MonoBehaviour
     //Start Round
     public void StartRound() 
     {
-        Debug.Log("start");
-        Console.WriteLine("staart");
         //clear old Cards
         dealer.ClearHand();
         playerHandler.ClearPlayerCards();
@@ -90,7 +88,6 @@ public class GameHandler : MonoBehaviour
     }
     public void LoadShop()
     {
-        Debug.Log("load");
         Vector3 target=new Vector3(0,0,0);
         if (Dealer.transform.position.x == OffCamerPos - OffCamerPos) target = Dealer.transform.position + new Vector3(OffCamerPos, 0, 0);
         else if (Dealer.transform.position.x == OffCamerPos) target = Dealer.transform.position - new Vector3(OffCamerPos, 0, 0);
