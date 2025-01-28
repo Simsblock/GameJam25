@@ -25,7 +25,7 @@ public class BetBtn : MonoBehaviour
 
     public void Raise()
     {
-        if (bet + amount < 10000 || bet+amount < GlobalData.money)
+        if (bet + amount < 10000 && bet+amount <= GlobalData.money)
         {
             bet = long.Parse(bet_text.text);
             bet += amount;
