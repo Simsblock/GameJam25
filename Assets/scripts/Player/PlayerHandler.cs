@@ -132,6 +132,12 @@ public class PlayerHandler : MonoBehaviour
         spriteRenderer.sprite = s;
     }
 
+    public void AddCard(string key, int value)
+    {
+        CardManager.DeckConverter(key, out string suit, out int rank);
+        playerCards.Add(key,value);
+    }
+
     public void ClearBaseCards()
     {
         curSum = 0;

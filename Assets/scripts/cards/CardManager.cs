@@ -14,16 +14,19 @@ public class CardManager : MonoBehaviour
         switch (key[0])
         {
             case 'H':
-                suit = "hearts";
+                suit = "diamonds";
                 break;
             case 'D':
                 suit = "diamonds";
                 break;
             case 'C':
-                suit = "clubs";
+                suit = "spades";
                 break;
             case 'S':
                 suit = "spades";
+                break;
+            case 'E':
+                suit = "diamonds";
                 break;
             default:
                 throw new ArgumentException("Wallah Billa, was hast du getan??");
