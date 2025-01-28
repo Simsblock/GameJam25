@@ -26,6 +26,11 @@ public class DisplaySpecial : MonoBehaviour
 
     public void Display(List<string> Cards)
     {
+        foreach(Transform t in content.transform)
+        {
+            Destroy(t.gameObject);
+        }
+
         Debug.Log(Cards);
         ViewField.SetActive(true);
         Cards.ForEach(c =>
