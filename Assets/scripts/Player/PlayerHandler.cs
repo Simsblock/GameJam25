@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerHandler : MonoBehaviour
@@ -13,7 +14,12 @@ public class PlayerHandler : MonoBehaviour
     [SerializeField]
     private GameObject CardHand;
     private DisplaySpecial DisplaySpecial;
-    // Start is called before the first frame update
+    [SerializeField]
+    private GameObject CardPrefab;
+    private float cardSpace = 0.5f;
+    private Vector3 leftCardPos;
+    private Vector3 rightCardPos;
+
     void Start()
     {
         if(specialCards == null) specialCards = new List<string>();
@@ -34,6 +40,7 @@ public class PlayerHandler : MonoBehaviour
     {
         var card = Deck.PullCard();
         playerCards.Add(card.Key, card.Value );
+        DisplayPlayerCards();
         curSum += card.Value;
         //checks for aces n shit
         if (playerCards.Keys.Any(k => k.Contains("A"))&&curSum>21)
@@ -93,6 +100,31 @@ public class PlayerHandler : MonoBehaviour
     }
     public void DisplayPlayerCards()
     {
-
+        GameObject card = Instantiate(CardPrefab);
+        card.transform.SetParent(CardPrefab.transform);
+        Vector3 cardPos = CardPrefab.transform.position;
+        int childrenAmt = CardPrefab.transform.childCount;
+        // Check if first
+        if (childrenAmt == 0)
+        {
+            cardPos = new Vector3(-0.25f, 0f, 0f);
+            leftCardPos = cardPos;
+            rightCardPos = cardPos;
+        }
+        else if(childrenAmt % 2 != 0)
+        {
+            cardPos = rightCardPos + new Vector3(cardSpace,0f,0f);
+            rightCardPos = cardPos;
+        }
+        else if (childrenAmt % 2 == 0)
+        {
+            cardPos = leftCardPos + new Vector3(-cardSpace, 0f, 0f);
+            leftCardPos = cardPos;
+        }
+        card.transform.position = cardPos;
+        // Create the SpriteRenderer component for the card
+        SpriteRenderer spriteRenderer = card.AddComponent<SpriteRenderer>();
+        //spriteRenderer.sprite = 
     }
+
 }
