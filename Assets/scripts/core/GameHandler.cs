@@ -11,7 +11,7 @@ public class GameHandler : MonoBehaviour
     [SerializeField]
     private GameObject Player,Dealer,ShopKeep;
     [SerializeField]
-    private Canvas GameUI, ShopUI;
+    private GameObject GameUI, ShopUI;
     private PlayerHandler playerHandler;
     private Dealer dealer;
     [SerializeField]
@@ -23,7 +23,7 @@ public class GameHandler : MonoBehaviour
     {
         playerHandler = Player.GetComponent<PlayerHandler>();
         dealer = Dealer.GetComponent<Dealer>();
-        GameUI.enabled = false;
+        GameUI.SetActive(false);
 
         //LoadShop();
     }
@@ -95,12 +95,12 @@ public class GameHandler : MonoBehaviour
         if (Dealer.transform.position.x == OffCamerPos - OffCamerPos) target = Dealer.transform.position + new Vector3(OffCamerPos, 0, 0);
         else if (Dealer.transform.position.x == OffCamerPos) target = Dealer.transform.position - new Vector3(OffCamerPos, 0, 0);
         //Un/load Game UI
-        GameUI.enabled = !GameUI.enabled;
+        GameUI.SetActive(!GameUI.active);
         //Move Dealer and ShopKeep
         StartCoroutine(MoveObjectOffCamera(Dealer,target));
         StartCoroutine(MoveObjectOffCamera(ShopKeep,target-new Vector3(OffCamerPos,0,0)));
         //Un/Load Shop UI
-        ShopUI.enabled = !GameUI.enabled;
+        ShopUI.SetActive(!GameUI.active);
     }
 
     private IEnumerator MoveObjectOffCamera(GameObject obj, Vector3 target)
