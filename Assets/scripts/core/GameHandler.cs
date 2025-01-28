@@ -37,8 +37,15 @@ public class GameHandler : MonoBehaviour
     public void StartRound() 
     {
         Debug.Log("start");
+        Console.WriteLine("staart");
+        //clear old Cards
+        dealer.ClearHand();
+        playerHandler.ClearPlayerCards();
         SetBet();
         LoadShop();
+        //wait ig n such
+        dealer.PullInit();
+        playerHandler.PullMulti(2); //Init
     }
 
     //SetBet 
@@ -81,19 +88,6 @@ public class GameHandler : MonoBehaviour
             SceneManager.LoadScene("GameOver"); //to be made UwU
         }
     }
-
-    public void Setup()
-    {
-        //clear old Cards
-        dealer.ClearHand();
-        playerHandler.ClearPlayerCards();
-        //set Bets
-        SetBet();
-        //Init new starting cards
-        dealer.PullInit();
-        playerHandler.PullMulti(2); //Init
-    }
-
     public void LoadShop()
     {
         Debug.Log("load");
