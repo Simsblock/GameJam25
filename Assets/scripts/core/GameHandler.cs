@@ -15,7 +15,7 @@ public class GameHandler : MonoBehaviour
     private PlayerHandler playerHandler;
     private Dealer dealer;
     [SerializeField]
-    private TMP_Text bet_text;
+    private TMP_Text bet_text, money, score;
     private int OffCamerPos=16;
 
     // Start is called before the first frame updatet a
@@ -30,7 +30,8 @@ public class GameHandler : MonoBehaviour
 
     private void Update()
     {
-        
+        money.text = $"Money: {GlobalData.money}";
+        score.text = $"Score: {playerHandler.curSum}";
     }
     
     //Start Round

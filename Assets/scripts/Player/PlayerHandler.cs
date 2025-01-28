@@ -31,32 +31,37 @@ public class PlayerHandler : MonoBehaviour
 
     public void PullMulti(int count)
     {
-        while (count > 0)
+        if (playerCards.Count < 10)
         {
-            PullCard();
-            count--;
+            while (count > 0)
+            {
+                PullCard();
+                count--;
+            }
         }
     }
 
     public void PullCard()
     {
-        var card = Deck.PullCard();
-        playerCards.Add(card.Key, card.Value );
-        DisplayPlayerCards(card.Key);
-        curSum += card.Value;
-        //checks for aces n shit
-        if (playerCards.Keys.Any(k => k.Contains("A"))&&curSum>21)
+        if (playerCards.Count < 10)
         {
-            foreach (var item in playerCards.Where(p => p.Key.Contains("A")))
+            var card = Deck.PullCard();
+            playerCards.Add(card.Key, card.Value);
+            DisplayPlayerCards(card.Key);
+            curSum += card.Value;
+            //checks for aces n shit
+            if (playerCards.Keys.Any(k => k.Contains("A")) && curSum > 21)
             {
-                if (curSum > 21)
+                foreach (var item in playerCards.Where(p => p.Key.Contains("A")))
                 {
-                    playerCards[item.Key] = 1;
-                    curSum -= 10;
+                    if (curSum > 21)
+                    {
+                        playerCards[item.Key] = 1;
+                        curSum -= 10;
+                    }
                 }
             }
         }
-
     }
 
     public void RemoveCard(string cardKey)

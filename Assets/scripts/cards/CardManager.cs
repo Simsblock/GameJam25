@@ -61,7 +61,6 @@ public class CardManager : MonoBehaviour
             Debug.LogError("Invalid rank: " + rank);
             return null;
         }
-        Debug.Log(selectedSuit);
         return selectedSuit[rank - 1]; // Return the sprite for the given rank
     }
 }
