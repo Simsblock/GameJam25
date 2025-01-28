@@ -11,6 +11,7 @@ public class HoverDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     private bool hovering;
     void Start()
     {
+       canvas= FindObjectOfType<Canvas>();
         if (descriptionText != null)
         {
             descriptionRect = descriptionText.GetComponent<RectTransform>();
@@ -45,6 +46,7 @@ public class HoverDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
+        
         if (descriptionText != null)
         {
             hovering = true;

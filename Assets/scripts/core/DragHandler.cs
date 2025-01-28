@@ -13,6 +13,8 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
     {
         image.raycastTarget = false;
         postDragParent = transform.parent;
+        transform.SetParent(transform.root);
+        transform.SetAsLastSibling();
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -23,6 +25,7 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
     public void OnEndDrag(PointerEventData eventData)
     {
         transform.SetParent(postDragParent);
+        image.raycastTarget = true;
     }
 
     // Start is called before the first frame update
