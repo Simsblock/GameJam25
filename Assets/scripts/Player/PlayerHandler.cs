@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerHandler : MonoBehaviour
 {
     private List<string> specialCards;
-    private Dictionary<string,int> playerCards;
+    public Dictionary<string,int> playerCards;
     public int curSum; //Total Hand Value
     [SerializeField]
     private GameObject GameHandler;
@@ -54,9 +54,9 @@ public class PlayerHandler : MonoBehaviour
             DisplayPlayerCards(card.Key);
             curSum += card.Value;
             //checks for aces n shit
-            if (playerCards.Keys.Any(k => k.Contains("A")) && curSum > 21)
+            if (playerCards.Keys.Any(k => k.Contains("11")) && curSum > 21)
             {
-                foreach (var item in playerCards.Where(p => p.Key.Contains("A")))
+                foreach (var item in playerCards.Where(p => p.Key.Contains("11")))
                 {
                     if (curSum > 21)
                     {
@@ -73,9 +73,9 @@ public class PlayerHandler : MonoBehaviour
         curSum -= playerCards[cardKey];
         playerCards.Remove(cardKey);
         //checks for aces too :)
-        if (curSum < 12&& playerCards.Keys.Any(k => k.Contains("A")))
+        if (curSum < 12&& playerCards.Keys.Any(k => k.Contains("11")))
         {
-            foreach (var item in playerCards.Where(p => p.Key.Contains("A")))
+            foreach (var item in playerCards.Where(p => p.Key.Contains("11")))
             {
                 if (curSum <12)
                 {
@@ -136,7 +136,18 @@ public class PlayerHandler : MonoBehaviour
     public void AddCard(string key, int value)
     {
         DisplayPlayerCards(key);
-        playerCards.Add(key,value);
+        playerCards.Add(key, value);
+        if (playerCards.Keys.Any(k => k.Contains("11")) && curSum > 21)
+        {
+            foreach (var item in playerCards.Where(p => p.Key.Contains("11")))
+            {
+                if (curSum > 21)
+                {
+                    playerCards[item.Key] = 1;
+                    curSum -= 10;
+                }
+            }
+        }
     }
 
     public void ClearBaseCards()

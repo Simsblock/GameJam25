@@ -74,22 +74,22 @@ public class GameHandler : MonoBehaviour
         dealerScore.text = $"Dealer Score: {dealer.TotalValue}";
         if (dealer.TotalValue > GlobalData.DealerWinCond && playerHandler.curSum <= 21)
         {
-            GlobalData.money += GlobalData.bet; //win
+            GlobalData.money += GlobalData.bet*GlobalData.BetPayoutRate/100; //win
             win.SetActive(true);
         }
         else if (playerHandler.curSum > 21)
         {
-            GlobalData.money -= GlobalData.bet; //loss
+            GlobalData.money -= GlobalData.bet * GlobalData.BetLossRate / 100; //loss
             loose.SetActive(true);
         }
         else if (playerHandler.curSum < dealer.TotalValue)
         {
-            GlobalData.money -= GlobalData.bet; //loss
+            GlobalData.money -= GlobalData.bet*GlobalData.BetLossRate / 100; //loss
             loose.SetActive(true);
         }
         else if (playerHandler.curSum > dealer.TotalValue)
         {
-            GlobalData.money += GlobalData.bet; //win
+            GlobalData.money += GlobalData.bet * GlobalData.BetPayoutRate / 100; //win
             win.SetActive(true);
         }
         else if (playerHandler.curSum == dealer.TotalValue)
@@ -118,9 +118,7 @@ public class GameHandler : MonoBehaviour
         // Load the shop
         stand = 0;
         yield return StartCoroutine(LoadShop());
-        GlobalData.DealerWinCond = 21;
-
-        Debug.Log("EndGameSequence is complete");
+        GlobalData.ResetAbilityValues();
     }
 
     public void CheckGameOver()
