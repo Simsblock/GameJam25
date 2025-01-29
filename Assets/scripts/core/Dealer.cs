@@ -15,6 +15,7 @@ public class Dealer : MonoBehaviour
     void Start()
     {
         SpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        ChangeDealer();
     }
 
     public void PullInit()

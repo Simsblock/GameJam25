@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f3b3c04ba11e1a442b8f1b95af24bd72
+guid: ed0bd0fa25e54d54a93c1cc0a488b9d1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dealer_1_Sprite-Sheet-export_0
+      name: Dealer_1_Sprite-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 400
-        height: 555
+        width: 80
+        height: 111
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fe59dc14132597449af191515fe999d9
-      internalID: 1496584338
+      spriteID: 66c20355871b99a409230f881044cb6d
+      internalID: 817662327
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dealer_1_Sprite-Sheet-export_1
+      name: Dealer_1_Sprite-Sheet_1
       rect:
         serializedVersion: 2
-        x: 400
+        x: 80
         y: 0
-        width: 400
-        height: 555
+        width: 80
+        height: 111
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +132,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ecc872e064b442c4c9df18ae64bc25c4
-      internalID: -92249158
+      spriteID: f2096684084f14549962f532e320f46d
+      internalID: 1017202616
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dealer_1_Sprite-Sheet-export_2
+      name: Dealer_1_Sprite-Sheet_2
       rect:
         serializedVersion: 2
-        x: 800
+        x: 160
         y: 0
-        width: 400
-        height: 555
+        width: 80
+        height: 111
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,8 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d952605e0cc980341afd365e64beda56
-      internalID: -1961081550
+      spriteID: 680bb368e2d20854d8c859fae5159d98
+      internalID: -1145440809
       vertices: []
       indices: 
       edges: []
@@ -170,9 +170,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Dealer_1_Sprite-Sheet-export_0: 1496584338
-      Dealer_1_Sprite-Sheet-export_1: -92249158
-      Dealer_1_Sprite-Sheet-export_2: -1961081550
+      Dealer_1_Sprite-Sheet_0: 817662327
+      Dealer_1_Sprite-Sheet_1: 1017202616
+      Dealer_1_Sprite-Sheet_2: -1145440809
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
