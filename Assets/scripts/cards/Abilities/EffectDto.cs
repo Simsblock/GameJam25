@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class EffectDto : MonoBehaviour
@@ -8,4 +9,6 @@ public class EffectDto : MonoBehaviour
     public bool preStand;
     public bool Used;
     public int Price;
+    public TMP_Text text;
+    public string name;
 }

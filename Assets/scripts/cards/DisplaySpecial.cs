@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 
 public class DisplaySpecial : MonoBehaviour
 {
     [SerializeField]
-    private GameObject GameHandler,ViewField;
+    private GameObject GameHandler,ViewField,prefab;
     private SpecialCardsList SpecialCards;
     [SerializeField]
     private Transform content;
@@ -54,15 +55,18 @@ public class DisplaySpecial : MonoBehaviour
         {
             Destroy(t.gameObject);
         }
+
         Debug.Log("Started");
+
         ViewField.SetActive(true);
         System.Random r = new System.Random();
-        for(int i =0; i<4; i++)
+        for(int i =0; i<5; i++)
         {
-            Debug.Log(SpecialCards.SpecialCardsUi);
             int pos = r.Next(SpecialCards.SpecialCardsUi.Count());
             GameObject card = SpecialCards.SpecialCardsUi.ElementAt(pos).Value;
-            GameObject cShop = Instantiate(card, content);
+            GameObject cShop = Instantiate(prefab, content);
+            cShop.GetComponent<EffectDto>().text.text=card.GetComponent<EffectDto>().text.text;
+            cShop.GetComponent<EffectDto>().name = SpecialCards.GetName(card);
             cShop.transform.localScale = Vector3.one;
         }
     }

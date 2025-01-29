@@ -210,6 +210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   postDragParent: {fileID: 0}
   image: {fileID: 3403860742021765007}
+  Shopname: 
 --- !u!225 &3005024937000243798
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -238,6 +239,8 @@ MonoBehaviour:
   preStand: 1
   Used: 0
   Price: 1500
+  text: {fileID: 6936758651910944960}
+  name: 
 --- !u!1 &6841438409847556112
 GameObject:
   m_ObjectHideFlags: 0
