@@ -40,8 +40,8 @@ public class HoverDiceShop : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         if (hovering)
         {
-            if (canvas != null)
-            {
+            //if (canvas != null)
+            //{
                 if (Input.mousePosition.y < Screen.height - 100)
                 {
                     Vector3 worldPos;
@@ -68,7 +68,7 @@ public class HoverDiceShop : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                         flipped = true;
                     }
                 }
-            }
+           // }
         }
     }
 
