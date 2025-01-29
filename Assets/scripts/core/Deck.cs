@@ -5,7 +5,10 @@ using UnityEngine;
 
 public static class Deck
 {
-    public static KeyValuePair<string, int> PullCard()
+
+    public static KeyValuePair<string, int> NextCard { get; set; } = new KeyValuePair<string, int>();
+    
+    public static KeyValuePair<string, int> GetCard()
     {
         System.Random rand = new System.Random();
         KeyValuePair<string, int> pulled;
@@ -14,6 +17,15 @@ public static class Deck
             pulled = DeckCards.ElementAt(rand.Next(DeckCards.Count));
         }
         while (PulledCards.Contains(pulled.Key));
+        return pulled;
+    }
+    public static KeyValuePair<string, int> PullCard()
+    {
+        KeyValuePair<string, int> pulled;
+        if (NextCard.Value > 0) {
+            pulled = NextCard;
+            NextCard = new KeyValuePair<string, int>();
+        } else pulled = GetCard();
         PulledCards.Add(pulled.Key);
         return pulled;
     }
