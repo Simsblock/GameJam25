@@ -36,8 +36,15 @@ public class DisplaySpecial : MonoBehaviour
         {
             
            GameObject card= Instantiate(SpecialCards.SpecialCardsUi[c], content);
-        
-            card.transform.localScale = Vector3.one;
+            if (card.GetComponent<EffectDto>().isDice)
+            {
+                card.transform.localScale = new Vector3(1,0.75f,1);
+            }
+            else
+            {
+                card.transform.localScale = Vector3.one;
+            }
+            
         });
 
 

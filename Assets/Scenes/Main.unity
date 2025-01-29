@@ -1701,6 +1701,7 @@ MonoBehaviour:
   - {fileID: 1069941342852602424, guid: ff3a953d31eec5540ac244dc4445d7b7, type: 3}
   - {fileID: 1069941342852602424, guid: 31cab7c4b20971f45bb9f4a3c1a1cb35, type: 3}
   - {fileID: 1069941342852602424, guid: ea22030f9ccb1464bbb3f09f3abbff26, type: 3}
+  - {fileID: 1069941342852602424, guid: 5345c120199eb364f9955f2977bf6f2f, type: 3}
   CardNames:
   - Dealer+1
   - Ass
@@ -1715,6 +1716,7 @@ MonoBehaviour:
   - Diced-2
   - Diced4
   - Diced-4
+  - DiceDefault
 --- !u!114 &571277397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3041,7 +3043,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0008806116}
+  m_AnchoredPosition: {x: 0, y: 0.00001168399}
   m_SizeDelta: {x: 0, y: 37}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1127078962
@@ -4423,7 +4425,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000021234155}
+  m_AnchoredPosition: {x: 0, y: 0.000013219636}
   m_SizeDelta: {x: 0, y: 37}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1493733641
@@ -5410,7 +5412,7 @@ MonoBehaviour:
     m_Right: 10
     m_Top: 3
     m_Bottom: 3
-  m_ChildAlignment: 0
+  m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 48, y: 64}
@@ -5563,7 +5565,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 353219251}
   m_HandleRect: {fileID: 353219250}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
