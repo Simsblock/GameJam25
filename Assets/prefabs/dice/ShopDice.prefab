@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5865948774652132898}
   - component: {fileID: 4440006957017474766}
   m_Layer: 5
-  m_Name: Dice_1-4
+  m_Name: ShopDice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,7 +70,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1631318417, guid: 0e682fb62e7608d4d8c69ffe5630876f, type: 3}
+  m_Sprite: {fileID: -1323079464, guid: 79475a0e2758b0b4e95eff0a6565306b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6336ddfd40bbd8f4c9e737a7b658f68c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effect: diceRoll:1.4
+  effect: diceRoll:-4.-1
   preStand: 1
   Used: 0
   Price: 1000
@@ -384,7 +384,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Rolls between 1 and 4.
+  m_text: Rolls between 1 and 2.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 207241ad108ce94488e40f30a60542fe, type: 2}
   m_sharedMaterial: {fileID: -1246629540983926267, guid: 207241ad108ce94488e40f30a60542fe, type: 2}

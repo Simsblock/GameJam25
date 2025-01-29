@@ -109,7 +109,7 @@ public class PlayerHandler : MonoBehaviour
 
     public void UpdateDisplay()
     {
-        DisplaySpecial.Display(specialCards);
+        if(DisplaySPC) DisplaySpecial.Display(specialCards);
     }
 
     public void DisplaySpecialCards()

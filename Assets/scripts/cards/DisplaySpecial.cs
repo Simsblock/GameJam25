@@ -12,6 +12,8 @@ public class DisplaySpecial : MonoBehaviour
     private SpecialCardsList SpecialCards;
     [SerializeField]
     private Transform content;
+    [SerializeField]
+    private bool Displaydice;
     //[SerializeField]
     //private float spaicingAngle, radius, totalAngle;
     //private float spaicingInternal;
@@ -60,15 +62,39 @@ public class DisplaySpecial : MonoBehaviour
 
         ViewField.SetActive(true);
         System.Random r = new System.Random();
-        for(int i =0; i<5; i++)
+        if (Displaydice)
         {
-            int pos = r.Next(SpecialCards.SpecialCardsUi.Count());
-            GameObject card = SpecialCards.SpecialCardsUi.ElementAt(pos).Value;
-            GameObject cShop = Instantiate(prefab, content);
-            cShop.GetComponent<EffectDto>().text.text=card.GetComponent<EffectDto>().text.text;
-            cShop.GetComponent<EffectDto>().name = SpecialCards.GetName(card);
-            cShop.transform.localScale = Vector3.one;
+            var dice = SpecialCards.SpecialCardsUi.Where(s => s.Value.GetComponent<EffectDto>().isDice);
+
+            for (int i = 0; i < 5; i++)
+            {
+                Debug.Log(dice.Count());
+                int pos = r.Next(dice.Count());
+                GameObject card = dice.ElementAt(pos).Value;
+                GameObject cShop = Instantiate(prefab, content);
+                cShop.GetComponent<EffectDto>().text.text = card.GetComponent<EffectDto>().text.text;
+                cShop.GetComponent<EffectDto>().name = SpecialCards.GetName(card);
+                cShop.GetComponent<EffectDto>().Price = card.GetComponent<EffectDto>().Price;
+                cShop.transform.localScale = Vector3.one;
+            }
         }
+        else
+        {
+            var cards = SpecialCards.SpecialCardsUi.Where(s => !(s.Value.GetComponent<EffectDto>().isDice));
+            for (int i = 0; i < 5; i++)
+            {
+
+                int pos = r.Next(cards.Count());
+                GameObject card = cards.ElementAt(pos).Value;
+
+                GameObject cShop = Instantiate(prefab, content);
+                cShop.GetComponent<EffectDto>().text.text = card.GetComponent<EffectDto>().text.text;
+                cShop.GetComponent<EffectDto>().name = SpecialCards.GetName(card);
+                cShop.GetComponent<EffectDto>().Price = card.GetComponent<EffectDto>().Price;
+                cShop.transform.localScale = Vector3.one;
+            }
+        }
+        
     }
 
     //TvT

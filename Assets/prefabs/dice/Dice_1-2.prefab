@@ -139,6 +139,8 @@ MonoBehaviour:
   Price: 1000
   text: {fileID: 2524709011977301843}
   name: 
+  isDice: 1
+  permanent: 0
 --- !u!1 &3493026508910475033
 GameObject:
   m_ObjectHideFlags: 0
