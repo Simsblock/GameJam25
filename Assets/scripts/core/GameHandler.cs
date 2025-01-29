@@ -42,7 +42,7 @@ public class GameHandler : MonoBehaviour
     public int stand = 0;
     private void Update()
     {
-        money.text = $"Money: {GlobalData.money}";
+        money.text = $"{GlobalData.money}";
         score.text = $"Score: {playerHandler.curSum}";
         if (stand == 1)
         {

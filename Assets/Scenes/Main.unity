@@ -1231,9 +1231,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameHandler: {fileID: 571277393}
-  ViewField: {fileID: 0}
+  ViewField: {fileID: 798061859}
   prefab: {fileID: 0}
-  content: {fileID: 0}
+  content: {fileID: 1770219039}
 --- !u!4 &623070984
 Transform:
   m_ObjectHideFlags: 0
@@ -4285,7 +4285,7 @@ MonoBehaviour:
   CardHand: {fileID: 623070982}
   CardPrefab: {fileID: 1508639341}
   CardParent: {fileID: 355619182}
-  AbilityBtn: {fileID: 0}
+  AbilityBtn: {fileID: 53741036}
 --- !u!1 &1816425540
 GameObject:
   m_ObjectHideFlags: 0
