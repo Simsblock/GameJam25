@@ -10,7 +10,7 @@ public class CardManager : MonoBehaviour
 
     public static void DeckConverter(string key, out string suit, out int rank)
     {
-        
+        key = key.Split(':')[0];
         switch (key[0])
         {
             case 'H':

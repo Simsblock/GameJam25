@@ -3,9 +3,11 @@ public static class GlobalData
     public static long money { get; set; } = 1000; //playermoney
     public static long bet { get; set; } = 100; //betAmount
 
+    //AbilityValues
     public static int DealerWinCond { get; set; } = 21;
     public static int BetLossRate { get; set; } = 100;
     public static int BetPayoutRate { get; set; } = 100;
+    public static int DuplicateAmt { get; set; } = 0;
 
     public static void ClearAll()
     {
@@ -18,6 +20,7 @@ public static class GlobalData
         DealerWinCond = 21;
         BetLossRate = 100;
         BetPayoutRate = 100;
+        DuplicateAmt = 0;
     }
 
 }
