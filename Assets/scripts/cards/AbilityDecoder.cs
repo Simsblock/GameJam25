@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class AbilityDecoder : MonoBehaviour
@@ -7,6 +8,7 @@ public class AbilityDecoder : MonoBehaviour
     
     private PlayerHandler playerHandler;
     private Dealer Dealer;
+    System.Random rand = new System.Random();
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +44,6 @@ public class AbilityDecoder : MonoBehaviour
                         //for diceroll n= n1-n2
                     case "diceRoll":
                         string[] numbers = details[1].Split("-");
-                        System.Random rand = new System.Random();
                         playerHandler.curSum+=(rand.Next(int.Parse(numbers[0]), int.Parse(numbers[1])));
                         break;
                     //actual abilities laut notion
@@ -52,8 +53,16 @@ public class AbilityDecoder : MonoBehaviour
                     case "ThreeKings":
                         playerHandler.curSum -= 3;
                         break;
-                    case "Switcheroo":
+                    case "Switcheroo": //RANDOM FOR NOW
                         //Choose a card to switch Dealer
+                        //Remove from Dealer adn addd to player
+                        KeyValuePair<string, int> temp = Dealer.DealerHand.ElementAt(rand.Next(Dealer.DealerHand.Count));
+                        Dealer.DealerHand.Remove(temp.Key);
+                        playerHandler.playerCards.Add(temp.Key,temp.Value);
+                        //Remove from Player and add to dealer
+                        temp = playerHandler.playerCards.ElementAt(rand.Next(playerHandler.playerCards.Count));
+                        playerHandler.playerCards.Remove(temp.Key);
+                        Dealer.DealerHand.Add(temp.Key,temp.Value);
                         break;
                     case "Cashback":
                         //Gain 50% of your bet back on a bust. On a win, you only gain 75%.
@@ -81,6 +90,7 @@ public class AbilityDecoder : MonoBehaviour
                         break;
                     case "The Twins":
                         //Pull 2 cards and look at them. Choose which one to add to your count.
+
                         break;
                     case "Destroy":
                         //destroy/anull first special card dealer uses

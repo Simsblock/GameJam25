@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerHandler : MonoBehaviour
 {
     private List<string> specialCards;
-    private Dictionary<string,int> playerCards;
+    public Dictionary<string,int> playerCards;
     public int curSum; //Total Hand Value
     [SerializeField]
     private GameObject GameHandler;
