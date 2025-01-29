@@ -12,6 +12,7 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
     private Transform Content;
     private EffectDto effects;
     private PlayerHandler playerHandler;
+    private GameHandler GameHandler;
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (effects.Used)
@@ -44,10 +45,10 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (effects.Used)
-        {
-            return;
-        }
+        //if (effects.Used)
+        //{
+        //    return;
+        //}
         transform.SetParent(postDragParent);
         image.raycastTarget = true;
 
@@ -69,6 +70,7 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
         effects = GetComponent<EffectDto>();
         Content = transform.parent;
         playerHandler = GameObject.Find("Player").GetComponent<PlayerHandler>();
+
     }
 
     // Update is called once per frame

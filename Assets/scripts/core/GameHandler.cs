@@ -33,6 +33,7 @@ public class GameHandler : MonoBehaviour
         dealer = Dealer.GetComponent<Dealer>();
         GameUI.SetActive(false);
         displaySpecial = ShopKeep.GetComponent<DisplaySpecial>();
+        displaySpecial.DisplayShop();
         //LoadShop();
     }
 

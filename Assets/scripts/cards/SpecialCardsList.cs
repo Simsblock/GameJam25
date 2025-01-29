@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SpecialCardsList : MonoBehaviour
@@ -23,6 +24,11 @@ public class SpecialCardsList : MonoBehaviour
                 SpecialCardsUi.Add(CardNames[i],SpecialCards[i]);
             }
         }
+    }
+
+    public string GetName(GameObject gameObject)
+    {
+        return SpecialCardsUi.Where(s=>s.Value.name == gameObject.name).FirstOrDefault().Key;
     }
 }
 
