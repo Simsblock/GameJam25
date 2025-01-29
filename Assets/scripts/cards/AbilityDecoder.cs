@@ -85,6 +85,7 @@ public class AbilityDecoder : MonoBehaviour
                         break;
                     case "Shortcut":
                         GlobalData.DealerWinCond = 17;
+                        GlobalData.PlayerWinCond = 17;
                         break;
                     case "Joker":
                         //Joker

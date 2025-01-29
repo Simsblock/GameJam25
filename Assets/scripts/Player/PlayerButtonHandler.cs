@@ -13,7 +13,6 @@ public class PlayerButtonHandler : MonoBehaviour
     private GameHandler GameHandlerScript;
 
     private bool isHitButtonCooldown = false;
-    private bool isStandButtonCooldown = false;
 
     private void Start()
     {

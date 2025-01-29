@@ -36,6 +36,7 @@ public class PlayerHandler : MonoBehaviour
         specialCards.Add("Seer");
         specialCards.Add("Restart");
         specialCards.Add("TheTwins");
+        specialCards.Add("Shortcut");
     }
 
     public void PullMulti(int count)

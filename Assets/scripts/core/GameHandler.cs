@@ -109,12 +109,12 @@ public class GameHandler : MonoBehaviour
             GlobalData.money -= GlobalData.bet * GlobalData.BetLossRate / 100; //loss
             loose.SetActive(true);
         }
-        else if (dealer.TotalValue > GlobalData.DealerWinCond && playerHandler.curSum <= 21)
+        else if (dealer.TotalValue > GlobalData.DealerWinCond && playerHandler.curSum <= GlobalData.PlayerWinCond)
         {
             GlobalData.money += GlobalData.bet*GlobalData.BetPayoutRate/100; //win
             win.SetActive(true);
         }
-        else if (playerHandler.curSum > 21)
+        else if (playerHandler.curSum > GlobalData.PlayerWinCond)
         {
             GlobalData.money -= GlobalData.bet * GlobalData.BetLossRate / 100; //loss
             loose.SetActive(true);
