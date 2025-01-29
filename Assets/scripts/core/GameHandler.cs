@@ -149,9 +149,10 @@ public class GameHandler : MonoBehaviour
         playerHandler.ClearBaseCards();
         
         dealer.ClearHand();
-        // Reset win/lose states
+        // Reset win/lose/draw images
         win.SetActive(false);
         loose.SetActive(false);
+        draw.SetActive(false);
         // Load the shop
         stand = 0;
         yield return StartCoroutine(LoadShop());
