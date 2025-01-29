@@ -960,9 +960,11 @@ MonoBehaviour:
   SpecialCards:
   - {fileID: 7489955442949369063, guid: d2fe85d1f20f81144829b4d560a2fcc1, type: 3}
   - {fileID: 6269149082423632149, guid: b992471870dde02449ddadf2225f44e9, type: 3}
+  - {fileID: 6269149082423632149, guid: 26248f4b8bde49647bd386fc4ee23ea2, type: 3}
   CardNames:
   - Test1
   - Test2
+  - Joker
 --- !u!114 &571277397
 MonoBehaviour:
   m_ObjectHideFlags: 0

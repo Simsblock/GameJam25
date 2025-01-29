@@ -33,6 +33,7 @@ public class PlayerHandler : MonoBehaviour
         AddSpecialCard("Test1");
         AddSpecialCard("Test1");
         AddSpecialCard("Test2");
+        AddSpecialCard("Joker");
     }
 
     public void PullMulti(int count)
