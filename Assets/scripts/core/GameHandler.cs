@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
 
 public class GameHandler : MonoBehaviour
@@ -24,6 +25,12 @@ public class GameHandler : MonoBehaviour
     private GameObject SPCSlotL, SPCSlotR,Shopkeep,DiceShop;
     private DisplaySpecial displaySpecial,displaydice;
     private SpecialCardsList specialCards;
+    //Timer
+    [SerializeField]
+    public Image Timebar;
+    private float MaxTime = 20f;
+    private float RemainingTime;
+    private bool TimeIsRunning = false;
 
     // Start is called before the first frame updatet a
     void Start()
@@ -45,8 +52,10 @@ public class GameHandler : MonoBehaviour
     public int stand = 0;
     private void Update()
     {
+        //Score and Money Display
         money.text = $"{GlobalData.money}";
         score.text = $"{playerHandler.curSum}";
+        //Stand
         if (stand == 1)
         {
             dealerScore.text = $"Dealer Score: {dealer.TotalValue}";
@@ -56,17 +65,32 @@ public class GameHandler : MonoBehaviour
         }
         else if (stand == 0) dealerScore.text = $"Dealer Score: {dealer.OpenCard.Value}";
         else { }
+        //Timer
+        if (TimeIsRunning && RemainingTime > 0)
+        {
+            RemainingTime -= Time.deltaTime;
+            Timebar.fillAmount = RemainingTime / MaxTime;
+            Debug.Log($"{RemainingTime/MaxTime}+{TimeIsRunning}");
+        }
+        else if (RemainingTime <= 0 && TimeIsRunning)
+        {
+            EndGame();
+        }
+
     }
 
     //Start Round
-    public void StartRound() 
+    public IEnumerator StartRound() 
     {
         //clear old Cards
         SetBet();
-        StartCoroutine(LoadShop());
+        yield return StartCoroutine(LoadShop());
         //wait ig n such
         dealer.PullInit();
         playerHandler.PullMulti(2); //Init
+        //Timer
+        RemainingTime = MaxTime;
+        TimeIsRunning = true;
     }
 
     //SetBet 
@@ -76,11 +100,17 @@ public class GameHandler : MonoBehaviour
     }
     public void EndGame()
     {
+        TimeIsRunning=false;
         clearSPC();
         HideUI();
         stand = 3;
         dealerScore.text = $"Dealer Score: {dealer.TotalValue}";
-        if (dealer.TotalValue > GlobalData.DealerWinCond && playerHandler.curSum <= 21)
+        if(RemainingTime <= 0)
+        {
+            GlobalData.money -= GlobalData.bet * GlobalData.BetLossRate / 100; //loss
+            loose.SetActive(true);
+        }
+        else if (dealer.TotalValue > GlobalData.DealerWinCond && playerHandler.curSum <= 21)
         {
             GlobalData.money += GlobalData.bet*GlobalData.BetPayoutRate/100; //win
             win.SetActive(true);
@@ -121,9 +151,10 @@ public class GameHandler : MonoBehaviour
         playerHandler.ClearBaseCards();
         
         dealer.ClearHand();
-        // Reset win/lose states
+        // Reset win/lose/draw images
         win.SetActive(false);
         loose.SetActive(false);
+        draw.SetActive(false);
         // Load the shop
         stand = 0;
         yield return StartCoroutine(LoadShop());
