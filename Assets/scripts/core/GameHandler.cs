@@ -31,8 +31,6 @@ public class GameHandler : MonoBehaviour
     private float MaxTime = 20f;
     private float RemainingTime;
     private bool TimeIsRunning = false;
-    //HighScore
-    private int MoneyScore; //Highest Amount of Money Collected in this run
     //Pause
     [SerializeField]
     public GameObject PauseUI;
@@ -94,8 +92,8 @@ public class GameHandler : MonoBehaviour
     public IEnumerator StartRound() 
     {
         //SetScore
-        if (GlobalData.money > MoneyScore) MoneyScore = GlobalData.money;
-        if (PlayerPrefs.GetInt("HighScore") < MoneyScore) PlayerPrefs.SetInt("HighScore", MoneyScore);
+        if (GlobalData.money > GlobalData.Score) GlobalData.Score = GlobalData.money;
+        if (PlayerPrefs.GetInt("HighScore") < GlobalData.Score) PlayerPrefs.SetInt("HighScore", GlobalData.Score);
         //clear old Cards
         SetBet();
         yield return StartCoroutine(LoadShop());

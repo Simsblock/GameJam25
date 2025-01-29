@@ -15,6 +15,7 @@ public class HomeHandler : MonoBehaviour
     public void Play()
     {
         SceneManager.LoadScene("Main");
+        GlobalData.ClearAll();
     }
 
     public void Quit()
