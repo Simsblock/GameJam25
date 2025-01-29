@@ -83,7 +83,8 @@ public class AbilityDecoder : MonoBehaviour
                         break;
                     case "Ass":
                         //E1:1 for Ass
-                        string key = "EA";
+                        GlobalData.DuplicateAmt++;
+                        string key = $"EA:{GlobalData.DuplicateAmt}";
                         playerHandler.AddCard(key, 11); 
                         break;
                     case "Shortcut":
