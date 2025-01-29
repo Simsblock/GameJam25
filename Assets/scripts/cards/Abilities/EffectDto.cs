@@ -7,4 +7,5 @@ public class EffectDto : MonoBehaviour
     public string effect;
     public bool preStand;
     public bool Used;
+    public int Price;
 }

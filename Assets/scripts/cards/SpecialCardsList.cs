@@ -14,18 +14,21 @@ public class SpecialCardsList : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (SpecialCardsUi == null) Generate();
+    }
+
+    public void Generate()
+    {
         SpecialCardsUi = new Dictionary<string, GameObject>();
-        Debug.Log(CardNames);
         //maps the card names to prefabs
         for (int i = 0; i < CardNames.Count; i++)
         {
-            if(CardNames[i] != null && SpecialCards[i] != null )
+            if (CardNames[i] != null && SpecialCards[i] != null)
             {
-                SpecialCardsUi.Add(CardNames[i],SpecialCards[i]);
+                SpecialCardsUi.Add(CardNames[i], SpecialCards[i]);
             }
         }
     }
-
     public string GetName(GameObject gameObject)
     {
         return SpecialCardsUi.Where(s=>s.Value.name == gameObject.name).FirstOrDefault().Key;

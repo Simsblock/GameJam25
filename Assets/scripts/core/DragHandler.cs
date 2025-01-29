@@ -12,7 +12,7 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
     private Transform Content;
     private EffectDto effects;
     private PlayerHandler playerHandler;
-    private GameHandler GameHandler;
+    private SpecialCardsList SpecialCards;
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (effects.Used)
@@ -52,15 +52,17 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
         transform.SetParent(postDragParent);
         image.raycastTarget = true;
 
-        
-        //canvasGroup.interactable = true;
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        Debug.Log(Content.name);
         if (Content.name.Equals("Shop"))
         {
-
+            string s = SpecialCards.GetName(gameObject);
+            playerHandler.AddSpecialCard(s);
+            GlobalData.money -= effects.Price;
+            Destroy(gameObject);
         }
     }
 
@@ -70,7 +72,7 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
         effects = GetComponent<EffectDto>();
         Content = transform.parent;
         playerHandler = GameObject.Find("Player").GetComponent<PlayerHandler>();
-
+        SpecialCards =GameObject.Find("GameHandler").GetComponent<SpecialCardsList>();
     }
 
     // Update is called once per frame

@@ -16,10 +16,11 @@ public class DisplaySpecial : MonoBehaviour
     //private float spaicingInternal;
     private void Start()
     {
-        ViewField.SetActive(false);
-        SpecialCards = GameHandler.GetComponent<SpecialCardsList>();
-    }
 
+        SpecialCards = GameHandler.GetComponent<SpecialCardsList>();
+        if (SpecialCards.SpecialCardsUi == null) SpecialCards.Generate();
+    }
+    
     public void Display(List<string> Cards)
     {
         foreach(Transform t in content.transform)
@@ -47,6 +48,8 @@ public class DisplaySpecial : MonoBehaviour
 
     public void DisplayShop()
     {
+        ViewField.SetActive(true);
+        
         foreach (Transform t in content.transform)
         {
             Destroy(t.gameObject);
@@ -56,7 +59,7 @@ public class DisplaySpecial : MonoBehaviour
         System.Random r = new System.Random();
         for(int i =0; i<4; i++)
         {
-            Debug.Log("step2");
+            Debug.Log(SpecialCards.SpecialCardsUi);
             int pos = r.Next(SpecialCards.SpecialCardsUi.Count());
             GameObject card = SpecialCards.SpecialCardsUi.ElementAt(pos).Value;
             GameObject cShop = Instantiate(card, content);
