@@ -18,7 +18,7 @@ public class GameHandler : MonoBehaviour
     private TMP_Text bet_text, money, score, dealerScore;
     private int OffCamerPos=16;
     [SerializeField]
-    private GameObject win, loose;
+    private GameObject win, loose, draw;
     private bool isShop = true;
     [SerializeField]
     private GameObject SPCSlotL, SPCSlotR,Shopkeep;
@@ -30,6 +30,7 @@ public class GameHandler : MonoBehaviour
     {
         win.SetActive(false);
         loose.SetActive(false);
+        draw.SetActive(false);
         playerHandler = Player.GetComponent<PlayerHandler>();
         dealer = Dealer.GetComponent<Dealer>();
         GameUI.SetActive(false);
@@ -43,7 +44,7 @@ public class GameHandler : MonoBehaviour
     private void Update()
     {
         money.text = $"{GlobalData.money}";
-        score.text = $"Score: {playerHandler.curSum}";
+        score.text = $"{playerHandler.curSum}";
         if (stand == 1)
         {
             dealerScore.text = $"Dealer Score: {dealer.TotalValue}";
@@ -99,11 +100,11 @@ public class GameHandler : MonoBehaviour
         }
         else if (playerHandler.curSum == dealer.TotalValue)
         {
-            //draw
+            draw.SetActive(true);
         }
         else
         {
-            //draw
+            draw.SetActive(true);
         }
         if (GlobalData.bet > GlobalData.money) GlobalData.bet = GlobalData.money;
         CheckGameOver();
@@ -114,7 +115,7 @@ public class GameHandler : MonoBehaviour
     private IEnumerator EndGameSequence()
     {
         // Wait for animations or other delays
-        yield return new WaitForSeconds(1f);
+        yield return new WaitUntil(() => Input.anyKeyDown);
         playerHandler.ClearBaseCards();
         
         dealer.ClearHand();

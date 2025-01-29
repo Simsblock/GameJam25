@@ -11,6 +11,8 @@ public class Dealer : MonoBehaviour
     private GameObject GameHandler;
     [Tooltip("to determin the playstyle of the Dealer")]
     [SerializeField] private int MaxVal;
+    [SerializeField]
+    public GameObject CardPrefab, CardParent;
     // Start is called before the first frame update
     void Start()
     {
@@ -101,5 +103,26 @@ public class Dealer : MonoBehaviour
         SpriteRenderer.sprite = Dealers[index];
     }
 
+    /*
+    public void DisplayPlayerCards(string cardKey)
+    {
+        GameObject card = Instantiate(CardPrefab);
+        card.transform.SetParent(CardParent.transform);
+        Vector3 cardPos = new Vector3(0f, 0f, 0f);
+        int childrenAmt = CardParent.transform.childCount;
+        //Debug.Log(childrenAmt);
+        // Check if first
+        if (childrenAmt == 1)
+        {
+            cardPos = new Vector3(-0.65f, 0f, 0f);
+            leftCardPos = cardPos;
+        }
+        card.transform.localPosition = cardPos;
+        CardManager.DeckConverter(cardKey, out string suit, out int rank);
+        Sprite s = CM.GetCardSprite(suit, rank);
+        SpriteRenderer spriteRenderer = card.GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = s;
+    }
+    */
 
 }
