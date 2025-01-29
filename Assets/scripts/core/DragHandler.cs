@@ -58,6 +58,11 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
     {
         if (Content.name.Equals("Shop"))
         {
+            if (GlobalData.money < effects.Price)
+            {
+                //maby animation oda so
+                return;
+            }
             string s = SpecialCards.GetName(gameObject);
             playerHandler.AddSpecialCard(s);
             GlobalData.money -= effects.Price;

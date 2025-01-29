@@ -23,6 +23,7 @@ public class GameHandler : MonoBehaviour
     [SerializeField]
     private GameObject SPCSlotL, SPCSlotR,Shopkeep;
     private DisplaySpecial displaySpecial;
+    private SpecialCardsList specialCards;
 
     // Start is called before the first frame updatet a
     void Start()
@@ -34,6 +35,7 @@ public class GameHandler : MonoBehaviour
         GameUI.SetActive(false);
         displaySpecial = ShopKeep.GetComponent<DisplaySpecial>();
         displaySpecial.DisplayShop();
+        specialCards = GetComponent<SpecialCardsList>();
         //LoadShop();
     }
 
@@ -113,6 +115,7 @@ public class GameHandler : MonoBehaviour
         // Wait for animations or other delays
         yield return new WaitForSeconds(1f);
         playerHandler.ClearBaseCards();
+        
         dealer.ClearHand();
         // Reset win/lose states
         win.SetActive(false);
@@ -196,6 +199,7 @@ public class GameHandler : MonoBehaviour
         //SPCL
         if (SPCSlotL.transform.childCount == 1)
         {
+            playerHandler.RemoveSpecialCard(specialCards.GetName(SPCSlotL.transform.GetChild(0).gameObject));
             Destroy(SPCSlotL.transform.GetChild(0).gameObject);
         }
 
@@ -204,6 +208,7 @@ public class GameHandler : MonoBehaviour
         //SPCR
         if (SPCSlotR.transform.childCount == 1)
         {
+            playerHandler.RemoveSpecialCard(specialCards.GetName(SPCSlotR.transform.GetChild(0).gameObject));
             Destroy(SPCSlotR.transform.GetChild(0).gameObject);
         }
     }

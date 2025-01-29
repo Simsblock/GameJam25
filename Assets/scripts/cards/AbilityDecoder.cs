@@ -184,7 +184,6 @@ public class AbilityDecoder : MonoBehaviour
     {
         cardClicked = true;
     }
-
 }
 
 public class CardClickHandler : MonoBehaviour
