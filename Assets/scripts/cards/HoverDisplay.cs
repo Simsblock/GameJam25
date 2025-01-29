@@ -27,19 +27,22 @@ public class HoverDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         if (hovering)
         {
-            if (Input.mousePosition.y < Screen.height - 38)
+            if (canvas != null)
             {
-                Vector3 worldPos;
-                RectTransformUtility.ScreenPointToWorldPointInRectangle(
-                    canvas.GetComponent<RectTransform>(), Input.mousePosition, canvas.worldCamera, out worldPos);
-                descriptionRect.transform.position = new Vector3(worldPos.x-5, worldPos.y + 12, worldPos.z);
-            }
-            else
-            {
-                Vector3 worldPos;
-                RectTransformUtility.ScreenPointToWorldPointInRectangle(
-                    canvas.GetComponent<RectTransform>(), Input.mousePosition, canvas.worldCamera, out worldPos);
-                descriptionRect.transform.position = new Vector3(worldPos.x-5, worldPos.y - 35, worldPos.z);
+                if (Input.mousePosition.y < Screen.height - 38)
+                {
+                    Vector3 worldPos;
+                    RectTransformUtility.ScreenPointToWorldPointInRectangle(
+                        canvas.GetComponent<RectTransform>(), Input.mousePosition, canvas.worldCamera, out worldPos);
+                    descriptionRect.transform.position = new Vector3(worldPos.x - 5, worldPos.y + 12, worldPos.z);
+                }
+                else
+                {
+                    Vector3 worldPos;
+                    RectTransformUtility.ScreenPointToWorldPointInRectangle(
+                        canvas.GetComponent<RectTransform>(), Input.mousePosition, canvas.worldCamera, out worldPos);
+                    descriptionRect.transform.position = new Vector3(worldPos.x - 5, worldPos.y - 35, worldPos.z);
+                }
             }
         }
     }

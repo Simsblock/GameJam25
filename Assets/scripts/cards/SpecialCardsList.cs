@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpecialCardsList : MonoBehaviour
@@ -31,7 +32,8 @@ public class SpecialCardsList : MonoBehaviour
     }
     public string GetName(GameObject gameObject)
     {
-        return SpecialCardsUi.Where(s=>s.Value.name == gameObject.name).FirstOrDefault().Key;
+        string name = SpecialCardsUi.Where(s => gameObject.name.Contains(s.Value.name)).First().Key;
+        return name;
     }
 }
 

@@ -56,7 +56,6 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log(Content.name);
         if (Content.name.Equals("Shop"))
         {
             string s = SpecialCards.GetName(gameObject);
