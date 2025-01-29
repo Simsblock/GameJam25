@@ -21,8 +21,8 @@ public class GameHandler : MonoBehaviour
     private GameObject win, loose, draw;
     private bool isShop = true;
     [SerializeField]
-    private GameObject SPCSlotL, SPCSlotR,Shopkeep;
-    private DisplaySpecial displaySpecial;
+    private GameObject SPCSlotL, SPCSlotR,Shopkeep,DiceShop;
+    private DisplaySpecial displaySpecial,displaydice;
     private SpecialCardsList specialCards;
 
     // Start is called before the first frame updatet a
@@ -35,6 +35,8 @@ public class GameHandler : MonoBehaviour
         dealer = Dealer.GetComponent<Dealer>();
         GameUI.SetActive(false);
         displaySpecial = ShopKeep.GetComponent<DisplaySpecial>();
+        displaydice=DiceShop.GetComponent<DisplaySpecial>();
+        displaydice.DisplayShop();
         displaySpecial.DisplayShop();
         specialCards = GetComponent<SpecialCardsList>();
         //LoadShop();
