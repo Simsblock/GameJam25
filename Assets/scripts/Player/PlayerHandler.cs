@@ -117,7 +117,7 @@ public class PlayerHandler : MonoBehaviour
         }
         else
         {
-            AbilityBtn.transform.localPosition = new Vector3(360, 180, 1);
+            AbilityBtn.transform.localPosition = new Vector3(365, 180, 1);
             DisplaySpecial.EndDisplay();
             DisplaySPC = false;
         }
