@@ -15,6 +15,7 @@ public class AbilityDecoder : MonoBehaviour
     void Start()
     {
         playerHandler = GameObject.Find("Player").GetComponent<PlayerHandler>();
+        Dealer = GameObject.Find("Dealer").GetComponent<Dealer>();
     }
 
    
@@ -74,12 +75,7 @@ public class AbilityDecoder : MonoBehaviour
                         break;
                     case "Restart":
                         //Clear
-                        playerHandler.ClearBaseCards();
-                        Dealer.ClearHand();
-                        Deck.Clear();
-                        //Reset Cards
-                        Dealer.PullInit();
-                        playerHandler.PullMulti(2);
+                        StartCoroutine(Restart());
                         break;
                     case "Ass":
                         //E1:1 for Ass
@@ -121,7 +117,7 @@ public class AbilityDecoder : MonoBehaviour
 
     private void Twins()
     {
-        StartCoroutine(SpawnCards(new Vector3(-2, 0, -6), 1, 1, new string[] { Deck.GetCard().Key, Deck.GetCard().Key }, false));
+        StartCoroutine(SpawnCards(new Vector3(-2, 0, -6), 2, 1, new string[] { Deck.GetCard().Key, Deck.GetCard().Key }, false));
     }
 
 
@@ -184,6 +180,16 @@ public class AbilityDecoder : MonoBehaviour
     {
         cardClicked = true;
     }
+
+    private IEnumerator Restart()
+    {
+        yield return StartCoroutine(playerHandler.ClearBaseCards());
+        Dealer.ClearHand();
+        Deck.Clear();
+        //Reset Cards
+        Dealer.PullInit();
+        playerHandler.PullMulti(2);
+    }
 }
 
 public class CardClickHandler : MonoBehaviour
@@ -215,9 +221,14 @@ public class CardClickHandler : MonoBehaviour
     }
     private void AddExtra()
     {
-        CardManager.DeckConverter(Key, out string suit, out int rank);
-        if (rank == 1) rank += 10;
-        Decoder.playerHandler.AddCard(Key, rank);
+        int value;
+        string AlteredKey=Key;
+        if (Key.Contains('E'))
+        {
+            value = Deck.DeckCards[Key.Replace('E', 'S')];
+        }
+        else value = Deck.DeckCards[Key];
+        Decoder.playerHandler.AddCard(Key, value);
     }
 
 }

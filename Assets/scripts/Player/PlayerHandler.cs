@@ -34,6 +34,8 @@ public class PlayerHandler : MonoBehaviour
         DisplaySPC = false;
         specialCards.Add("Joker");
         specialCards.Add("Seer");
+        specialCards.Add("Restart");
+        specialCards.Add("TheTwins");
     }
 
     public void PullMulti(int count)
@@ -177,7 +179,7 @@ public class PlayerHandler : MonoBehaviour
         }
     }
 
-    public void ClearBaseCards()
+    public IEnumerator ClearBaseCards()
     {
         curSum = 0;
         playerCards = new Dictionary<string, int>();
@@ -185,6 +187,6 @@ public class PlayerHandler : MonoBehaviour
         {
             GameObject.Destroy(card.gameObject);
         }
+        yield return null;
     }
-
 }

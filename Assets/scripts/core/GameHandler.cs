@@ -70,7 +70,6 @@ public class GameHandler : MonoBehaviour
         {
             RemainingTime -= Time.deltaTime;
             Timebar.fillAmount = RemainingTime / MaxTime;
-            Debug.Log($"{RemainingTime/MaxTime}+{TimeIsRunning}");
         }
         else if (RemainingTime <= 0 && TimeIsRunning)
         {
@@ -148,8 +147,8 @@ public class GameHandler : MonoBehaviour
     {
         // Wait for animations or other delays
         yield return new WaitUntil(() => Input.anyKeyDown);
-        playerHandler.ClearBaseCards();
-        
+        StartCoroutine(playerHandler.ClearBaseCards());
+
         dealer.ClearHand();
         // Reset win/lose/draw images
         win.SetActive(false);
