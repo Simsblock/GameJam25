@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class HoverDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public GameObject descriptionText; // Assign the text object in the inspector
-    public Canvas canvas; // Reference to the canvas for positioning
+    [HideInInspector] public Canvas canvas; // Reference to the canvas for positioning
     private RectTransform descriptionRect;
     private bool hovering;
     void Start()

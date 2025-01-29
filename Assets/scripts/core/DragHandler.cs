@@ -13,6 +13,7 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
     private EffectDto effects;
     private PlayerHandler playerHandler;
     private SpecialCardsList SpecialCards;
+    [HideInInspector] public string Shopname;
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (effects.Used)
@@ -63,8 +64,7 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
                 //maby animation oda so
                 return;
             }
-            string s = SpecialCards.GetName(gameObject);
-            playerHandler.AddSpecialCard(s);
+            playerHandler.AddSpecialCard(effects.name);
             GlobalData.money -= effects.Price;
             Destroy(gameObject);
         }
