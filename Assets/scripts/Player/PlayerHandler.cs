@@ -138,7 +138,6 @@ public class PlayerHandler : MonoBehaviour
         }
         card.transform.localPosition = cardPos;
         CardManager.DeckConverter(cardKey, out string suit, out int rank);
-        Debug.Log(suit + " " + rank);
         Sprite s= CM.GetCardSprite(suit, rank);
         card.AddComponent<SpriteRenderer>();
         SpriteRenderer spriteRenderer = card.GetComponent<SpriteRenderer>();

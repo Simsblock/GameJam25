@@ -8,7 +8,7 @@ using UnityEngine;
 public class AbilityDecoder : MonoBehaviour
 {
     
-    private PlayerHandler playerHandler;
+    internal PlayerHandler playerHandler;
     private Dealer Dealer;
     System.Random rand = new System.Random();
     // Start is called before the first frame update
@@ -97,7 +97,7 @@ public class AbilityDecoder : MonoBehaviour
                         break;
                     case "The Twins":
                         //Pull 2 cards and look at them. Choose which one to add to your count.
-
+                        Twins();
                         break;
                     case "Destroy":
                         //destroy/anull first special card dealer uses
@@ -110,14 +110,48 @@ public class AbilityDecoder : MonoBehaviour
         }
     }
     //NOT TESTED
-    private IEnumerator Seer()
+    private void Seer()
     {
-        // Make GameObject
-        GameObject card = new GameObject("Card");
-        card.transform.position = new Vector3(0, 0, 0);
+        StartCoroutine(SpawnCards(new Vector3(0, 0, 0), 1, 0, new string[] { Deck.NextCard.Key }, true));
+    }
 
-        // Get Card Data
-        CardManager.DeckConverter(Deck.NextCard.Key, out string suit, out int rank);
+    private void Twins()
+    {
+        StartCoroutine(SpawnCards(new Vector3(0, 0, 0), 1, 0, new string[] { Deck.GetCard().Key, Deck.GetCard().Key }, false));
+    }
+
+
+    private IEnumerator SpawnCards(Vector3 pos, int cardAmount, int ClickedUsage, string[] key, bool timer)
+    {
+        // Create first card
+        List<GameObject> cards = new List<GameObject>();
+        GameObject firstCard = CreateCard(pos, ClickedUsage, key[0]);
+        cards.Add(firstCard);
+        for (int i = 1; i < cardAmount; i++)
+        {
+            pos += new Vector3(4, 0, 0);
+            GameObject cardX = CreateCard(pos, ClickedUsage, key[i]);
+            cards.Add(cardX);
+        }
+
+        //wait
+        if(!timer) yield return new WaitUntil(() => cardClicked);
+        else yield return new WaitForSeconds(2f);
+
+        // Destroy cards
+        foreach (GameObject card in cards)
+        {
+            Destroy(card);
+        }
+    }
+
+    private GameObject CreateCard(Vector3 position, int clickedUsage, string key)
+    {
+        GameObject card = new GameObject("Card");
+        card.transform.position = position;
+
+        // Get card data
+        CardManager.DeckConverter(key, out string suit, out int rank);
         CardManager CM = FindObjectOfType<CardManager>();
         Sprite s = CM.GetCardSprite(suit, rank);
 
@@ -129,11 +163,50 @@ public class AbilityDecoder : MonoBehaviour
         // Set Scale
         card.transform.localScale = new Vector3(6f, 6f, 6f);
 
-        // Display Time
-        yield return new WaitForSeconds(2f);
+        // Add Collider for Click Detection
+        BoxCollider2D collider = card.AddComponent<BoxCollider2D>();
+        collider.isTrigger = true;
+        // Add Click Handler
+        card.AddComponent<CardClickHandler>();
+        CardClickHandler cch = card.GetComponent<CardClickHandler>();
+        cch.Decoder = this;
+        cch.Key = key;
+        cch.ClickedUsage = clickedUsage;
 
-        // Destroy Object
-        Destroy(card);
+        return card;
+    }
+    private bool cardClicked;
+    public void OnCardClicked()
+    {
+        cardClicked = true;
     }
 
 }
+
+public class CardClickHandler : MonoBehaviour
+{
+    public AbilityDecoder Decoder { get; set; }
+    public string Key { get; set; }
+    public int ClickedUsage { get; set; } //NextCard | AddCard | ...
+    private void OnMouseDown()
+    {
+        Decoder.OnCardClicked();
+        Debug.Log("Card Clicked: " + gameObject.name);
+        switch (ClickedUsage)
+        {
+            case 0:
+                break;
+            case 1:
+                AddCard();
+                break;
+                // Add any interaction logic here (e.g., flip card, highlight, etc.)
+        }
+    }
+    private void AddCard()
+    {
+        Deck.AddPulledCard(Key);
+        Decoder.playerHandler.AddCard(Key, Deck.DeckCards[Key]);
+    }
+
+}
+
