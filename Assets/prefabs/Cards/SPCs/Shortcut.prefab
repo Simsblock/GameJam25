@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 3005024937000243798}
   - component: {fileID: 1221896216762615952}
   m_Layer: 5
-  m_Name: Ass
+  m_Name: Shortcut
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -234,10 +234,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6336ddfd40bbd8f4c9e737a7b658f68c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effect: Ass
-  preStand: 1
+  effect: Shortcut
+  preStand: 0
   Used: 0
-  Price: 1000
+  Price: 1500
 --- !u!1 &6841438409847556112
 GameObject:
   m_ObjectHideFlags: 0

@@ -211,6 +211,7 @@ MonoBehaviour:
   effect: draw:1:D
   preStand: 1
   Used: 0
+  Price: 300
 --- !u!1 &7499705197778512109
 GameObject:
   m_ObjectHideFlags: 0

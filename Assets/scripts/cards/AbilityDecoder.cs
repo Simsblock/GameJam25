@@ -72,7 +72,7 @@ public class AbilityDecoder : MonoBehaviour
                         GlobalData.BetLossRate = 50;
                         GlobalData.BetPayoutRate = 75;
                         break;
-                    case "Parallel Universe":
+                    case "Restart":
                         //Clear
                         playerHandler.ClearBaseCards();
                         Dealer.ClearHand();
@@ -93,7 +93,7 @@ public class AbilityDecoder : MonoBehaviour
                         //Joker
                         Joker();
                         break;
-                    case "The Twins":
+                    case "TheTwins":
                         //Pull 2 cards and look at them. Choose which one to add to your count.
                         Twins();
                         break;

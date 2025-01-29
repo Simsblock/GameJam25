@@ -237,7 +237,7 @@ MonoBehaviour:
   effect: Joker
   preStand: 1
   Used: 0
-  Price: 0
+  Price: 1500
 --- !u!1 &6841438409847556112
 GameObject:
   m_ObjectHideFlags: 0
