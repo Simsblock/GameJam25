@@ -31,6 +31,8 @@ public class GameHandler : MonoBehaviour
     private float MaxTime = 20f;
     private float RemainingTime;
     private bool TimeIsRunning = false;
+    //HighScore
+    private int MoneyScore; //Highest Amount of Money Collected in this run
 
     // Start is called before the first frame updatet a
     void Start()
@@ -81,6 +83,9 @@ public class GameHandler : MonoBehaviour
     //Start Round
     public IEnumerator StartRound() 
     {
+        //SetScore
+        if (GlobalData.money > MoneyScore) MoneyScore = GlobalData.money;
+        if (PlayerPrefs.GetInt("HighScore") < MoneyScore) PlayerPrefs.SetInt("HighScore", MoneyScore);
         //clear old Cards
         SetBet();
         yield return StartCoroutine(LoadShop());
@@ -95,7 +100,7 @@ public class GameHandler : MonoBehaviour
     //SetBet 
     public void SetBet()
     {
-        GlobalData.bet = long.Parse(bet_text.text);
+        GlobalData.bet = int.Parse(bet_text.text);
     }
     private void SetBetText()
     {

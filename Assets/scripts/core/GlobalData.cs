@@ -1,7 +1,7 @@
 public static class GlobalData
 {
-    public static long money { get; set; } = 1000; //playermoney
-    public static long bet { get; set; } = 100; //betAmount
+    public static int money { get; set; } = 1000; //playermoney
+    public static int bet { get; set; } = 100; //betAmount
 
     //AbilityValues
     public static int DealerWinCond { get; set; } = 21;
