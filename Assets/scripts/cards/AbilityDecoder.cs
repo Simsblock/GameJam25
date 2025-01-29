@@ -90,10 +90,8 @@ public class AbilityDecoder : MonoBehaviour
                         GlobalData.DealerWinCond = 17;
                         break;
                     case "Joker":
-                        //Joker:1 | Joker:5 | Joker:10
-                        int.TryParse(details[1], out int value);
-                        playerHandler.curSum += value;
-                        playerHandler.DisplayPlayerCards($"E{value}"); //Nicht ganz baba, weil es für 1 ein Ass displayed, evtl Joker Kartenset warrats
+                        //Joker
+                        Joker();
                         break;
                     case "The Twins":
                         //Pull 2 cards and look at them. Choose which one to add to your count.
@@ -110,6 +108,11 @@ public class AbilityDecoder : MonoBehaviour
         }
     }
     //NOT TESTED
+
+    private void Joker()
+    {
+        StartCoroutine(SpawnCards(new Vector3(-4, 0, 0), 3, 2, new string[] { "EA","E5","E13" }, false));
+    }
     private void Seer()
     {
         StartCoroutine(SpawnCards(new Vector3(0, 0, 0), 1, 0, new string[] { Deck.NextCard.Key }, true));
@@ -117,20 +120,20 @@ public class AbilityDecoder : MonoBehaviour
 
     private void Twins()
     {
-        StartCoroutine(SpawnCards(new Vector3(0, 0, 0), 1, 0, new string[] { Deck.GetCard().Key, Deck.GetCard().Key }, false));
+        StartCoroutine(SpawnCards(new Vector3(-2, 0, 0), 1, 1, new string[] { Deck.GetCard().Key, Deck.GetCard().Key }, false));
     }
 
 
-    private IEnumerator SpawnCards(Vector3 pos, int cardAmount, int ClickedUsage, string[] key, bool timer)
+    private IEnumerator SpawnCards(Vector3 pos, int cardAmount, int ClickedUsage, string[] keys, bool timer)
     {
         // Create first card
         List<GameObject> cards = new List<GameObject>();
-        GameObject firstCard = CreateCard(pos, ClickedUsage, key[0]);
+        GameObject firstCard = CreateCard(pos, ClickedUsage, keys[0]);
         cards.Add(firstCard);
         for (int i = 1; i < cardAmount; i++)
         {
             pos += new Vector3(4, 0, 0);
-            GameObject cardX = CreateCard(pos, ClickedUsage, key[i]);
+            GameObject cardX = CreateCard(pos, ClickedUsage, keys[i]);
             cards.Add(cardX);
         }
 
@@ -197,15 +200,24 @@ public class CardClickHandler : MonoBehaviour
             case 0:
                 break;
             case 1:
-                AddCard();
+                AddCardFromDeck();
+                break;
+            case 2:
+                AddExtra();
                 break;
                 // Add any interaction logic here (e.g., flip card, highlight, etc.)
         }
     }
-    private void AddCard()
+    private void AddCardFromDeck()
     {
         Deck.AddPulledCard(Key);
         Decoder.playerHandler.AddCard(Key, Deck.DeckCards[Key]);
+    }
+    private void AddExtra()
+    {
+        CardManager.DeckConverter(Key, out string suit, out int rank);
+        if (rank == 1) rank += 10;
+        Decoder.playerHandler.AddCard(Key, rank);
     }
 
 }

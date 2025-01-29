@@ -20,24 +20,33 @@ public class PlayerButtonHandler : MonoBehaviour
         GameHandlerScript = GameHandler.GetComponent<GameHandler>();
     }
 
+    private void Update()
+    {
+        if (isHitButtonCooldown || player.GetComponent<PlayerHandler>().curSum >= 21)
+        {
+            hitBtn.interactable = false;
+        }else hitBtn.interactable = true;
+    }
+
     public void Hit()
     {
-        hitBtn.interactable = false;
         player.GetComponent<PlayerHandler>().PullCard();
         StartCoroutine(ReenableButtonAfterDelay(hitBtn, 0.1f));
+        isHitButtonCooldown = true;
     }
 
     public void Stand()
     {
-        standBtn.interactable = false;
         GameHandlerScript.stand = 1;
         Dealer.GetComponent<Dealer>().PullRest();
-        StartCoroutine(ReenableButtonAfterDelay(standBtn, 0.1f));
     }
 
     private IEnumerator ReenableButtonAfterDelay(Button btn, float delay)
     {
         yield return new WaitForSeconds(delay);
-        btn.interactable = true;
+        if (btn == hitBtn)
+        {
+            isHitButtonCooldown = false;
+        }
     }
 }
