@@ -43,8 +43,8 @@ public class HoverShop : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         if (hovering)
         {
-            if (canvas != null)
-            {
+            //if (canvas != null)
+            //{
                 if (Input.mousePosition.y < Screen.height - 100)
                 {
                     Vector3 worldPos;
@@ -71,7 +71,7 @@ public class HoverShop : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                         flipped = true;
                     }
                 }
-            }
+            //}
         }
     }
 
