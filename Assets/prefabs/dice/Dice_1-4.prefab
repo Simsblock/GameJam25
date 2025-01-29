@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6336ddfd40bbd8f4c9e737a7b658f68c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effect: Ass
+  effect: diceRoll:1.4
   preStand: 1
   Used: 0
   Price: 1000

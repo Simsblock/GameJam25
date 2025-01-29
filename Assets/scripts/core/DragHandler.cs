@@ -57,6 +57,7 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        
         if (Content.name.Equals("Shop"))
         {
             if (GlobalData.money < effects.Price)
@@ -65,6 +66,7 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
                 return;
             }
             playerHandler.AddSpecialCard(effects.name);
+            playerHandler.UpdateDisplay();
             GlobalData.money -= effects.Price;
             Destroy(gameObject);
         }

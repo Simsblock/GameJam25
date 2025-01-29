@@ -45,7 +45,7 @@ public class AbilityDecoder : MonoBehaviour
                         break;
                         //for diceroll n= n1-n2
                     case "diceRoll":
-                        string[] numbers = details[1].Split("-");
+                        string[] numbers = details[1].Split(".");
                         playerHandler.curSum+=(rand.Next(int.Parse(numbers[0]), int.Parse(numbers[1])));
                         break;
                     //actual abilities laut notion

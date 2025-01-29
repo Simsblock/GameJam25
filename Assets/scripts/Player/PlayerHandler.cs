@@ -107,6 +107,11 @@ public class PlayerHandler : MonoBehaviour
         specialCards.Remove(name);
     }
 
+    public void UpdateDisplay()
+    {
+        DisplaySpecial.Display(specialCards);
+    }
+
     public void DisplaySpecialCards()
     {
         if (!DisplaySPC)

@@ -16,6 +16,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
+        Debug.Log(eventData.pointerClick.name);
         if (transform.childCount == 0)
         {
             GameObject Dropped = eventData.pointerDrag;
