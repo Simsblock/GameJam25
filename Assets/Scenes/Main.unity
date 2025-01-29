@@ -819,6 +819,7 @@ GameObject:
   - component: {fileID: 571277395}
   - component: {fileID: 571277394}
   - component: {fileID: 571277396}
+  - component: {fileID: 571277397}
   m_Layer: 0
   m_Name: GameHandler
   m_TagString: Untagged
@@ -883,6 +884,18 @@ MonoBehaviour:
   CardNames:
   - Test1
   - Test2
+--- !u!114 &571277397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 571277393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06d5a4ffd88ab74469c6d6f251b076c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &595710132
 GameObject:
   m_ObjectHideFlags: 0
@@ -2024,6 +2037,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84c2aac483224724480fdbd2fae74bfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abilityUtil: {fileID: 571277393}
 --- !u!114 &1046266805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3772,6 +3786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84c2aac483224724480fdbd2fae74bfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abilityUtil: {fileID: 571277393}
 --- !u!114 &1751378610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3907,6 +3922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84c2aac483224724480fdbd2fae74bfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abilityUtil: {fileID: 0}
 --- !u!1 &1801515063
 GameObject:
   m_ObjectHideFlags: 0
