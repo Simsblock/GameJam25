@@ -1,6 +1,8 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class AbilityDecoder : MonoBehaviour
@@ -48,7 +50,8 @@ public class AbilityDecoder : MonoBehaviour
                         break;
                     //actual abilities laut notion
                     case "Seer":
-                        //see the next card
+                        Deck.NextCard = Deck.GetCard();
+                        Seer();
                         break;
                     case "ThreeKings":
                         playerHandler.curSum -= 3;
@@ -102,8 +105,35 @@ public class AbilityDecoder : MonoBehaviour
                     case "Gambit":
                         GlobalData.bet *= 2;
                         break;
-                }
+                }   
             }
         }
     }
+    //NOT TESTED
+    private IEnumerator Seer()
+    {
+        // Make GameObject
+        GameObject card = new GameObject("Card");
+        card.transform.position = new Vector3(0, 0, 0);
+
+        // Get Card Data
+        CardManager.DeckConverter(Deck.NextCard.Key, out string suit, out int rank);
+        CardManager CM = FindObjectOfType<CardManager>();
+        Sprite s = CM.GetCardSprite(suit, rank);
+
+        // Add SpriteRenderer
+        SpriteRenderer spriteRenderer = card.AddComponent<SpriteRenderer>();
+        spriteRenderer.sprite = s;
+        spriteRenderer.sortingOrder = 5;
+
+        // Set Scale
+        card.transform.localScale = new Vector3(6f, 6f, 6f);
+
+        // Display Time
+        yield return new WaitForSeconds(2f);
+
+        // Destroy Object
+        Destroy(card);
+    }
+
 }
