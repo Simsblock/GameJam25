@@ -10,10 +10,6 @@ public class DisplaySpecial : MonoBehaviour
     private GameObject GameHandler,ViewField;
     private SpecialCardsList SpecialCards;
     [SerializeField]
-    private int perRow;
-    [SerializeField]
-    private float spaicingX, spaicingY;
-    [SerializeField]
     private Transform content;
     //[SerializeField]
     //private float spaicingAngle, radius, totalAngle;
@@ -47,6 +43,19 @@ public class DisplaySpecial : MonoBehaviour
     public void EndDisplay()
     {
         ViewField.SetActive(false);
+    }
+
+    public void DisplayShop()
+    {
+        ViewField.SetActive(true);
+        System.Random r = new System.Random();
+        for(int i =0; i<4; i++)
+        {
+            int pos = r.Next(SpecialCards.SpecialCardsUi.Count());
+            GameObject card = SpecialCards.SpecialCardsUi.ElementAt(pos).Value;
+            GameObject cShop = Instantiate(card, content);
+            cShop.transform.localScale = Vector3.one;
+        }
     }
 
     //TvT
@@ -85,8 +94,8 @@ public class DisplaySpecial : MonoBehaviour
 
     //            startDeg+=spaicingInternal;
     //        });
-        
 
-        
+
+
     //}
 }

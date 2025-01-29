@@ -24,6 +24,10 @@ public class DropHandler : MonoBehaviour, IDropHandler
             {
                 Dropped.GetComponent<DragHandler>().postDragParent = transform;
             }
+            if (Dropped.GetComponent<EffectDto>().preStand)
+            {
+                TriggerSPCEffect(Dropped.GetComponent<EffectDto>().effect);
+            }
         }
     }
 
@@ -35,6 +39,11 @@ public class DropHandler : MonoBehaviour, IDropHandler
             abilityDecoder.Use(s);
         }
         
+    }
+    private void TriggerSPCEffect(string s)
+    {
+            abilityDecoder.Use(s);
+
     }
 
 }

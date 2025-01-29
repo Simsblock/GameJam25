@@ -20,6 +20,8 @@ public class GameHandler : MonoBehaviour
     [SerializeField]
     private GameObject win, loose;
     private bool isShop = true;
+    [SerializeField]
+    private GameObject SPCSlotL, SPCSlotR;
 
     // Start is called before the first frame updatet a
     void Start()
@@ -41,6 +43,7 @@ public class GameHandler : MonoBehaviour
         if (stand == 1)
         {
             dealerScore.text = $"Dealer Score: {dealer.TotalValue}";
+            UseSPC();
             //Animationshit
             EndGame();
         }
@@ -161,5 +164,26 @@ public class GameHandler : MonoBehaviour
         Debug.Log("MoveObjectOffCamera: Object reached target.");
     }
 
+    private void UseSPC()
+    {
+        //SPCL
+        if(SPCSlotL.transform.childCount == 1)
+        {
+            if (!SPCSlotL.transform.GetChild(0).GetComponent<EffectDto>().preStand)
+            {
+                SPCSlotL.GetComponent<DropHandler>().TriggerSPCEffect();
+            }
+        }
 
+
+
+        //SPCR
+        if (SPCSlotR.transform.childCount == 1)
+        {
+            if (!SPCSlotR.transform.GetChild(0).GetComponent<EffectDto>().preStand)
+            {
+                SPCSlotR.GetComponent<DropHandler>().TriggerSPCEffect();
+            }
+        }
+    }
 }

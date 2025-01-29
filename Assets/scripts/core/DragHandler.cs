@@ -35,7 +35,6 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log(postDragParent.name);
         transform.SetParent(postDragParent);
         image.raycastTarget = true;
 
