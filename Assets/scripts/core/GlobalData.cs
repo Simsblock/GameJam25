@@ -9,8 +9,8 @@ public static class GlobalData
 
     public static void ClearAll()
     {
-        money = 0;
-        bet = 0;
+        money = 1000;
+        bet = 100;
     }
 
     public static void ResetAbilityValues()
