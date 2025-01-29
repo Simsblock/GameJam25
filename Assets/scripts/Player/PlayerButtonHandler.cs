@@ -41,6 +41,11 @@ public class PlayerButtonHandler : MonoBehaviour
         Dealer.GetComponent<Dealer>().PullRest();
     }
 
+    public void Deal()
+    {
+        StartCoroutine(GameHandlerScript.StartRound());
+    }
+
     private IEnumerator ReenableButtonAfterDelay(Button btn, float delay)
     {
         yield return new WaitForSeconds(delay);
