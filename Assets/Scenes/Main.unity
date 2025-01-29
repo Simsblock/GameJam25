@@ -2512,7 +2512,7 @@ SpriteRenderer:
   m_Size: {x: 4, y: 5.55}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1225717593
@@ -2525,7 +2525,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 16, y: 1, z: 1}
-  m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
+  m_LocalScale: {x: 7, y: 7, z: 7}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -2544,6 +2544,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameHandler: {fileID: 571277393}
   MaxVal: 17
+  Dealers:
+  - {fileID: 817662327, guid: ed0bd0fa25e54d54a93c1cc0a488b9d1, type: 3}
+  - {fileID: 1017202616, guid: ed0bd0fa25e54d54a93c1cc0a488b9d1, type: 3}
+  - {fileID: -1145440809, guid: ed0bd0fa25e54d54a93c1cc0a488b9d1, type: 3}
+  - {fileID: -1916677824, guid: 0286fd150842106468e1a4c0991fb0c2, type: 3}
+  - {fileID: 124034010, guid: 0286fd150842106468e1a4c0991fb0c2, type: 3}
+  - {fileID: 461315239, guid: 0286fd150842106468e1a4c0991fb0c2, type: 3}
+  - {fileID: 519305020, guid: fff05a491fc6595459e089461b13a577, type: 3}
+  - {fileID: 1199054549, guid: fff05a491fc6595459e089461b13a577, type: 3}
+  - {fileID: -1243552333, guid: fff05a491fc6595459e089461b13a577, type: 3}
 --- !u!1 &1255753024
 GameObject:
   m_ObjectHideFlags: 0
