@@ -139,6 +139,8 @@ MonoBehaviour:
   Price: 1000
   text: {fileID: 2524709011977301843}
   name: 
+  isDice: 1
+  permanent: 0
 --- !u!1 &3493026508910475033
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,7 +384,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Rolls between 1 and 2.
+  m_text: Rolls between negative 1 and 4.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 207241ad108ce94488e40f30a60542fe, type: 2}
   m_sharedMaterial: {fileID: -1246629540983926267, guid: 207241ad108ce94488e40f30a60542fe, type: 2}
