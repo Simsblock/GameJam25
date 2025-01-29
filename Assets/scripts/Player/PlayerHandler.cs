@@ -118,7 +118,7 @@ public class PlayerHandler : MonoBehaviour
         card.transform.SetParent(CardParent.transform);
         Vector3 cardPos = new Vector3(0f, 0f, 0f);
         int childrenAmt = CardParent.transform.childCount;
-        Debug.Log(childrenAmt);
+        //Debug.Log(childrenAmt);
         // Check if first
         if (childrenAmt == 1)
         {
@@ -139,7 +139,6 @@ public class PlayerHandler : MonoBehaviour
         card.transform.localPosition = cardPos;
         CardManager.DeckConverter(cardKey, out string suit, out int rank);
         Sprite s= CM.GetCardSprite(suit, rank);
-        card.AddComponent<SpriteRenderer>();
         SpriteRenderer spriteRenderer = card.GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = s;
     }
