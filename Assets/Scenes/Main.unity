@@ -961,10 +961,22 @@ MonoBehaviour:
   - {fileID: 7489955442949369063, guid: d2fe85d1f20f81144829b4d560a2fcc1, type: 3}
   - {fileID: 6269149082423632149, guid: b992471870dde02449ddadf2225f44e9, type: 3}
   - {fileID: 6269149082423632149, guid: 26248f4b8bde49647bd386fc4ee23ea2, type: 3}
+  - {fileID: 6269149082423632149, guid: 2dbb94c07808a1949843c5f33666adcc, type: 3}
+  - {fileID: 6269149082423632149, guid: 2365222355667d8448ce34e7a9c1e126, type: 3}
+  - {fileID: 6269149082423632149, guid: b0ea8d1d4c33dae4292a5ebbc6d9041f, type: 3}
+  - {fileID: 6269149082423632149, guid: 4926d76f0b0f43d47933adde34a08205, type: 3}
+  - {fileID: 6269149082423632149, guid: ac3d29ddc99ec3d4e8bb29dec72bbd2c, type: 3}
+  - {fileID: 6269149082423632149, guid: 5270d536287cb644f9c659a7ddaa5ed0, type: 3}
   CardNames:
-  - Test1
-  - Test2
+  - Dealer+1
+  - Ass
   - Joker
+  - Gambit
+  - Restart
+  - Seer
+  - Shortcut
+  - TheTwins
+  - ThreeKings
 --- !u!114 &571277397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5314,8 +5326,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 995775905}
   m_HandleRect: {fileID: 995775904}
   m_Direction: 0
-  m_Value: 1
-  m_Size: 1
+  m_Value: 0
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

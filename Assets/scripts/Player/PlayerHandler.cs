@@ -56,7 +56,7 @@ public class PlayerHandler : MonoBehaviour
             {
                 foreach (var item in playerCards.Where(p => p.Key.Contains("A")))
                 {
-                    if (curSum > 21)
+                    if (curSum > 21 && !(playerCards[item.Key]==1))
                     {
                         playerCards[item.Key] = 1;
                         curSum -= 10;
@@ -75,11 +75,11 @@ public class PlayerHandler : MonoBehaviour
         {
             foreach (var item in playerCards.Where(p => p.Key.Contains("A")))
             {
-                if (curSum <12)
-                {
-                    playerCards[item.Key] = 11;
-                    curSum += 10;
-                }
+                    if (curSum < 12 && !(playerCards[item.Key] == 11))
+                    {
+                        playerCards[item.Key] = 11;
+                        curSum += 10;
+                    }
             }
         }
     }
@@ -148,7 +148,7 @@ public class PlayerHandler : MonoBehaviour
         {
             foreach (var item in playerCards.Where(p => p.Key.Contains("A")))
             {
-                if (curSum > 21)
+                if (curSum > 21 && playerCards[item.Key] != 1)
                 {
                     playerCards[item.Key] = 1;
                     curSum -= 10;
