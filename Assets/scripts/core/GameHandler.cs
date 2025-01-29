@@ -97,6 +97,10 @@ public class GameHandler : MonoBehaviour
     {
         GlobalData.bet = long.Parse(bet_text.text);
     }
+    private void SetBetText()
+    {
+        bet_text.text= GlobalData.bet.ToString();
+    }
     public void EndGame()
     {
         TimeIsRunning=false;
@@ -137,7 +141,11 @@ public class GameHandler : MonoBehaviour
         {
             draw.SetActive(true);
         }
-        if (GlobalData.bet > GlobalData.money) GlobalData.bet = GlobalData.money;
+        if (GlobalData.bet > GlobalData.money)
+        {
+            GlobalData.bet = GlobalData.money;
+            SetBetText();
+        }
         CheckGameOver();
         //animations n stuff
         StartCoroutine(EndGameSequence());
