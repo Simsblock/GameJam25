@@ -33,6 +33,9 @@ public class GameHandler : MonoBehaviour
     private bool TimeIsRunning = false;
     //HighScore
     private int MoneyScore; //Highest Amount of Money Collected in this run
+    //Pause
+    [SerializeField]
+    public GameObject PauseUI;
 
     // Start is called before the first frame updatet a
     void Start()
@@ -43,6 +46,7 @@ public class GameHandler : MonoBehaviour
         playerHandler = Player.GetComponent<PlayerHandler>();
         dealer = Dealer.GetComponent<Dealer>();
         GameUI.SetActive(false);
+        PauseUI.SetActive(false);
         displaySpecial = ShopKeep.GetComponent<DisplaySpecial>();
         displaydice=DiceShop.GetComponent<DisplaySpecial>();
         displaydice.DisplayShop();
@@ -57,6 +61,12 @@ public class GameHandler : MonoBehaviour
         //Score and Money Display
         money.text = $"{GlobalData.money}";
         score.text = $"{playerHandler.curSum}";
+        //Pause
+        if (Input.GetKeyDown(KeyCode.Escape) && ShopUI.active && !PauseUI.active)
+        {
+            PauseUI.SetActive(true);
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && PauseUI.active) Unpause();
         //Stand
         if (stand == 1)
         {
@@ -262,5 +272,15 @@ public class GameHandler : MonoBehaviour
             playerHandler.RemoveSpecialCard(specialCards.GetName(SPCSlotR.transform.GetChild(0).gameObject));
             Destroy(SPCSlotR.transform.GetChild(0).gameObject);
         }
+    }
+
+    //Pause
+    public void Unpause()
+    {
+        PauseUI.SetActive(false);
+    }
+    public void QuitToHome()
+    {
+        SceneManager.LoadScene("Home");
     }
 }
