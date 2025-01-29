@@ -8,6 +8,11 @@ public static class Deck
 
     public static KeyValuePair<string, int> NextCard { get; set; } = new KeyValuePair<string, int>();
     
+    public static void AddPulledCard(string key)
+    {
+        PulledCards.Add(key);
+    }
+    
     public static KeyValuePair<string, int> GetCard()
     {
         System.Random rand = new System.Random();
