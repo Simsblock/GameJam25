@@ -43,9 +43,12 @@ public class DropHandler : MonoBehaviour, IDropHandler
     }
     private void TriggerSPCEffect(GameObject child)
     {
-
-            abilityDecoder.Use(transform.GetChild(0).GetComponent<EffectDto>().effect);
+        if (child != null)
+        {
+            abilityDecoder.Use(child.GetComponent<EffectDto>().effect);
             child.GetComponent<EffectDto>().Used = true;
+        }
+            
     }
 
 }
