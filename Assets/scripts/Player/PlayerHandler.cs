@@ -93,6 +93,14 @@ public class PlayerHandler : MonoBehaviour
     {
         specialCards.Add(name);
     }
+    public void RemoveSpecialCard(string name)
+    {
+        if (name.Contains("Dice"))
+        {
+            return;
+        }
+        specialCards.Remove(name);
+    }
 
     public void DisplaySpecialCards()
     {
