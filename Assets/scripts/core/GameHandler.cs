@@ -65,7 +65,7 @@ public class GameHandler : MonoBehaviour
             //Animationshit
             EndGame();
         }
-        else if (stand == 0) dealerScore.text = $"Dealer Score: {dealer.OpenCard.Value}";
+        else if (stand == 0) dealerScore.text = $"{dealer.OpenCard.Value}";
         else { }
         //Timer
         if (TimeIsRunning && RemainingTime > 0)
@@ -110,10 +110,9 @@ public class GameHandler : MonoBehaviour
     {
         TimeIsRunning=false;
         clearSPC();
-        HideUI();
         stand = 3;
         //Dealer Reveal
-        dealerScore.text = $"Dealer Score: {dealer.TotalValue}";
+        dealerScore.text = $"{dealer.TotalValue}";
         dealer.TurnCardsOver();
         //Win or Loose?
         if(RemainingTime <= 0)
@@ -163,6 +162,8 @@ public class GameHandler : MonoBehaviour
     {
         // Wait for animations or other delays
         yield return new WaitUntil(() => Input.anyKeyDown);
+        //Clear UI
+        HideUI();
         StartCoroutine(playerHandler.ClearBaseCards());
 
         StartCoroutine(dealer.ClearHand());
