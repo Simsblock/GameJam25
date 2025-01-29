@@ -42,7 +42,7 @@ public class GameHandler : MonoBehaviour
     public int stand = 0;
     private void Update()
     {
-        money.text = $"Money: {GlobalData.money}";
+        money.text = $"{GlobalData.money}";
         score.text = $"Score: {playerHandler.curSum}";
         if (stand == 1)
         {
@@ -105,6 +105,7 @@ public class GameHandler : MonoBehaviour
         {
             //draw
         }
+        if (GlobalData.bet > GlobalData.money) GlobalData.bet = GlobalData.money;
         CheckGameOver();
         //animations n stuff
         StartCoroutine(EndGameSequence());

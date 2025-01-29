@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHandler : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class PlayerHandler : MonoBehaviour
     private Vector3 leftCardPos;
     private Vector3 rightCardPos;
     private bool DisplaySPC;
+    [SerializeField]
+    private Button AbilityBtn;
 
     void Start()
     {
@@ -29,6 +32,8 @@ public class PlayerHandler : MonoBehaviour
         DisplaySpecial = CardHand.GetComponent<DisplaySpecial>();
         CM = CardParent.GetComponent<CardManager>();
         DisplaySPC = false;
+        specialCards.Add("Joker");
+        specialCards.Add("Seer");
     }
 
     public void PullMulti(int count)
@@ -106,11 +111,13 @@ public class PlayerHandler : MonoBehaviour
     {
         if (!DisplaySPC)
         {
+            AbilityBtn.transform.localPosition = new Vector3(175, 180, 1);
             DisplaySpecial.Display(specialCards);
             DisplaySPC = true;
         }
         else
         {
+            AbilityBtn.transform.localPosition = new Vector3(365, 180, 1);
             DisplaySpecial.EndDisplay();
             DisplaySPC = false;
         }

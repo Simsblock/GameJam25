@@ -8,15 +8,6 @@ using UnityEngine.UI;
 
 public class BetBtn : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        if(bet>GlobalData.money) bet = GlobalData.money;
-    }
     long bet;
     [SerializeField]
     int amount;

@@ -112,16 +112,16 @@ public class AbilityDecoder : MonoBehaviour
 
     private void Joker()
     {
-        StartCoroutine(SpawnCards(new Vector3(-4, 0, 0), 3, 2, new string[] { "EA","E5","E13" }, false));
+        StartCoroutine(SpawnCards(new Vector3(-4, 0, -6), 3, 2, new string[] { "EA","E5","E13" }, false));
     }
     private void Seer()
     {
-        StartCoroutine(SpawnCards(new Vector3(0, 0, 0), 1, 0, new string[] { Deck.NextCard.Key }, true));
+        StartCoroutine(SpawnCards(new Vector3(0, 0, -6), 1, 0, new string[] { Deck.NextCard.Key }, true));
     }
 
     private void Twins()
     {
-        StartCoroutine(SpawnCards(new Vector3(-2, 0, 0), 1, 1, new string[] { Deck.GetCard().Key, Deck.GetCard().Key }, false));
+        StartCoroutine(SpawnCards(new Vector3(-2, 0, -6), 1, 1, new string[] { Deck.GetCard().Key, Deck.GetCard().Key }, false));
     }
 
 
