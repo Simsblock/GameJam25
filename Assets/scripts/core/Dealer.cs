@@ -14,6 +14,8 @@ public class Dealer : MonoBehaviour
     //Display Cards
     [SerializeField]
     public GameObject DealerCardParent, CardPrefab;
+    [SerializeField]
+    public Sprite CardBack;
     private Vector3 leftCardPos;
 
     // Start is called before the first frame update
@@ -32,9 +34,11 @@ public class Dealer : MonoBehaviour
         KeyValuePair<string, int> card = Deck.PullCard();
         OpenCard = card;
         DealerHand.Add(card.Key,card.Value);
+        DisplayDealerCards(card.Key);
         //Pull second hidden Card
         card = Deck.PullCard();
         DealerHand.Add(card.Key, card.Value);
+        DisplayDealerCards(card.Key);
     }
     public void PullRest()
     {
@@ -46,6 +50,7 @@ public class Dealer : MonoBehaviour
                 if (!DealerHand.ContainsKey(card.Key))
                 {
                     DealerHand.Add(card.Key, card.Value);
+                    DisplayDealerCards(card.Key);
                 }
             }
         }
@@ -59,10 +64,15 @@ public class Dealer : MonoBehaviour
         if (TotalValue < MaxVal) PullRest();
     }
 
-    public void ClearHand()
+    public IEnumerator ClearHand()
     {
         DealerHand.Clear();
         OpenCard = new KeyValuePair<string, int>();
+        foreach (Transform card in DealerCardParent.transform)
+        {
+            GameObject.Destroy(card.gameObject);
+        }
+        yield return null;
     }
 
     public Dictionary<string, int> DealerHand = new Dictionary<string, int>();
@@ -70,12 +80,13 @@ public class Dealer : MonoBehaviour
     public int TotalValue => DealerHand.Values.Sum();
 
 
-    public void PullMulti(int count)
+    public void PullMulti(int count) //wtf wer hat das so dumm benannt
     {
         while (count > 0)
         {
             KeyValuePair<string, int> card = Deck.PullCard();
             DealerHand.Add(card.Key, card.Value);
+            DisplayDealerCards(card.Key);
             count--;
         }
         
@@ -109,24 +120,41 @@ public class Dealer : MonoBehaviour
     }
 
 
-    public void DisplayPlayerCards(string cardKey)
+    public void DisplayDealerCards(string cardKey)
     {
         GameObject card = Instantiate(CardPrefab);
+        card.name = cardKey;
         card.transform.SetParent(DealerCardParent.transform);
-        Vector3 cardPos = new Vector3(0f, 0f, 0f);
+        Vector3 cardPos = new Vector3(1.3f, 0f, 0f);
         int childrenAmt = DealerCardParent.transform.childCount;
         // Check if first
         if (childrenAmt == 1)
         {
-            cardPos = new Vector3(-0.65f, 0f, 0f);
+            cardPos = new Vector3(0f, 0f, 0f);
             leftCardPos = cardPos;
+            CardManager.DeckConverter(cardKey, out string suit, out int rank);
+            Sprite s = DealerCardParent.GetComponent<CardManager>().GetCardSprite(suit, rank);
+            card.GetComponent<SpriteRenderer>().sprite = s;
         }
-        card.transform.localPosition = cardPos;
-        CardManager.DeckConverter(cardKey, out string suit, out int rank);
-        //Sprite s = CM.GetCardSprite(suit, rank);
-        SpriteRenderer spriteRenderer = card.GetComponent<SpriteRenderer>();
-        //spriteRenderer.sprite = s;
+        else
+        {
+            leftCardPos += cardPos;
+            card.GetComponent<SpriteRenderer>().sprite = CardBack;
+        }
+        card.transform.localPosition = leftCardPos;
     }
-    
+
+    public void TurnCardsOver()
+    {
+        foreach (Transform child in DealerCardParent.transform)
+        {
+            string cardKey = child.name;
+            CardManager.DeckConverter(cardKey, out string suit, out int rank);
+            Sprite s = DealerCardParent.GetComponent<CardManager>().GetCardSprite(suit, rank);
+            child.GetComponent<SpriteRenderer>().sprite = s;
+        }
+    }
+
+
 
 }

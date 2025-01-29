@@ -184,8 +184,8 @@ public class AbilityDecoder : MonoBehaviour
 
     private IEnumerator Restart()
     {
-        yield return StartCoroutine(playerHandler.ClearBaseCards());
-        Dealer.ClearHand();
+        StartCoroutine(playerHandler.ClearBaseCards());
+        yield return StartCoroutine(Dealer.ClearHand());
         Deck.Clear();
         //Reset Cards
         Dealer.PullInit();

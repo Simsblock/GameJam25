@@ -112,7 +112,10 @@ public class GameHandler : MonoBehaviour
         clearSPC();
         HideUI();
         stand = 3;
+        //Dealer Reveal
         dealerScore.text = $"Dealer Score: {dealer.TotalValue}";
+        dealer.TurnCardsOver();
+        //Win or Loose?
         if(RemainingTime <= 0)
         {
             GlobalData.money -= GlobalData.bet * GlobalData.BetLossRate / 100; //loss
@@ -162,7 +165,7 @@ public class GameHandler : MonoBehaviour
         yield return new WaitUntil(() => Input.anyKeyDown);
         StartCoroutine(playerHandler.ClearBaseCards());
 
-        dealer.ClearHand();
+        StartCoroutine(dealer.ClearHand());
         // Reset win/lose/draw images
         win.SetActive(false);
         loose.SetActive(false);
