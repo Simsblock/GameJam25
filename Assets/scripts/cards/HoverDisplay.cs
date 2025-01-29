@@ -46,7 +46,7 @@ public class HoverDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
-        
+        //transform.SetAsLastSibling();
         if (descriptionText != null)
         {
             hovering = true;

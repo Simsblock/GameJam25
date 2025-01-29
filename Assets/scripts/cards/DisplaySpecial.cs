@@ -47,10 +47,16 @@ public class DisplaySpecial : MonoBehaviour
 
     public void DisplayShop()
     {
+        foreach (Transform t in content.transform)
+        {
+            Destroy(t.gameObject);
+        }
+        Debug.Log("Started");
         ViewField.SetActive(true);
         System.Random r = new System.Random();
         for(int i =0; i<4; i++)
         {
+            Debug.Log("step2");
             int pos = r.Next(SpecialCards.SpecialCardsUi.Count());
             GameObject card = SpecialCards.SpecialCardsUi.ElementAt(pos).Value;
             GameObject cShop = Instantiate(card, content);

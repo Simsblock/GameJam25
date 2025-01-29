@@ -20,6 +20,7 @@ public class PlayerHandler : MonoBehaviour
     private float cardSpace = 0.65f;
     private Vector3 leftCardPos;
     private Vector3 rightCardPos;
+    private bool DisplaySPC;
 
     void Start()
     {
@@ -27,10 +28,11 @@ public class PlayerHandler : MonoBehaviour
         if(playerCards == null) playerCards = new Dictionary<string,int>();
         DisplaySpecial = CardHand.GetComponent<DisplaySpecial>();
         CM = CardParent.GetComponent<CardManager>();
+        DisplaySPC = false;
 
         AddSpecialCard("Test1");
         AddSpecialCard("Test1");
-        AddSpecialCard("Test1");
+        AddSpecialCard("Test2");
     }
 
     public void PullMulti(int count)
@@ -98,7 +100,17 @@ public class PlayerHandler : MonoBehaviour
 
     public void DisplaySpecialCards()
     {
-        DisplaySpecial.Display(specialCards);
+        if (!DisplaySPC)
+        {
+            DisplaySpecial.Display(specialCards);
+            DisplaySPC = true;
+        }
+        else
+        {
+            DisplaySpecial.EndDisplay();
+            DisplaySPC = false;
+        }
+        
     }
     public void DisplayPlayerCards(string cardKey)
     {

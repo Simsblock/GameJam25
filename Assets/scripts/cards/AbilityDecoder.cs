@@ -83,7 +83,7 @@ public class AbilityDecoder : MonoBehaviour
                         break;
                     case "Ass":
                         //E1:1 for Ass
-                        string key = "E1";
+                        string key = "E11";
                         playerHandler.AddCard(key, 1); 
                         break;
                     case "Shortcut":
