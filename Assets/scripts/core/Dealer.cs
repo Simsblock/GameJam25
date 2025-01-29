@@ -14,6 +14,7 @@ public class Dealer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
     public void PullInit()
@@ -85,4 +86,19 @@ public class Dealer : MonoBehaviour
     {
 
     }
+
+
+
+    [SerializeField]
+    public Sprite[] Dealers;
+    private SpriteRenderer SpriteRenderer;
+
+    public void ChangeDealer() //ONLY SPRITE ATM
+    {
+        System.Random rand = new System.Random();
+        int index = rand.Next(Dealers.Length);
+        SpriteRenderer.sprite = Dealers[index];
+    }
+
+
 }

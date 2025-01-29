@@ -114,10 +114,11 @@ public class GameHandler : MonoBehaviour
         // Reset win/lose states
         win.SetActive(false);
         loose.SetActive(false);
-
         // Load the shop
         stand = 0;
         yield return StartCoroutine(LoadShop());
+        //Change Dealer
+        dealer.ChangeDealer();
         GlobalData.ResetAbilityValues();
     }
 

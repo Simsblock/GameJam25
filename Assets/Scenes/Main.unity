@@ -474,7 +474,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.0000019073486}
+  m_AnchoredPosition: {x: 0, y: -0.00002590525}
   m_SizeDelta: {x: 0, y: 123}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &172640000
@@ -2766,6 +2766,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameHandler: {fileID: 571277393}
   MaxVal: 17
+  Dealers:
+  - {fileID: 1496584338, guid: f3b3c04ba11e1a442b8f1b95af24bd72, type: 3}
+  - {fileID: -92249158, guid: f3b3c04ba11e1a442b8f1b95af24bd72, type: 3}
+  - {fileID: -1961081550, guid: f3b3c04ba11e1a442b8f1b95af24bd72, type: 3}
+  - {fileID: -1916677824, guid: 0286fd150842106468e1a4c0991fb0c2, type: 3}
+  - {fileID: 124034010, guid: 0286fd150842106468e1a4c0991fb0c2, type: 3}
+  - {fileID: 461315239, guid: 0286fd150842106468e1a4c0991fb0c2, type: 3}
+  - {fileID: 519305020, guid: fff05a491fc6595459e089461b13a577, type: 3}
+  - {fileID: 1199054549, guid: fff05a491fc6595459e089461b13a577, type: 3}
+  - {fileID: -1243552333, guid: fff05a491fc6595459e089461b13a577, type: 3}
 --- !u!1 &1262174627
 GameObject:
   m_ObjectHideFlags: 0
@@ -2848,7 +2858,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 140647089}
   m_HandleRect: {fileID: 140647088}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
