@@ -5,6 +5,7 @@ public static class GlobalData
 
     //AbilityValues
     public static int DealerWinCond { get; set; } = 21;
+    public static int PlayerWinCond { get; set; } = 21;
     public static int BetLossRate { get; set; } = 100;
     public static int BetPayoutRate { get; set; } = 100;
     public static int DuplicateAmt { get; set; } = 0;
@@ -18,6 +19,7 @@ public static class GlobalData
     public static void ResetAbilityValues()
     {
         DealerWinCond = 21;
+        PlayerWinCond = 21;
         BetLossRate = 100;
         BetPayoutRate = 100;
         DuplicateAmt = 0;
