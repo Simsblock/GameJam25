@@ -36,8 +36,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 31.195, y: -40.227337}
-  m_SizeDelta: {x: 114.39, y: 20.4542}
+  m_AnchoredPosition: {x: 20.7, y: -40.227337}
+  m_SizeDelta: {x: 93.9363, y: 20.4542}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5084116320993062679
 CanvasRenderer:
@@ -104,15 +104,15 @@ RectTransform:
   m_GameObject: {fileID: 956063053780887130}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5930280481136617458}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -37.595, y: 5.2}
-  m_SizeDelta: {x: 23.0708, y: 19.527}
+  m_AnchoredPosition: {x: -28.206, y: 7.3955}
+  m_SizeDelta: {x: 17.833, y: 14.791}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7845406901635434802
 CanvasRenderer:
@@ -180,14 +180,14 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5930280481136617458}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 15.568, y: -0.64305}
-  m_SizeDelta: {x: 83.2542, y: 21.7403}
+  m_AnchoredPosition: {x: 11.9, y: -0.64305}
+  m_SizeDelta: {x: 69.7144, y: 21.7403}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4744388118814025233
 CanvasRenderer:
@@ -219,8 +219,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 207241ad108ce94488e40f30a60542fe, type: 2}
+  m_sharedMaterial: {fileID: -1246629540983926267, guid: 207241ad108ce94488e40f30a60542fe, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -244,15 +244,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
