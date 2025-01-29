@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class HoverShop : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class HoverDiceShop : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public GameObject descriptionText; // Assign the text object in the inspector
     [HideInInspector] public Canvas canvas; // Reference to the canvas for positioning
     private RectTransform descriptionRect;
     private bool hovering, flipped;
     [SerializeField]
-    private GameObject Image;
-    [SerializeField]
     private TMP_Text PriceText;
+    private SpecialCardsList SPCList;
     void Start()
     {
         flipped = false;
@@ -27,6 +27,13 @@ public class HoverShop : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         {
             Debug.LogError("Description Text is not assigned!");
         }
+        SPCList = GameObject.Find("GameHandler").GetComponent<SpecialCardsList>();
+        LoadPrice();
+    }
+
+    public void LoadPrice()
+    {
+        PriceText.text = GetComponent<EffectDto>().Price.ToString();
     }
 
     void Update()
