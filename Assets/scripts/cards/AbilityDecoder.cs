@@ -47,7 +47,7 @@ public class AbilityDecoder : MonoBehaviour
                         playerHandler.curSum+=(rand.Next(int.Parse(numbers[0]), int.Parse(numbers[1])));
                         break;
                     //actual abilities laut notion
-                    case "seer":
+                    case "Seer":
                         //see the next card
                         break;
                     case "ThreeKings":
@@ -70,10 +70,13 @@ public class AbilityDecoder : MonoBehaviour
                         GlobalData.BetPayoutRate = 75;
                         break;
                     case "Parallel Universe":
+                        //Clear
                         playerHandler.ClearBaseCards();
                         Dealer.ClearHand();
                         Deck.Clear();
-                        //Restart Roudn Missing
+                        //Reset Cards
+                        Dealer.PullInit();
+                        playerHandler.PullMulti(2);
                         break;
                     case "Ass":
                         //E1:1 for Ass
@@ -84,6 +87,7 @@ public class AbilityDecoder : MonoBehaviour
                         GlobalData.DealerWinCond = 17;
                         break;
                     case "Joker":
+                        //Joker:1 | Joker:5 | Joker:10
                         int.TryParse(details[1], out int value);
                         playerHandler.curSum += value;
                         playerHandler.DisplayPlayerCards($"E{value}"); //Nicht ganz baba, weil es für 1 ein Ass displayed, evtl Joker Kartenset warrats
@@ -95,7 +99,7 @@ public class AbilityDecoder : MonoBehaviour
                     case "Destroy":
                         //destroy/anull first special card dealer uses
                         break;
-                    case "Gambti":
+                    case "Gambit":
                         GlobalData.bet *= 2;
                         break;
                 }
