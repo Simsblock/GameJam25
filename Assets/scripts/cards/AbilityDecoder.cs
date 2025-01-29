@@ -83,8 +83,8 @@ public class AbilityDecoder : MonoBehaviour
                         break;
                     case "Ass":
                         //E1:1 for Ass
-                        string key = "E11";
-                        playerHandler.AddCard(key, 1); 
+                        string key = "EA";
+                        playerHandler.AddCard(key, 11); 
                         break;
                     case "Shortcut":
                         GlobalData.DealerWinCond = 17;
