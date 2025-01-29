@@ -112,10 +112,9 @@ public class Dealer : MonoBehaviour
     public void DisplayPlayerCards(string cardKey)
     {
         GameObject card = Instantiate(CardPrefab);
-        card.transform.SetParent(CardParent.transform);
+        card.transform.SetParent(DealerCardParent.transform);
         Vector3 cardPos = new Vector3(0f, 0f, 0f);
-        int childrenAmt = CardParent.transform.childCount;
-        //Debug.Log(childrenAmt);
+        int childrenAmt = DealerCardParent.transform.childCount;
         // Check if first
         if (childrenAmt == 1)
         {
@@ -126,7 +125,7 @@ public class Dealer : MonoBehaviour
         CardManager.DeckConverter(cardKey, out string suit, out int rank);
         //Sprite s = CM.GetCardSprite(suit, rank);
         SpriteRenderer spriteRenderer = card.GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = s;
+        //spriteRenderer.sprite = s;
     }
     
 
