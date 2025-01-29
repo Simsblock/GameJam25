@@ -60,7 +60,7 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
         
         if (Content.name.Equals("Shop"))
         {
-            if (GlobalData.money < effects.Price)
+            if (GlobalData.money-100 < effects.Price)
             {
                 //maby animation oda so
                 return;

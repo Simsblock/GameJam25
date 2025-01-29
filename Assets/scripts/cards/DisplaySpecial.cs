@@ -57,7 +57,6 @@ public class DisplaySpecial : MonoBehaviour
             Destroy(t.gameObject);
         }
 
-        Debug.Log("Started");
 
         ViewField.SetActive(true);
         System.Random r = new System.Random();
@@ -67,7 +66,7 @@ public class DisplaySpecial : MonoBehaviour
 
             for (int i = 0; i < 5; i++)
             {
-                Debug.Log(dice.Count());
+                
                 int pos = r.Next(dice.Count());
                 GameObject card = dice.ElementAt(pos).Value;
                 GameObject cShop = Instantiate(prefab, content);

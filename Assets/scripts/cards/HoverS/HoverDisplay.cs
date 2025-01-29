@@ -8,9 +8,10 @@ public class HoverDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public GameObject descriptionText; // Assign the text object in the inspector
     [HideInInspector] public Canvas canvas; // Reference to the canvas for positioning
     private RectTransform descriptionRect;
-    private bool hovering;
+    private bool hovering,flipped;
     void Start()
     {
+        flipped = false;
        canvas= FindObjectOfType<Canvas>();
         if (descriptionText != null)
         {
@@ -29,19 +30,31 @@ public class HoverDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         {
             if (canvas != null)
             {
-                if (Input.mousePosition.y < Screen.height - 38)
+                if (Input.mousePosition.y < Screen.height - 100)
                 {
                     Vector3 worldPos;
                     RectTransformUtility.ScreenPointToWorldPointInRectangle(
                         canvas.GetComponent<RectTransform>(), Input.mousePosition, canvas.worldCamera, out worldPos);
-                    descriptionRect.transform.position = new Vector3(worldPos.x - 5, worldPos.y + 12, worldPos.z);
+                    descriptionRect.transform.position = new Vector3(worldPos.x - 5, worldPos.y + 15, worldPos.z);
+                    if (flipped)
+                    {
+                        descriptionText.transform.GetChild(0).Rotate(new Vector3(-180, 0, 0));
+                        descriptionText.transform.GetChild(0).GetChild(0).Rotate(new Vector3(180, 0, 0));
+                        flipped = false;
+                    }
                 }
                 else
                 {
                     Vector3 worldPos;
                     RectTransformUtility.ScreenPointToWorldPointInRectangle(
                         canvas.GetComponent<RectTransform>(), Input.mousePosition, canvas.worldCamera, out worldPos);
-                    descriptionRect.transform.position = new Vector3(worldPos.x - 5, worldPos.y - 35, worldPos.z);
+                    descriptionRect.transform.position = new Vector3(worldPos.x - 5, worldPos.y - 100, worldPos.z);
+                    if (!flipped)
+                    {
+                        descriptionText.transform.GetChild(0).Rotate(new Vector3(180, 0, 0));
+                        descriptionText.transform.GetChild(0).GetChild(0).Rotate(new Vector3(-180, 0, 0));
+                        flipped = true;
+                    }
                 }
             }
         }
@@ -53,8 +66,20 @@ public class HoverDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         if (descriptionText != null)
         {
             hovering = true;
-            // Show the description
-            descriptionText.SetActive(true);
+            if (Input.mousePosition.y > Screen.height - 100 && !flipped)
+            {
+                descriptionText.transform.GetChild(0).Rotate(new Vector3(180, 0, 0));
+                descriptionText.transform.GetChild(0).GetChild(0).Rotate(new Vector3(-180, 0, 0));
+                flipped = true;
+            }
+            else if (flipped)
+            {
+                descriptionText.transform.GetChild(0).Rotate(new Vector3(-180, 0, 0));
+                descriptionText.transform.GetChild(0).GetChild(0).Rotate(new Vector3(180, 0, 0));
+                flipped = false;
+            }
+                // Show the description
+                descriptionText.SetActive(true);
         }
     }
 
