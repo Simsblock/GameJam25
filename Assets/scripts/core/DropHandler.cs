@@ -26,7 +26,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
             }
             if (Dropped.GetComponent<EffectDto>().preStand)
             {
-                TriggerSPCEffect(Dropped.GetComponent<EffectDto>().effect);
+                TriggerSPCEffect(Dropped);
             }
         }
     }
@@ -37,13 +37,15 @@ public class DropHandler : MonoBehaviour, IDropHandler
         {
            string s = transform.GetChild(0).GetComponent<EffectDto>().effect;
             abilityDecoder.Use(s);
+            transform.GetChild(0).GetComponent<EffectDto>().Used=true;
         }
         
     }
-    private void TriggerSPCEffect(string s)
+    private void TriggerSPCEffect(GameObject child)
     {
-            abilityDecoder.Use(s);
 
+            abilityDecoder.Use(transform.GetChild(0).GetComponent<EffectDto>().effect);
+            child.GetComponent<EffectDto>().Used = true;
     }
 
 }

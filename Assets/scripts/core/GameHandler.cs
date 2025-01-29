@@ -21,7 +21,8 @@ public class GameHandler : MonoBehaviour
     private GameObject win, loose;
     private bool isShop = true;
     [SerializeField]
-    private GameObject SPCSlotL, SPCSlotR;
+    private GameObject SPCSlotL, SPCSlotR,Shopkeep;
+    private DisplaySpecial displaySpecial;
 
     // Start is called before the first frame updatet a
     void Start()
@@ -31,7 +32,7 @@ public class GameHandler : MonoBehaviour
         playerHandler = Player.GetComponent<PlayerHandler>();
         dealer = Dealer.GetComponent<Dealer>();
         GameUI.SetActive(false);
-
+        displaySpecial = ShopKeep.GetComponent<DisplaySpecial>();
         //LoadShop();
     }
 
@@ -69,6 +70,7 @@ public class GameHandler : MonoBehaviour
     }
     public void EndGame()
     {
+        clearSPC();
         HideUI();
         stand = 3;
         dealerScore.text = $"Dealer Score: {dealer.TotalValue}";
@@ -126,6 +128,7 @@ public class GameHandler : MonoBehaviour
     {
         if (GlobalData.money <= 0)
         {
+
             SceneManager.LoadScene("GameOver"); //to be made UwU
         }
     }
@@ -142,6 +145,7 @@ public class GameHandler : MonoBehaviour
         GameUI.SetActive(isShop);
         ShopUI.SetActive(!isShop);
         isShop=!isShop;
+        displaySpecial.DisplayShop();
     }
 
     private void HideUI()
@@ -183,6 +187,23 @@ public class GameHandler : MonoBehaviour
             {
                 SPCSlotR.GetComponent<DropHandler>().TriggerSPCEffect();
             }
+        }
+    }
+
+    private void clearSPC()
+    {
+        //SPCL
+        if (SPCSlotL.transform.childCount == 1)
+        {
+            Destroy(SPCSlotL.transform.GetChild(0).gameObject);
+        }
+
+
+
+        //SPCR
+        if (SPCSlotR.transform.childCount == 1)
+        {
+            Destroy(SPCSlotR.transform.GetChild(0).gameObject);
         }
     }
 }
