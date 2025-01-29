@@ -135,7 +135,7 @@ public class PlayerHandler : MonoBehaviour
 
     public void AddCard(string key, int value)
     {
-        CardManager.DeckConverter(key, out string suit, out int rank);
+        DisplayPlayerCards(key);
         playerCards.Add(key,value);
     }
 

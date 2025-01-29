@@ -64,17 +64,19 @@ public class AbilityDecoder : MonoBehaviour
                         Deck.Clear();
                         //Restart Roudn Missing
                         break;
-                    case "add":
-                        //E1:1 for Ass | E1:1, E5:5, E10:10 for Joker
+                    case "Ass":
+                        //E1:1 for Ass
                         string key = details[1];
                         int.TryParse(details[2], out int value);
                         playerHandler.AddCard(key, value); 
                         break;
                     case "Shortcut":
-                        //21 win cond to 17 for Dealer
+                        GlobalData.DealerWinCond = 17;
                         break;
                     case "Joker":
-                        //playerHandler.AddCard(); //1,5,10
+                        int.TryParse(details[1], out value);
+                        playerHandler.curSum += value;
+                        playerHandler.DisplayPlayerCards($"E{value}"); //Nicht ganz baba, weil es für 1 ein Ass displayed, evtl Joker Kartenset warrats
                         break;
                     case "The Twins":
                         //Pull 2 cards and look at them. Choose which one to add to your count.

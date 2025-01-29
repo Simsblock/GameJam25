@@ -64,13 +64,12 @@ public class GameHandler : MonoBehaviour
     {
         GlobalData.bet = long.Parse(bet_text.text);
     }
-
     public void EndGame()
     {
         HideUI();
         stand = 3;
         dealerScore.text = $"Dealer Score: {dealer.TotalValue}";
-        if (dealer.TotalValue > 21 && playerHandler.curSum <= 21)
+        if (dealer.TotalValue > GlobalData.DealerWinCond && playerHandler.curSum <= 21)
         {
             GlobalData.money += GlobalData.bet; //win
             win.SetActive(true);
@@ -116,6 +115,7 @@ public class GameHandler : MonoBehaviour
         // Load the shop
         stand = 0;
         yield return StartCoroutine(LoadShop());
+        GlobalData.DealerWinCond = 21;
 
         Debug.Log("EndGameSequence is complete");
     }
