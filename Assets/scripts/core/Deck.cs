@@ -57,7 +57,7 @@ public static class Deck
         ["H11"] = 10,
         ["H12"] = 10,
         ["H13"] = 10,
-        ["H1"] = 11,
+        ["HA"] = 11,
 
         // Diamonds
         ["D2"] = 2,
@@ -72,7 +72,7 @@ public static class Deck
         ["D11"] = 10,
         ["D12"] = 10,
         ["D13"] = 10,
-        ["D1"] = 11,
+        ["DA"] = 11,
 
         // Clubs
         ["C2"] = 2,
@@ -87,7 +87,7 @@ public static class Deck
         ["C11"] = 10,
         ["C12"] = 10,
         ["C13"] = 10,
-        ["C1"] = 11,
+        ["CA"] = 11,
 
         // Spades
         ["S2"] = 2,
@@ -102,6 +102,6 @@ public static class Deck
         ["S11"] = 10,
         ["S12"] = 10,
         ["S13"] = 10,
-        ["S1"] = 11
+        ["SA"] = 11
     };
 }

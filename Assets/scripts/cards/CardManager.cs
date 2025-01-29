@@ -32,7 +32,8 @@ public class CardManager : MonoBehaviour
                 throw new ArgumentException("Wallah Billa, was hast du getan??");
         }
         string newKey = key.Substring(1);
-        int.TryParse(newKey, out rank);
+        if (newKey == "A") rank = 1;
+        else int.TryParse(newKey, out rank);
     }
     
     public Sprite GetCardSprite(string suit, int rank)

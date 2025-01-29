@@ -56,9 +56,9 @@ public class PlayerHandler : MonoBehaviour
             DisplayPlayerCards(card.Key);
             curSum += card.Value;
             //checks for aces n shit
-            if (playerCards.Keys.Any(k => k.Contains("11")) && curSum > 21)
+            if (playerCards.Keys.Any(k => k.Contains("A")) && curSum > 21)
             {
-                foreach (var item in playerCards.Where(p => p.Key.Contains("11")))
+                foreach (var item in playerCards.Where(p => p.Key.Contains("A")))
                 {
                     if (curSum > 21)
                     {
@@ -75,9 +75,9 @@ public class PlayerHandler : MonoBehaviour
         curSum -= playerCards[cardKey];
         playerCards.Remove(cardKey);
         //checks for aces too :)
-        if (curSum < 12&& playerCards.Keys.Any(k => k.Contains("11")))
+        if (curSum < 12&& playerCards.Keys.Any(k => k.Contains("A")))
         {
-            foreach (var item in playerCards.Where(p => p.Key.Contains("11")))
+            foreach (var item in playerCards.Where(p => p.Key.Contains("A")))
             {
                 if (curSum <12)
                 {
@@ -148,9 +148,10 @@ public class PlayerHandler : MonoBehaviour
     {
         DisplayPlayerCards(key);
         playerCards.Add(key, value);
-        if (playerCards.Keys.Any(k => k.Contains("11")) && curSum > 21)
+        curSum += value;
+        if (playerCards.Keys.Any(k => k.Contains("A")) && curSum > 21)
         {
-            foreach (var item in playerCards.Where(p => p.Key.Contains("11")))
+            foreach (var item in playerCards.Where(p => p.Key.Contains("A")))
             {
                 if (curSum > 21)
                 {
