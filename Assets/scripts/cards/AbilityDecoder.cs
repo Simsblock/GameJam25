@@ -57,6 +57,8 @@ public class AbilityDecoder : MonoBehaviour
                         break;
                     case "Cashback":
                         //Gain 50% of your bet back on a bust. On a win, you only gain 75%.
+                        GlobalData.BetLossRate = 50;
+                        GlobalData.BetPayoutRate = 75;
                         break;
                     case "Parallel Universe":
                         playerHandler.ClearBaseCards();
@@ -66,15 +68,14 @@ public class AbilityDecoder : MonoBehaviour
                         break;
                     case "Ass":
                         //E1:1 for Ass
-                        string key = details[1];
-                        int.TryParse(details[2], out int value);
-                        playerHandler.AddCard(key, value); 
+                        string key = "E1";
+                        playerHandler.AddCard(key, 1); 
                         break;
                     case "Shortcut":
                         GlobalData.DealerWinCond = 17;
                         break;
                     case "Joker":
-                        int.TryParse(details[1], out value);
+                        int.TryParse(details[1], out int value);
                         playerHandler.curSum += value;
                         playerHandler.DisplayPlayerCards($"E{value}"); //Nicht ganz baba, weil es für 1 ein Ass displayed, evtl Joker Kartenset warrats
                         break;
