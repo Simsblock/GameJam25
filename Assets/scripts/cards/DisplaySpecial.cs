@@ -39,6 +39,7 @@ public class DisplaySpecial : MonoBehaviour
             if (card.GetComponent<EffectDto>().isDice)
             {
                 card.transform.localScale = new Vector3(1,0.75f,1);
+                card.transform.GetChild(0).transform.localScale = new Vector3(1, 1.25f, 1);
             }
             else
             {
