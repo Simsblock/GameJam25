@@ -305,6 +305,10 @@ public class GameHandler : MonoBehaviour
                 playerHandler.RemoveSpecialCard(specialCards.GetName(DiceDrop.transform.GetChild(0).gameObject));
                 Destroy(DiceDrop.transform.GetChild(0).gameObject);
             }
+            else
+            {
+                DiceDrop.transform.GetChild(0).GetComponent<DragHandler>().ResetPos();
+            }
 
         }
     }
