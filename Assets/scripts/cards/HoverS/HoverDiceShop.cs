@@ -39,36 +39,17 @@ public class HoverDiceShop : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     void Update()
     {
         if (hovering)
-        {
-            //if (canvas != null)
-            //{
-                if (Input.mousePosition.y < Screen.height - 100)
-                {
+        {               
                     Vector3 worldPos;
                     RectTransformUtility.ScreenPointToWorldPointInRectangle(
                         canvas.GetComponent<RectTransform>(), Input.mousePosition, canvas.worldCamera, out worldPos);
-                    descriptionRect.transform.position = new Vector3(worldPos.x - 5, worldPos.y + 20, worldPos.z);
+                    descriptionRect.transform.position = new Vector3(worldPos.x - 5, worldPos.y * 1.05f, worldPos.z);
                     if (flipped)
                     {
                         descriptionText.transform.GetChild(0).Rotate(new Vector3(-180, 0, 0));
                         descriptionText.transform.GetChild(0).GetChild(0).Rotate(new Vector3(180, 0, 0));
                         flipped = false;
                     }
-                }
-                else
-                {
-                    Vector3 worldPos;
-                    RectTransformUtility.ScreenPointToWorldPointInRectangle(
-                        canvas.GetComponent<RectTransform>(), Input.mousePosition, canvas.worldCamera, out worldPos);
-                    descriptionRect.transform.position = new Vector3(worldPos.x - 5, worldPos.y - 100, worldPos.z);
-                    if (!flipped)
-                    {
-                        descriptionText.transform.GetChild(0).Rotate(new Vector3(180, 0, 0));
-                        descriptionText.transform.GetChild(0).GetChild(0).Rotate(new Vector3(-180, 0, 0));
-                        flipped = true;
-                    }
-                }
-           // }
         }
     }
 

@@ -41,7 +41,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
         }
         
     }
-    private void TriggerSPCEffect(GameObject child)
+    public static void TriggerSPCEffect(GameObject child)
     {
         if (child != null)
         {
