@@ -8,6 +8,8 @@ public class DropHandler : MonoBehaviour, IDropHandler
     [SerializeField]
     private GameObject abilityUtil;
     private AbilityDecoder abilityDecoder;
+    [SerializeField]
+    private bool AcceptDice;
 
     private void Start()
     {
@@ -16,19 +18,37 @@ public class DropHandler : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        
-        if (transform.childCount == 0&&!(eventData.pointerDrag.GetComponent<EffectDto>().isDice))
+        if (!AcceptDice)
         {
-            GameObject Dropped = eventData.pointerDrag;
-            if (Dropped != null)
+            if (transform.childCount == 0 && !(eventData.pointerDrag.GetComponent<EffectDto>().isDice))
             {
-                Dropped.GetComponent<DragHandler>().postDragParent = transform;
-            }
-            if (Dropped.GetComponent<EffectDto>().preStand)
-            {
-                TriggerSPCEffect(Dropped);
+                GameObject Dropped = eventData.pointerDrag;
+                if (Dropped != null)
+                {
+                    Dropped.GetComponent<DragHandler>().postDragParent = transform;
+                }
+                if (Dropped.GetComponent<EffectDto>().preStand)
+                {
+                    TriggerSPCEffect(Dropped);
+                }
             }
         }
+        else
+        {
+            if (transform.childCount == 0 && (eventData.pointerDrag.GetComponent<EffectDto>().isDice))
+            {
+                GameObject Dropped = eventData.pointerDrag;
+                if (Dropped != null)
+                {
+                    Dropped.GetComponent<DragHandler>().postDragParent = transform;
+                }
+                if (Dropped.GetComponent<EffectDto>().preStand)
+                {
+                    TriggerSPCEffect(Dropped);
+                }
+            }
+        }
+        
     }
 
     public void TriggerSPCEffect()
