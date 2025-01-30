@@ -7093,7 +7093,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amount: 100
-  Bet_text: {fileID: 0}
+  Bet_text: {fileID: 1658026345}
 --- !u!1 &1977911825
 GameObject:
   m_ObjectHideFlags: 0
