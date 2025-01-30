@@ -69,9 +69,21 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
             playerHandler.AddSpecialCard(effects.name);
             playerHandler.UpdateDisplay();
             PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money")-effects.Price);
+            StartCoroutine(BetShit());
             PlayBuySound();
             Destroy(gameObject);
         }
+    }
+
+    private IEnumerator BetShit()
+    {
+        GameHandler gh = GameObject.Find("GameHandler").GetComponent<GameHandler>();
+        if (int.Parse(gh.bet_text.text) < PlayerPrefs.GetInt("Money"))
+        {
+            PlayerPrefs.SetInt("Bet", PlayerPrefs.GetInt("Money"));
+            gh.bet_text.text = $"{PlayerPrefs.GetInt("Bet")}";
+        }
+        yield return null;
     }
 
     // Start is called before the first frame update

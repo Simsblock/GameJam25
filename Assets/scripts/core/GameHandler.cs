@@ -16,7 +16,7 @@ public class GameHandler : MonoBehaviour
     private PlayerHandler playerHandler;
     private Dealer dealer;
     [SerializeField]
-    private TMP_Text bet_text, money, score, dealerScore;
+    public TMP_Text bet_text, money, score, dealerScore;
     private int OffCamerPos=16;
     [SerializeField]
     private GameObject win, loose, draw;
@@ -167,7 +167,7 @@ public class GameHandler : MonoBehaviour
         {
             draw.SetActive(true);
         }
-        if (PlayerPrefs.GetInt("Bet") > PlayerPrefs.GetInt("Money"))
+        if (PlayerPrefs.GetInt("Bet") < PlayerPrefs.GetInt("Money"))
         {
             PlayerPrefs.SetInt("Bet", PlayerPrefs.GetInt("Money"));
             SetBetText();
