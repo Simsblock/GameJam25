@@ -12,6 +12,13 @@ public class BetBtn : MonoBehaviour
     int amount;
     [SerializeField]
     private TMP_Text Bet_text;
+    [SerializeField]
+    private GameObject Bet_UI;
+
+    private void Start()
+    {
+        Bet_text.text = $"{PlayerPrefs.GetInt("Bet")}";
+    }
 
     public void Raise()
     {
@@ -30,5 +37,11 @@ public class BetBtn : MonoBehaviour
             PlayerPrefs.SetInt("Bet", PlayerPrefs.GetInt("Bet")-amount);
             Bet_text.text = (PlayerPrefs.GetInt("Bet")).ToString();
         }
+    }
+
+    public void Done()
+    {
+        Bet_UI.SetActive(false);
+        //BetUi.transform.GetChild(4).gameObject.SetActive(false);
     }
 }

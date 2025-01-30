@@ -16,7 +16,7 @@ public class GameHandler : MonoBehaviour
     private PlayerHandler playerHandler;
     private Dealer dealer;
     [SerializeField]
-    private TMP_Text bet_text, money, score, dealerScore;
+    public TMP_Text bet_text, money, score, dealerScore;
     private int OffCamerPos=16;
     [SerializeField]
     private GameObject win, loose, draw;
@@ -111,7 +111,6 @@ public class GameHandler : MonoBehaviour
         //Timer
         RemainingTime = MaxTime;
         TimeIsRunning = true;
-        Debug.Log("AAA");
     }
 
     //SetBet 
@@ -131,17 +130,12 @@ public class GameHandler : MonoBehaviour
         //Dealer Reveal
         yield return StartCoroutine(dealer.PullRest());
         yield return StartCoroutine(dealer.UseAbilities());
+        stand = 4;
         yield return new WaitForSeconds(1f);
 
         dealerScore.text = $"{dealer.TotalValue}";
         //Win or Loose?
-        if(RemainingTime <= 0)
-        {
-            PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money")- PlayerPrefs.GetInt("Bet") * GlobalData.BetLossRate / 100); //loss
-            loose.SetActive(true);
-            audio.PlaySFX(audio.loseMoney);
-        }
-        else if (dealer.TotalValue > GlobalData.DealerWinCond && playerHandler.curSum <= GlobalData.PlayerWinCond)
+        if (dealer.TotalValue > GlobalData.DealerWinCond && playerHandler.curSum <= GlobalData.PlayerWinCond)
         {
             PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money") + PlayerPrefs.GetInt("Bet") * GlobalData.BetPayoutRate / 100); //win
             win.SetActive(true);
@@ -175,7 +169,7 @@ public class GameHandler : MonoBehaviour
         {
             draw.SetActive(true);
         }
-        if (PlayerPrefs.GetInt("Bet") > PlayerPrefs.GetInt("Money"))
+        if (PlayerPrefs.GetInt("Bet") < PlayerPrefs.GetInt("Money"))
         {
             PlayerPrefs.SetInt("Bet", PlayerPrefs.GetInt("Money"));
             SetBetText();
