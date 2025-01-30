@@ -109,7 +109,6 @@ public class GameHandler : MonoBehaviour
         //Timer
         RemainingTime = MaxTime;
         TimeIsRunning = true;
-        Debug.Log("AAA");
     }
 
     //SetBet 
@@ -133,13 +132,7 @@ public class GameHandler : MonoBehaviour
 
         dealerScore.text = $"{dealer.TotalValue}";
         //Win or Loose?
-        if(RemainingTime <= 0)
-        {
-            PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money")- PlayerPrefs.GetInt("Bet") * GlobalData.BetLossRate / 100); //loss
-            loose.SetActive(true);
-            audio.PlaySFX(audio.loseMoney);
-        }
-        else if (dealer.TotalValue > GlobalData.DealerWinCond && playerHandler.curSum <= GlobalData.PlayerWinCond)
+        if (dealer.TotalValue > GlobalData.DealerWinCond && playerHandler.curSum <= GlobalData.PlayerWinCond)
         {
             PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money") + PlayerPrefs.GetInt("Bet") * GlobalData.BetPayoutRate / 100); //win
             win.SetActive(true);
