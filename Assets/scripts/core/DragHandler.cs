@@ -17,7 +17,7 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
     private AudioManager audio;
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (effects.Used)
+        if (effects.Used || Content.name.Equals("Shop"))
         {
             return;
         }
@@ -38,7 +38,7 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (effects.Used)
+        if (effects.Used || Content.name.Equals("Shop"))
         {
             return;
         }
