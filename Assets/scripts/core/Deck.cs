@@ -17,12 +17,23 @@ public static class Deck
     {
         System.Random rand = new System.Random();
         KeyValuePair<string, int> pulled;
-        do
+        Debug.Log(PulledCards.Count);
+        if (PulledCards.Count >= DeckCards.Count)
         {
-            pulled = DeckCards.ElementAt(rand.Next(DeckCards.Count));
+            Debug.Log("Kooked");
         }
-        while (PulledCards.Contains(pulled.Key));
-        return pulled;
+        else
+        {
+            do
+            {
+                pulled = DeckCards.ElementAt(rand.Next(DeckCards.Count));
+            }
+            while (PulledCards.Contains(pulled.Key));
+
+            return pulled;
+        }
+        return new KeyValuePair<string, int>();
+        
     }
     public static KeyValuePair<string, int> PullCard()
     {
@@ -37,7 +48,7 @@ public static class Deck
 
     public static void Clear()
     {
-        PulledCards.Clear();
+        PulledCards = new List<string>();
     }
 
     public static List<string> PulledCards = new List<string>();
