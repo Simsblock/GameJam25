@@ -10,6 +10,7 @@ public class CreditsHandler : MonoBehaviour
     public Sprite[] Sprites;
     [SerializeField]
     public GameObject SpinningCardsPrefab;
+    private AudioManager audioManager;
     System.Random Random;
 
     private float cooldownTime = 0.3f; 
@@ -17,6 +18,7 @@ public class CreditsHandler : MonoBehaviour
 
     void Start()
     {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         Random = new System.Random();
     }
 
@@ -34,6 +36,7 @@ public class CreditsHandler : MonoBehaviour
 
     public void Quit()
     {
+        audioManager.PlaySFX(audioManager.buttonClickSound);
         SceneManager.LoadScene("Home");
     }
 
