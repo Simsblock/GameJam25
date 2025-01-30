@@ -116,6 +116,12 @@ public class Dealer : MonoBehaviour
 
     }
 
+    private string[][] DealerAbilities = new string[][]
+    {
+        new string[] { "Ability1", "Ability2" },
+        new string[] { "Ability3", "Ability4" }
+    };
+
     public void UseAbilities()
     {
 
