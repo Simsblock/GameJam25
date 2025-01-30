@@ -19,13 +19,14 @@ public class AbilityDecoder : MonoBehaviour
     //+1
     private bool plusOne=false;
     private int drawAmt=0;
-    private 
+    private AudioManager audioManager;
     // Start is called before the first frame update
     void Start()
     {
         playerHandler = player.GetComponent<PlayerHandler>();
         Dealer = GameObject.Find("Dealer").GetComponent<Dealer>();
         GameHandler = GameObject.Find("GameHandler").GetComponent<GameHandler>();
+        audioManager = GameObject.Find("AudioHandler").GetComponent<AudioManager>();
     }
 
     void Update()
@@ -57,7 +58,11 @@ public class AbilityDecoder : MonoBehaviour
                 switch (details[0])
                 {
                     case "draw":
-                        if (details[2] == "P") playerHandler.PullMulti(int.Parse(details[1]));
+                        if (details[2] == "P")
+                        {
+                            StartCoroutine(DisplaySPC("SPC1"));
+                            playerHandler.PullMulti(int.Parse(details[1]));
+                        }
                         if (details[2] == "D")
                         {
                             drawAmt = int.Parse(details[1]);
@@ -179,6 +184,7 @@ public class AbilityDecoder : MonoBehaviour
     }
     private IEnumerator DisplaySPC(string SPC)
     {
+        audioManager.PlaySFX(audioManager.PlayingMagicCard);
         yield return StartCoroutine(SpawnCards(new Vector3(0, 0, -6), 1, 0, new string[] { SPC }, true));
     }
 
