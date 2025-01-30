@@ -1887,8 +1887,22 @@ MonoBehaviour:
   - Diced4
   - Diced-4
   - DiceDefault
-  DealerSpecialCards: []
-  DealerCardNames: []
+  DealerSpecialCards:
+  - {fileID: 7489955442949369063, guid: 70fc5aebac64b654ab3a2847fb5acd77, type: 3}
+  - {fileID: 6269149082423632149, guid: 2790949dc2cc7df4fa31081a30210c1d, type: 3}
+  - {fileID: 6269149082423632149, guid: ddc84f6ad4952784d9dad0c2de76f1f6, type: 3}
+  - {fileID: 6269149082423632149, guid: dc4fb08f1d2b91c44aac854f9cd4d10f, type: 3}
+  - {fileID: 6269149082423632149, guid: b3fb8c318af78d34ebc30043ebaa7653, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  DealerCardNames:
+  - Player+1
+  - Ass
+  - Joker
+  - TheTwins
+  - ThreeKings
+  - Blade
+  - Switcheroo
 --- !u!114 &571277397
 MonoBehaviour:
   m_ObjectHideFlags: 0
