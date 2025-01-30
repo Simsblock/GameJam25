@@ -72,6 +72,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
     {
         if (child != null)
         {
+            Debug.Log("Drop");
             abilityDecoder.Use(child.GetComponent<EffectDto>().effect);
             child.GetComponent<EffectDto>().Used = true;
         }

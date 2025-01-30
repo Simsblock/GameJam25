@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class AbilityDecoder : MonoBehaviour
@@ -38,8 +39,8 @@ public class AbilityDecoder : MonoBehaviour
                 switch (details[0])
                 {
                     case "draw":
-                        if (details[2] == "P") playerHandler.PullMulti(int.Parse(details[1]));
-                        if (details[2] == "D") Dealer.PullMulti(int.Parse(details[1]));
+                        if (details[1] == "P") playerHandler.PullMulti(int.Parse(details[1]));
+                        if (details[1] == "D") Dealer.PullMulti(int.Parse(details[1]));
                         break;
                     case "remove":
                         //maby
@@ -55,9 +56,9 @@ public class AbilityDecoder : MonoBehaviour
                         Seer();
                         break;
                     case "ThreeKings":
-                        playerHandler.curSum -= 3;
+                        StartCoroutine(ThreeKings(details[1]));
                         break;
-                    case "Switcheroo": //RANDOM FOR NOW
+                    case "Switcheroo": //RANDOM FOR NOW //PD
                         //Choose a card to switch Dealer
                         //Remove from Dealer adn addd to player
                         KeyValuePair<string, int> temp = Dealer.DealerHand.ElementAt(rand.Next(Dealer.DealerHand.Count));
@@ -79,9 +80,7 @@ public class AbilityDecoder : MonoBehaviour
                         break;
                     case "Ass":
                         //E1:1 for Ass
-                        GlobalData.DuplicateAmt++;
-                        string key = $"EA:{GlobalData.DuplicateAmt}";
-                        playerHandler.AddCard(key, 11); 
+                        StartCoroutine(Ass(details[1]));
                         break;
                     case "Shortcut":
                         GlobalData.DealerWinCond = 17;
@@ -89,11 +88,19 @@ public class AbilityDecoder : MonoBehaviour
                         break;
                     case "Joker":
                         //Joker
-                        Joker();
+                        if (details[1] == "P") JokerP();
+                        else if (details[1] == "D")
+                        {
+                            StartCoroutine(JokerD());
+                        }
                         break;
                     case "TheTwins":
                         //Pull 2 cards and look at them. Choose which one to add to your count.
-                        Twins();
+                        if (details[1] == "P") TwinsP();
+                        else if (details[1] == "D")
+                        {
+                            StartCoroutine(TwinsD());
+                        }
                         break;
                     case "Destroy":
                         //destroy/anull first special card dealer uses
@@ -106,19 +113,67 @@ public class AbilityDecoder : MonoBehaviour
         }
     }
     //NOT TESTED
+    private IEnumerator Ass(string mode)
+    {
+        yield return StartCoroutine(DisplaySPC("ThreeKings"));
+        GlobalData.DuplicateAmt++;
+        string key = $"EA:{GlobalData.DuplicateAmt}";
+        yield return StartCoroutine(DisplaySPC("Ass"));
+        if (mode == "P") playerHandler.AddCard($"EA:{GlobalData.DuplicateAmt}", 11);
+        else if (mode == "D") Dealer.AddCard($"EA:{GlobalData.DuplicateAmt}", 11);
+    }
+    private IEnumerator ThreeKings(string mode)
+    {
+        yield return StartCoroutine(DisplaySPC("ThreeKings"));
+        if (mode == "P") playerHandler.curSum -= 3;
+        else if (mode == "D") Dealer.ValueModifier -= 3;
+    }
+    private IEnumerator DisplaySPC(string SPC)
+    {
+        yield return StartCoroutine(SpawnCards(new Vector3(0, 0, -6), 1, 0, new string[] { "EA" }, true));
+    }
 
-    private void Joker()
+    private void JokerP()
     {
         StartCoroutine(SpawnCards(new Vector3(-4, 0, -6), 3, 2, new string[] { "EA","E5","E13" }, false));
+    }
+    private IEnumerator JokerD()
+    {
+        yield return StartCoroutine(DisplaySPC("Joker"));
+        if (Dealer.TotalValue + 11 <= 21) Dealer.AddCard($"EA:{GlobalData.DuplicateAmt}",1); //Ace
+        else if (Dealer.TotalValue + 10 <= 21) Dealer.AddCard($"E10:{GlobalData.DuplicateAmt}", 10); //10
+        else if (Dealer.TotalValue + 10 <= 21) Dealer.AddCard($"E5:{GlobalData.DuplicateAmt}", 5); //5
+        else Dealer.AddCard($"EA:{GlobalData.DuplicateAmt}", 1);//Ace
     }
     private void Seer()
     {
         StartCoroutine(SpawnCards(new Vector3(0, 0, -6), 1, 0, new string[] { Deck.NextCard.Key }, true));
     }
 
-    private void Twins()
+    private void TwinsP()
     {
         StartCoroutine(SpawnCards(new Vector3(-2, 0, -6), 2, 1, new string[] { Deck.GetCard().Key, Deck.GetCard().Key }, false));
+    }
+    private IEnumerator TwinsD()
+    {
+        yield return StartCoroutine(DisplaySPC("TheTwins"));
+        KeyValuePair<string, int> card1 = Deck.GetCard();
+        KeyValuePair<string, int> card2 = Deck.GetCard();
+        bool notSuicide1 = card1.Value + Dealer.TotalValue <= 21;
+        bool notSuicide2 = card2.Value + Dealer.TotalValue <= 21;
+        if (notSuicide1 && notSuicide2)
+        {
+            if (card1.Value > card2.Value) Deck.NextCard = card1;
+            else Deck.NextCard = card2;
+        }
+        else if (notSuicide1) Deck.NextCard = card1;
+        else if (notSuicide2) Deck.NextCard = card2;
+        else
+        {
+            if (card1.Value < card2.Value) Deck.NextCard = card1;
+            else Deck.NextCard = card2;
+        }
+        Dealer.PullMulti(1);
     }
 
 
