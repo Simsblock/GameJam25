@@ -75,7 +75,7 @@ public class DisplaySpecial : MonoBehaviour
         {
             var dice = SpecialCards.SpecialCardsUi.Where(s => s.Value.GetComponent<EffectDto>().isDice&&s.Key!="DiceDefault");
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 4; i++)
             {
                 GameObject card = dice.ElementAt(i).Value;
                 GameObject cShop = Instantiate(prefab, content);

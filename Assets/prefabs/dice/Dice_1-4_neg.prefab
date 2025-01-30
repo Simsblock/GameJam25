@@ -136,7 +136,7 @@ MonoBehaviour:
   effect: diceRoll:-4.-1
   preStand: 0
   Used: 0
-  Price: 0
+  Price: 300
   text: {fileID: 2524709011977301843}
   name: 
   isDice: 1

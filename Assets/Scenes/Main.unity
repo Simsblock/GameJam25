@@ -649,7 +649,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1697265980}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.9999998
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2173,7 +2173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06d5a4ffd88ab74469c6d6f251b076c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameHandler: {fileID: 0}
+  GameHandler: {fileID: 571277394}
   SPCSprites:
   - {fileID: -1778415586, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
   - {fileID: 350925774, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
@@ -2994,7 +2994,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 87133796}
   m_HandleRect: {fileID: 87133795}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -3472,7 +3472,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 926247858}
   m_HandleRect: {fileID: 926247857}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
