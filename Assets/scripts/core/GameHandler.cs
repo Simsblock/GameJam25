@@ -169,9 +169,10 @@ public class GameHandler : MonoBehaviour
         {
             //draw.SetActive(true);
         }
-        if (PlayerPrefs.GetInt("Bet") < PlayerPrefs.GetInt("Money"))
+        if (int.Parse(bet_text.text) > PlayerPrefs.GetInt("Money"))
         {
             PlayerPrefs.SetInt("Bet", PlayerPrefs.GetInt("Money"));
+            Debug.Log(int.Parse(bet_text.text));
             SetBetText();
         }
         CheckGameOver();
