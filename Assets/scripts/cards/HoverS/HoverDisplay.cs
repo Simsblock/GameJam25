@@ -35,7 +35,7 @@ public class HoverDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                 RectTransformUtility.ScreenPointToWorldPointInRectangle(
                     canvas.GetComponent<RectTransform>(), Input.mousePosition, canvas.worldCamera, out worldPos);
                 x = worldPos.x * 1.01f;
-                if (Input.mousePosition.x > Screen.width * 0.99) x = Screen.width * 0.97f;
+                if (Input.mousePosition.x > Screen.width * 0.9025) x = Screen.width * 0.91f;
 
                     if (Input.mousePosition.y < Screen.height*0.8)
                 {

@@ -22,7 +22,7 @@ public class GameHandler : MonoBehaviour
     private GameObject win, loose, draw;
     private bool isShop = true;
     [SerializeField]
-    private GameObject SPCSlotL, SPCSlotR,Shopkeep,DiceShop;
+    private GameObject SPCSlotL, SPCSlotR,DiceDrop,Shopkeep,DiceShop;
     private DisplaySpecial displaySpecial,displaydice;
     private SpecialCardsList specialCards;
     //Timer
@@ -47,9 +47,9 @@ public class GameHandler : MonoBehaviour
         PauseUI.SetActive(false);
         displaySpecial = ShopKeep.GetComponent<DisplaySpecial>();
         displaydice=DiceShop.GetComponent<DisplaySpecial>();
+        specialCards = GetComponent<SpecialCardsList>();
         displaydice.DisplayShop();
         displaySpecial.DisplayShop();
-        specialCards = GetComponent<SpecialCardsList>();
         //LoadShop();
     }
 
@@ -164,10 +164,6 @@ public class GameHandler : MonoBehaviour
             PlayerPrefs.GetInt("Bet", PlayerPrefs.GetInt("Money"));
             SetBetText();
         }
-        //Highscore
-        if (PlayerPrefs.GetInt("Money") > PlayerPrefs.GetInt("Score")) PlayerPrefs.SetInt("Score", PlayerPrefs.GetInt("Money"));
-        if (PlayerPrefs.GetInt("HighScore") < PlayerPrefs.GetInt("Score")) PlayerPrefs.SetInt("HighScore", PlayerPrefs.GetInt("Score"));
-        //CheckForGameOver
         CheckGameOver();
         //animations n stuff
         yield return new WaitUntil(() => Input.anyKeyDown);
@@ -252,6 +248,15 @@ public class GameHandler : MonoBehaviour
                 SPCSlotR.GetComponent<DropHandler>().TriggerSPCEffect();
             }
         }
+
+        //DiceDrop
+        if (DiceDrop.transform.childCount == 1)
+        {
+            if (!DiceDrop.transform.GetChild(0).GetComponent<EffectDto>().preStand)
+            {
+                DiceDrop.GetComponent<DropHandler>().TriggerSPCEffect();
+            }
+        }
     }
 
     private void clearSPC()
@@ -259,8 +264,11 @@ public class GameHandler : MonoBehaviour
         //SPCL
         if (SPCSlotL.transform.childCount == 1)
         {
-            playerHandler.RemoveSpecialCard(specialCards.GetName(SPCSlotL.transform.GetChild(0).gameObject));
-            Destroy(SPCSlotL.transform.GetChild(0).gameObject);
+            if (!SPCSlotL.transform.GetChild(0).GetComponent<EffectDto>().permanent)
+            {
+                playerHandler.RemoveSpecialCard(specialCards.GetName(SPCSlotL.transform.GetChild(0).gameObject));
+                Destroy(SPCSlotL.transform.GetChild(0).gameObject);
+            }
         }
 
 
@@ -268,8 +276,23 @@ public class GameHandler : MonoBehaviour
         //SPCR
         if (SPCSlotR.transform.childCount == 1)
         {
-            playerHandler.RemoveSpecialCard(specialCards.GetName(SPCSlotR.transform.GetChild(0).gameObject));
-            Destroy(SPCSlotR.transform.GetChild(0).gameObject);
+            if (!SPCSlotR.transform.GetChild(0).GetComponent<EffectDto>().permanent)
+            {
+                playerHandler.RemoveSpecialCard(specialCards.GetName(SPCSlotR.transform.GetChild(0).gameObject));
+                Destroy(SPCSlotR.transform.GetChild(0).gameObject);
+            }
+                
+        }
+
+        //DiceDrop
+        if (DiceDrop.transform.childCount == 1)
+        {
+            if (!DiceDrop.transform.GetChild(0).GetComponent<EffectDto>().permanent)
+            {
+                playerHandler.RemoveSpecialCard(specialCards.GetName(DiceDrop.transform.GetChild(0).gameObject));
+                Destroy(DiceDrop.transform.GetChild(0).gameObject);
+            }
+
         }
     }
 
