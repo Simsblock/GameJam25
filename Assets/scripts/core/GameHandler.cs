@@ -127,7 +127,7 @@ public class GameHandler : MonoBehaviour
         //Dealer Reveal
         yield return StartCoroutine(dealer.PullRest());
         yield return StartCoroutine(dealer.UseAbilities());
-
+        yield return new WaitForSeconds(1f);
 
         dealerScore.text = $"{dealer.TotalValue}";
         //Win or Loose?
