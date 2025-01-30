@@ -90,6 +90,7 @@ public class GameHandler : MonoBehaviour
         }
         else if (RemainingTime <= 0 && TimeIsRunning)
         {
+            
             UseSPC();
             clearSPC();
             StartCoroutine(EndGame());
@@ -114,6 +115,7 @@ public class GameHandler : MonoBehaviour
         //Timer
         RemainingTime = MaxTime;
         TimeIsRunning = true;
+        audio.StartTimerAudio();
         Debug.Log("StartRound Done");
     }
 
@@ -129,6 +131,7 @@ public class GameHandler : MonoBehaviour
     public IEnumerator EndGame()
     {
         TimeIsRunning=false;
+        audio.StopTimerSFX();
         clearSPC();
         stand = 3;
         //Dealer Reveal

@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
     [Header("------- Audio Source --------")]
     [SerializeField] AudioSource musicSource;
     [SerializeField] AudioSource SFXSource;
+    [SerializeField] AudioSource TimerSFX;
 
     [Header("------- Backround Music --------")]
     public AudioClip casinoBackround;
@@ -72,4 +73,13 @@ public class AudioManager : MonoBehaviour
         musicSource.Play();
     }
     
+    public void StartTimerAudio()
+    {
+        TimerSFX.clip = timer;
+        TimerSFX.Play();
+    }
+    public void StopTimerSFX()
+    {
+        TimerSFX.Stop();
+    }
 }
