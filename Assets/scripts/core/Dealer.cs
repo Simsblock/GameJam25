@@ -258,7 +258,7 @@ public class Dealer : MonoBehaviour
         if (SpecialCardsList.SpecialCardsUi.ContainsKey(selectedAbility))
         {
             DropHandler.TriggerSPCEffect(SpecialCardsList.DealerSpecialCardsUi[selectedAbility]);
-            //yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1.5f);
             Debug.Log($"Used ability: {selectedAbility}");
         }
         else
