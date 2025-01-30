@@ -62,7 +62,7 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (Content.name.Equals("SpecialContent"))
+        if (Content.name.Equals("SpecialContent")&&!effects.isDice)
         {
             WhipeToAssign();
             if (SlotL == null || SlotR == null || ClearDrop==null)
