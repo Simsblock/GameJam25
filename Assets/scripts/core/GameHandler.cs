@@ -162,10 +162,6 @@ public class GameHandler : MonoBehaviour
             PlayerPrefs.GetInt("Bet", PlayerPrefs.GetInt("Money"));
             SetBetText();
         }
-        //Highscore
-        if (PlayerPrefs.GetInt("Money") > PlayerPrefs.GetInt("Score")) PlayerPrefs.SetInt("Score", PlayerPrefs.GetInt("Money"));
-        if (PlayerPrefs.GetInt("HighScore") < PlayerPrefs.GetInt("Score")) PlayerPrefs.SetInt("HighScore", PlayerPrefs.GetInt("Score"));
-        //CheckForGameOver
         CheckGameOver();
         //animations n stuff
         yield return new WaitUntil(() => Input.anyKeyDown);

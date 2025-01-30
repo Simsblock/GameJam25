@@ -34,12 +34,8 @@ public class PlayerHandler : MonoBehaviour
         //SPC
         DisplaySPC = false;
         specialCards = GlobalData.LoadSPC();
-        specialCards.Add("Joker");
-        specialCards.Add("Seer");
-        specialCards.Add("Restart");
-        specialCards.Add("TheTwins");
-        specialCards.Add("Shortcut");
-
+        AddSpecialCard("Joker");
+        AddSpecialCard("Ass");
         AddSpecialCard("DiceDefault");
     }
 
