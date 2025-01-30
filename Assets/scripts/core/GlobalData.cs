@@ -26,11 +26,11 @@ public static class GlobalData
 
     public static bool LoadableCheck() 
     {
-        return !((PlayerPrefs.GetInt("Money") == baseMoney) && (PlayerPrefs.GetInt("Bet") == baseBet) && (PlayerPrefs.GetInt("Score") == baseScore));
+        return ((PlayerPrefs.GetInt("Money") != baseMoney) || (PlayerPrefs.GetInt("Bet") != baseBet) || (PlayerPrefs.GetInt("Score") != baseScore));
     }
     public static bool FirstLoad()
     {
-        return !((PlayerPrefs.GetInt("Money") == 0) && (PlayerPrefs.GetInt("Bet") == 0) && (PlayerPrefs.GetInt("Score") == 0));
+        return ((PlayerPrefs.GetInt("Money") == 0) && (PlayerPrefs.GetInt("Bet") == 0) && (PlayerPrefs.GetInt("Score") == 0));
     }
 
     public static void SaveSPC(List<string> list)
