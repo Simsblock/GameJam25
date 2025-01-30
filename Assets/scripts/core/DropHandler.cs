@@ -18,12 +18,10 @@ public class DropHandler : MonoBehaviour, IDropHandler, IPointerClickHandler
     private void Start()
     {
         audio = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-        /*if (abilityUtil == null)
+        if (abilityUtil != null)
         {
-            abilityUtil = new GameObject();
-            abilityUtil.AddComponent<AbilityDecoder>();
-        }*/
-        abilityDecoder = abilityUtil.GetComponent<AbilityDecoder>();
+            abilityDecoder = abilityUtil.GetComponent<AbilityDecoder>();
+        }
         clear = GameObject.Find("Clearer");
     }
 
@@ -44,6 +42,7 @@ public class DropHandler : MonoBehaviour, IDropHandler, IPointerClickHandler
                     Debug.Log(Dropped.GetComponent<EffectDto>().effect);
                     TriggerSPCEffect(Dropped);
                 }
+                Dropped.GetComponent<DragHandler>().RemoveFromPlayer();
                 PlayRandomPlaceSound();
             }
         }

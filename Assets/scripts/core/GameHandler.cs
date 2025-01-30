@@ -90,6 +90,8 @@ public class GameHandler : MonoBehaviour
         }
         else if (RemainingTime <= 0 && TimeIsRunning)
         {
+            UseSPC();
+            clearSPC();
             StartCoroutine(EndGame());
         }
     }
@@ -309,6 +311,7 @@ public class GameHandler : MonoBehaviour
         //DiceDrop
         if (DiceDrop.transform.childCount == 1)
         {
+            Debug.Log("1");
             if (!DiceDrop.transform.GetChild(0).GetComponent<EffectDto>().permanent)
             {
                 playerHandler.RemoveSpecialCard(specialCards.GetName(DiceDrop.transform.GetChild(0).gameObject));
@@ -316,6 +319,7 @@ public class GameHandler : MonoBehaviour
             }
             else
             {
+                Debug.Log(2);
                 DiceDrop.transform.GetChild(0).GetComponent<DragHandler>().ResetPos();
             }
 
