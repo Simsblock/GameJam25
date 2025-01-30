@@ -17,10 +17,17 @@ public class Dealer : MonoBehaviour
     [SerializeField]
     public Sprite CardBack;
     private Vector3 leftCardPos;
+    //for Abilities
+    [SerializeField]
+    public GameObject Player, SPCSlotL; //Slot is ugly af, aber es geht fast und das brauchma jetzt
+    private DropHandler DropHandler;
+    private SpecialCardsList SpecialCardsList;
 
     // Start is called before the first frame update
     void Start()
     {
+        DropHandler = SPCSlotL.GetComponent<DropHandler>();
+        SpecialCardsList = GameHandler.GetComponent<SpecialCardsList>();
         SpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         ChangeDealer();
     }
@@ -118,26 +125,74 @@ public class Dealer : MonoBehaviour
 
     private string[][] DealerAbilities = new string[][]
     {
-        new string[] { "Ability1", "Ability2" },
-        new string[] { "Ability3", "Ability4" }
+        new string[] { "Double-Sided Blade", "ThreeKings", "TheTwins"},
+        new string[] { "Player+1", "Switcheroo" }, //Restart is pain so no
+        new string[] { "Ass", "Joker" } //Destroy makes no sense
     };
-
+    private List<string> Abilities;
     public void UseAbilities()
     {
+        System.Random rand = new System.Random();
 
+        // Over 21 abilities
+        string[] Over21Abilities = new string[] { "ThreeKings", "Switcheroo" };
+        if (TotalValue > 21)
+        {
+            PickAndRemoveAbility(Over21Abilities);
+        }
+
+        // Player High Number
+        string[] PlayerHigh = new string[] { "Player+1", "Switcheroo" };
+        PlayerHandler playerHandler = Player.GetComponent<PlayerHandler>();
+        if (playerHandler != null && playerHandler.curSum >= 17 && playerHandler.curSum <= 21)
+        {
+            PickAndRemoveAbility(PlayerHigh);
+        }
+
+        // Player under 21 abilities
+        string[] PlayerOver21Abilities = new string[] { "Double-sided Blade", "Switcheroo" };
+        if (playerHandler != null && playerHandler.curSum <= 21)
+        {
+            PickAndRemoveAbility(PlayerOver21Abilities);
+        }
+
+        // Under 17 abilities
+        string[] Under17Abilities = new string[] { "ThreeKings", "Switcheroo" };
+        if (TotalValue <= 17)
+        {
+            PickAndRemoveAbility(Under17Abilities);
+        }
     }
 
+    private void PickAndRemoveAbility(string[] abilityPool)
+    {
+        // Filter abilities that exist in both `abilityPool` and `Abilities`
+        var validAbilities = abilityPool.Where(ability => Abilities.Contains(ability)).ToList();
+
+        if (validAbilities.Count > 0)
+        {
+            System.Random rand = new System.Random();
+            string selectedAbility = validAbilities[rand.Next(validAbilities.Count)];
+            //Call Ability
+            DropHandler.TriggerSPCEffect(SpecialCardsList.SpecialCardsUi[selectedAbility]);
+            // Remove from Abilities
+            Abilities.Remove(selectedAbility);
+            Console.WriteLine($"Used ability: {selectedAbility}");
+        }
+    }
 
 
     [SerializeField]
     public Sprite[] Dealers;
     private SpriteRenderer SpriteRenderer;
-
     public void ChangeDealer() //ONLY SPRITE ATM
     {
         System.Random rand = new System.Random();
         int index = rand.Next(Dealers.Length);
         SpriteRenderer.sprite = Dealers[index];
+        index++;
+        if (index < 3) Abilities = DealerAbilities[index-1].ToList();
+        else Abilities = DealerAbilities[index/3-1].ToList();
     }
 
     public IEnumerator DisplayDealerCards(string cardKey)
