@@ -1990,6 +1990,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06d5a4ffd88ab74469c6d6f251b076c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SPCSprites:
+  - {fileID: -1778415586, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
+  - {fileID: 350925774, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
+  - {fileID: 622585713, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
+  - {fileID: 1850854098, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
+  - {fileID: -233234261, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
+  - {fileID: -1016338749, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
+  - {fileID: 1466429851, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
+  - {fileID: -1704545478, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
+  - {fileID: -835737131, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
+  - {fileID: 273602151, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
+  - {fileID: -487411826, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
+  - {fileID: -740738664, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
+  - {fileID: -1664188633, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
+  - {fileID: 1911769147, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
 --- !u!1 &595710132
 GameObject:
   m_ObjectHideFlags: 0
@@ -4862,7 +4877,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00006688702}
+  m_AnchoredPosition: {x: 0, y: 0.000027184413}
   m_SizeDelta: {x: 0, y: 37}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1493733641
@@ -6344,7 +6359,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 353219250}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.9999999
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
