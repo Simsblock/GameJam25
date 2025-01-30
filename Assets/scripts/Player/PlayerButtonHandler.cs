@@ -11,6 +11,7 @@ public class PlayerButtonHandler : MonoBehaviour
     [SerializeField]
     private GameObject GameHandler,BetUi;
     private GameHandler GameHandlerScript;
+    private AudioManager audioManager;
 
     private bool isHitButtonCooldown = false;
     private bool isStandButtonCooldown = false;
@@ -18,6 +19,7 @@ public class PlayerButtonHandler : MonoBehaviour
     private void Start()
     {
         GameHandlerScript = GameHandler.GetComponent<GameHandler>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     private void Update()
@@ -33,6 +35,7 @@ public class PlayerButtonHandler : MonoBehaviour
         player.GetComponent<PlayerHandler>().PullCard();
         StartCoroutine(ReenableButtonAfterDelay(hitBtn, 0.1f));
         isHitButtonCooldown = true;
+        audioManager.PlaySFX(audioManager.buttonClickSound);
         Debug.Log("End of Hit");
     }
 
@@ -40,10 +43,12 @@ public class PlayerButtonHandler : MonoBehaviour
     {
         GameHandlerScript.stand = 1;
         Dealer.GetComponent<Dealer>().PullRest();
+        audioManager.PlaySFX(audioManager.buttonClickSound);
     }
 
     public void Deal()
     {
+        audioManager.PlaySFX(audioManager.buttonClickSound);
         StartCoroutine(GameHandlerScript.StartRound());
     }
 

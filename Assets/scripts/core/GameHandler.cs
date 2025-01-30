@@ -358,10 +358,12 @@ public class GameHandler : MonoBehaviour
     //Pause
     public void Unpause()
     {
+        audio.PlaySFX(audio.buttonClickSound);
         PauseUI.SetActive(false);
     }
     public void QuitToHome()
     {
+        audio.PlaySFX(audio.buttonClickSound);
         SceneManager.LoadScene("Home");
     }
 }

@@ -11,6 +11,7 @@ public class HomeHandler : MonoBehaviour
     public Button LoaderBtn;
     [SerializeField]
     private GameObject screen1, screen2;
+    private AudioManager audioManager;
 
     void Start()
     {
@@ -18,35 +19,41 @@ public class HomeHandler : MonoBehaviour
         if (GlobalData.FirstLoad()) GlobalData.ClearAll();
         Highscore_Text.text = $"Highscore\n{PlayerPrefs.GetInt("HighScore")}";
         LoaderBtn.interactable = GlobalData.LoadableCheck();
-        Debug.Log(GlobalData.LoadableCheck());
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     public void Load()
     {
+        audioManager.PlaySFX(audioManager.buttonClickSound);
         SceneManager.LoadScene("Main");
     }
     public void Play()
     {
+        audioManager.PlaySFX(audioManager.buttonClickSound);
         SceneManager.LoadScene("Main");
         GlobalData.ClearAll();
     }
 
     public void Quit()
     {
+        audioManager.PlaySFX(audioManager.buttonClickSound);
         Application.Quit();
     }
 
     public void Credits()
     {
+        audioManager.PlaySFX(audioManager.buttonClickSound);
         SceneManager.LoadScene("Credits");
     }
     public void Tutorial()
     {
+        audioManager.PlaySFX(audioManager.buttonClickSound);
         screen2.SetActive(true);
         screen1.SetActive(false);
     }
     public void CloseTut()
     {
+        audioManager.PlaySFX(audioManager.buttonClickSound);
         screen2.SetActive(false);
         screen1.SetActive(true);
     }
