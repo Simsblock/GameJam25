@@ -211,11 +211,11 @@ public class Dealer : MonoBehaviour
             }
 
             // Player under 21 abilities
-            /*
+            
             else if (playerHandler != null && playerHandler.curSum <= 21)
             {
-                Filter = new string[] { "Blade", "Switcheroo" };
-            }*/
+                Filter = new string[] { "Player+1" }; //"Blade", "Switcheroo"
+            }
 
             // Under 17 abilities
             else if (TotalValue <= 17)
