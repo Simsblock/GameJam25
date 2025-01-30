@@ -120,8 +120,10 @@ public class GameHandler : MonoBehaviour
         clearSPC();
         stand = 3;
         //Dealer Reveal
-        yield return dealer.PullRest();
-        
+        yield return StartCoroutine(dealer.PullRest());
+        yield return StartCoroutine(dealer.UseAbilities());
+
+
         dealerScore.text = $"{dealer.TotalValue}";
         //Win or Loose?
         if(RemainingTime <= 0)

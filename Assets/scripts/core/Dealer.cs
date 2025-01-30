@@ -85,6 +85,7 @@ public class Dealer : MonoBehaviour
     public IEnumerator ClearHand()
     {
         DealerHand.Clear();
+        ValueModifier = 0;
         OpenCard = new KeyValuePair<string, int>();
         foreach (Transform card in DealerCardParent.transform)
         {
@@ -95,7 +96,8 @@ public class Dealer : MonoBehaviour
 
     public Dictionary<string, int> DealerHand = new Dictionary<string, int>();
     public KeyValuePair<string, int> OpenCard { get; set; }
-    public int TotalValue => DealerHand.Values.Sum();
+    public int ValueModifier;
+    public int TotalValue => DealerHand.Values.Sum()+ValueModifier;
 
 
     public void PullMulti(int count) //wtf wer hat das so dumm benannt
@@ -123,64 +125,25 @@ public class Dealer : MonoBehaviour
 
     }
 
-    private string[][] DealerAbilities = new string[][]
+    public void AddCard(string key, int value)
     {
-        new string[] { "Double-Sided Blade", "ThreeKings", "TheTwins"},
-        new string[] { "Player+1", "Switcheroo" }, //Restart is pain so no
-        new string[] { "Ass", "Joker" } //Destroy makes no sense
-    };
-    private List<string> Abilities;
-    public void UseAbilities()
-    {
-        System.Random rand = new System.Random();
+        KeyValuePair<string, int> card = new KeyValuePair<string, int>(key, value);
+        DealerHand.Add(card.Key, card.Value);
+        DisplayDealerCards(card.Key);
 
-        // Over 21 abilities
-        string[] Over21Abilities = new string[] { "ThreeKings", "Switcheroo" };
-        if (TotalValue > 21)
+        List<string> keysToModify = new List<string>();
+        foreach (string nkey in DealerHand.Keys)
         {
-            PickAndRemoveAbility(Over21Abilities);
+            if (key.Contains("A") && DealerHand.Values.Sum() > 21)
+            {
+                keysToModify.Add(key);
+            }
         }
-
-        // Player High Number
-        string[] PlayerHigh = new string[] { "Player+1", "Switcheroo" };
-        PlayerHandler playerHandler = Player.GetComponent<PlayerHandler>();
-        if (playerHandler != null && playerHandler.curSum >= 17 && playerHandler.curSum <= 21)
+        foreach (string nkey in keysToModify)
         {
-            PickAndRemoveAbility(PlayerHigh);
-        }
-
-        // Player under 21 abilities
-        string[] PlayerOver21Abilities = new string[] { "Blade", "Switcheroo" };
-        if (playerHandler != null && playerHandler.curSum <= 21)
-        {
-            PickAndRemoveAbility(PlayerOver21Abilities);
-        }
-
-        // Under 17 abilities
-        string[] Under17Abilities = new string[] { "ThreeKings", "TheTwins", "Joker", "Ass", "Switcheroo" };
-        if (TotalValue <= 17)
-        {
-            PickAndRemoveAbility(Under17Abilities);
+            DealerHand[key] = 1;
         }
     }
-
-    private void PickAndRemoveAbility(string[] abilityPool)
-    {
-        // Filter abilities that exist in both `abilityPool` and `Abilities`
-        var validAbilities = abilityPool.Where(ability => Abilities.Contains(ability)).ToList();
-
-        if (validAbilities.Count > 0)
-        {
-            System.Random rand = new System.Random();
-            string selectedAbility = validAbilities[rand.Next(validAbilities.Count)];
-            //Call Ability
-            DropHandler.TriggerSPCEffect(SpecialCardsList.SpecialCardsUi[selectedAbility]);
-            // Remove from Abilities
-            Abilities.Remove(selectedAbility);
-            Console.WriteLine($"Used ability: {selectedAbility}");
-        }
-    }
-
 
     [SerializeField]
     public Sprite[] Dealers;
@@ -190,10 +153,101 @@ public class Dealer : MonoBehaviour
         System.Random rand = new System.Random();
         int index = rand.Next(Dealers.Length);
         SpriteRenderer.sprite = Dealers[index];
-        index++;
-        if (index < 3) Abilities = DealerAbilities[index-1].ToList();
-        else Abilities = DealerAbilities[index/3-1].ToList();
+        Abilities = DealerAbilities[index % 3].ToList();
     }
+
+    private string[][] DealerAbilities = new string[][]
+    {
+        new string[] { "Double-Sided Blade", "ThreeKings", "TheTwins"},
+        new string[] { "Player+1", "Switcheroo" }, //Restart is pain so no
+        new string[] { "Ass", "Joker" } //Destroy makes no sense
+    };
+    private List<string> Abilities;
+    public IEnumerator UseAbilities()
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            System.Random rand = new System.Random();
+            PlayerHandler playerHandler = Player.GetComponent<PlayerHandler>();
+            // Over 21 abilities
+            string[] Filter = new string[] { };
+            if (TotalValue > 21)
+            {
+                Filter = new string[] { "ThreeKings" }; //"Switcheroo"
+            }
+
+            // Player High Number
+            else if (playerHandler != null && playerHandler.curSum >= 17 && playerHandler.curSum <= 21)
+            {
+                Filter = new string[] { "Ass" }; //"Switcheroo"
+            }
+
+            // Player under 21 abilities
+            /*
+            else if (playerHandler != null && playerHandler.curSum <= 21)
+            {
+                Filter = new string[] { "Blade", "Switcheroo" };
+            }*/
+
+            // Under 17 abilities
+            else if (TotalValue <= 17)
+            {
+                Filter = new string[] { "ThreeKings", "TheTwins", "Joker", "Ass" }; //"Switcheroo"
+            }
+            else Filter = new string[] { "Ass" };
+            StartCoroutine(PickAndRemoveAbility(Filter));
+        }
+        yield return null;
+    }
+
+    private IEnumerator PickAndRemoveAbility(string[] abilityPool)
+    {
+        // Ensure abilityPool is not null or empty
+        if (abilityPool == null || abilityPool.Length == 0)
+        {
+            Debug.LogWarning("Ability pool is null or empty.");
+            yield break; // Exit coroutine early
+        }
+
+        // Ensure Abilities is not null or empty
+        if (Abilities == null || Abilities.Count == 0)
+        {
+            Debug.LogWarning("Abilities list is null or empty.");
+            yield break; // Exit coroutine early
+        }
+
+        // Filter abilities that exist in both `abilityPool` and `Abilities`
+        var validAbilities = abilityPool.Where(a => Abilities.Contains(a)).ToList();
+        // Check if there are no valid abilities to use
+        if (validAbilities.Count == 0)
+        {
+            Debug.LogWarning("No valid abilities found to use.");
+            yield break; // Exit coroutine early
+        }
+        // Pick a random ability
+        string selectedAbility = validAbilities[UnityEngine.Random.Range(0, validAbilities.Count)];
+        // Call Ability
+        if (SpecialCardsList.SpecialCardsUi.ContainsKey(selectedAbility))
+        {
+            DropHandler.TriggerSPCEffect(SpecialCardsList.SpecialCardsUi[selectedAbility]);
+            Debug.Log($"Used ability: {selectedAbility}");
+        }
+        else
+        {
+            Debug.LogError($"Key '{selectedAbility}' not found in SpecialCardsUi!");
+            yield break;
+        }
+        // Remove from Abilities (convert array to list first if needed)
+        List<string> abilitiesList = Abilities.ToList();
+        if (abilitiesList.Remove(selectedAbility))
+        {
+            Abilities = abilitiesList; // Update back if Abilities is an array
+            Debug.Log($"Successfully removed ability: {selectedAbility}");
+        }
+        else Debug.LogError($"Failed to remove ability: {selectedAbility}");
+        yield return null;
+    }
+
 
     public IEnumerator DisplayDealerCards(string cardKey)
     {
