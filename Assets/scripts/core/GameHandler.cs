@@ -85,7 +85,6 @@ public class GameHandler : MonoBehaviour
         {
             StartCoroutine(EndGame());
         }
-
     }
 
     //Start Round
@@ -103,6 +102,7 @@ public class GameHandler : MonoBehaviour
         //Timer
         RemainingTime = MaxTime;
         TimeIsRunning = true;
+        Debug.Log("AAA");
     }
 
     //SetBet 

@@ -150,14 +150,14 @@ public class Dealer : MonoBehaviour
         }
 
         // Player under 21 abilities
-        string[] PlayerOver21Abilities = new string[] { "Double-sided Blade", "Switcheroo" };
+        string[] PlayerOver21Abilities = new string[] { "Blade", "Switcheroo" };
         if (playerHandler != null && playerHandler.curSum <= 21)
         {
             PickAndRemoveAbility(PlayerOver21Abilities);
         }
 
         // Under 17 abilities
-        string[] Under17Abilities = new string[] { "ThreeKings", "Switcheroo" };
+        string[] Under17Abilities = new string[] { "ThreeKings", "TheTwins", "Joker", "Ass", "Switcheroo" };
         if (TotalValue <= 17)
         {
             PickAndRemoveAbility(Under17Abilities);

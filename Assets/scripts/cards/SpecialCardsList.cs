@@ -38,7 +38,7 @@ public class SpecialCardsList : MonoBehaviour
     }
     public void DealerGenerate()
     {
-        SpecialCardsUi = new Dictionary<string, GameObject>();
+        DealerSpecialCardsUi = new Dictionary<string, GameObject>();
         //maps the card names to prefabs
         for (int i = 0; i < DealerCardNames.Count; i++)
         {
