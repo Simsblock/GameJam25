@@ -24,17 +24,10 @@ public class PlayerButtonHandler : MonoBehaviour
 
     private void Update()
     {
-        if (isHitButtonCooldown || player.GetComponent<PlayerHandler>().curSum >= 21)
-        {
-            hitBtn.interactable = false;
-        }else hitBtn.interactable = true;
-
-        if (GameHandlerScript.stand==3|| GameHandlerScript.stand == 4)
-        {
-            standBtn.interactable = false;
-        }
-        else standBtn.interactable = true;
+        hitBtn.interactable = player.GetComponent<PlayerHandler>().curSum < 21 && !isHitButtonCooldown;
+        standBtn.interactable = GameHandlerScript.stand != 3 && GameHandlerScript.stand != 4;
     }
+
 
     public void Hit()
     {

@@ -209,22 +209,20 @@ public class Dealer : MonoBehaviour
             // Player High Number
             else if (playerHandler != null && playerHandler.curSum >= 17 && playerHandler.curSum <= 21)
             {
-                Filter = new string[] { "Ass" }; //"Switcheroo"
-            }
-
-            // Player under 21 abilities
-            
-            else if (playerHandler != null && playerHandler.curSum <= 21)
-            {
-                Filter = new string[] { "Player+1" }; //"Blade", "Switcheroo"
+                Debug.Log("whyy");
+                Filter = new string[] { "Player+1" }; //"Switcheroo"
             }
 
             // Under 17 abilities
             else if (TotalValue <= 17)
             {
-                Filter = new string[] { "ThreeKings", "TheTwins", "Joker", "Ass" }; //"Switcheroo"
+                Filter = new string[] { "TheTwins", "Joker", "Ass" }; //"Switcheroo"
             }
-            else Filter = new string[] { "Ass" };
+            else if (TotalValue <= 20)
+            {
+                Filter = new string[] { "Joker", "Ass" };
+            }
+            else Filter = new string[] { };
             yield return StartCoroutine(PickAndRemoveAbility(Filter));
         }
         yield return null;
@@ -257,7 +255,8 @@ public class Dealer : MonoBehaviour
         // Pick a random ability
         string selectedAbility = validAbilities[UnityEngine.Random.Range(0, validAbilities.Count)];
         // Call Ability
-        if (SpecialCardsList.SpecialCardsUi.ContainsKey(selectedAbility))
+
+        if (SpecialCardsList.DealerSpecialCardsUi.ContainsKey(selectedAbility))
         {
             DropHandler.TriggerSPCEffect(SpecialCardsList.DealerSpecialCardsUi[selectedAbility]);
             yield return new WaitForSeconds(1.5f);
