@@ -132,9 +132,9 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
             }
             else if(!card&&DiceSlotImg != null) 
             {
-                c = SlotLImg.color;
+                c = DiceSlotImg.color;
                 c.a = 0.5f;
-                SlotLImg.color = c;
+                DiceSlotImg.color = c;
             }
             c = transform.GetComponent<Image>().color;
             c *= 0.8f;
@@ -159,9 +159,9 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
             }
             if (!card && DiceSlotImg != null)
             {
-                c = SlotLImg.color;
-                c.a = 0.5f;
-                SlotLImg.color = c;
+                c = DiceSlotImg.color;
+                c.a = 0f;
+                DiceSlotImg.color = c;
             }
 
             c = transform.GetComponent<Image>().color;
@@ -197,11 +197,13 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
     private void FindStuff() {
         SlotL = GameObject.Find("SPCSlotL");
         SlotR = GameObject.Find("SPCSlotR");
+        DiceSlot = GameObject.Find("DiceDrop");
         ClearDrop = GameObject.Find("Clearer");
-        if (SlotL != null && SlotR != null)
+        if (SlotL != null && SlotR != null && DiceSlot!=null)
         {
             SlotLImg = SlotL.GetComponent<Image>();
             SlotRImg = SlotR.GetComponent<Image>();
+            DiceSlotImg = DiceSlot.GetComponent<Image>();
             SlotLHandler = SlotL.GetComponent<DropHandler>();
             SlotRHandler = SlotR.GetComponent<DropHandler>();
         }
