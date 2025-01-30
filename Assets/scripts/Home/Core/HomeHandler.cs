@@ -20,6 +20,7 @@ public class HomeHandler : MonoBehaviour
         Highscore_Text.text = $"Highscore\n{PlayerPrefs.GetInt("HighScore")}";
         LoaderBtn.interactable = GlobalData.LoadableCheck();
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        audioManager.ChangeBGMusic(audioManager.shopBackround);
     }
 
     public void Load()

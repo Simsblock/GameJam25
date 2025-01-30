@@ -19,6 +19,7 @@ public class CreditsHandler : MonoBehaviour
     void Start()
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        audioManager.ChangeBGMusic(audioManager.shopBackround);
         Random = new System.Random();
     }
 
