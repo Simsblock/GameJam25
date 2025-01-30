@@ -12,17 +12,16 @@ public class GameOver : MonoBehaviour
     public TMP_Text Score_Text, HighScore_Text;
     void Start()
     {
-        Score_Text.text = $"Score: {GlobalData.Score}";
+        Score_Text.text = $"Score: {PlayerPrefs.GetInt("Score")}";
         HighScore_Text.text = $"Highscore: {PlayerPrefs.GetInt("HighScore")}";
+        GlobalData.ClearAll();
     }
     public void Quit()
     {
         SceneManager.LoadScene("Home");
-        GlobalData.ClearAll();
     }
     public void Restart()
     {
         SceneManager.LoadScene("Main");
-        GlobalData.ClearAll();
     }
 }

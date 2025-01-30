@@ -60,14 +60,14 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
         
         if (Content.name.Equals("Shop"))
         {
-            if (GlobalData.money-100 < effects.Price)
+            if (PlayerPrefs.GetInt("Money")-100 < effects.Price)
             {
                 //maby animation oda so
                 return;
             }
             playerHandler.AddSpecialCard(effects.name);
             playerHandler.UpdateDisplay();
-            GlobalData.money -= effects.Price;
+            PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money")-effects.Price);
             Destroy(gameObject);
         }
     }

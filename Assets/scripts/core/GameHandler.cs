@@ -57,7 +57,7 @@ public class GameHandler : MonoBehaviour
     private void Update()
     {
         //Score and Money Display
-        money.text = $"{GlobalData.money}";
+        money.text = $"{PlayerPrefs.GetInt("Money")}";
         score.text = $"{playerHandler.curSum}";
         //Pause
         if (Input.GetKeyDown(KeyCode.Escape) && ShopUI.active && !PauseUI.active)
@@ -92,8 +92,8 @@ public class GameHandler : MonoBehaviour
     public IEnumerator StartRound() 
     {
         //SetScore
-        if (GlobalData.money > GlobalData.Score) GlobalData.Score = GlobalData.money;
-        if (PlayerPrefs.GetInt("HighScore") < GlobalData.Score) PlayerPrefs.SetInt("HighScore", GlobalData.Score);
+        if (PlayerPrefs.GetInt("Money") > PlayerPrefs.GetInt("Score")) PlayerPrefs.SetInt("Score",PlayerPrefs.GetInt("Money"));
+        if (PlayerPrefs.GetInt("HighScore") < PlayerPrefs.GetInt("Score")) PlayerPrefs.SetInt("HighScore", PlayerPrefs.GetInt("Score"));
         //clear old Cards
         SetBet();
         yield return StartCoroutine(LoadShop());
@@ -108,11 +108,11 @@ public class GameHandler : MonoBehaviour
     //SetBet 
     public void SetBet()
     {
-        GlobalData.bet = int.Parse(bet_text.text);
+        PlayerPrefs.SetInt("Bet", int.Parse(bet_text.text));
     }
     private void SetBetText()
     {
-        bet_text.text= GlobalData.bet.ToString();
+        bet_text.text= PlayerPrefs.GetInt("Bet").ToString();
     }
     public void EndGame()
     {
@@ -125,27 +125,27 @@ public class GameHandler : MonoBehaviour
         //Win or Loose?
         if(RemainingTime <= 0)
         {
-            GlobalData.money -= GlobalData.bet * GlobalData.BetLossRate / 100; //loss
+            PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money")- PlayerPrefs.GetInt("Bet") * GlobalData.BetLossRate / 100); //loss
             loose.SetActive(true);
         }
         else if (dealer.TotalValue > GlobalData.DealerWinCond && playerHandler.curSum <= GlobalData.PlayerWinCond)
         {
-            GlobalData.money += GlobalData.bet*GlobalData.BetPayoutRate/100; //win
+            PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money") + PlayerPrefs.GetInt("Bet") * GlobalData.BetPayoutRate / 100); //win
             win.SetActive(true);
         }
         else if (playerHandler.curSum > GlobalData.PlayerWinCond)
         {
-            GlobalData.money -= GlobalData.bet * GlobalData.BetLossRate / 100; //loss
+            PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money") - PlayerPrefs.GetInt("Bet") * GlobalData.BetLossRate / 100); //loss
             loose.SetActive(true);
         }
         else if (playerHandler.curSum < dealer.TotalValue)
         {
-            GlobalData.money -= GlobalData.bet*GlobalData.BetLossRate / 100; //loss
+            PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money") - PlayerPrefs.GetInt("Bet") * GlobalData.BetLossRate / 100); //loss
             loose.SetActive(true);
         }
         else if (playerHandler.curSum > dealer.TotalValue)
         {
-            GlobalData.money += GlobalData.bet * GlobalData.BetPayoutRate / 100; //win
+            PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money") + PlayerPrefs.GetInt("Bet") * GlobalData.BetPayoutRate / 100); //win
             win.SetActive(true);
         }
         else if (playerHandler.curSum == dealer.TotalValue)
@@ -156,9 +156,9 @@ public class GameHandler : MonoBehaviour
         {
             draw.SetActive(true);
         }
-        if (GlobalData.bet > GlobalData.money)
+        if (PlayerPrefs.GetInt("Bet") > PlayerPrefs.GetInt("Money"))
         {
-            GlobalData.bet = GlobalData.money;
+            PlayerPrefs.GetInt("Bet", PlayerPrefs.GetInt("Money"));
             SetBetText();
         }
         CheckGameOver();
@@ -189,7 +189,7 @@ public class GameHandler : MonoBehaviour
 
     public void CheckGameOver()
     {
-        if (GlobalData.money <= 0)
+        if (PlayerPrefs.GetInt("Money") <= 0)
         {
 
             SceneManager.LoadScene("GameOver"); //to be made UwU

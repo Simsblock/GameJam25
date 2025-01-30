@@ -31,13 +31,15 @@ public class PlayerHandler : MonoBehaviour
         if(playerCards == null) playerCards = new Dictionary<string,int>();
         DisplaySpecial = CardHand.GetComponent<DisplaySpecial>();
         CM = CardParent.GetComponent<CardManager>();
+        //SPC
         DisplaySPC = false;
-        specialCards.Add("Joker");
+        specialCards = GlobalData.LoadSPC();
+        /*specialCards.Add("Joker");
         specialCards.Add("Seer");
         specialCards.Add("Restart");
         specialCards.Add("TheTwins");
         specialCards.Add("Shortcut");
-        AddSpecialCard("DiceDefault");
+        AddSpecialCard("DiceDefault");*/
     }
 
     public void PullMulti(int count)
@@ -96,11 +98,13 @@ public class PlayerHandler : MonoBehaviour
     public void ClearSpecialCards()
     {
         specialCards = new List<string>();
+        PlayerPrefs.SetString("SPCs", "");
     }
 
     public void AddSpecialCard(string name)
     {
         specialCards.Add(name);
+        GlobalData.SaveSPC(specialCards);
     }
     public void RemoveSpecialCard(string name)
     {
@@ -109,6 +113,7 @@ public class PlayerHandler : MonoBehaviour
             return;
         }
         specialCards.Remove(name);
+        GlobalData.SaveSPC(specialCards);
     }
 
     public void UpdateDisplay()

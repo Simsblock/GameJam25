@@ -99,7 +99,7 @@ public class AbilityDecoder : MonoBehaviour
                         //destroy/anull first special card dealer uses
                         break;
                     case "Gambit":
-                        GlobalData.bet *= 2;
+                        PlayerPrefs.SetInt("Bet",PlayerPrefs.GetInt("Bet")*2);
                         break;
                 }   
             }

@@ -1,10 +1,14 @@
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using System.Linq;
+
 public static class GlobalData
 {
-    public static int money { get; set; } = 1000; //playermoney
-    public static int bet { get; set; } = 100; //betAmount
-
-    public static int Score { get; set; } = 0;
-
+    private static int baseMoney = 1000;
+    private static int baseBet = 100;
+    private static int baseScore = 0;
+    
     //AbilityValues
     public static int DealerWinCond { get; set; } = 21;
     public static int PlayerWinCond { get; set; } = 21;
@@ -14,9 +18,28 @@ public static class GlobalData
 
     public static void ClearAll()
     {
-        money = 1000;
-        bet = 100;
-        Score = 0;
+        PlayerPrefs.SetInt("Money", baseMoney);
+        PlayerPrefs.SetInt("Bet", baseBet);
+        PlayerPrefs.SetInt("Score", baseScore);
+        PlayerPrefs.SetString("SPCs", "");
+    }
+
+    public static bool LoadableCheck() //doesnt work on first ever load
+    {
+        return !((PlayerPrefs.GetInt("Money") == baseMoney) && (PlayerPrefs.GetInt("Bet") == baseBet) && (PlayerPrefs.GetInt("Score") == baseScore));
+    }
+
+    public static void SaveSPC(List<string> list)
+    {
+        string[] SPCs = list.ToArray();
+        PlayerPrefs.SetString("SPCs", string.Join(",", SPCs));
+        PlayerPrefs.Save();
+    }
+    public static List<string> LoadSPC()
+    {
+        string savedData = PlayerPrefs.GetString("SPCs", "");
+        string[] loadedArray = savedData.Split(new char[] { ',' }, System.StringSplitOptions.RemoveEmptyEntries);
+        return loadedArray.ToList();
     }
 
     public static void ResetAbilityValues()
