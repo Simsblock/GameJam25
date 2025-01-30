@@ -74,13 +74,15 @@ public class Dealer : MonoBehaviour
         }
         foreach (string key in DealerHand.Keys)
         {
-            if (key.Contains("A") && DealerHand.Values.Sum() > 21)
+            if (key.Contains("A") && TotalValue > 21)
             {
+                ValueModifier -= 10;
                 keysToModify.Add(key);
             }
         }
         foreach (string key in keysToModify)
         {
+            ValueModifier += 10;
             DealerHand[key] = 1;
         }
         if (TotalValue < MaxVal) yield return StartCoroutine(PullRestInternally());
@@ -120,11 +122,13 @@ public class Dealer : MonoBehaviour
         {
             if (key.Contains("A") && DealerHand.Values.Sum() > 21)
             {
+                ValueModifier -= 10;
                 keysToModify.Add(key);
             }
         }
         foreach (string key in keysToModify)
         {
+            ValueModifier += 10;
             DealerHand[key] = 1;
         }
 
@@ -139,13 +143,15 @@ public class Dealer : MonoBehaviour
         List<string> keysToModify = new List<string>();
         foreach (string nkey in DealerHand.Keys)
         {
-            if (key.Contains("A") && DealerHand.Values.Sum() > 21)
+            if (key.Contains("A") && TotalValue > 21)
             {
+                ValueModifier -= 10;
                 keysToModify.Add(key);
             }
         }
         foreach (string nkey in keysToModify)
         {
+            ValueModifier += 10;
             DealerHand[key] = 1;
         }
     }
@@ -161,11 +167,13 @@ public class Dealer : MonoBehaviour
             {
                 if (TotalValue > 21 && !(DealerHand[item.Key] == 11))
                 {
+                    ValueModifier += 10;
                     keysToModify.Add(item.Key);
                 }
             }
             foreach (string key in keysToModify)
             {
+                ValueModifier -= 10;
                 DealerHand[key] = 11;
             }
         }
