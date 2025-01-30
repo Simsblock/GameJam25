@@ -1739,7 +1739,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a5cff1ee30c0e440ad564f4cdefcf89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amount: 100
+  amount: 50
   Bet_text: {fileID: 2049874852}
   Bet_UI: {fileID: 667059521}
 --- !u!224 &512688571
@@ -2044,7 +2044,6 @@ MonoBehaviour:
   - {fileID: 1069941342852602424, guid: ff3a953d31eec5540ac244dc4445d7b7, type: 3}
   - {fileID: 1069941342852602424, guid: ea22030f9ccb1464bbb3f09f3abbff26, type: 3}
   - {fileID: 1069941342852602424, guid: 5345c120199eb364f9955f2977bf6f2f, type: 3}
-  - {fileID: 1069941342852602424, guid: 5345c120199eb364f9955f2977bf6f2f, type: 3}
   CardNames:
   - Dealer+1
   - Ass
@@ -2060,7 +2059,6 @@ MonoBehaviour:
   - Diced4
   - Diced-2
   - Diced-4
-  - DiceGamble
   - DiceDefault
   DealerSpecialCards:
   - {fileID: 7489955442949369063, guid: 70fc5aebac64b654ab3a2847fb5acd77, type: 3}
@@ -12369,7 +12367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a5cff1ee30c0e440ad564f4cdefcf89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amount: 100
+  amount: 50
   Bet_text: {fileID: 1658026345}
   Bet_UI: {fileID: 0}
 --- !u!1 &1977911825
