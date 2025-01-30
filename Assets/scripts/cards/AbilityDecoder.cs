@@ -12,6 +12,8 @@ public class AbilityDecoder : MonoBehaviour
     internal PlayerHandler playerHandler;
     private Dealer Dealer;
     System.Random rand = new System.Random();
+    [SerializeField]
+    internal Sprite[] SPCSprites;
     // Start is called before the first frame update
     void Start()
     {
@@ -117,19 +119,19 @@ public class AbilityDecoder : MonoBehaviour
     {
         GlobalData.DuplicateAmt++;
         string key = $"EA:{GlobalData.DuplicateAmt}";
-        yield return StartCoroutine(DisplaySPC("Ass"));
+        yield return StartCoroutine(DisplaySPC("SPC8"));
         if (mode == "P") playerHandler.AddCard($"EA:{GlobalData.DuplicateAmt}", 11);
         else if (mode == "D") Dealer.AddCard($"EA:{GlobalData.DuplicateAmt}", 11);
     }
     private IEnumerator ThreeKings(string mode)
     {
-        yield return StartCoroutine(DisplaySPC("ThreeKings"));
+        yield return StartCoroutine(DisplaySPC("SPC4"));
         if (mode == "P") playerHandler.curSum -= 3;
         else if (mode == "D") Dealer.ValueModifier -= 3;
     }
     private IEnumerator DisplaySPC(string SPC)
     {
-        yield return StartCoroutine(SpawnCards(new Vector3(0, 0, -6), 1, 0, new string[] { "EA" }, true));
+        yield return StartCoroutine(SpawnCards(new Vector3(0, 0, -6), 1, 0, new string[] { SPC }, true));
     }
 
     private void JokerP()
@@ -140,7 +142,7 @@ public class AbilityDecoder : MonoBehaviour
     private IEnumerator JokerD()
     {
         Debug.Log("D");
-        yield return StartCoroutine(DisplaySPC("Joker"));
+        yield return StartCoroutine(DisplaySPC("SPC9"));
         if (Dealer.TotalValue + 11 <= 21) Dealer.AddCard($"EA:{GlobalData.DuplicateAmt}",1); //Ace
         else if (Dealer.TotalValue + 10 <= 21) Dealer.AddCard($"E10:{GlobalData.DuplicateAmt}", 10); //10
         else if (Dealer.TotalValue + 10 <= 21) Dealer.AddCard($"E5:{GlobalData.DuplicateAmt}", 5); //5
@@ -159,7 +161,7 @@ public class AbilityDecoder : MonoBehaviour
     private IEnumerator TwinsD()
     {
         Debug.Log("D");
-        yield return StartCoroutine(DisplaySPC("TheTwins"));
+        yield return StartCoroutine(DisplaySPC("SPC11"));
         KeyValuePair<string, int> card1 = Deck.GetCard();
         KeyValuePair<string, int> card2 = Deck.GetCard();
         bool notSuicide1 = card1.Value + Dealer.TotalValue <= 21;
@@ -210,9 +212,17 @@ public class AbilityDecoder : MonoBehaviour
         card.transform.position = position;
 
         // Get card data
-        CardManager.DeckConverter(key, out string suit, out int rank);
         CardManager CM = FindObjectOfType<CardManager>();
-        Sprite s = CM.GetCardSprite(suit, rank);
+        Sprite s;
+        if (key.Contains("SPC"))
+        {
+            s = SPCSprites.Where(s => s.name.Contains(key.Substring(3))).FirstOrDefault();
+        }
+        else
+        {
+            CardManager.DeckConverter(key, out string suit, out int rank);
+            s = CM.GetCardSprite(suit, rank);
+        }
 
         // Add SpriteRenderer
         SpriteRenderer spriteRenderer = card.AddComponent<SpriteRenderer>();
