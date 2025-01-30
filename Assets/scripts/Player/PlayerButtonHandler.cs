@@ -13,6 +13,7 @@ public class PlayerButtonHandler : MonoBehaviour
     private GameHandler GameHandlerScript;
 
     private bool isHitButtonCooldown = false;
+    private bool isStandButtonCooldown = false;
 
     private void Start()
     {
@@ -25,6 +26,12 @@ public class PlayerButtonHandler : MonoBehaviour
         {
             hitBtn.interactable = false;
         }else hitBtn.interactable = true;
+
+        if (GameHandlerScript.stand==3)
+        {
+            standBtn.interactable = false;
+        }
+        else standBtn.interactable = true;
     }
 
     public void Hit()
