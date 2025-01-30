@@ -43,6 +43,7 @@ public class PlayerHandler : MonoBehaviour
         AddSpecialCard("Seer");
         AddSpecialCard("ThreeKings");
         AddSpecialCard("DiceDefault");
+        AddSpecialCard("Dealer+1");
     }
 
     public void PullMulti(int count)

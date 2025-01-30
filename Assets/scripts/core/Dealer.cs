@@ -109,7 +109,7 @@ public class Dealer : MonoBehaviour
         {
             KeyValuePair<string, int> card = Deck.PullCard();
             DealerHand.Add(card.Key, card.Value);
-            DisplayDealerCards(card.Key);
+            StartCoroutine(DisplayDealerCards(card.Key));
             count--;
         }
 
@@ -291,7 +291,7 @@ public class Dealer : MonoBehaviour
             cardPos = new Vector3(0f, 0f, 0f);
             leftCardPos = cardPos;
         } else leftCardPos += cardPos;
-        if (childrenAmt == 1 || GameHandler.GetComponent<GameHandler>().stand == 3)
+        if (childrenAmt == 1 || GameHandler.GetComponent<GameHandler>().stand <= 3)
         {
             CardManager.DeckConverter(cardKey, out string suit, out int rank);
             Sprite s = DealerCardParent.GetComponent<CardManager>().GetCardSprite(suit, rank);

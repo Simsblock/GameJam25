@@ -7,7 +7,8 @@ using UnityEngine;
 
 public class AbilityDecoder : MonoBehaviour
 {
-    
+    [SerializeField]
+    internal GameHandler GameHandler;
     internal PlayerHandler playerHandler;
     internal Dealer Dealer;
     System.Random rand = new System.Random();
@@ -15,14 +16,28 @@ public class AbilityDecoder : MonoBehaviour
     internal Sprite[] SPCSprites;
     [SerializeField]
     private GameObject player,BetUi;
+    //+1
+    private bool plusOne=false;
+    private int drawAmt=0;
+    private 
     // Start is called before the first frame update
     void Start()
     {
         playerHandler = player.GetComponent<PlayerHandler>();
         Dealer = GameObject.Find("Dealer").GetComponent<Dealer>();
+        GameHandler = GameObject.Find("GameHandler").GetComponent<GameHandler>();
     }
 
-   
+    void Update()
+    {
+        if (GameHandler.stand == 4 && plusOne)
+        {
+            Dealer.PullMulti(drawAmt);
+            plusOne = false;
+            drawAmt = 0;
+            StartCoroutine(DisplaySPC("SPC1"));
+        }
+    }
 
     public void Use(string Effect)
     {
@@ -42,8 +57,12 @@ public class AbilityDecoder : MonoBehaviour
                 switch (details[0])
                 {
                     case "draw":
-                        if (details[1] == "P") playerHandler.PullMulti(int.Parse(details[1]));
-                        if (details[1] == "D") Dealer.PullMulti(int.Parse(details[1]));
+                        if (details[2] == "P") playerHandler.PullMulti(int.Parse(details[1]));
+                        if (details[2] == "D")
+                        {
+                            drawAmt = int.Parse(details[1]);
+                            plusOne = true;
+                        }
                         break;
                     case "remove":
                         //maby
