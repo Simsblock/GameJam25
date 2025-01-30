@@ -24,6 +24,7 @@ public class PlayerHandler : MonoBehaviour
     private bool DisplaySPC;
     [SerializeField]
     private Button AbilityBtn;
+    private AudioManager audio;
 
     void Start()
     {
@@ -34,6 +35,7 @@ public class PlayerHandler : MonoBehaviour
         //SPC
         DisplaySPC = false;
         specialCards = GlobalData.LoadSPC();
+        audio = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         AddSpecialCard("Joker");
         AddSpecialCard("Ass");
         AddSpecialCard("DiceDefault");
@@ -48,6 +50,7 @@ public class PlayerHandler : MonoBehaviour
                 PullCard();
                 count--;
             }
+            audio.PlaySFX(audio.placeCard);
         }
     }
 
@@ -76,6 +79,7 @@ public class PlayerHandler : MonoBehaviour
                     playerCards[key] = 1;
                 }
             }
+            RandomDrawSound();
         }
     }
 
@@ -207,5 +211,29 @@ public class PlayerHandler : MonoBehaviour
             GameObject.Destroy(card.gameObject);
         }
         yield return null;
+    }
+
+    private void RandomDrawSound()
+    {
+        System.Random r= new System.Random();
+        switch (r.Next(5))
+        {
+            case 0:
+                audio.PlaySFX(audio.drawCard);
+                break;
+            case 1:
+                audio.PlaySFX(audio.drawCard1);
+                break;
+            case 2:
+                audio.PlaySFX(audio.drawCard2);
+                break;
+            case 3:
+                audio.PlaySFX(audio.drawCard3);
+                break;
+            case 4:
+                audio.PlaySFX(audio.drawCard4);
+                break;
+        }
+
     }
 }

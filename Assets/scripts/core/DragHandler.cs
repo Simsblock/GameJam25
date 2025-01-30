@@ -14,6 +14,7 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
     private PlayerHandler playerHandler;
     private SpecialCardsList SpecialCards;
     [HideInInspector] public string Shopname;
+    private AudioManager audio;
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (effects.Used)
@@ -68,7 +69,7 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
             playerHandler.AddSpecialCard(effects.name);
             playerHandler.UpdateDisplay();
             PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money")-effects.Price);
-            Debug.Log(gameObject.name);
+            PlayBuySound();
             Destroy(gameObject);
         }
     }
@@ -80,11 +81,23 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
         Content = transform.parent;
         playerHandler = GameObject.Find("Player").GetComponent<PlayerHandler>();
         SpecialCards =GameObject.Find("GameHandler").GetComponent<SpecialCardsList>();
+        audio = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void PlayBuySound()
     {
-        
+        System.Random r = new System.Random();
+        switch (r.Next(3))
+        {
+            case 0:
+                audio.PlaySFX(audio.BuyingMagicCard);
+                break;
+            case 1:
+                audio.PlaySFX(audio.BuyingMagicCard2);
+                break;
+            case 2:
+                audio.PlaySFX(audio.BuyingMagicCard3);
+                break;
+        }
     }
 }

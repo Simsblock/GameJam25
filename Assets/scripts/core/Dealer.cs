@@ -22,6 +22,8 @@ public class Dealer : MonoBehaviour
     public GameObject Player, SPCSlotL; //Slot is ugly af, aber es geht fast und das brauchma jetzt
     private DropHandler DropHandler;
     private SpecialCardsList SpecialCardsList;
+    private int dealerName;
+    private AudioManager audio;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +32,7 @@ public class Dealer : MonoBehaviour
         SpecialCardsList = GameHandler.GetComponent<SpecialCardsList>();
         SpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         ChangeDealer();
+        audio = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     public void PullInit()
@@ -193,6 +196,7 @@ public class Dealer : MonoBehaviour
         index++;
         if (index < 3) Abilities = DealerAbilities[index-1].ToList();
         else Abilities = DealerAbilities[index/3-1].ToList();
+        dealerName = index;
     }
 
     public IEnumerator DisplayDealerCards(string cardKey)
@@ -245,6 +249,18 @@ public class Dealer : MonoBehaviour
         float duration = 0.1f;
         float elapsedTime = 0f;
 
+        switch (dealerName%3)
+        {
+            case 0:
+                audio.PlaySFX(audio.DragonLaugh);
+                break;
+            case 1:
+                audio.PlaySFX(audio.DevilLaugh);
+                break;
+            case 2:
+                audio.PlaySFX(audio.DinoLaugh);
+                break;
+        }
         // Move up
         while (elapsedTime < duration)
         {

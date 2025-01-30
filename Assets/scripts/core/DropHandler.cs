@@ -10,9 +10,11 @@ public class DropHandler : MonoBehaviour, IDropHandler
     private AbilityDecoder abilityDecoder;
     [SerializeField]
     private bool AcceptDice;
+    private AudioManager audio;
 
     private void Start()
     {
+        audio = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         abilityDecoder = abilityUtil.GetComponent<AbilityDecoder>();
     }
 
@@ -31,16 +33,21 @@ public class DropHandler : MonoBehaviour, IDropHandler
                 {
                     TriggerSPCEffect(Dropped);
                 }
+                PlayRandomPlaceSound();
             }
         }
         else
         {
+            //animate shake
+            //rise and calc on effect use
             if (transform.childCount == 0 && (eventData.pointerDrag.GetComponent<EffectDto>().isDice))
             {
                 GameObject Dropped = eventData.pointerDrag;
                 if (Dropped != null)
                 {
                     Dropped.GetComponent<DragHandler>().postDragParent = transform;
+                    transform.GetChild(0).GetComponent<EffectDto>().Used = true;
+                    audio.PlaySFX(audio.rollDice);
                 }
                 if (Dropped.GetComponent<EffectDto>().preStand)
                 {
@@ -69,6 +76,23 @@ public class DropHandler : MonoBehaviour, IDropHandler
             child.GetComponent<EffectDto>().Used = true;
         }
             
+    }
+
+    private void PlayRandomPlaceSound()
+    {
+        System.Random r = new System.Random();
+        switch (r.Next(3))
+        {
+            case 0:
+                audio.PlaySFX(audio.PlayingMagicCard);
+                break;
+            case 1:
+                audio.PlaySFX(audio.PlayingMagicCard2);
+                break;
+            case 2:
+                audio.PlaySFX(audio.PlayingMagicCard3);
+                break;
+        }
     }
 
 }

@@ -34,6 +34,8 @@ public class GameHandler : MonoBehaviour
     //Pause
     [SerializeField]
     public GameObject PauseUI;
+    //audioHandler
+    private AudioManager audio;
 
     // Start is called before the first frame updatet a
     void Start()
@@ -50,6 +52,7 @@ public class GameHandler : MonoBehaviour
         specialCards = GetComponent<SpecialCardsList>();
         displaydice.DisplayShop();
         displaySpecial.DisplayShop();
+        audio = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         //LoadShop();
     }
 
@@ -96,6 +99,8 @@ public class GameHandler : MonoBehaviour
         //clear old Cards
         SetBet();
         yield return StartCoroutine(LoadShop());
+        audio.ChangeBGMusic(audio.casinoBackround);
+        audio.PlaySFX(audio.shuffleCards);
         //wait ig n such
         dealer.PullInit();
         playerHandler.PullMulti(2); //Init
@@ -128,26 +133,31 @@ public class GameHandler : MonoBehaviour
         {
             PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money")- PlayerPrefs.GetInt("Bet") * GlobalData.BetLossRate / 100); //loss
             loose.SetActive(true);
+            audio.PlaySFX(audio.loseMoney);
         }
         else if (dealer.TotalValue > GlobalData.DealerWinCond && playerHandler.curSum <= GlobalData.PlayerWinCond)
         {
             PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money") + PlayerPrefs.GetInt("Bet") * GlobalData.BetPayoutRate / 100); //win
             win.SetActive(true);
+            audio.PlaySFX(audio.winSound);
         }
         else if (playerHandler.curSum > GlobalData.PlayerWinCond)
         {
             PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money") - PlayerPrefs.GetInt("Bet") * GlobalData.BetLossRate / 100); //loss
             loose.SetActive(true);
+            audio.PlaySFX(audio.loseMoney);
         }
         else if (playerHandler.curSum < dealer.TotalValue)
         {
             PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money") - PlayerPrefs.GetInt("Bet") * GlobalData.BetLossRate / 100); //loss
             loose.SetActive(true);
+            audio.PlaySFX(audio.loseMoney);
         }
         else if (playerHandler.curSum > dealer.TotalValue)
         {
             PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money") + PlayerPrefs.GetInt("Bet") * GlobalData.BetPayoutRate / 100); //win
             win.SetActive(true);
+            audio.PlaySFX(audio.winSound);
         }
         else if (playerHandler.curSum == dealer.TotalValue)
         {
@@ -176,6 +186,7 @@ public class GameHandler : MonoBehaviour
         draw.SetActive(false);
         // Load the shop
         stand = 0;
+        audio.ChangeBGMusic(audio.shopBackround);
         yield return StartCoroutine(LoadShop());
         //Change Dealer
         dealer.ChangeDealer();
@@ -197,7 +208,9 @@ public class GameHandler : MonoBehaviour
         if (Dealer.transform.position.x == OffCamerPos - OffCamerPos) target = Dealer.transform.position + new Vector3(OffCamerPos, 0, 0);
         else if (Dealer.transform.position.x == OffCamerPos) target = Dealer.transform.position - new Vector3(OffCamerPos, 0, 0);
         //Move Dealer and ShopKeep
+        audio.PlaySFX(audio.changeEnemy);
         StartCoroutine(MoveObjectOffCamera(Dealer,target));
+        audio.PlaySFX(audio.rollingWheels);
         yield return StartCoroutine(MoveObjectOffCamera(ShopKeep,target-new Vector3(OffCamerPos,0,0)));
         //Un/Load Shop UI
         GameUI.SetActive(isShop);
