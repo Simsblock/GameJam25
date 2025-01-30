@@ -34,23 +34,24 @@ public class Dealer : MonoBehaviour
         KeyValuePair<string, int> card = Deck.PullCard();
         OpenCard = card;
         DealerHand.Add(card.Key,card.Value);
-        DisplayDealerCards(card.Key);
+        StartCoroutine(DisplayDealerCards(card.Key));
         //Pull second hidden Card
         card = Deck.PullCard();
         DealerHand.Add(card.Key, card.Value);
-        DisplayDealerCards(card.Key);
+        StartCoroutine(DisplayDealerCards(card.Key));
     }
-    public void PullRest()
+    public IEnumerator PullRest()
     {
+        TurnCardsOver();
         KeyValuePair<string, int> card;
+        List<string> keysToModify = new List<string>();
         while (TotalValue < MaxVal)
         {
             {
                 card = Deck.PullCard();
-                if (!DealerHand.ContainsKey(card.Key))
+                if (!DealerHand.ContainsKey(card.Key)) //Working Card
                 {
-                    DealerHand.Add(card.Key, card.Value);
-                    DisplayDealerCards(card.Key);
+                    yield return StartCoroutine(DisplayDealerCardsWithDelay(card));
                 }
             }
         }
@@ -58,10 +59,14 @@ public class Dealer : MonoBehaviour
         {
             if (key.Contains("A") && DealerHand.Values.Sum() > 21)
             {
-                DealerHand[key] = 1;
+                keysToModify.Add(key);
             }
         }
-        if (TotalValue < MaxVal) PullRest();
+        foreach (string key in keysToModify)
+        {
+            DealerHand[key] = 1;
+        }
+        if (TotalValue < MaxVal) StartCoroutine(PullRest());
     }
 
     public IEnumerator ClearHand()
@@ -89,16 +94,20 @@ public class Dealer : MonoBehaviour
             DisplayDealerCards(card.Key);
             count--;
         }
-        
 
+        List<string> keysToModify = new List<string>();
         foreach (string key in DealerHand.Keys)
         {
             if (key.Contains("A") && DealerHand.Values.Sum() > 21)
             {
-                DealerHand[key] = 1;
+                keysToModify.Add(key);
             }
         }
-        
+        foreach (string key in keysToModify)
+        {
+            DealerHand[key] = 1;
+        }
+
     }
 
     public void UseAbilities()
@@ -119,8 +128,7 @@ public class Dealer : MonoBehaviour
         SpriteRenderer.sprite = Dealers[index];
     }
 
-
-    public void DisplayDealerCards(string cardKey)
+    public IEnumerator DisplayDealerCards(string cardKey)
     {
         GameObject card = Instantiate(CardPrefab);
         card.name = cardKey;
@@ -132,16 +140,16 @@ public class Dealer : MonoBehaviour
         {
             cardPos = new Vector3(0f, 0f, 0f);
             leftCardPos = cardPos;
+        } else leftCardPos += cardPos;
+        if (childrenAmt == 1 || GameHandler.GetComponent<GameHandler>().stand == 3)
+        {
             CardManager.DeckConverter(cardKey, out string suit, out int rank);
             Sprite s = DealerCardParent.GetComponent<CardManager>().GetCardSprite(suit, rank);
             card.GetComponent<SpriteRenderer>().sprite = s;
         }
-        else
-        {
-            leftCardPos += cardPos;
-            card.GetComponent<SpriteRenderer>().sprite = CardBack;
-        }
+        else card.GetComponent<SpriteRenderer>().sprite = CardBack;
         card.transform.localPosition = leftCardPos;
+        yield return null;
     }
 
     public void TurnCardsOver()
@@ -154,6 +162,43 @@ public class Dealer : MonoBehaviour
             child.GetComponent<SpriteRenderer>().sprite = s;
         }
     }
+    //Animation
+    private IEnumerator DisplayDealerCardsWithDelay(KeyValuePair<string, int> card)
+    {
+        StartCoroutine(BounceEffect(gameObject));
+        yield return new WaitForSeconds(0.5f);
+        DealerHand.Add(card.Key, card.Value);
+        yield return StartCoroutine(DisplayDealerCards(card.Key));
+    }
+
+    private IEnumerator BounceEffect(GameObject cardObject)
+    {
+        Vector3 originalPos = cardObject.transform.localPosition;
+        Vector3 bouncePos = originalPos + new Vector3(0, 0.5f, 0);
+
+        float duration = 0.1f;
+        float elapsedTime = 0f;
+
+        // Move up
+        while (elapsedTime < duration)
+        {
+            cardObject.transform.localPosition = Vector3.Lerp(originalPos, bouncePos, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Move down
+        elapsedTime = 0f;
+        while (elapsedTime < duration)
+        {
+            cardObject.transform.localPosition = Vector3.Lerp(bouncePos, originalPos, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        cardObject.transform.localPosition = originalPos; // Ensure exact original position
+    }
+
 
 
 

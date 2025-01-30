@@ -12,6 +12,7 @@ public class HomeHandler : MonoBehaviour
 
     void Start()
     {
+        if (GlobalData.FirstLoad()) GlobalData.ClearAll();
         Highscore_Text.text = $"Highscore\n{PlayerPrefs.GetInt("HighScore")}";
         LoaderBtn.interactable = GlobalData.LoadableCheck();
     }

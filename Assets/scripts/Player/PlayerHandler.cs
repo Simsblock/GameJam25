@@ -65,13 +65,18 @@ public class PlayerHandler : MonoBehaviour
             //checks for aces n shit
             if (playerCards.Keys.Any(k => k.Contains("A")) && curSum > 21)
             {
+                List<string> keysToModify = new List<string>();
                 foreach (var item in playerCards.Where(p => p.Key.Contains("A")))
                 {
                     if (curSum > 21 && !(playerCards[item.Key]==1))
                     {
-                        playerCards[item.Key] = 1;
+                        keysToModify.Add(item.Key);
                         curSum -= 10;
                     }
+                }
+                foreach (string key in keysToModify)
+                {
+                    playerCards[key] = 1;
                 }
             }
         }
@@ -84,13 +89,18 @@ public class PlayerHandler : MonoBehaviour
         //checks for aces too :)
         if (curSum < 12&& playerCards.Keys.Any(k => k.Contains("A")))
         {
+            List<string> keysToModify = new List<string>();
             foreach (var item in playerCards.Where(p => p.Key.Contains("A")))
             {
-                    if (curSum < 12 && !(playerCards[item.Key] == 11))
-                    {
-                        playerCards[item.Key] = 11;
-                        curSum += 10;
-                    }
+                if (curSum > 21 && !(playerCards[item.Key] == 11))
+                {
+                    keysToModify.Add(item.Key);
+                    curSum += 10;
+                }
+            }
+            foreach (string key in keysToModify)
+            {
+                playerCards[key] = 11;
             }
         }
     }
@@ -175,13 +185,18 @@ public class PlayerHandler : MonoBehaviour
         curSum += value;
         if (playerCards.Keys.Any(k => k.Contains("A")) && curSum > 21)
         {
+            List<string> keysToModify = new List<string>();
             foreach (var item in playerCards.Where(p => p.Key.Contains("A")))
             {
-                if (curSum > 21 && playerCards[item.Key] != 1)
+                if (curSum > 21 && !(playerCards[item.Key] == 1))
                 {
-                    playerCards[item.Key] = 1;
+                    keysToModify.Add(item.Key);
                     curSum -= 10;
                 }
+            }
+            foreach (string nkey in keysToModify)
+            {
+                playerCards[nkey] = 1;
             }
         }
     }
