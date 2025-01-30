@@ -9,7 +9,7 @@ public class HoverDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     [HideInInspector] public Canvas canvas; // Reference to the canvas for positioning
     private RectTransform descriptionRect;
     private bool hovering,flipped;
-    private float xMult;
+    private float x;
     void Start()
     {
         flipped = false;
@@ -31,15 +31,16 @@ public class HoverDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         {
             if (canvas != null)
             {
-                xMult = 1.01f;
-                //if (Input.mousePosition.x < Screen.width * 0.99) xMult = 0.98f;
+                Vector3 worldPos;
+                RectTransformUtility.ScreenPointToWorldPointInRectangle(
+                    canvas.GetComponent<RectTransform>(), Input.mousePosition, canvas.worldCamera, out worldPos);
+                x = worldPos.x * 1.01f;
+                if (Input.mousePosition.x > Screen.width * 0.99) x = Screen.width * 0.97f;
 
-                if (Input.mousePosition.y < Screen.height*0.8)
+                    if (Input.mousePosition.y < Screen.height*0.8)
                 {
-                    Vector3 worldPos;
-                    RectTransformUtility.ScreenPointToWorldPointInRectangle(
-                        canvas.GetComponent<RectTransform>(), Input.mousePosition, canvas.worldCamera, out worldPos);
-                    descriptionRect.transform.position = new Vector3(worldPos.x *xMult, worldPos.y *1.05f, worldPos.z);
+                    
+                        descriptionRect.transform.position = new Vector3(x, worldPos.y *1.05f, worldPos.z);
                     if (flipped)
                     {
                         descriptionText.transform.GetChild(0).Rotate(new Vector3(-180, 0, 0));
@@ -49,10 +50,7 @@ public class HoverDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                 }
                 else
                 {
-                    Vector3 worldPos;
-                    RectTransformUtility.ScreenPointToWorldPointInRectangle(
-                        canvas.GetComponent<RectTransform>(), Input.mousePosition, canvas.worldCamera, out worldPos);
-                    descriptionRect.transform.position = new Vector3(worldPos.x *xMult, worldPos.y* 0.85f, worldPos.z);
+                    descriptionRect.transform.position = new Vector3(x, worldPos.y* 0.83f, worldPos.z);
                     if (!flipped)
                     {
                         descriptionText.transform.GetChild(0).Rotate(new Vector3(180, 0, 0));
