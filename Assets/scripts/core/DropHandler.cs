@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DropHandler : MonoBehaviour, IDropHandler
+public class DropHandler : MonoBehaviour, IDropHandler, IPointerClickHandler
 {
     [SerializeField]
     private GameObject abilityUtil;
@@ -11,11 +11,15 @@ public class DropHandler : MonoBehaviour, IDropHandler
     [SerializeField]
     private bool AcceptDice;
     private AudioManager audio;
+    [HideInInspector]
+    public GameObject ToAssign;
+    private GameObject clear;
 
     private void Start()
     {
         audio = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         abilityDecoder = abilityUtil.GetComponent<AbilityDecoder>();
+        clear = GameObject.Find("Clearer");
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -97,4 +101,27 @@ public class DropHandler : MonoBehaviour, IDropHandler
         }
     }
 
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (transform.childCount == 0 && !(ToAssign.GetComponent<EffectDto>().isDice))
+        {
+            if (ToAssign != null && transform.name.Contains("SPCSlot"))
+            {
+                ToAssign.transform.SetParent(transform);
+                if (ToAssign.GetComponent<EffectDto>().preStand)
+                {
+                    TriggerSPCEffect(ToAssign);
+                }
+                ClearAssigned();
+            }
+        }
+    }
+    public void ClearAssigned()
+    {
+        if(ToAssign != null)
+        {
+            ToAssign.GetComponent<DragHandler>().WhipeToAssign();
+            clear.SetActive(false);
+        }
+    }
 }

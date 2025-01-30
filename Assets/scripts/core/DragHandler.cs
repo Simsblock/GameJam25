@@ -15,6 +15,10 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
     private SpecialCardsList SpecialCards;
     [HideInInspector] public string Shopname;
     private AudioManager audio;
+    private GameObject SlotL, SlotR;
+    private Image SlotLImg, SlotRImg;
+    private DropHandler SlotLHandler, SlotRHandler;
+    private GameObject ClearDrop;
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (effects.Used || Content.name.Equals("Shop"))
@@ -58,7 +62,36 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        
+        if (Content.name.Equals("SpecialContent"))
+        {
+            WhipeToAssign();
+            if (SlotL == null || SlotR == null || ClearDrop==null)
+            {
+                FindStuff();
+            }
+            if (SlotLImg != null && SlotLImg != null)
+            {
+                Color c = SlotLImg.color;
+                c.a = 0.5f;
+                SlotLImg.color = c;
+                c = SlotRImg.color;
+                c.a = 0.5f;
+                SlotRImg.color = c;
+                c = transform.GetComponent<Image>().color;
+                c *= 0.8f;
+                transform.GetComponent<Image>().color = c;
+            }
+            if (SlotLHandler != null && SlotRHandler != null)
+            {
+
+                SlotLHandler.ToAssign = gameObject;
+                SlotRHandler.ToAssign = gameObject;
+            }
+            if (ClearDrop != null)
+            {
+                ClearDrop.SetActive(true);
+            }
+        }
         if (Content.name.Equals("Shop"))
         {
             if (PlayerPrefs.GetInt("Money")-100 < effects.Price)
@@ -72,6 +105,7 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
             PlayBuySound();
             Destroy(gameObject);
         }
+        
     }
 
     // Start is called before the first frame update
@@ -82,6 +116,24 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
         playerHandler = GameObject.Find("Player").GetComponent<PlayerHandler>();
         SpecialCards =GameObject.Find("GameHandler").GetComponent<SpecialCardsList>();
         audio = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        
+        FindStuff();
+        if (ClearDrop != null)
+        {
+            ClearDrop.SetActive(false);
+        }
+    }
+    private void FindStuff() {
+        SlotL = GameObject.Find("SPCSlotL");
+        SlotR = GameObject.Find("SPCSlotR");
+        ClearDrop = GameObject.Find("Clearer");
+        if (SlotL != null && SlotR != null)
+        {
+            SlotLImg = SlotL.GetComponent<Image>();
+            SlotRImg = SlotR.GetComponent<Image>();
+            SlotLHandler = SlotL.GetComponent<DropHandler>();
+            SlotRHandler = SlotR.GetComponent<DropHandler>();
+        }
     }
 
     private void PlayBuySound()
@@ -106,5 +158,29 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
         {
             transform.SetParent(Content);
         }
+    }
+    public void WhipeToAssign()
+    {
+        if(SlotL== null || SlotR == null)
+        {
+            FindStuff();
+        }
+        if (SlotLHandler != null && SlotRHandler != null)
+        {
+            SlotLHandler.ToAssign = null;
+            SlotRHandler.ToAssign = null;
+            Color c = SlotLImg.color;
+            c.a = 0f;
+            SlotLImg.color = c;
+            c = SlotRImg.color;
+            c.a = 0f;
+            SlotRImg.color = c;
+
+
+            c = transform.GetComponent<Image>().color;
+            c *= 1.2f;
+            transform.GetComponent<Image>().color = c;
+        }
+        
     }
 }

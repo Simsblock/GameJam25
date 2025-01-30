@@ -69,6 +69,7 @@ public class HoverDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         if (descriptionText != null)
         {
             hovering = true;
+            descriptionText.transform.SetAsLastSibling();
             if (Input.mousePosition.y > Screen.height - 100 && !flipped)
             {
                 descriptionText.transform.GetChild(0).Rotate(new Vector3(180, 0, 0));

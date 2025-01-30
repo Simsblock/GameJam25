@@ -38,6 +38,7 @@ public class GameHandler : MonoBehaviour
     private AudioManager audio;
     [SerializeField]
     private GameObject ParticleSystem;
+        
 
     // Start is called before the first frame updatet a
     void Start()
@@ -64,6 +65,7 @@ public class GameHandler : MonoBehaviour
         //Score and Money Display
         money.text = $"{PlayerPrefs.GetInt("Money")}";
         score.text = $"{playerHandler.curSum}";
+
         //Pause
         if (Input.GetKeyDown(KeyCode.Escape) && ShopUI.active && !PauseUI.active)
         {
