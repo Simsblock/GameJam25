@@ -9,7 +9,7 @@ public class PlayerHandler : MonoBehaviour
 {
     private List<string> specialCards;
     public Dictionary<string,int> playerCards;
-    public int curSum; //Total Hand Value
+    public int curSum=0; //Total Hand Value
     [SerializeField]
     private GameObject GameHandler;
     [SerializeField]

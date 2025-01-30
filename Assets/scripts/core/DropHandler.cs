@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -13,6 +14,7 @@ public class DropHandler : MonoBehaviour, IDropHandler, IPointerClickHandler
     private AudioManager audio;
     [HideInInspector]
     public GameObject ToAssign;
+    [SerializeField]
     private GameObject clear;
 
     private void Start()
@@ -22,7 +24,6 @@ public class DropHandler : MonoBehaviour, IDropHandler, IPointerClickHandler
         {
             abilityDecoder = abilityUtil.GetComponent<AbilityDecoder>();
         }
-        clear = GameObject.Find("Clearer");
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -126,6 +127,17 @@ public class DropHandler : MonoBehaviour, IDropHandler, IPointerClickHandler
         {
             ToAssign.GetComponent<DragHandler>().WhipeToAssign();
             clear.SetActive(false);
+        }
+    }
+    public void ToggleClear()
+    {
+        if (clear.active)
+        {
+            clear.SetActive(false);
+        }
+        else
+        {
+            clear.SetActive(true);
         }
     }
 }

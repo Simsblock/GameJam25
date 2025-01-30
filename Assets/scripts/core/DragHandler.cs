@@ -91,10 +91,7 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
             {
                 SlotLHandler.ToAssign = gameObject;
                 SlotRHandler.ToAssign = gameObject;
-            }
-            if (ClearDrop != null)
-            {
-                ClearDrop.SetActive(true);
+                SlotRHandler.ToggleClear();
             }
         }
         if (Content.name.Equals("Shop"))
@@ -189,10 +186,7 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
         SpecialCards =GameObject.Find("GameHandler").GetComponent<SpecialCardsList>();
         audio = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         FindStuff();
-        if (ClearDrop != null)
-        {
-            ClearDrop.SetActive(false);
-        }
+        
     }
     private void FindStuff() {
         SlotL = GameObject.Find("SPCSlotL");

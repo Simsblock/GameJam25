@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1334830
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2890,6 +2890,7 @@ MonoBehaviour:
   abilityUtil: {fileID: 571277393}
   AcceptDice: 0
   ToAssign: {fileID: 0}
+  clear: {fileID: 1334829}
 --- !u!114 &1046266805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10646,6 +10647,7 @@ MonoBehaviour:
   abilityUtil: {fileID: 571277393}
   AcceptDice: 0
   ToAssign: {fileID: 0}
+  clear: {fileID: 1334829}
 --- !u!114 &1751378610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10785,6 +10787,7 @@ MonoBehaviour:
   abilityUtil: {fileID: 0}
   AcceptDice: 0
   ToAssign: {fileID: 0}
+  clear: {fileID: 0}
 --- !u!114 &1770219042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11097,6 +11100,7 @@ MonoBehaviour:
   abilityUtil: {fileID: 571277393}
   AcceptDice: 1
   ToAssign: {fileID: 0}
+  clear: {fileID: 0}
 --- !u!1 &1881824821
 GameObject:
   m_ObjectHideFlags: 0
