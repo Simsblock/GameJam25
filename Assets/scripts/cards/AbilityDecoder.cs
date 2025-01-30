@@ -56,9 +56,7 @@ public class AbilityDecoder : MonoBehaviour
                         Seer();
                         break;
                     case "ThreeKings":
-                        StartCoroutine(DisplaySPC("ThreeKings"));
-                        if (details[1] == "P") playerHandler.curSum -= 3;
-                        else if (details[1] == "D") Dealer.ValueModifier -= 3;
+                        StartCoroutine(ThreeKings(details[1]));
                         break;
                     case "Switcheroo": //RANDOM FOR NOW //PD
                         //Choose a card to switch Dealer
@@ -82,12 +80,7 @@ public class AbilityDecoder : MonoBehaviour
                         break;
                     case "Ass":
                         //E1:1 for Ass
-                        Debug.Log("Decoder");
-                        GlobalData.DuplicateAmt++;
-                        string key = $"EA:{GlobalData.DuplicateAmt}";
-                        DisplaySPC("Ass");
-                        if (details[1] == "P") playerHandler.AddCard($"EA:{GlobalData.DuplicateAmt}", 11);
-                        else if (details[1] == "D") Dealer.AddCard($"EA:{GlobalData.DuplicateAmt}", 11);
+                        StartCoroutine(Ass(details[1]));
                         break;
                     case "Shortcut":
                         GlobalData.DealerWinCond = 17;
@@ -98,8 +91,7 @@ public class AbilityDecoder : MonoBehaviour
                         if (details[1] == "P") JokerP();
                         else if (details[1] == "D")
                         {
-                            StartCoroutine(DisplaySPC("Joker"));
-                            JokerD();
+                            StartCoroutine(JokerD());
                         }
                         break;
                     case "TheTwins":
@@ -107,8 +99,7 @@ public class AbilityDecoder : MonoBehaviour
                         if (details[1] == "P") TwinsP();
                         else if (details[1] == "D")
                         {
-                            StartCoroutine(DisplaySPC("TheTwins"));
-                            TwinsD();
+                            StartCoroutine(TwinsD());
                         }
                         break;
                     case "Destroy":
@@ -122,6 +113,21 @@ public class AbilityDecoder : MonoBehaviour
         }
     }
     //NOT TESTED
+    private IEnumerator Ass(string mode)
+    {
+        yield return StartCoroutine(DisplaySPC("ThreeKings"));
+        GlobalData.DuplicateAmt++;
+        string key = $"EA:{GlobalData.DuplicateAmt}";
+        yield return StartCoroutine(DisplaySPC("Ass"));
+        if (mode == "P") playerHandler.AddCard($"EA:{GlobalData.DuplicateAmt}", 11);
+        else if (mode == "D") Dealer.AddCard($"EA:{GlobalData.DuplicateAmt}", 11);
+    }
+    private IEnumerator ThreeKings(string mode)
+    {
+        yield return StartCoroutine(DisplaySPC("ThreeKings"));
+        if (mode == "P") playerHandler.curSum -= 3;
+        else if (mode == "D") Dealer.ValueModifier -= 3;
+    }
     private IEnumerator DisplaySPC(string SPC)
     {
         yield return StartCoroutine(SpawnCards(new Vector3(0, 0, -6), 1, 0, new string[] { "EA" }, true));
@@ -131,8 +137,9 @@ public class AbilityDecoder : MonoBehaviour
     {
         StartCoroutine(SpawnCards(new Vector3(-4, 0, -6), 3, 2, new string[] { "EA","E5","E13" }, false));
     }
-    private void JokerD()
+    private IEnumerator JokerD()
     {
+        yield return StartCoroutine(DisplaySPC("Joker"));
         if (Dealer.TotalValue + 11 <= 21) Dealer.AddCard($"EA:{GlobalData.DuplicateAmt}",1); //Ace
         else if (Dealer.TotalValue + 10 <= 21) Dealer.AddCard($"E10:{GlobalData.DuplicateAmt}", 10); //10
         else if (Dealer.TotalValue + 10 <= 21) Dealer.AddCard($"E5:{GlobalData.DuplicateAmt}", 5); //5
@@ -147,8 +154,9 @@ public class AbilityDecoder : MonoBehaviour
     {
         StartCoroutine(SpawnCards(new Vector3(-2, 0, -6), 2, 1, new string[] { Deck.GetCard().Key, Deck.GetCard().Key }, false));
     }
-    private void TwinsD()
+    private IEnumerator TwinsD()
     {
+        yield return StartCoroutine(DisplaySPC("TheTwins"));
         KeyValuePair<string, int> card1 = Deck.GetCard();
         KeyValuePair<string, int> card2 = Deck.GetCard();
         bool notSuicide1 = card1.Value + Dealer.TotalValue <= 21;
