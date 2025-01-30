@@ -235,12 +235,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6336ddfd40bbd8f4c9e737a7b658f68c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effect: ThreeKings
+  effect: ThreeKings:D
   preStand: 0
   Used: 0
   Price: 100
   text: {fileID: 6936758651910944960}
   name: 
+  isDice: 0
+  permanent: 0
 --- !u!1 &6841438409847556112
 GameObject:
   m_ObjectHideFlags: 0
