@@ -40,7 +40,13 @@ public class Dealer : MonoBehaviour
         DealerHand.Add(card.Key, card.Value);
         StartCoroutine(DisplayDealerCards(card.Key));
     }
+    
     public IEnumerator PullRest()
+    {
+        StartCoroutine(BounceEffect(gameObject));
+        yield return StartCoroutine(PullRestInternally());
+    }
+    public IEnumerator PullRestInternally()
     {
         TurnCardsOver();
         KeyValuePair<string, int> card;
@@ -66,7 +72,7 @@ public class Dealer : MonoBehaviour
         {
             DealerHand[key] = 1;
         }
-        if (TotalValue < MaxVal) StartCoroutine(PullRest());
+        if (TotalValue < MaxVal) yield return StartCoroutine(PullRestInternally());
     }
 
     public IEnumerator ClearHand()
@@ -165,8 +171,7 @@ public class Dealer : MonoBehaviour
     //Animation
     private IEnumerator DisplayDealerCardsWithDelay(KeyValuePair<string, int> card)
     {
-        StartCoroutine(BounceEffect(gameObject));
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.6f);
         DealerHand.Add(card.Key, card.Value);
         yield return StartCoroutine(DisplayDealerCards(card.Key));
     }
