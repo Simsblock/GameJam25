@@ -18,8 +18,7 @@ public class DropHandler : MonoBehaviour, IDropHandler, IPointerClickHandler
     private void Start()
     {
         audio = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-        /*
-        if (abilityUtil == null)
+        /*if (abilityUtil == null)
         {
             abilityUtil = new GameObject();
             abilityUtil.AddComponent<AbilityDecoder>();
