@@ -55,6 +55,10 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
         //{
         //    return;
         //}
+        if (effects.Used || Content.name.Equals("Shop"))
+        {
+            return;
+        }
         transform.SetParent(postDragParent);
         image.raycastTarget = true;
 
