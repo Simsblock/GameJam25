@@ -36,7 +36,6 @@ public class AbilityDecoder : MonoBehaviour
             foreach (string effect in effects)
             {
                 string[] details = effect.Split(":");
-                Debug.Log(details[0] + details[1]);
                 switch (details[0])
                 {
                     case "draw":
