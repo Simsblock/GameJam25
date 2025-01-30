@@ -218,7 +218,7 @@ public class Dealer : MonoBehaviour
             {
                 Filter = new string[] { "TheTwins", "Joker", "Ass" }; //"Switcheroo"
             }
-            else if (TotalValue <= 20)
+            else if (TotalValue == 20)
             {
                 Filter = new string[] { "Joker", "Ass" };
             }
@@ -259,7 +259,7 @@ public class Dealer : MonoBehaviour
         if (SpecialCardsList.DealerSpecialCardsUi.ContainsKey(selectedAbility))
         {
             DropHandler.TriggerSPCEffect(SpecialCardsList.DealerSpecialCardsUi[selectedAbility]);
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(2f);
             Debug.Log($"Used ability: {selectedAbility}");
         }
         else

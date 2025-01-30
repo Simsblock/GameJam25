@@ -197,6 +197,7 @@ public class AbilityDecoder : MonoBehaviour
     {
         Debug.Log("D");
         yield return StartCoroutine(DisplaySPC("SPC9"));
+        GlobalData.DuplicateAmt++;
         if (Dealer.TotalValue + 11 <= 21) Dealer.AddCard($"EA:{GlobalData.DuplicateAmt}",1); //Ace
         else if (Dealer.TotalValue + 10 <= 21) Dealer.AddCard($"E10:{GlobalData.DuplicateAmt}", 10); //10
         else if (Dealer.TotalValue + 10 <= 21) Dealer.AddCard($"E5:{GlobalData.DuplicateAmt}", 5); //5
