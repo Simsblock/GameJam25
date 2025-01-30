@@ -138,36 +138,36 @@ public class GameHandler : MonoBehaviour
         if (dealer.TotalValue > GlobalData.DealerWinCond && playerHandler.curSum <= GlobalData.PlayerWinCond)
         {
             PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money") + PlayerPrefs.GetInt("Bet") * GlobalData.BetPayoutRate / 100); //win
-            win.SetActive(true);
+            //win.SetActive(true);
            StartCoroutine( ParticelSystemStart());
             audio.PlaySFX(audio.winSound);
         }
         else if (playerHandler.curSum > GlobalData.PlayerWinCond)
         {
             PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money") - PlayerPrefs.GetInt("Bet") * GlobalData.BetLossRate / 100); //loss
-            loose.SetActive(true);
+            //loose.SetActive(true);
             audio.PlaySFX(audio.loseMoney);
         }
         else if (playerHandler.curSum < dealer.TotalValue)
         {
             PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money") - PlayerPrefs.GetInt("Bet") * GlobalData.BetLossRate / 100); //loss
-            loose.SetActive(true);
+            //loose.SetActive(true);
             audio.PlaySFX(audio.loseMoney);
         }
         else if (playerHandler.curSum > dealer.TotalValue)
         {
             PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money") + PlayerPrefs.GetInt("Bet") * GlobalData.BetPayoutRate / 100); //win
-            win.SetActive(true);
+            //win.SetActive(true);
             StartCoroutine(ParticelSystemStart());
             audio.PlaySFX(audio.winSound);
         }
         else if (playerHandler.curSum == dealer.TotalValue)
         {
-            draw.SetActive(true);
+            //draw.SetActive(true);
         }
         else
         {
-            draw.SetActive(true);
+            //draw.SetActive(true);
         }
         if (PlayerPrefs.GetInt("Bet") < PlayerPrefs.GetInt("Money"))
         {
@@ -176,16 +176,17 @@ public class GameHandler : MonoBehaviour
         }
         CheckGameOver();
         //animations n stuff
-        yield return new WaitUntil(() => Input.anyKeyDown);
+        //yield return new WaitUntil(() => Input.anyKeyDown);
+        yield return new WaitForSeconds(0.7f);
         //Clear UI
         HideUI();
         StartCoroutine(playerHandler.ClearBaseCards());
 
         StartCoroutine(dealer.ClearHand());
         // Reset win/lose/draw images
-        win.SetActive(false);
-        loose.SetActive(false);
-        draw.SetActive(false);
+        //win.SetActive(false);
+        //loose.SetActive(false);
+        //draw.SetActive(false);
         // Load the shop
         stand = 0;
         audio.ChangeBGMusic(audio.shopBackround);

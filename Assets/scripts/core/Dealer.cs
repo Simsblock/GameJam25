@@ -281,6 +281,7 @@ public class Dealer : MonoBehaviour
     public IEnumerator DisplayDealerCards(string cardKey)
     {
         GameObject card = Instantiate(CardPrefab);
+        card.transform.localScale = new Vector3(2.5f, 3f, 2.5f);
         card.name = cardKey;
         card.transform.SetParent(DealerCardParent.transform);
         Vector3 cardPos = new Vector3(1.3f, 0f, 0f);
