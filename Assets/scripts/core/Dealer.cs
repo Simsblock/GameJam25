@@ -148,6 +148,27 @@ public class Dealer : MonoBehaviour
         }
     }
 
+    public void RemoveCard(string cardKey)
+    {
+        DealerHand.Remove(cardKey);
+        //checks for aces too :)
+        if (TotalValue < 12 && DealerHand.Keys.Any(k => k.Contains("A")))
+        {
+            List<string> keysToModify = new List<string>();
+            foreach (var item in DealerHand.Where(p => p.Key.Contains("A")))
+            {
+                if (TotalValue > 21 && !(DealerHand[item.Key] == 11))
+                {
+                    keysToModify.Add(item.Key);
+                }
+            }
+            foreach (string key in keysToModify)
+            {
+                DealerHand[key] = 11;
+            }
+        }
+    }
+
     [SerializeField]
     public Sprite[] Dealers;
     private SpriteRenderer SpriteRenderer;
@@ -202,7 +223,7 @@ public class Dealer : MonoBehaviour
                 Filter = new string[] { "ThreeKings", "TheTwins", "Joker", "Ass" }; //"Switcheroo"
             }
             else Filter = new string[] { "Ass" };
-            StartCoroutine(PickAndRemoveAbility(Filter));
+            yield return StartCoroutine(PickAndRemoveAbility(Filter));
         }
         yield return null;
     }
@@ -237,6 +258,7 @@ public class Dealer : MonoBehaviour
         if (SpecialCardsList.SpecialCardsUi.ContainsKey(selectedAbility))
         {
             DropHandler.TriggerSPCEffect(SpecialCardsList.DealerSpecialCardsUi[selectedAbility]);
+            //yield return new WaitForSeconds(1f);
             Debug.Log($"Used ability: {selectedAbility}");
         }
         else

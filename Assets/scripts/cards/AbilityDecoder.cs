@@ -10,7 +10,7 @@ public class AbilityDecoder : MonoBehaviour
 {
     
     internal PlayerHandler playerHandler;
-    private Dealer Dealer;
+    internal Dealer Dealer;
     System.Random rand = new System.Random();
     [SerializeField]
     internal Sprite[] SPCSprites;
@@ -60,9 +60,12 @@ public class AbilityDecoder : MonoBehaviour
                     case "ThreeKings":
                         StartCoroutine(ThreeKings(details[1]));
                         break;
-                    case "Switcheroo": //RANDOM FOR NOW //PD
+                    case "Switcheroo": //PD
                         //Choose a card to switch Dealer
                         //Remove from Dealer adn addd to player
+
+                        StartCoroutine(Switcheroo(details[1]));
+
                         KeyValuePair<string, int> temp = Dealer.DealerHand.ElementAt(rand.Next(Dealer.DealerHand.Count));
                         Dealer.DealerHand.Remove(temp.Key);
                         playerHandler.playerCards.Add(temp.Key,temp.Value);
@@ -115,6 +118,26 @@ public class AbilityDecoder : MonoBehaviour
         }
     }
     //NOT TESTED
+
+    private IEnumerator Switcheroo(string mode)
+    {
+        if (mode == "P")
+        {
+            StartCoroutine(SpawnCards(new Vector3(-2 * Dealer.DealerHand.Count, 0, -6), Dealer.DealerHand.Count, 3, Dealer.DealerHand.Keys.ToArray(), true));
+            StartCoroutine(SpawnCards(new Vector3(-2 * Dealer.DealerHand.Count, 0, -6), playerHandler.playerCards.Count, 4, playerHandler.playerCards.Keys.ToArray(), true));
+        }
+        else if (mode == "D")
+        {
+            yield return StartCoroutine(DisplaySPC("SPC5"));
+            if (Dealer.TotalValue > 21)
+            {
+                //FUCK YOU
+                //KeyValuePair<string,int> pc = playerHandler.playerCards.Where(c => Dealer.TotalValue - c.Value <= 21).FirstOrDefault();
+            }
+        }
+    }
+
+
     private IEnumerator Ass(string mode)
     {
         GlobalData.DuplicateAmt++;
@@ -266,6 +289,9 @@ public class CardClickHandler : MonoBehaviour
     public AbilityDecoder Decoder { get; set; }
     public string Key { get; set; }
     public int ClickedUsage { get; set; } //NextCard | AddCard | ...
+
+    internal string SwitchKey1, SwitchKey2;
+
     private void OnMouseDown()
     {
         Decoder.OnCardClicked();
@@ -280,6 +306,9 @@ public class CardClickHandler : MonoBehaviour
             case 2:
                 AddExtra();
                 break;
+            case 3:
+                Switcheroo1();
+                break;
                 // Add any interaction logic here (e.g., flip card, highlight, etc.)
         }
     }
@@ -291,13 +320,27 @@ public class CardClickHandler : MonoBehaviour
     private void AddExtra()
     {
         int value;
-        string AlteredKey=Key;
+        string AlteredKey = Key;
         if (Key.Contains('E'))
         {
             value = Deck.DeckCards[Key.Replace('E', 'S')];
         }
         else value = Deck.DeckCards[Key];
         Decoder.playerHandler.AddCard(Key, value);
+    }
+
+    private void Switcheroo1()
+    {
+        SwitchKey1 = Key;
+    }
+    private void Switcheroo2()
+    {
+        SwitchKey2 = Key;
+        //Switch Action
+        Decoder.playerHandler.RemoveCard(SwitchKey2);
+        Decoder.playerHandler.AddCard(SwitchKey2, Deck.DeckCards[SwitchKey2]);
+        //Decoder.Dealer.
+        Decoder.Dealer.AddCard(SwitchKey2, Deck.DeckCards[SwitchKey2]);
     }
 
 }
