@@ -261,10 +261,11 @@ public class GameHandler : MonoBehaviour
                 SPCSlotR.GetComponent<DropHandler>().TriggerSPCEffect();
             }
         }
-
+        
         //DiceDrop
         if (DiceDrop.transform.childCount == 1)
         {
+            
             if (!DiceDrop.transform.GetChild(0).GetComponent<EffectDto>().preStand)
             {
                 DiceDrop.GetComponent<DropHandler>().TriggerSPCEffect();

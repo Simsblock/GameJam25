@@ -28,6 +28,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
                 if (Dropped != null)
                 {
                     Dropped.GetComponent<DragHandler>().postDragParent = transform;
+                    Dropped.GetComponent<EffectDto>().Used = true;
                 }
                 if (Dropped.GetComponent<EffectDto>().preStand)
                 {
@@ -46,7 +47,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
                 if (Dropped != null)
                 {
                     Dropped.GetComponent<DragHandler>().postDragParent = transform;
-                    transform.GetChild(0).GetComponent<EffectDto>().Used = true;
+                    Dropped.GetComponent<EffectDto>().Used = true;
                     audio.PlaySFX(audio.rollDice);
                 }
                 if (Dropped.GetComponent<EffectDto>().preStand)
@@ -60,7 +61,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
 
     public void TriggerSPCEffect()
     {
-        if(transform.childCount == 0)
+        if(transform.childCount == 1)
         {
            string s = transform.GetChild(0).GetComponent<EffectDto>().effect;
             abilityDecoder.Use(s);
@@ -72,7 +73,6 @@ public class DropHandler : MonoBehaviour, IDropHandler
     {
         if (child != null)
         {
-            Debug.Log("Drop");
             abilityDecoder.Use(child.GetComponent<EffectDto>().effect);
             child.GetComponent<EffectDto>().Used = true;
         }
