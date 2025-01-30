@@ -36,14 +36,6 @@ public class PlayerHandler : MonoBehaviour
         DisplaySPC = false;
         specialCards = GlobalData.LoadSPC();
         audio = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-        AddSpecialCard("Joker");
-        AddSpecialCard("Ass");
-        AddSpecialCard("Piggibank");
-        AddSpecialCard("TheTwins");
-        AddSpecialCard("Seer");
-        AddSpecialCard("ThreeKings");
-        AddSpecialCard("DiceDefault");
-        AddSpecialCard("Dealer+1");
     }
 
     public void PullMulti(int count)
