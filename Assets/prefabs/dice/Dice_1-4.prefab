@@ -70,7 +70,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1631318417, guid: 0e682fb62e7608d4d8c69ffe5630876f, type: 3}
+  m_Sprite: {fileID: -1460556083, guid: 0e682fb62e7608d4d8c69ffe5630876f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -136,7 +136,7 @@ MonoBehaviour:
   effect: diceRoll:1.4
   preStand: 0
   Used: 0
-  Price: 1000
+  Price: 0
   text: {fileID: 2524709011977301843}
   name: 
   isDice: 1

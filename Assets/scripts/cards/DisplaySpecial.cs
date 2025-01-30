@@ -80,10 +80,12 @@ public class DisplaySpecial : MonoBehaviour
                 GameObject card = dice.ElementAt(i).Value;
                 GameObject cShop = Instantiate(prefab, content);
                 cShop.GetComponent<EffectDto>().text.text = card.GetComponent<EffectDto>().text.text;
-                cShop.GetComponent<EffectDto>().name = SpecialCards.GetName(card);
+                cShop.GetComponent<EffectDto>().name = dice.ElementAt(i).Key;
                 cShop.GetComponent<EffectDto>().Price = card.GetComponent<EffectDto>().Price;
                 cShop.GetComponent<Image>().sprite = diceShop[i];
                 cShop.transform.localScale = Vector3.one;
+                Debug.Log(dice.ElementAt(i).Key);
+                Debug.Log(card.GetComponent<EffectDto>().text.text);
             }
         }
         else

@@ -100,4 +100,11 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
                 break;
         }
     }
+    public void ResetPos()
+    {
+        if (GetComponent<EffectDto>().permanent)
+        {
+            transform.SetParent(Content);
+        }
+    }
 }

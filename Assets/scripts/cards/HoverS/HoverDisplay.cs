@@ -9,7 +9,7 @@ public class HoverDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     [HideInInspector] public Canvas canvas; // Reference to the canvas for positioning
     private RectTransform descriptionRect;
     private bool hovering,flipped;
-    private float x;
+    private float x,y;
     void Start()
     {
         flipped = false;
@@ -38,9 +38,9 @@ public class HoverDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                 if (Input.mousePosition.x > Screen.width * 0.9025) x = Screen.width * 0.91f;
 
                     if (Input.mousePosition.y < Screen.height*0.8)
-                {
-                    
-                        descriptionRect.transform.position = new Vector3(x, worldPos.y *1.05f, worldPos.z);
+                    {
+                    y = Screen.height * 0.05f;
+                        descriptionRect.transform.position = new Vector3(x, worldPos.y +y, worldPos.z);
                     if (flipped)
                     {
                         descriptionText.transform.GetChild(0).Rotate(new Vector3(-180, 0, 0));
@@ -50,7 +50,8 @@ public class HoverDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                 }
                 else
                 {
-                    descriptionRect.transform.position = new Vector3(x, worldPos.y* 0.83f, worldPos.z);
+                    y = Screen.height * 0.17f;
+                    descriptionRect.transform.position = new Vector3(x, worldPos.y-y, worldPos.z);
                     if (!flipped)
                     {
                         descriptionText.transform.GetChild(0).Rotate(new Vector3(180, 0, 0));

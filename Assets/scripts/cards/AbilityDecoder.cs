@@ -14,10 +14,12 @@ public class AbilityDecoder : MonoBehaviour
     System.Random rand = new System.Random();
     [SerializeField]
     internal Sprite[] SPCSprites;
+    [SerializeField]
+    private GameObject player;
     // Start is called before the first frame update
     void Start()
     {
-        playerHandler = GameObject.Find("Player").GetComponent<PlayerHandler>();
+        playerHandler = player.GetComponent<PlayerHandler>();
         Dealer = GameObject.Find("Dealer").GetComponent<Dealer>();
     }
 
@@ -49,8 +51,9 @@ public class AbilityDecoder : MonoBehaviour
                         break;
                         //for diceroll n= n1-n2
                     case "diceRoll":
+                        Debug.Log(details[1]);
                         string[] numbers = details[1].Split(".");
-                        playerHandler.curSum+=(rand.Next(int.Parse(numbers[0]), int.Parse(numbers[1])));
+                        playerHandler.curSum+=(rand.Next(int.Parse(numbers[0]), int.Parse(numbers[1])+1));
                         break;
                     //actual abilities laut notion
                     case "Seer":
