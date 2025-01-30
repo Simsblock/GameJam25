@@ -8,28 +8,27 @@ using UnityEngine.UI;
 
 public class BetBtn : MonoBehaviour
 {
-    int bet;
     [SerializeField]
     int amount;
     [SerializeField]
-    private TMP_Text bet_text;
+    private TMP_Text Bet_text;
 
     public void Raise()
     {
-        if (bet + amount < 99900 && bet+amount <= PlayerPrefs.GetInt("Money"))
+        if ((PlayerPrefs.GetInt("Bet")) + amount < 99900 && (PlayerPrefs.GetInt("Bet"))+amount <= PlayerPrefs.GetInt("Money"))
         {
-            bet = int.Parse(bet_text.text);
-            bet += amount;
-            bet_text.text = bet.ToString();
+            PlayerPrefs.SetInt("Bet", int.Parse(Bet_text.text));
+            PlayerPrefs.SetInt("Bet", PlayerPrefs.GetInt("Bet") + amount);
+            Bet_text.text = (PlayerPrefs.GetInt("Bet")).ToString();
         }
     }
     public void Lower()
     {
-        if (bet - amount >= amount)
+        if ((PlayerPrefs.GetInt("Bet")) - amount >= amount)
         {
-            bet = int.Parse(bet_text.text);
-            bet -= amount;
-            bet_text.text = bet.ToString();
+            PlayerPrefs.SetInt("Bet", int.Parse(Bet_text.text));
+            PlayerPrefs.SetInt("Bet", PlayerPrefs.GetInt("Bet")-amount);
+            Bet_text.text = (PlayerPrefs.GetInt("Bet")).ToString();
         }
     }
 }
