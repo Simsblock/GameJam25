@@ -560,7 +560,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1697265980}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.9999999
+  m_Size: 0.9999998
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1740,7 +1740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amount: 100
-  Bet_text: {fileID: 0}
+  Bet_text: {fileID: 2049874852}
 --- !u!224 &512688571
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2903,7 +2903,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 87133796}
   m_HandleRect: {fileID: 87133795}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -3381,7 +3381,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 926247858}
   m_HandleRect: {fileID: 926247857}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -7672,7 +7672,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amount: 100
-  Bet_text: {fileID: 0}
+  Bet_text: {fileID: 1658026345}
 --- !u!1 &1977911825
 GameObject:
   m_ObjectHideFlags: 0
