@@ -19,7 +19,7 @@ public class HoverShop : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     void Start()
     {
         flipped = false;
-        canvas = FindObjectOfType<Canvas>();
+        canvas = GameObject.Find("MainCanvas").GetComponent<Canvas>();
         if (descriptionText != null)
         {
             descriptionRect = descriptionText.GetComponent<RectTransform>();

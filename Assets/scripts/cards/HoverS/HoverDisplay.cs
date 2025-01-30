@@ -12,7 +12,7 @@ public class HoverDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     void Start()
     {
         flipped = false;
-       canvas= FindObjectOfType<Canvas>();
+       canvas= canvas = GameObject.Find("MainCanvas").GetComponent<Canvas>();
         if (descriptionText != null)
         {
             descriptionRect = descriptionText.GetComponent<RectTransform>();

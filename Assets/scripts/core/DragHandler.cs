@@ -68,6 +68,7 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
             playerHandler.AddSpecialCard(effects.name);
             playerHandler.UpdateDisplay();
             PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money")-effects.Price);
+            Debug.Log(gameObject.name);
             Destroy(gameObject);
         }
     }

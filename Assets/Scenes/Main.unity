@@ -596,7 +596,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1697265980}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99995774
+  m_Size: 0.99989164
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3292,7 +3292,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00044544967}
+  m_AnchoredPosition: {x: 0, y: 0.00021340813}
   m_SizeDelta: {x: 0, y: 37}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1127078962
@@ -4229,7 +4229,7 @@ GameObject:
   - component: {fileID: 1359534579}
   - component: {fileID: 1359534578}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: MainCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4642,7 +4642,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00046198076}
+  m_AnchoredPosition: {x: 0, y: 0.00021841578}
   m_SizeDelta: {x: 0, y: 37}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1493733641
@@ -5993,7 +5993,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 353219250}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99995744
+  m_Size: 0.99989194
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

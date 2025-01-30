@@ -17,7 +17,7 @@ public class HoverDiceShop : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     void Start()
     {
         flipped = false;
-        canvas = FindObjectOfType<Canvas>();
+        canvas = canvas = GameObject.Find("MainCanvas").GetComponent<Canvas>();
         if (descriptionText != null)
         {
             descriptionRect = descriptionText.GetComponent<RectTransform>();
