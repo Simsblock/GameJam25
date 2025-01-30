@@ -36,6 +36,7 @@ public class PlayerHandler : MonoBehaviour
         DisplaySPC = false;
         specialCards = GlobalData.LoadSPC();
         audio = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        AddSpecialCard("DiceDefault");
     }
 
     public void PullMulti(int count)
