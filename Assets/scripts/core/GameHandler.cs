@@ -171,7 +171,7 @@ public class GameHandler : MonoBehaviour
         }
         if (PlayerPrefs.GetInt("Bet") > PlayerPrefs.GetInt("Money"))
         {
-            PlayerPrefs.GetInt("Bet", PlayerPrefs.GetInt("Money"));
+            PlayerPrefs.SetInt("Bet", PlayerPrefs.GetInt("Money"));
             SetBetText();
         }
         CheckGameOver();
