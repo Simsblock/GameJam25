@@ -37,7 +37,7 @@ public class Dealer : MonoBehaviour
 
     public void PullInit()
     {
-        Debug.Log("INIT");
+        Debug.Log("INIT Dealer");
         //leftCardPos
         leftCardPos = new Vector3(0, 0, 0);
         //Pull open first Card
@@ -49,6 +49,7 @@ public class Dealer : MonoBehaviour
         card = Deck.PullCard();
         DealerHand.Add(card.Key, card.Value);
         StartCoroutine(DisplayDealerCards(card.Key));
+        Debug.Log("End of Init Dealer");
     }
     
     public IEnumerator PullRest()

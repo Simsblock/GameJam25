@@ -83,7 +83,6 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
             }
             if (SlotLHandler != null && SlotRHandler != null)
             {
-
                 SlotLHandler.ToAssign = gameObject;
                 SlotRHandler.ToAssign = gameObject;
             }
@@ -112,7 +111,7 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
     private IEnumerator BetShit()
     {
         GameHandler gh = GameObject.Find("GameHandler").GetComponent<GameHandler>();
-        if (int.Parse(gh.bet_text.text) < PlayerPrefs.GetInt("Money"))
+        if (int.Parse(gh.bet_text.text) > PlayerPrefs.GetInt("Money"))
         {
             PlayerPrefs.SetInt("Bet", PlayerPrefs.GetInt("Money"));
             gh.bet_text.text = $"{PlayerPrefs.GetInt("Bet")}";

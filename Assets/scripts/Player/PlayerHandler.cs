@@ -41,6 +41,7 @@ public class PlayerHandler : MonoBehaviour
 
     public void PullMulti(int count)
     {
+        Debug.Log("INIT Player");
         if (playerCards.Count < 10)
         {
             while (count > 0)
@@ -50,14 +51,17 @@ public class PlayerHandler : MonoBehaviour
             }
             audio.PlaySFX(audio.placeCard);
         }
+        Debug.Log("End of INit Player");
     }
 
     public void PullCard()
     {
+        Debug.Log("PullCard");
         if (playerCards.Count < 10)
         {
             var card = Deck.PullCard();
             playerCards.Add(card.Key, card.Value);
+            Debug.Log("Added Player Card");
             DisplayPlayerCards(card.Key);
             curSum += card.Value;
             //checks for aces n shit
@@ -79,6 +83,7 @@ public class PlayerHandler : MonoBehaviour
             }
             RandomDrawSound();
         }
+        Debug.Log("End of PullCard");
     }
 
     public void RemoveCard(string cardKey)
@@ -148,6 +153,7 @@ public class PlayerHandler : MonoBehaviour
     }
     public void DisplayPlayerCards(string cardKey)
     {
+        Debug.Log("Start Display Player Card");
         GameObject card = Instantiate(CardPrefab);
         card.transform.SetParent(CardParent.transform);
         Vector3 cardPos = new Vector3(0f, 0f, 0f);
@@ -175,6 +181,7 @@ public class PlayerHandler : MonoBehaviour
         Sprite s= CM.GetCardSprite(suit, rank);
         SpriteRenderer spriteRenderer = card.GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = s;
+        Debug.Log("End Display Player Card");
     }
 
     public void AddCard(string key, int value)

@@ -27,7 +27,7 @@ public class PlayerButtonHandler : MonoBehaviour
             hitBtn.interactable = false;
         }else hitBtn.interactable = true;
 
-        if (GameHandlerScript.stand==3)
+        if (GameHandlerScript.stand==3|| GameHandlerScript.stand == 4)
         {
             standBtn.interactable = false;
         }
@@ -36,9 +36,11 @@ public class PlayerButtonHandler : MonoBehaviour
 
     public void Hit()
     {
+        Debug.Log("Hit");
         player.GetComponent<PlayerHandler>().PullCard();
         StartCoroutine(ReenableButtonAfterDelay(hitBtn, 0.1f));
         isHitButtonCooldown = true;
+        Debug.Log("End of Hit");
     }
 
     public void Stand()

@@ -101,6 +101,7 @@ public class GameHandler : MonoBehaviour
         if (PlayerPrefs.GetInt("Money") > PlayerPrefs.GetInt("Score")) PlayerPrefs.SetInt("Score",PlayerPrefs.GetInt("Money"));
         if (PlayerPrefs.GetInt("HighScore") < PlayerPrefs.GetInt("Score")) PlayerPrefs.SetInt("HighScore", PlayerPrefs.GetInt("Score"));
         //clear old Cards
+        Deck.Clear();
         SetBet();
         yield return StartCoroutine(LoadShop());
         audio.ChangeBGMusic(audio.casinoBackround);
@@ -111,6 +112,7 @@ public class GameHandler : MonoBehaviour
         //Timer
         RemainingTime = MaxTime;
         TimeIsRunning = true;
+        Debug.Log("StartRound Done");
     }
 
     //SetBet 
@@ -237,16 +239,40 @@ public class GameHandler : MonoBehaviour
 
     private IEnumerator MoveObjectOffCamera(GameObject obj, Vector3 target)
     {
-        while (Vector3.Distance(obj.transform.position, target) > 0.01f)
+        if (obj == null)
         {
-            obj.transform.position = Vector3.MoveTowards(obj.transform.position, target, 5f * Time.deltaTime);
+            Debug.LogError("MoveObjectOffCamera: obj is null! Exiting coroutine.");
+            yield break;
+        }
+
+        float speed = 5f;
+        float maxDuration = 5f; // Safety timeout to prevent infinite loops
+        float timer = 0f;
+
+        while (obj != null && Vector3.Distance(obj.transform.position, target) > 0.01f && timer < maxDuration)
+        {
+            obj.transform.position = Vector3.MoveTowards(obj.transform.position, target, speed * Time.deltaTime);
+            timer += Time.deltaTime;
             yield return null; // Wait for the next frame
         }
 
-        // Snap to the exact target position (to handle floating-point imprecision)
-        obj.transform.position = target;
-        Debug.Log("MoveObjectOffCamera: Object reached target.");
+        if (obj != null)
+        {
+            // Snap to the exact target position (to handle floating-point imprecision)
+            obj.transform.position = target;
+            Debug.Log($"MoveObjectOffCamera: {obj.name} reached target.");
+        }
+        else
+        {
+            Debug.LogWarning("MoveObjectOffCamera: obj was destroyed before reaching target.");
+        }
+
+        if (timer >= maxDuration)
+        {
+            Debug.LogError($"MoveObjectOffCamera: Movement timed out after {maxDuration} seconds!");
+        }
     }
+
 
     private void UseSPC()
     {
