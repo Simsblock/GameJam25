@@ -15,7 +15,7 @@ public class AbilityDecoder : MonoBehaviour
     [SerializeField]
     internal Sprite[] SPCSprites;
     [SerializeField]
-    private GameObject player;
+    private GameObject player,BetUi;
     // Start is called before the first frame update
     void Start()
     {
@@ -112,6 +112,10 @@ public class AbilityDecoder : MonoBehaviour
                         break;
                     case "Gambit":
                         PlayerPrefs.SetInt("Bet",PlayerPrefs.GetInt("Bet")*2);
+                        break;
+                    case "Piggibank":
+                        BetUi.SetActive(true);
+                        //BetUi.transform.GetChild(4).gameObject.SetActive(true);
                         break;
                 }   
             }

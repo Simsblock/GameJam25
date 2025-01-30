@@ -9,7 +9,7 @@ public class PlayerButtonHandler : MonoBehaviour
     [SerializeField]
     public Button hitBtn, standBtn;
     [SerializeField]
-    private GameObject GameHandler;
+    private GameObject GameHandler,BetUi;
     private GameHandler GameHandlerScript;
 
     private bool isHitButtonCooldown = false;
@@ -52,5 +52,10 @@ public class PlayerButtonHandler : MonoBehaviour
         {
             isHitButtonCooldown = false;
         }
+    }
+    public void Done()
+    {
+        BetUi.SetActive(false);
+        //BetUi.transform.GetChild(4).gameObject.SetActive(false);
     }
 }

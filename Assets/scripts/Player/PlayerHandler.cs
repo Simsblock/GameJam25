@@ -38,7 +38,7 @@ public class PlayerHandler : MonoBehaviour
         audio = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         AddSpecialCard("Joker");
         AddSpecialCard("Ass");
-        AddSpecialCard("DiceDefault");
+        AddSpecialCard("Piggibank");
     }
 
     public void PullMulti(int count)

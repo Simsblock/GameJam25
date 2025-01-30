@@ -32,6 +32,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
                 }
                 if (Dropped.GetComponent<EffectDto>().preStand)
                 {
+                    Debug.Log(Dropped.GetComponent<EffectDto>().effect);
                     TriggerSPCEffect(Dropped);
                 }
                 PlayRandomPlaceSound();
