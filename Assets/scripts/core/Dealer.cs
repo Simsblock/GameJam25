@@ -88,7 +88,8 @@ public class Dealer : MonoBehaviour
 
     public IEnumerator ClearHand()
     {
-        DealerHand.Clear();
+        //DealerHand.Clear();
+        DealerHand = new Dictionary<string, int>();
         ValueModifier = 0;
         OpenCard = new KeyValuePair<string, int>();
         foreach (Transform card in DealerCardParent.transform)

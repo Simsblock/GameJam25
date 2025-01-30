@@ -648,8 +648,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1697265981}
   m_HandleRect: {fileID: 1697265980}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.9999998
+  m_Value: 0
+  m_Size: 0.99500203
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3640,7 +3640,7 @@ GameObject:
   - component: {fileID: 1046266807}
   m_Layer: 5
   m_Name: SPCSlotL
-  m_TagString: SPCSlot
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3945,7 +3945,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000008106232}
+  m_AnchoredPosition: {x: 0, y: 0.00010889699}
   m_SizeDelta: {x: 0, y: 37}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1127078962
@@ -10468,7 +10468,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0000022197462}
+  m_AnchoredPosition: {x: 0, y: 0.00009691294}
   m_SizeDelta: {x: 0, y: 37}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1493733641
@@ -11641,7 +11641,7 @@ GameObject:
   - component: {fileID: 1751378612}
   m_Layer: 5
   m_Name: SPCSlotR
-  m_TagString: SPCSlot
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12097,8 +12097,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 353219251}
   m_HandleRect: {fileID: 353219250}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.9999999
+  m_Value: 0
+  m_Size: 0.99500245
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

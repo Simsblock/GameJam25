@@ -122,7 +122,7 @@ public class PlayerHandler : MonoBehaviour
     }
     public void RemoveSpecialCard(string name)
     {
-        if (name.Contains("Dice"))
+        if (name.Contains("Default"))
         {
             return;
         }

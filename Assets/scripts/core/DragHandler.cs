@@ -19,6 +19,7 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
     private Image SlotLImg, SlotRImg;
     private DropHandler SlotLHandler, SlotRHandler;
     private GameObject ClearDrop;
+    private SpecialCardsList SPCList;
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (effects.Used || Content.name.Equals("Shop"))
@@ -51,10 +52,10 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        //if (effects.Used)
-        //{
-        //    return;
-        //}
+        if (Content.name.Equals("Shop"))
+        {
+            return;
+        }
         transform.SetParent(postDragParent);
         image.raycastTarget = true;
 
@@ -127,7 +128,6 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
         playerHandler = GameObject.Find("Player").GetComponent<PlayerHandler>();
         SpecialCards =GameObject.Find("GameHandler").GetComponent<SpecialCardsList>();
         audio = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-        
         FindStuff();
         if (ClearDrop != null)
         {
@@ -165,6 +165,7 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
     }
     public void ResetPos()
     {
+        Debug.Log("4");
         if (GetComponent<EffectDto>().permanent)
         {
             transform.SetParent(Content);
@@ -193,5 +194,9 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
             transform.GetComponent<Image>().color = c;
         }
         
+    }
+    public void RemoveFromPlayer()
+    {
+        playerHandler.RemoveSpecialCard(SpecialCards.GetName(gameObject));
     }
 }
