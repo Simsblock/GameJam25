@@ -38,6 +38,9 @@ public class PlayerHandler : MonoBehaviour
         audio = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         AddSpecialCard("Joker");
         AddSpecialCard("Ass");
+        AddSpecialCard("TheTwins");
+        AddSpecialCard("Seer");
+        AddSpecialCard("ThreeKings");
         AddSpecialCard("DiceDefault");
     }
 
