@@ -15,8 +15,8 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
     private SpecialCardsList SpecialCards;
     [HideInInspector] public string Shopname;
     private AudioManager audio;
-    private GameObject SlotL, SlotR;
-    private Image SlotLImg, SlotRImg;
+    private GameObject SlotL, SlotR,DiceSlot;
+    private Image SlotLImg, SlotRImg,DiceSlotImg;
     private DropHandler SlotLHandler, SlotRHandler;
     private GameObject ClearDrop;
     private SpecialCardsList SPCList;
@@ -39,6 +39,14 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
         }
         transform.SetParent(transform.root);
         transform.SetAsLastSibling();
+        if (effects.isDice)
+        {
+            HighlightOn(false);
+        }
+        else
+        {
+            HighlightOn(true);
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -58,7 +66,14 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
         }
         transform.SetParent(postDragParent);
         image.raycastTarget = true;
-
+        if (effects.isDice)
+        {
+            HighlightOff(false);
+        }
+        else
+        {
+            HighlightOff(true);
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -66,22 +81,11 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
         if (Content.name.Equals("SpecialContent")&&!effects.isDice)
         {
             WhipeToAssign();
-            if (SlotL == null || SlotR == null || ClearDrop==null)
+            if (SlotL == null || SlotR == null || ClearDrop == null)
             {
                 FindStuff();
             }
-            if (SlotLImg != null && SlotLImg != null)
-            {
-                Color c = SlotLImg.color;
-                c.a = 0.5f;
-                SlotLImg.color = c;
-                c = SlotRImg.color;
-                c.a = 0.5f;
-                SlotRImg.color = c;
-                c = transform.GetComponent<Image>().color;
-                c *= 0.8f;
-                transform.GetComponent<Image>().color = c;
-            }
+            HighlightOn(true);
             if (SlotLHandler != null && SlotRHandler != null)
             {
                 SlotLHandler.ToAssign = gameObject;
@@ -107,6 +111,58 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
             Destroy(gameObject);
         }
         
+    }
+
+    private void HighlightOn(bool cards)
+    {
+        if (SlotL == null || SlotR == null || ClearDrop == null)
+        {
+            FindStuff();
+        }        
+        if (SlotLImg != null && SlotLImg != null)
+        {
+            Color c;
+            if (cards)
+            {
+                c = SlotLImg.color;
+                c.a = 0.5f;
+                SlotLImg.color = c;
+                c = SlotRImg.color;
+                c.a = 0.5f;
+                SlotRImg.color = c;
+            }
+            else
+            {
+
+            }
+            c = transform.GetComponent<Image>().color;
+            c *= 0.8f;
+            transform.GetComponent<Image>().color = c;
+        }
+    }
+    private void HighlightOff(bool dice)
+    {
+        if (SlotL == null || SlotR == null || ClearDrop == null)
+        {
+            FindStuff();
+        }
+        if (SlotLImg != null && SlotLImg != null)
+        {
+            Color c;
+            if (dice)
+            {
+                c = SlotLImg.color;
+                c.a = 0f;
+                SlotLImg.color = c;
+                c = SlotRImg.color;
+                c.a = 0f;
+                SlotRImg.color = c;
+            }
+            
+            c = transform.GetComponent<Image>().color;
+            c *= 1.2f;
+            transform.GetComponent<Image>().color = c;
+        }
     }
 
     private IEnumerator BetShit()
@@ -165,7 +221,6 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
     }
     public void ResetPos()
     {
-        Debug.Log("4");
         if (GetComponent<EffectDto>().permanent)
         {
             transform.SetParent(Content);
@@ -181,17 +236,7 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
         {
             SlotLHandler.ToAssign = null;
             SlotRHandler.ToAssign = null;
-            Color c = SlotLImg.color;
-            c.a = 0f;
-            SlotLImg.color = c;
-            c = SlotRImg.color;
-            c.a = 0f;
-            SlotRImg.color = c;
-
-
-            c = transform.GetComponent<Image>().color;
-            c *= 1.2f;
-            transform.GetComponent<Image>().color = c;
+            HighlightOff(true);
         }
         
     }
