@@ -36,6 +36,8 @@ public class GameHandler : MonoBehaviour
     public GameObject PauseUI;
     //audioHandler
     private AudioManager audio;
+    [SerializeField]
+    private GameObject ParticleSystem;
 
     // Start is called before the first frame updatet a
     void Start()
@@ -141,6 +143,7 @@ public class GameHandler : MonoBehaviour
         {
             PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money") + PlayerPrefs.GetInt("Bet") * GlobalData.BetPayoutRate / 100); //win
             win.SetActive(true);
+           StartCoroutine( ParticelSystemStart());
             audio.PlaySFX(audio.winSound);
         }
         else if (playerHandler.curSum > GlobalData.PlayerWinCond)
@@ -159,6 +162,7 @@ public class GameHandler : MonoBehaviour
         {
             PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money") + PlayerPrefs.GetInt("Bet") * GlobalData.BetPayoutRate / 100); //win
             win.SetActive(true);
+            StartCoroutine(ParticelSystemStart());
             audio.PlaySFX(audio.winSound);
         }
         else if (playerHandler.curSum == dealer.TotalValue)
@@ -195,6 +199,12 @@ public class GameHandler : MonoBehaviour
         GlobalData.ResetAbilityValues();
     }
 
+    private IEnumerator ParticelSystemStart()
+    {
+        ParticleSystem.SetActive(true);
+        yield return new WaitForSeconds(2);
+        ParticleSystem.SetActive(false);
+    }
     public void CheckGameOver()
     {
         if (PlayerPrefs.GetInt("Money") <= 0)
