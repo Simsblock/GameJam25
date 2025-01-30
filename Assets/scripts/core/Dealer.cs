@@ -229,7 +229,7 @@ public class Dealer : MonoBehaviour
         // Call Ability
         if (SpecialCardsList.SpecialCardsUi.ContainsKey(selectedAbility))
         {
-            DropHandler.TriggerSPCEffect(SpecialCardsList.SpecialCardsUi[selectedAbility]);
+            DropHandler.TriggerSPCEffect(SpecialCardsList.DealerSpecialCardsUi[selectedAbility]);
             Debug.Log($"Used ability: {selectedAbility}");
         }
         else

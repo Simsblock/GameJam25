@@ -36,6 +36,7 @@ public class AbilityDecoder : MonoBehaviour
             foreach (string effect in effects)
             {
                 string[] details = effect.Split(":");
+                Debug.Log(details[0] + details[1]);
                 switch (details[0])
                 {
                     case "draw":
@@ -115,7 +116,6 @@ public class AbilityDecoder : MonoBehaviour
     //NOT TESTED
     private IEnumerator Ass(string mode)
     {
-        yield return StartCoroutine(DisplaySPC("ThreeKings"));
         GlobalData.DuplicateAmt++;
         string key = $"EA:{GlobalData.DuplicateAmt}";
         yield return StartCoroutine(DisplaySPC("Ass"));
@@ -135,10 +135,12 @@ public class AbilityDecoder : MonoBehaviour
 
     private void JokerP()
     {
+        Debug.Log("P");
         StartCoroutine(SpawnCards(new Vector3(-4, 0, -6), 3, 2, new string[] { "EA","E5","E13" }, false));
     }
     private IEnumerator JokerD()
     {
+        Debug.Log("D");
         yield return StartCoroutine(DisplaySPC("Joker"));
         if (Dealer.TotalValue + 11 <= 21) Dealer.AddCard($"EA:{GlobalData.DuplicateAmt}",1); //Ace
         else if (Dealer.TotalValue + 10 <= 21) Dealer.AddCard($"E10:{GlobalData.DuplicateAmt}", 10); //10
@@ -152,10 +154,12 @@ public class AbilityDecoder : MonoBehaviour
 
     private void TwinsP()
     {
+        Debug.Log("P");
         StartCoroutine(SpawnCards(new Vector3(-2, 0, -6), 2, 1, new string[] { Deck.GetCard().Key, Deck.GetCard().Key }, false));
     }
     private IEnumerator TwinsD()
     {
+        Debug.Log("D");
         yield return StartCoroutine(DisplaySPC("TheTwins"));
         KeyValuePair<string, int> card1 = Deck.GetCard();
         KeyValuePair<string, int> card2 = Deck.GetCard();
