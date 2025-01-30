@@ -234,6 +234,7 @@ public class AbilityDecoder : MonoBehaviour
         {
             Destroy(card);
         }
+        cardClicked = false;
     }
 
     private GameObject CreateCard(Vector3 position, int clickedUsage, string key)

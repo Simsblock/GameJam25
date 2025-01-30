@@ -39,6 +39,10 @@ public class PlayerHandler : MonoBehaviour
         AddSpecialCard("Joker");
         AddSpecialCard("Ass");
         AddSpecialCard("Piggibank");
+        AddSpecialCard("TheTwins");
+        AddSpecialCard("Seer");
+        AddSpecialCard("ThreeKings");
+        AddSpecialCard("DiceDefault");
     }
 
     public void PullMulti(int count)
