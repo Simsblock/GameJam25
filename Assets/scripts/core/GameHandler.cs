@@ -234,6 +234,7 @@ public class GameHandler : MonoBehaviour
         ShopUI.SetActive(!isShop);
         isShop=!isShop;
         displaySpecial.DisplayShop();
+        displaydice.DisplayShop();
     }
 
     private void HideUI()
