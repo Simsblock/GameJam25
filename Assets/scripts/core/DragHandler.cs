@@ -80,8 +80,7 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log(gameObject.name);
-        Debug.Log(SlotRHandler);
+        
         if (Content.name.Equals("SpecialContent")&&!effects.isDice)
         {
             
@@ -94,6 +93,7 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
             {
                 if (SlotRHandler != null)
                 {
+                    Debug.Log(SlotRHandler.ToAssign);
                     SlotRHandler.ClearHighlight();
                     SlotRHandler.ToAssign = gameObject;
                     SlotRHandler.EnabClear();
@@ -102,24 +102,28 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
                 {
                     HighlightOn(true);
                 }
-                if (SlotLHandler != null && SlotRHandler != null)
+                if (SlotLHandler != null)
                 {
-                    SlotRHandler.ToAssign = gameObject;
+                    SlotLHandler.ToAssign = gameObject;
                 }
             }
             else
             {
                 if (SlotRHandler != null)
                 {
+                    Debug.Log(SlotRHandler.ToAssign);
                     SlotRHandler.ClearHighlight();
                     SlotRHandler.DisableClear();
+                    SlotRHandler.ToAssign = null;
                 }
                 else
                 {
                     HighlightOff(true);
                 }
-
-                SlotRHandler.ToAssign = null;
+                if (SlotLHandler != null)
+                {
+                    SlotLHandler.ToAssign = null;
+                }
             }
             
         }
@@ -144,7 +148,7 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
     {
         Debug.Log(gameObject.name);
         Debug.Log(Assigned);
-        if (SlotL == null || SlotR == null || ClearDrop == null)
+            if (SlotL == null || SlotR == null || ClearDrop == null)
             {
                 FindStuff();
             }        
@@ -274,9 +278,9 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
         {
             SlotLHandler.ToAssign = null;
             SlotRHandler.ToAssign = null;
-            HighlightOff(true);
         }
-        
+        HighlightOff(true);
+
     }
     public void RemoveFromPlayer()
     {
