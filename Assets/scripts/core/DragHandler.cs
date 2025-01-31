@@ -21,6 +21,7 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
     private DropHandler SlotLHandler, SlotRHandler;
     private GameObject ClearDrop;
     private SpecialCardsList SPCList;
+    private bool Assigned;
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (effects.Used || Content.name.Equals("Shop"))
@@ -79,20 +80,48 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        Debug.Log(gameObject.name);
+        Debug.Log(SlotRHandler);
         if (Content.name.Equals("SpecialContent")&&!effects.isDice)
         {
-            WhipeToAssign();
+            
             if (SlotL == null || SlotR == null || ClearDrop == null)
             {
                 FindStuff();
+               
             }
-            HighlightOn(true);
-            if (SlotLHandler != null && SlotRHandler != null)
+            if (!Assigned)
             {
-                SlotLHandler.ToAssign = gameObject;
-                SlotRHandler.ToAssign = gameObject;
-                SlotRHandler.ToggleClear();
+                if (SlotRHandler != null)
+                {
+                    SlotRHandler.ClearHighlight();
+                    SlotRHandler.ToAssign = gameObject;
+                    SlotRHandler.EnabClear();
+                }
+                if (transform.GetComponent<Image>().color.a == 1)
+                {
+                    HighlightOn(true);
+                }
+                if (SlotLHandler != null && SlotRHandler != null)
+                {
+                    SlotRHandler.ToAssign = gameObject;
+                }
             }
+            else
+            {
+                if (SlotRHandler != null)
+                {
+                    SlotRHandler.ClearHighlight();
+                    SlotRHandler.DisableClear();
+                }
+                else
+                {
+                    HighlightOff(true);
+                }
+
+                SlotRHandler.ToAssign = null;
+            }
+            
         }
         if (Content.name.Equals("Shop"))
         {
@@ -113,10 +142,12 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
 
     private void HighlightOn(bool card)
     {
+        Debug.Log(gameObject.name);
+        Debug.Log(Assigned);
         if (SlotL == null || SlotR == null || ClearDrop == null)
-        {
-            FindStuff();
-        }        
+            {
+                FindStuff();
+            }        
             Color c;
             if (card&&SlotLImg != null && SlotLImg != null)
             {
@@ -133,12 +164,16 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
                 c.a = 0.5f;
                 DiceSlotImg.color = c;
             }
+
             c = transform.GetComponent<Image>().color;
             c *= 0.8f;
+            c.a = 0.99f;
             transform.GetComponent<Image>().color = c;
+        Assigned = true;
     }
     private void HighlightOff(bool card)
     {
+        Debug.Log(Assigned);
         if (SlotL == null || SlotR == null || ClearDrop == null)
         {
             FindStuff();
@@ -163,7 +198,9 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
 
             c = transform.GetComponent<Image>().color;
             c =c*1.25f;
+            c.a = 1;
             transform.GetComponent<Image>().color = c;
+        Assigned = false;
     }
 
     private IEnumerator BetShit()
@@ -185,6 +222,8 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
         playerHandler = GameObject.Find("Player").GetComponent<PlayerHandler>();
         SpecialCards =GameObject.Find("GameHandler").GetComponent<SpecialCardsList>();
         audio = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        SlotRHandler = GameObject.Find("GameHandler").GetComponent<GameHandler>().GetSPCRHandler();
+        Assigned = false;
         FindStuff();
         
     }
@@ -199,7 +238,6 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
             SlotRImg = SlotR.GetComponent<Image>();
             DiceSlotImg = DiceSlot.GetComponent<Image>();
             SlotLHandler = SlotL.GetComponent<DropHandler>();
-            SlotRHandler = SlotR.GetComponent<DropHandler>();
         }
     }
 
@@ -243,5 +281,9 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
     public void RemoveFromPlayer()
     {
         playerHandler.RemoveSpecialCard(SpecialCards.GetName(gameObject));
+    }
+    public void ClearHighlight()
+    {
+        HighlightOff(true);
     }
 }

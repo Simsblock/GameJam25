@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class ClearHighlight : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField]
-    private GameObject SPCSlot;
+    private GameObject SPCSlot,Clearer;
 
     private void Start()
     {
@@ -21,7 +21,15 @@ public class ClearHighlight : MonoBehaviour, IPointerClickHandler
     }
     public void ClearAssigned()
     {
-        SPCSlot.GetComponent<DropHandler>().ClearAssigned();
-        gameObject.SetActive(false);
+        if (SPCSlot!=null)
+        {
+            SPCSlot.GetComponent<DropHandler>().ClearAssigned();
+            
+        }
+        if (Clearer != null)
+        {
+            Clearer.SetActive(false);
+        }
+        
     }
 }

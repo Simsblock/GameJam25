@@ -140,4 +140,19 @@ public class DropHandler : MonoBehaviour, IDropHandler, IPointerClickHandler
             clear.SetActive(true);
         }
     }
+    public void EnabClear()
+    {
+        clear.SetActive(true);
+    }
+    public void DisableClear()
+    {
+        clear.SetActive(false);
+    }
+    public void ClearHighlight()
+    {
+        if (ToAssign != null)
+        {
+            ToAssign.GetComponent<DragHandler>().ClearHighlight();
+        }
+    }
 }

@@ -11,7 +11,7 @@ public class PlayerHandler : MonoBehaviour
     public Dictionary<string,int> playerCards;
     public int curSum=0; //Total Hand Value
     [SerializeField]
-    private GameObject GameHandler;
+    private GameObject GameHandler,SPCSlotR;
     [SerializeField]
     private GameObject CardHand;
     private DisplaySpecial DisplaySpecial;
@@ -137,6 +137,7 @@ public class PlayerHandler : MonoBehaviour
 
     public void DisplaySpecialCards()
     {
+        SPCSlotR.GetComponent<DropHandler>().ClearAssigned();
         if (!DisplaySPC)
         {
             AbilityBtn.transform.localPosition = new Vector3(175, 180, 1);

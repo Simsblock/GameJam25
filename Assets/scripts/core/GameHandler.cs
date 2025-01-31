@@ -367,4 +367,9 @@ public class GameHandler : MonoBehaviour
         audio.PlaySFX(audio.buttonClickSound);
         SceneManager.LoadScene("Home");
     }
+    //getSPCSlotR
+    public DropHandler GetSPCRHandler()
+    {
+        return SPCSlotR.GetComponent<DropHandler>();
+    }
 }
