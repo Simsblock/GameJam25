@@ -1,43 +1,109 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Unity.Collections;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class Dealer : MonoBehaviour
 {
+    //General
     [SerializeField]
     private GameObject GameHandler;
-    [Tooltip("to determin the playstyle of the Dealer")]
-    [SerializeField] private int MaxVal;
-    //Display Cards
+    private AudioManager audio;
+    //General End
+
+    //Dealer AI
+    [Tooltip("Max Value where Dealer pulls another Card")]
+    [SerializeField] private int MaxVal; //17 standart
+    //Dealer AI
+
+    //Dealer Display
     [SerializeField]
-    public GameObject DealerCardParent, CardPrefab;
-    [SerializeField]
-    public Sprite CardBack;
-    private Vector3 leftCardPos;
-    //for Abilities
+    public Sprite[] Dealers;
+    private SpriteRenderer SpriteRenderer;
+    //Dealer Display End
+
+    //Dealer Cards
+    private Dictionary<string, int> DealerHand = new Dictionary<string, int>(); //Dealer Cards
+    public IReadOnlyDictionary<string,int> GetDealerHand()
+    {
+        return new ReadOnlyDictionary<string, int>(DealerHand);
+    }
+    public KeyValuePair<string, int> OpenCard { get; private set; } //The first card the Dealer pulls, is displayed to Player
+    public int ValueModifier { get; set; }
+    public int TotalValue => DealerHand.Values.Sum() + ValueModifier; //Total Value of Dealers Handcards + Modifier
+    //Dealer Cards End
+
+    //Dealer Abilities
+    private List<string> Abilities;
+
     [SerializeField]
     public GameObject Player, SPCSlotL; //Slot is ugly af, aber es geht fast und das brauchma jetzt
     private DropHandler DropHandler;
     private SpecialCardsList SpecialCardsList;
     private int dealerName;
-    private AudioManager audio;
+    //Dealer Abilities End
+
+    //Display Cards
+    [SerializeField]
+    private GameObject DealerCardParent, CardPrefab;
+    [SerializeField]
+    private Sprite CardBack;
+    private Vector3 leftCardPos;
+    //Display Cards End
 
     // Start is called before the first frame update
     void Start()
     {
+        //Load Components & Objects
         DropHandler = SPCSlotL.GetComponent<DropHandler>();
         SpecialCardsList = GameHandler.GetComponent<SpecialCardsList>();
         SpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        ChangeDealer();
         audio = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        //Initialize First Dealer
+        ChangeDealer();
     }
 
+    //Ace Check (TEMP HERE, cause used by PlayerHandler as well)
+    private bool AceCheck(bool addCard) //returnValue = if something changed
+    {
+        bool Changed=false;
+        int AceCheckValue = 1;
+        int TempFixValue = 10;
+        int BiggerValue = TotalValue;
+        int SmallerValue = GlobalData.DealerWinCond;
+        if (!addCard)
+        {
+            AceCheckValue = 11;
+            TempFixValue = -TempFixValue;
+            SmallerValue = TotalValue;
+            BiggerValue = GlobalData.DealerWinCond;
+        }
+
+        List<string> keysToModify = new List<string>();
+        foreach (string key in DealerHand.Keys)
+        {
+            if (key.Contains("A") && BiggerValue > SmallerValue && !(DealerHand[key] == AceCheckValue))
+            {
+                Changed = true;
+                ValueModifier -= TempFixValue;
+                keysToModify.Add(key);
+            }
+        }
+        foreach (string key in keysToModify)
+        {
+            if (addCard) ValueModifier += TempFixValue;
+            DealerHand[key] = AceCheckValue;
+        }
+        return Changed;
+    }
+
+    //Edit DealerHand
     public void PullInit()
     {
-        Debug.Log("INIT Dealer");
         //leftCardPos
         leftCardPos = new Vector3(0, 0, 0);
         //Pull open first Card
@@ -49,7 +115,6 @@ public class Dealer : MonoBehaviour
         card = Deck.PullCard();
         DealerHand.Add(card.Key, card.Value);
         StartCoroutine(DisplayDealerCards(card.Key));
-        Debug.Log("End of Init Dealer");
     }
     
     public IEnumerator PullRest()
@@ -61,7 +126,6 @@ public class Dealer : MonoBehaviour
     {
         TurnCardsOver();
         KeyValuePair<string, int> card;
-        List<string> keysToModify = new List<string>();
         while (TotalValue < MaxVal)
         {
             {
@@ -72,19 +136,7 @@ public class Dealer : MonoBehaviour
                 }
             }
         }
-        foreach (string key in DealerHand.Keys)
-        {
-            if (key.Contains("A") && TotalValue > 21)
-            {
-                ValueModifier -= 10;
-                keysToModify.Add(key);
-            }
-        }
-        foreach (string key in keysToModify)
-        {
-            ValueModifier += 10;
-            DealerHand[key] = 1;
-        }
+        AceCheck(true);
         if (TotalValue < MaxVal) yield return StartCoroutine(PullRestInternally());
     }
 
@@ -100,13 +152,6 @@ public class Dealer : MonoBehaviour
         }
         yield return null;
     }
-
-    public Dictionary<string, int> DealerHand = new Dictionary<string, int>();
-    public KeyValuePair<string, int> OpenCard { get; set; }
-    public int ValueModifier;
-    public int TotalValue => DealerHand.Values.Sum()+ValueModifier;
-
-
     public void PullMulti(int count) //wtf wer hat das so dumm benannt
     {
         while (count > 0)
@@ -116,22 +161,7 @@ public class Dealer : MonoBehaviour
             StartCoroutine(DisplayDealerCards(card.Key));
             count--;
         }
-
-        List<string> keysToModify = new List<string>();
-        foreach (string key in DealerHand.Keys)
-        {
-            if (key.Contains("A") && DealerHand.Values.Sum() > 21)
-            {
-                ValueModifier -= 10;
-                keysToModify.Add(key);
-            }
-        }
-        foreach (string key in keysToModify)
-        {
-            ValueModifier += 10;
-            DealerHand[key] = 1;
-        }
-
+        AceCheck(true);
     }
 
     public void AddCard(string key, int value)
@@ -139,21 +169,7 @@ public class Dealer : MonoBehaviour
         KeyValuePair<string, int> card = new KeyValuePair<string, int>(key, value);
         DealerHand.Add(card.Key, card.Value);
         DisplayDealerCards(card.Key);
-
-        List<string> keysToModify = new List<string>();
-        foreach (string nkey in DealerHand.Keys)
-        {
-            if (key.Contains("A") && TotalValue > 21)
-            {
-                ValueModifier -= 10;
-                keysToModify.Add(key);
-            }
-        }
-        foreach (string nkey in keysToModify)
-        {
-            ValueModifier += 10;
-            DealerHand[key] = 1;
-        }
+        AceCheck(true);
     }
 
     public void RemoveCard(string cardKey)
@@ -162,27 +178,13 @@ public class Dealer : MonoBehaviour
         //checks for aces too :)
         if (TotalValue < 12 && DealerHand.Keys.Any(k => k.Contains("A")))
         {
-            List<string> keysToModify = new List<string>();
-            foreach (var item in DealerHand.Where(p => p.Key.Contains("A")))
-            {
-                if (TotalValue > 21 && !(DealerHand[item.Key] == 11))
-                {
-                    ValueModifier += 10;
-                    keysToModify.Add(item.Key);
-                }
-            }
-            foreach (string key in keysToModify)
-            {
-                ValueModifier -= 10;
-                DealerHand[key] = 11;
-            }
+            AceCheck(false);
         }
     }
+    //Edit DealerHand END
 
-    [SerializeField]
-    public Sprite[] Dealers;
-    private SpriteRenderer SpriteRenderer;
-    public void ChangeDealer() //ONLY SPRITE ATM
+
+    public void ChangeDealer()
     {
         System.Random rand = new System.Random();
         int index = rand.Next(Dealers.Length);
@@ -200,7 +202,6 @@ public class Dealer : MonoBehaviour
         new string[] { "Player+1", "Switcheroo" }, //Restart is pain so no
         new string[] { "Ass", "Joker" } //Destroy makes no sense
     };
-    private List<string> Abilities;
     public IEnumerator UseAbilities()
     {
         for (int i = 0; i < 2; i++)

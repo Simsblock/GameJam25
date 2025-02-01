@@ -87,18 +87,7 @@ public class AbilityDecoder : MonoBehaviour
                         StartCoroutine(ThreeKings(details[1]));
                         break;
                     case "Switcheroo": //PD
-                        //Choose a card to switch Dealer
-                        //Remove from Dealer adn addd to player
-
-                        StartCoroutine(Switcheroo(details[1]));
-
-                        KeyValuePair<string, int> temp = Dealer.DealerHand.ElementAt(rand.Next(Dealer.DealerHand.Count));
-                        Dealer.DealerHand.Remove(temp.Key);
-                        playerHandler.playerCards.Add(temp.Key,temp.Value);
-                        //Remove from Player and add to dealer
-                        temp = playerHandler.playerCards.ElementAt(rand.Next(playerHandler.playerCards.Count));
-                        playerHandler.playerCards.Remove(temp.Key);
-                        Dealer.DealerHand.Add(temp.Key,temp.Value);
+                        //Not working
                         break;
                     case "Cashback":
                         //Gain 50% of your bet back on a bust. On a win, you only gain 75%.
@@ -153,8 +142,8 @@ public class AbilityDecoder : MonoBehaviour
     {
         if (mode == "P")
         {
-            StartCoroutine(SpawnCards(new Vector3(-2 * Dealer.DealerHand.Count, 0, -6), Dealer.DealerHand.Count, 3, Dealer.DealerHand.Keys.ToArray(), true));
-            StartCoroutine(SpawnCards(new Vector3(-2 * Dealer.DealerHand.Count, 0, -6), playerHandler.playerCards.Count, 4, playerHandler.playerCards.Keys.ToArray(), true));
+            StartCoroutine(SpawnCards(new Vector3(-2 * Dealer.GetDealerHand().Count, 0, -6), Dealer.GetDealerHand().Count, 3, Dealer.GetDealerHand().Keys.ToArray(), true));
+            StartCoroutine(SpawnCards(new Vector3(-2 * Dealer.GetDealerHand().Count, 0, -6), playerHandler.playerCards.Count, 4, playerHandler.playerCards.Keys.ToArray(), true));
         }
         else if (mode == "D")
         {
