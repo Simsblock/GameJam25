@@ -11,5 +11,5 @@ public class EffectDto : MonoBehaviour
     public int Price;
     public TMP_Text text;
     public string name;
-    public bool isDice, permanent;
+    public bool isDice, permanent,DynamicHover;
 }

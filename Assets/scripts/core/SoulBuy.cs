@@ -1,18 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class SoulBuy : MonoBehaviour,IPointerClickHandler
 {
+    [SerializeField]
+    private int price;
+    [SerializeField]
+    private TMP_Text priceTag;
     private PlayerHandler playerHandler;
     private AudioManager audio;
     
 
     public void OnPointerClick(PointerEventData eventData)
     {
-            if (PlayerPrefs.GetInt("Money") < 20000)
+            if (PlayerPrefs.GetInt("Money") < price)
             {
                 //maby animation oda so
                 return;
@@ -26,6 +31,7 @@ public class SoulBuy : MonoBehaviour,IPointerClickHandler
     {
         playerHandler = GameObject.Find("Player").GetComponent<PlayerHandler>();
         audio = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        priceTag.text=price.ToString();
     }
 
     private void PlayBuySound()

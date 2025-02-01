@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5847505244312388277
 RectTransform:
   m_ObjectHideFlags: 0
@@ -84,7 +84,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &7232037908329901673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 66785547618349940}
   - component: {fileID: 6760009505499752818}
   - component: {fileID: 3403860742021765007}
-  - component: {fileID: 2851568808036018945}
+  - component: {fileID: 3863680035276707408}
   - component: {fileID: 4029608091416069352}
   - component: {fileID: 3005024937000243798}
   - component: {fileID: 1221896216762615952}
@@ -182,7 +182,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2851568808036018945
+--- !u!114 &3863680035276707408
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -191,11 +191,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6269149082423632149}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b1564a01bfbba0419ead8ad51bed0aa, type: 3}
+  m_Script: {fileID: 11500000, guid: b0f170d33aeb25444bdd770efc85aca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   descriptionText: {fileID: 1616848534207338006}
   canvas: {fileID: 0}
+  Image: {fileID: 0}
+  PriceText: {fileID: 0}
 --- !u!114 &4029608091416069352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,6 +245,7 @@ MonoBehaviour:
   name: 
   isDice: 0
   permanent: 0
+  DynamicHover: 1
 --- !u!1 &6841438409847556112
 GameObject:
   m_ObjectHideFlags: 0

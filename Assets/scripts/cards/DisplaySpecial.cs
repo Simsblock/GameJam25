@@ -61,7 +61,6 @@ public class DisplaySpecial : MonoBehaviour
 
     public void DisplayShop()
     {
-        ViewField.SetActive(true);
         
         foreach (Transform t in content.transform)
         {
@@ -80,7 +79,7 @@ public class DisplaySpecial : MonoBehaviour
                 GameObject card = dice.ElementAt(i).Value;
                 GameObject cShop = Instantiate(prefab, content);
                 cShop.GetComponent<EffectDto>().text.text = card.GetComponent<EffectDto>().text.text;
-                cShop.GetComponent<EffectDto>().name = dice.ElementAt(i).Key;
+                //cShop.GetComponent<EffectDto>().name = dice.ElementAt(i).Key;
                 cShop.GetComponent<EffectDto>().Price = card.GetComponent<EffectDto>().Price;
                 cShop.GetComponent<Image>().sprite = diceShop[i];
                 cShop.transform.localScale = Vector3.one;

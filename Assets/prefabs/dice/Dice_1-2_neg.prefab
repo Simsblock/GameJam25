@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 3997184659655921329}
   - component: {fileID: 6629072351848618355}
   - component: {fileID: 8293257274062045784}
-  - component: {fileID: 4118732456411753551}
   - component: {fileID: 1305786134530761675}
   - component: {fileID: 5865948774652132898}
   - component: {fileID: 4440006957017474766}
+  - component: {fileID: 3575164195092477948}
   m_Layer: 5
   m_Name: Dice_1-2_neg
   m_TagString: Untagged
@@ -80,20 +80,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4118732456411753551
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1069941342852602424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b1564a01bfbba0419ead8ad51bed0aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  descriptionText: {fileID: 3493026508910475033}
-  canvas: {fileID: 0}
 --- !u!114 &1305786134530761675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,6 +127,23 @@ MonoBehaviour:
   name: 
   isDice: 1
   permanent: 0
+  DynamicHover: 1
+--- !u!114 &3575164195092477948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069941342852602424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0f170d33aeb25444bdd770efc85aca9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  descriptionText: {fileID: 3493026508910475033}
+  canvas: {fileID: 0}
+  Image: {fileID: 0}
+  PriceText: {fileID: 0}
 --- !u!1 &3493026508910475033
 GameObject:
   m_ObjectHideFlags: 0

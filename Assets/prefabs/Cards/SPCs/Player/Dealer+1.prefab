@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 7377399884369161741}
   - component: {fileID: 8870297993631714711}
   - component: {fileID: 3034976268682281246}
-  - component: {fileID: 3074773346365739302}
+  - component: {fileID: -1644196976774946292}
   - component: {fileID: 795419121187799479}
   - component: {fileID: 107073028212336242}
   - component: {fileID: 6303116800723564148}
@@ -156,7 +156,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3074773346365739302
+--- !u!114 &-1644196976774946292
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -165,11 +165,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7489955442949369063}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b1564a01bfbba0419ead8ad51bed0aa, type: 3}
+  m_Script: {fileID: 11500000, guid: b0f170d33aeb25444bdd770efc85aca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   descriptionText: {fileID: 7499705197778512109}
   canvas: {fileID: 0}
+  Image: {fileID: 0}
+  PriceText: {fileID: 0}
 --- !u!114 &795419121187799479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,6 +217,9 @@ MonoBehaviour:
   Price: 300
   text: {fileID: 485295345387701908}
   name: 
+  isDice: 0
+  permanent: 0
+  DynamicHover: 1
 --- !u!1 &7499705197778512109
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,7 +238,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1686805050114729809
 RectTransform:
   m_ObjectHideFlags: 0
@@ -299,7 +304,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &2535432529065062178
 MonoBehaviour:
   m_ObjectHideFlags: 0
