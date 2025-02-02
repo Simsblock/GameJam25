@@ -67,11 +67,11 @@ public class GameHandler : MonoBehaviour
         score.text = $"{playerHandler.curSum}";
 
         //Pause
-        if (Input.GetKeyDown(KeyCode.Escape) && ShopUI.active && !PauseUI.active)
+        if (Input.GetKeyDown(KeyCode.Escape) && ShopUI.activeInHierarchy && !PauseUI.activeInHierarchy)
         {
             PauseUI.SetActive(true);
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && PauseUI.active) Unpause();
+        else if (Input.GetKeyDown(KeyCode.Escape) && PauseUI.activeInHierarchy) Unpause();
         //Stand
         if (stand == 1)
         {

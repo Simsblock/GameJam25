@@ -5,7 +5,6 @@ using UnityEngine;
 
 public static class Deck
 {
-
     public static KeyValuePair<string, int> NextCard { get; set; } = new KeyValuePair<string, int>();
     
     public static void AddPulledCard(string key)

@@ -33,7 +33,7 @@ public class AbilityDecoder : MonoBehaviour
     {
         if (GameHandler.stand == 4 && plusOne)
         {
-            Dealer.PullMulti(drawAmt);
+            Dealer.PullMultipleCards(drawAmt);
             plusOne = false;
             drawAmt = 0;
             StartCoroutine(DisplaySPC("SPC1"));
@@ -142,8 +142,8 @@ public class AbilityDecoder : MonoBehaviour
     {
         if (mode == "P")
         {
-            StartCoroutine(SpawnCards(new Vector3(-2 * Dealer.GetDealerHand().Count, 0, -6), Dealer.GetDealerHand().Count, 3, Dealer.GetDealerHand().Keys.ToArray(), true));
-            StartCoroutine(SpawnCards(new Vector3(-2 * Dealer.GetDealerHand().Count, 0, -6), playerHandler.playerCards.Count, 4, playerHandler.playerCards.Keys.ToArray(), true));
+            StartCoroutine(SpawnCards(new Vector3(-2 * Dealer.GetHandCards().Count, 0, -6), Dealer.GetHandCards().Count, 3, Dealer.GetHandCards().Keys.ToArray(), true));
+            StartCoroutine(SpawnCards(new Vector3(-2 * Dealer.GetHandCards().Count, 0, -6), playerHandler.playerCards.Count, 4, playerHandler.playerCards.Keys.ToArray(), true));
         }
         else if (mode == "D")
         {
@@ -222,7 +222,7 @@ public class AbilityDecoder : MonoBehaviour
             if (card1.Value < card2.Value) Deck.NextCard = card1;
             else Deck.NextCard = card2;
         }
-        Dealer.PullMulti(1);
+        Dealer.PullCard();
     }
 
 
