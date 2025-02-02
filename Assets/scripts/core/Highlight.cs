@@ -30,6 +30,7 @@ public static class Highlight
 
     public static void SelectHighlightOff(GameObject go)
     {
+        Debug.Log(go.name);
         if (go == null)
         {
             Debug.LogError("SelectHighlight off no Object passed");
@@ -77,7 +78,7 @@ public static class Highlight
             return;
         }
         Color c = go.GetComponent<Image>().color;
-        if (c == null || c.a == 1)
+        if (c == null || c.a == 0)
         {
             if (c == null)
             {
@@ -85,7 +86,7 @@ public static class Highlight
             }
             return;
         }
-        c.a = 1f;
+        c.a = 0f;
         go.GetComponent<Image>().color = c;
     }
 }

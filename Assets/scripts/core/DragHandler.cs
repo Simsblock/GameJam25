@@ -17,10 +17,8 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
     [HideInInspector] public string Shopname;
     private AudioManager audio;
     private GameObject SlotL, SlotR,DiceSlot;
-    private Image SlotLImg, SlotRImg,DiceSlotImg;
     private DropHandler SlotLHandler, SlotRHandler;
     private GameObject ClearDrop;
-    private SpecialCardsList SPCList;
     private bool Assigned;
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -129,17 +127,17 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
             {
                 if (SlotRHandler != null)
                 {
-                    Debug.Log("SlotRHandler is null");
+                    
                     SlotRHandler.ClearAssigned();
                     SlotRHandler.DisableClear();
                     SlotRHandler.ToAssign = null;
                     //Assigned = false;
-                }
+                }else Debug.Log("SlotRHandler is null");
                 if (SlotLHandler != null)
                 {
-                    Debug.Log("SlotLHandler is null");
+                    
                     SlotLHandler.ToAssign = null;
-                }
+                }else Debug.Log("SlotLHandler is null");
             }
             
         }
@@ -164,15 +162,20 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
     {
             if (SlotL == null || SlotR == null || ClearDrop == null)
             {
+            Debug.Log("SMTH IS WRONG HERE");
                 FindStuff();
+            Debug.Log(SlotL.name);
+            Debug.Log(SlotR.name);
             }        
-            if (card&&SlotLImg != null && SlotRImg != null)
+            if (card&&SlotL != null && SlotR != null)
             {
+            Debug.Log(SlotL.name);
+            Debug.Log(SlotR.name);
             Highlight.FieldHighlightOn(SlotL);
-            Highlight.FieldHighlightOff(SlotR);
+            Highlight.FieldHighlightOn(SlotR);
 
             }
-            else if(!card&&DiceSlotImg != null) 
+            else if(!card&&DiceSlot != null) 
             {
             Highlight.FieldHighlightOn(DiceSlot);
             }
@@ -184,12 +187,14 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
         {
             FindStuff();
         }
-            if (card&& SlotLImg != null && SlotLImg != null)
+            if (card&& SlotL != null && SlotR != null)
             {
+            Debug.Log(SlotL.name);
+            Debug.Log(SlotR.name);
             Highlight.FieldHighlightOff(SlotL);
             Highlight.FieldHighlightOff(SlotR);
             }
-            if (!card && DiceSlotImg != null)
+            if (!card && DiceSlot != null)
             {
             Highlight.FieldHighlightOff(DiceSlot);
             }
