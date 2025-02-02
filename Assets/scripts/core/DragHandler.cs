@@ -76,6 +76,7 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
         }
         transform.SetParent(postDragParent);
         image.raycastTarget = true;
+        
         if (effects != null)
         {
             if (SlotRHandler != null)
@@ -141,6 +142,8 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
             }
             
         }
+
+
         if (Content.name.Equals("Shop"))
         {
             if (PlayerPrefs.GetInt("Money")-100 < effects.Price)
@@ -162,15 +165,10 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
     {
             if (SlotL == null || SlotR == null || ClearDrop == null)
             {
-            Debug.Log("SMTH IS WRONG HERE");
                 FindStuff();
-            Debug.Log(SlotL.name);
-            Debug.Log(SlotR.name);
             }        
             if (card&&SlotL != null && SlotR != null)
             {
-            Debug.Log(SlotL.name);
-            Debug.Log(SlotR.name);
             Highlight.FieldHighlightOn(SlotL);
             Highlight.FieldHighlightOn(SlotR);
 
@@ -189,8 +187,6 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
         }
             if (card&& SlotL != null && SlotR != null)
             {
-            Debug.Log(SlotL.name);
-            Debug.Log(SlotR.name);
             Highlight.FieldHighlightOff(SlotL);
             Highlight.FieldHighlightOff(SlotR);
             }
@@ -200,6 +196,7 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
             }
             Highlight.SelectHighlightOff(gameObject);
     }
+
 
     private IEnumerator BetShit()
     {
@@ -272,9 +269,5 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
     public void RemoveFromPlayer()
     {
         playerHandler.RemoveSpecialCard(SpecialCards.GetName(gameObject));
-    }
-    public void ClearHighlight()
-    {
-        HighlightOff(true);
     }
 }

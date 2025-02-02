@@ -40,7 +40,6 @@ public class DropHandler : MonoBehaviour, IDropHandler, IPointerClickHandler
                 }
                 if (Dropped.GetComponent<EffectDto>().preStand)
                 {
-                    Debug.Log(Dropped.GetComponent<EffectDto>().effect);
                     TriggerSPCEffect(Dropped);
                 }
                 Dropped.GetComponent<DragHandler>().RemoveFromPlayer();
