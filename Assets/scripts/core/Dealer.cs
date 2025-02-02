@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Unity.Collections;
 using UnityEngine;
-using static UnityEditor.Progress;
+//using static UnityEditor.Progress;
 
 public class Dealer : MonoBehaviour
 {
