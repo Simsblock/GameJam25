@@ -1929,7 +1929,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &666013058
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3753,26 +3753,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1225717591}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cfa86db2889f504a8b0d171c2e3d901, type: 3}
+  m_Script: {fileID: 11500000, guid: e3f22d47d16318a4aa2b70f25a29c499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameHandler: {fileID: 571277393}
+  CardParent: {fileID: 1329957888}
+  CardPrefab: {fileID: 3544959298542995658, guid: a1742591c2bf9dc409e07323b7af9a53, type: 3}
+  CardBack: {fileID: 1762930840, guid: c9ddd6f350e0b8647891e312b46d793b, type: 3}
   MaxVal: 17
   Dealers:
   - {fileID: 817662327, guid: ed0bd0fa25e54d54a93c1cc0a488b9d1, type: 3}
   - {fileID: 1017202616, guid: ed0bd0fa25e54d54a93c1cc0a488b9d1, type: 3}
   - {fileID: -1145440809, guid: ed0bd0fa25e54d54a93c1cc0a488b9d1, type: 3}
-  - {fileID: -1916677824, guid: 0286fd150842106468e1a4c0991fb0c2, type: 3}
-  - {fileID: 124034010, guid: 0286fd150842106468e1a4c0991fb0c2, type: 3}
-  - {fileID: 461315239, guid: 0286fd150842106468e1a4c0991fb0c2, type: 3}
-  - {fileID: 519305020, guid: fff05a491fc6595459e089461b13a577, type: 3}
-  - {fileID: 1199054549, guid: fff05a491fc6595459e089461b13a577, type: 3}
-  - {fileID: -1243552333, guid: fff05a491fc6595459e089461b13a577, type: 3}
   Player: {fileID: 1801515063}
   SPCSlotL: {fileID: 1046266802}
-  DealerCardParent: {fileID: 1329957888}
-  CardPrefab: {fileID: 3544959298542995658, guid: a1742591c2bf9dc409e07323b7af9a53, type: 3}
-  CardBack: {fileID: 1762930840, guid: c9ddd6f350e0b8647891e312b46d793b, type: 3}
 --- !u!1 &1248204969
 GameObject:
   m_ObjectHideFlags: 0
