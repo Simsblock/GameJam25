@@ -5,11 +5,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Unity.Collections;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class Dealer : Participant
 {
-    
     //Dealer AI
     [Tooltip("Max Value where Dealer pulls another Card")]
     [SerializeField] private int MaxVal; //17 standart
@@ -63,14 +61,14 @@ public class Dealer : Participant
         //Pull open first Card
         KeyValuePair<string, int> card = Deck.PullCard();
         OpenCard = card;
-        HandCards.Add(card.Key,card.Value);
+        HandCards.Add(card.Key, card.Value);
         StartCoroutine(DisplayCard(card.Key));
         //Pull second hidden Card
         card = Deck.PullCard();
         HandCards.Add(card.Key, card.Value);
         StartCoroutine(DisplayCard(card.Key));
     }
-    
+
     public IEnumerator PullRest()
     {
         StartCoroutine(BounceEffect(gameObject));
@@ -115,8 +113,8 @@ public class Dealer : Participant
         int index = rand.Next(Dealers.Length);
         SpriteRenderer.sprite = Dealers[index];
         index++;
-        if (index < 3) Abilities = DealerAbilities[index-1].ToList();
-        else Abilities = DealerAbilities[index/3-1].ToList();
+        if (index < 3) Abilities = DealerAbilities[index - 1].ToList();
+        else Abilities = DealerAbilities[index / 3 - 1].ToList();
         dealerName = index;
         Abilities = DealerAbilities[index % 3].ToList();
     }
@@ -264,7 +262,7 @@ public class Dealer : Participant
         float duration = 0.1f;
         float elapsedTime = 0f;
 
-        switch (dealerName%3)
+        switch (dealerName % 3)
         {
             case 0:
                 Audio.PlaySFX(Audio.DragonLaugh);
@@ -295,8 +293,4 @@ public class Dealer : Participant
 
         cardObject.transform.localPosition = originalPos; // Ensure exact original position
     }
-
-
-
-
 }
