@@ -7,8 +7,7 @@ using UnityEngine;
 public abstract class Participant : MonoBehaviour
 {
     //General
-    [SerializeField]
-    protected GameObject GameHandler;
+    protected GameHandler GameHandler;
     protected AudioManager Audio;
     protected int WinCondition;
 
@@ -22,6 +21,17 @@ public abstract class Participant : MonoBehaviour
     //Score
     public int ValueModifier { get; set; }
     public int TotalValue => HandCards.Values.Sum() + ValueModifier;
+
+    // CardDisplay
+    [SerializeField]
+    protected GameObject CardParent, CardPrefab;
+    [SerializeField]
+    protected Sprite CardBack;
+
+    private void Awake()
+    {
+        GameHandler = GameObject.Find("GameHandler").GetComponent<GameHandler>();
+    }
 
     //Methods
     protected bool AceCheck(bool addCard) //returnValue = if something changed
@@ -78,10 +88,11 @@ public abstract class Participant : MonoBehaviour
         }
     }
 
-    public void PullCard()
+    public KeyValuePair<string, int> PullCard()
     {
         KeyValuePair<string, int> card = Deck.PullCard();
         AddCard(card.Key,card.Value);
+        return card;
     }
 
     public void PullMultipleCards(int count)
@@ -92,11 +103,49 @@ public abstract class Participant : MonoBehaviour
         }
         AceCheck(true);
     }
-
+    public virtual IEnumerator ClearHand()
+    {
+        HandCards = new Dictionary<string, int>();
+        ValueModifier = 0;
+        foreach (Transform card in CardParent.transform)
+        {
+            GameObject.Destroy(card.gameObject);
+        }
+        yield return null;
+    }
 
     //Display Cards
-    public virtual IEnumerator DisplayCard(string cardKey) //public for now
+    protected virtual bool ShouldRevealCard(int childrenAmt)
     {
+        return true; // Default behavior
+    }
+
+    protected abstract Vector3 GetCardPosition(int childrenAmt);
+
+    public virtual IEnumerator DisplayCard(string cardKey)
+    {
+        GameObject card = CreateCard(cardKey);
+        int childrenAmt = CardParent.transform.childCount;
+
+        card.transform.localPosition = GetCardPosition(childrenAmt);
+
+        if (ShouldRevealCard(childrenAmt))
+        {
+            CardManager.DeckConverter(cardKey, out string suit, out int rank);
+            card.GetComponent<SpriteRenderer>().sprite = CardParent.GetComponent<CardManager>().GetCardSprite(suit, rank);
+        }
+        else
+        {
+            card.GetComponent<SpriteRenderer>().sprite = CardBack;
+        }
         yield return null;
+    }
+
+    protected GameObject CreateCard(string cardKey)
+    {
+        GameObject card = Instantiate(CardPrefab);
+        card.name = cardKey;
+        card.transform.SetParent(CardParent.transform);
+        return card;
     }
 }

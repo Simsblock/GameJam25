@@ -33,10 +33,6 @@ public class Dealer : Participant
     //Dealer Abilities End
 
     //Display Cards
-    [SerializeField]
-    private GameObject DealerCardParent, CardPrefab;
-    [SerializeField]
-    private Sprite CardBack;
     private Vector3 leftCardPos;
     //Display Cards End
 
@@ -59,54 +55,39 @@ public class Dealer : Participant
         //leftCardPos
         leftCardPos = new Vector3(0, 0, 0);
         //Pull open first Card
-        KeyValuePair<string, int> card = Deck.PullCard();
+        KeyValuePair<string, int> card = PullCard();
         OpenCard = card;
-        HandCards.Add(card.Key, card.Value);
-        StartCoroutine(DisplayCard(card.Key));
+        StartCoroutine(DisplayCard(card.Key)); //eventuell DisplayCard gleich in Pullcard einbauen?
         //Pull second hidden Card
-        card = Deck.PullCard();
-        HandCards.Add(card.Key, card.Value);
+        card = PullCard();
         StartCoroutine(DisplayCard(card.Key));
     }
 
     public IEnumerator PullRest()
     {
         StartCoroutine(BounceEffect(gameObject));
-        yield return StartCoroutine(PullRestInternally());
-    }
-    public IEnumerator PullRestInternally()
-    {
         TurnCardsOver();
         KeyValuePair<string, int> card;
         while (TotalValue < MaxVal)
         {
+            card = Deck.PullCard();
+            if (!HandCards.ContainsKey(card.Key)) //Kinda Useless Check init? cause Deck allready does the Deck-Check, what do u think Max
             {
-                card = Deck.PullCard();
-                if (!HandCards.ContainsKey(card.Key)) //Working Card
-                {
-                    yield return StartCoroutine(DisplayCardWithDelay(card));
-                }
+                AddCard(card);
+                yield return StartCoroutine(DisplayCardWithDelay(card.Key));
             }
         }
-        AceCheck(true);
-        if (TotalValue < MaxVal) yield return StartCoroutine(PullRestInternally());
+        if (TotalValue < MaxVal) yield return StartCoroutine(PullRest());
     }
 
-    public IEnumerator ClearHand()
+    public override IEnumerator ClearHand()
     {
-        //HandCards.Clear();
-        HandCards = new Dictionary<string, int>();
-        ValueModifier = 0;
+        StartCoroutine(base.ClearHand());
         OpenCard = new KeyValuePair<string, int>();
-        foreach (Transform card in DealerCardParent.transform)
-        {
-            GameObject.Destroy(card.gameObject);
-        }
         yield return null;
     }
-    //Edit HandCards END
 
-
+    //ChangeDealer
     public void ChangeDealer()
     {
         System.Random rand = new System.Random();
@@ -119,6 +100,7 @@ public class Dealer : Participant
         Abilities = DealerAbilities[index % 3].ToList();
     }
 
+    //Abilities
     private string[][] DealerAbilities = new string[][]
     {
         new string[] { "Double-Sided Blade", "ThreeKings", "TheTwins"},
@@ -210,48 +192,43 @@ public class Dealer : Participant
         yield return null;
     }
 
-
-    public override IEnumerator DisplayCard(string cardKey)
+    //Display Card
+    protected override bool ShouldRevealCard(int childrenAmt)
     {
-        GameObject card = Instantiate(CardPrefab);
-        card.transform.localScale = new Vector3(2.5f, 3f, 2.5f);
-        card.name = cardKey;
-        card.transform.SetParent(DealerCardParent.transform);
+        return childrenAmt == 1 || GameHandler.stand >= 3;
+    }
+
+    protected override Vector3 GetCardPosition(int childrenAmt)
+    {
         Vector3 cardPos = new Vector3(1.3f, 0f, 0f);
-        int childrenAmt = DealerCardParent.transform.childCount;
-        // Check if first
         if (childrenAmt == 1)
         {
-            cardPos = new Vector3(0f, 0f, 0f);
+            cardPos = Vector3.zero;
             leftCardPos = cardPos;
-        } else leftCardPos += cardPos;
-        if (childrenAmt == 1 || GameHandler.GetComponent<GameHandler>().stand >= 3)
-        {
-            CardManager.DeckConverter(cardKey, out string suit, out int rank);
-            Sprite s = DealerCardParent.GetComponent<CardManager>().GetCardSprite(suit, rank);
-            card.GetComponent<SpriteRenderer>().sprite = s;
         }
-        else card.GetComponent<SpriteRenderer>().sprite = CardBack;
-        card.transform.localPosition = leftCardPos;
-        yield return null;
+        else
+        {
+            leftCardPos += cardPos;
+        }
+        return leftCardPos;
     }
 
     public void TurnCardsOver()
     {
-        foreach (Transform child in DealerCardParent.transform)
+        foreach (Transform child in CardParent.transform)
         {
             string cardKey = child.name;
             CardManager.DeckConverter(cardKey, out string suit, out int rank);
-            Sprite s = DealerCardParent.GetComponent<CardManager>().GetCardSprite(suit, rank);
+            Sprite s = CardParent.GetComponent<CardManager>().GetCardSprite(suit, rank);
             child.GetComponent<SpriteRenderer>().sprite = s;
         }
     }
+
     //Animation
-    private IEnumerator DisplayCardWithDelay(KeyValuePair<string, int> card)
+    private IEnumerator DisplayCardWithDelay(string cardKey)
     {
         yield return new WaitForSeconds(0.6f);
-        HandCards.Add(card.Key, card.Value);
-        yield return StartCoroutine(DisplayCard(card.Key));
+        yield return StartCoroutine(DisplayCard(cardKey));
     }
 
     private IEnumerator BounceEffect(GameObject cardObject)
