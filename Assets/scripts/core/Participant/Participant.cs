@@ -31,6 +31,7 @@ public abstract class Participant : MonoBehaviour
     private void Awake()
     {
         GameHandler = GameObject.Find("GameHandler").GetComponent<GameHandler>();
+        Audio = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     //Methods
@@ -79,7 +80,7 @@ public abstract class Participant : MonoBehaviour
         AceCheck(true);
     }
 
-    public void RemoveCard(string cardKey, int WinCondition)
+    public void RemoveCard(string cardKey)
     {
         HandCards.Remove(cardKey);
         if (TotalValue <= WinCondition-10 && HandCards.Keys.Any(k => k.Contains("A")))
@@ -91,6 +92,7 @@ public abstract class Participant : MonoBehaviour
     public KeyValuePair<string, int> PullCard()
     {
         KeyValuePair<string, int> card = Deck.PullCard();
+        RandomDrawSound();
         AddCard(card.Key,card.Value);
         return card;
     }
@@ -147,5 +149,30 @@ public abstract class Participant : MonoBehaviour
         card.name = cardKey;
         card.transform.SetParent(CardParent.transform);
         return card;
+    }
+
+    //Audio
+    protected void RandomDrawSound()
+    {
+        System.Random r = new System.Random();
+        switch (r.Next(5))
+        {
+            case 0:
+                Audio.PlaySFX(Audio.drawCard);
+                break;
+            case 1:
+                Audio.PlaySFX(Audio.drawCard1);
+                break;
+            case 2:
+                Audio.PlaySFX(Audio.drawCard2);
+                break;
+            case 3:
+                Audio.PlaySFX(Audio.drawCard3);
+                break;
+            case 4:
+                Audio.PlaySFX(Audio.drawCard4);
+                break;
+        }
+
     }
 }

@@ -13,7 +13,7 @@ public class GameHandler : MonoBehaviour
     private GameObject Player,Dealer,ShopKeep;
     [SerializeField]
     private GameObject GameUI, ShopUI;
-    private PlayerHandler playerHandler;
+    private Player playerHandler;
     private Dealer dealer;
     [SerializeField]
     public TMP_Text bet_text, money, score, dealerScore;
@@ -46,7 +46,7 @@ public class GameHandler : MonoBehaviour
         win.SetActive(false);
         loose.SetActive(false);
         draw.SetActive(false);
-        playerHandler = Player.GetComponent<PlayerHandler>();
+        playerHandler = Player.GetComponent<Player>();
         dealer = Dealer.GetComponent<Dealer>();
         GameUI.SetActive(false);
         PauseUI.SetActive(false);
@@ -64,7 +64,7 @@ public class GameHandler : MonoBehaviour
     {
         //Score and Money Display
         money.text = $"{PlayerPrefs.GetInt("Money")}";
-        score.text = $"{playerHandler.curSum}";
+        score.text = $"{playerHandler.TotalValue}";
 
         //Pause
         if (Input.GetKeyDown(KeyCode.Escape) && ShopUI.activeInHierarchy && !PauseUI.activeInHierarchy)
@@ -111,7 +111,7 @@ public class GameHandler : MonoBehaviour
         audio.PlaySFX(audio.shuffleCards);
         //wait ig n such
         dealer.PullInit();
-        playerHandler.PullMulti(2); //Init
+        playerHandler.PullMultipleCards(2); //Init
         //Timer
         RemainingTime = MaxTime;
         TimeIsRunning = true;
@@ -142,33 +142,33 @@ public class GameHandler : MonoBehaviour
 
         dealerScore.text = $"{dealer.TotalValue}";
         //Win or Loose?
-        if (dealer.TotalValue > GlobalData.DealerWinCond && playerHandler.curSum <= GlobalData.PlayerWinCond)
+        if (dealer.TotalValue > GlobalData.DealerWinCond && playerHandler.TotalValue <= GlobalData.PlayerWinCond)
         {
             PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money") + PlayerPrefs.GetInt("Bet") * GlobalData.BetPayoutRate / 100); //win
             //win.SetActive(true);
            StartCoroutine( ParticelSystemStart());
             audio.PlaySFX(audio.winSound);
         }
-        else if (playerHandler.curSum > GlobalData.PlayerWinCond)
+        else if (playerHandler.TotalValue > GlobalData.PlayerWinCond)
         {
             PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money") - PlayerPrefs.GetInt("Bet") * GlobalData.BetLossRate / 100); //loss
             //loose.SetActive(true);
             audio.PlaySFX(audio.loseMoney);
         }
-        else if (playerHandler.curSum < dealer.TotalValue)
+        else if (playerHandler.TotalValue < dealer.TotalValue)
         {
             PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money") - PlayerPrefs.GetInt("Bet") * GlobalData.BetLossRate / 100); //loss
             //loose.SetActive(true);
             audio.PlaySFX(audio.loseMoney);
         }
-        else if (playerHandler.curSum > dealer.TotalValue)
+        else if (playerHandler.TotalValue > dealer.TotalValue)
         {
             PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money") + PlayerPrefs.GetInt("Bet") * GlobalData.BetPayoutRate / 100); //win
             //win.SetActive(true);
             StartCoroutine(ParticelSystemStart());
             audio.PlaySFX(audio.winSound);
         }
-        else if (playerHandler.curSum == dealer.TotalValue)
+        else if (playerHandler.TotalValue == dealer.TotalValue)
         {
             //draw.SetActive(true);
         }
@@ -188,7 +188,7 @@ public class GameHandler : MonoBehaviour
         yield return new WaitForSeconds(0.7f);
         //Clear UI
         HideUI();
-        StartCoroutine(playerHandler.ClearBaseCards());
+        StartCoroutine(playerHandler.ClearHand());
 
         StartCoroutine(dealer.ClearHand());
         // Reset win/lose/draw images
