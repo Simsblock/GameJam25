@@ -1,0 +1,193 @@
+[
+      {
+        "effect": "Ass:P",
+        "preStand": true,
+        "Used": false,
+        "Price": 1000,
+        "text": null,
+        "name": "Ass",
+        "Description": "Add an ace to your Hand",
+        "isDice": false,
+        "permanent": false,
+        "DynamicHover": true
+      },
+      {
+        "effect": "Cashback",
+        "preStand": true,
+        "Used": false,
+        "Price": 120,
+        "text": null,
+        "name": "Cashback",
+        "Description": "You retain 50% of your Bet, On a Win you only gain 70%",
+        "isDice": false,
+        "permanent": true,
+        "DynamicHover": true
+      },
+      {
+        "effect": "draw:1:D",
+        "preStand": true,
+        "Used": false,
+        "Price": 300,
+        "text": null,
+        "name": "Dealer+1",
+        "Description": "The opponent draws 1",
+        "isDice": true,
+        "permanent": false,
+        "DynamicHover": true
+      },
+      {
+        "effect": "Destroy",
+        "preStand": true,
+        "Used": false,
+        "Price": 500,
+        "text": null,
+        "name": "Destroy",
+        "Description": "Annull Enemies Played Effect",
+        "isDice": false,
+        "permanent": false,
+        "DynamicHover": true
+      },{
+        "effect": "Gambit",
+        "preStand": true,
+        "Used": false,
+        "Price": 1000,
+        "text": null,
+        "name": "Gambit",
+        "Description": "The bet gets doubled, however on a loss you loose double",
+        "isDice": false,
+        "permanent": false,
+        "DynamicHover": true
+      },{
+        "effect": "Joker:P",
+        "preStand": true,
+        "Used": false,
+        "Price": 1500,
+        "text": null,
+        "name": "Joker",
+        "Description": "Pull a card. Choose the card’s value among 1, 5 or 10.",
+        "isDice": false,
+        "permanent": false,
+        "DynamicHover": true
+      },{
+        "effect": "Piggibank",
+        "preStand": true,
+        "Used": false,
+        "Price": 100,
+        "text": null,
+        "name": "Piggibank",
+        "Description": "Allows you to change your current bet",
+        "isDice": false,
+        "permanent": false,
+        "DynamicHover": true
+      },{
+        "effect": "Restart",
+        "preStand": true,
+        "Used": false,
+        "Price": 800,
+        "text": null,
+        "name": "Restart",
+        "Description": "Allows you to change your current bet",
+        "isDice": false,
+        "permanent": false,
+        "DynamicHover": true
+      },{
+        "effect": "Seer",
+        "preStand": true,
+        "Used": false,
+        "Price": 350,
+        "text": null,
+        "name": "Seer",
+        "Description": "Look at the next card in the card pile.",
+        "isDice": false,
+        "permanent": false,
+        "DynamicHover": true
+      },{
+        "effect": "Shortcut",
+        "preStand": false,
+        "Used": false,
+        "Price": 1500,
+        "text": null,
+        "name": "Shortcut",
+        "Description": "The cutoff gets reduced to 17. If your count exceeds 17 you lose immediately.",
+        "isDice": false,
+        "permanent": false,
+        "DynamicHover": true
+      },{
+        "effect": "TheTwins:P",
+        "preStand": true,
+        "Used": false,
+        "Price": 900,
+        "text": null,
+        "name": "TheTwins",
+        "Description": "Pull 2 cards and look at them. Choose one to add to your Hand.",
+        "isDice": false,
+        "permanent": false,
+        "DynamicHover": true
+      },{
+        "effect": "ThreeKings:P",
+        "preStand": false,
+        "Used": false,
+        "Price": 100,
+        "text": null,
+        "name": "ThreeKings",
+        "Description": "This acts as a -3 card, reducing your final score by 3.",
+        "isDice": false,
+        "permanent": false,
+        "DynamicHover": true
+      },{
+        "effect": "diceRoll:1.2",
+        "preStand": false,
+        "Used": false,
+        "Price": 200,
+        "text": null,
+        "name": "Dice_d2",
+        "Description": "Rolls between 1 and 2.",
+        "isDice": true,
+        "permanent": false,
+        "DynamicHover": true
+      },{
+        "effect": "diceRoll:-2.-1",
+        "preStand": false,
+        "Used": false,
+        "Price": 200,
+        "text": null,
+        "name": "Dice_d-2",
+        "Description": "Rolls between -1 and -2.",
+        "isDice": true,
+        "permanent": false,
+        "DynamicHover": true
+      },{
+        "effect": "diceRoll:1.4",
+        "preStand": false,
+        "Used": false,
+        "Price": 300,
+        "text": null,
+        "name": "Dice_d4",
+        "Description": "Rolls between 1 and 4.",
+        "isDice": true,
+        "permanent": false,
+        "DynamicHover": true
+      },{
+        "effect": "diceRoll:-4.-1",
+        "preStand": false,
+        "Used": false,
+        "Price": 300,
+        "text": null,
+        "name": "Dice_d-4",
+        "Description": "Rolls between -1 and -4.",
+        "isDice": true,
+        "permanent": false,
+        "DynamicHover": true
+      },{
+        "effect": "diceRoll:1.6",
+        "preStand": false,
+        "Used": false,
+        "Price": 300,
+        "text": null,
+        "name": "Dice_Default",
+        "Description": "Rolls between 1 and 6.",
+        "isDice": true,
+        "permanent": false,
+        "DynamicHover": true
+      }
+]

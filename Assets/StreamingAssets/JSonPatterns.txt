@@ -1,0 +1,25 @@
+PlayerSPEffect 
+The Dice and SpecialCard effects that the player has acces too
+{
+        "effect": "",
+        "preStand": ,
+        "Used": false,
+        "Price": ,
+        "text": null,
+        "name": "",
+        "Description": "",
+        "isDice": ,
+        "permanent": ,
+        "DynamicHover": true
+      }
+
+string Effect -> determenst what the card does
+bool preStand -> determins wether the card is triggered on place or once the stand button is pressed
+bool Used -> used to make sure a card is locked once placed
+int Price -> the price a card has in the shop
+TMP_TEXT text -> used for the description hover
+string name -> the name of the card
+string Description -> the Description text
+bool isDice -> used to determin where a card should be placed and how it behaves
+bool permanent -> wether a card is deleted once used or gets reobtained after the round ends (only garantees a single instance remains)
+bool DynamicHover -> used to determen wether the hover objects should follow the cursor or be static

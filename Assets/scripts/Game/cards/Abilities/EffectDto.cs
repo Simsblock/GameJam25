@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 
 [Serializable]
-public class EffectDto
+public class EffectDto:MonoBehaviour
 {
     public string effect;
     public bool preStand;

@@ -22,7 +22,7 @@ public class HomeHandler : MonoBehaviour
         LoaderBtn.interactable = GlobalData.LoadableCheck();
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         audioManager.ChangeBGMusic(audioManager.shopBackround);
-        StartCoroutine(JsonReader.ReadJsonTo<List<EffectDto>>("SPCEffects.json", effect =>
+        StartCoroutine(JsonReader.ReadJsonTo<List<EffectDto>>("PlayerSPEffects.json", effect =>
         {
             if (effect != null)
             {
