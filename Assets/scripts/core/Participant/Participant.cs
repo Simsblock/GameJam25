@@ -28,6 +28,7 @@ public abstract class Participant : MonoBehaviour
     [SerializeField]
     protected Sprite CardBack;
 
+
     private void Awake()
     {
         GameHandler = GameObject.Find("GameHandler").GetComponent<GameHandler>();
