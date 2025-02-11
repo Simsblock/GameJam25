@@ -243,6 +243,7 @@ MonoBehaviour:
   Price: 1000
   text: {fileID: 6936758651910944960}
   name: 
+  Description: 
   isDice: 0
   permanent: 0
   DynamicHover: 1

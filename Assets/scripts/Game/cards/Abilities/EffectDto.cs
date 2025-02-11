@@ -5,13 +5,13 @@ using TMPro;
 using UnityEngine;
 
 [Serializable]
-public class EffectDto : MonoBehaviour
+public class EffectDto
 {
     public string effect;
     public bool preStand;
     public bool Used;
     public int Price;
-    public TMP_Text text;
-    public string name;
+    public TMP_Text? text;
+    public string name,Description;
     public bool isDice, permanent,DynamicHover;
 }

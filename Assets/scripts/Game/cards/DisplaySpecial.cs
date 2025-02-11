@@ -16,6 +16,7 @@ public class DisplaySpecial : MonoBehaviour
     private bool Displaydice;
     [SerializeField]
     private List<Sprite> diceShop;
+    
     //[SerializeField]
     //private float spaicingAngle, radius, totalAngle;
     //private float spaicingInternal;
