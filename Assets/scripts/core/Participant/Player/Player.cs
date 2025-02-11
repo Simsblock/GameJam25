@@ -21,8 +21,12 @@ public class Player : Participant
     [SerializeField]
     private Button AbilityBtn;
 
+    [SerializeField]
+    private List<List<Sprite>> uwuw;
+
     void Awake()
     {
+        ParentAwake();
         DisplaySpecial = CardHand.GetComponent<DisplaySpecial>();
         CM = CardParent.GetComponent<CardManager>();
     }

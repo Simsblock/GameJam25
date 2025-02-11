@@ -28,7 +28,7 @@ public abstract class Participant : MonoBehaviour
     [SerializeField]
     protected Sprite CardBack;
 
-    private void Awake()
+    protected void ParentAwake()
     {
         GameHandler = GameObject.Find("GameHandler").GetComponent<GameHandler>();
         Audio = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();

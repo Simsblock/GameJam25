@@ -1770,7 +1770,6 @@ MonoBehaviour:
   - {fileID: -740738664, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
   - {fileID: -1664188633, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
   - {fileID: 1911769147, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
-  player: {fileID: 1801515063}
   BetUi: {fileID: 667059521}
 --- !u!1 &595710132
 GameObject:
@@ -3764,8 +3763,6 @@ MonoBehaviour:
   - {fileID: 817662327, guid: ed0bd0fa25e54d54a93c1cc0a488b9d1, type: 3}
   - {fileID: 1017202616, guid: ed0bd0fa25e54d54a93c1cc0a488b9d1, type: 3}
   - {fileID: -1145440809, guid: ed0bd0fa25e54d54a93c1cc0a488b9d1, type: 3}
-  Player: {fileID: 1801515063}
-  SPCSlotL: {fileID: 1046266802}
 --- !u!1 &1248204969
 GameObject:
   m_ObjectHideFlags: 0
@@ -9320,60 +9317,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1414739481}
   m_CullTransparentMesh: 1
---- !u!1 &1418116609
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1418116611}
-  - component: {fileID: 1418116610}
-  m_Layer: 5
-  m_Name: PlayerButtonHandler
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1418116610
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1418116609}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6062a10eec1ac54488a75da0f4e2b1d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1801515063}
-  Dealer: {fileID: 1225717591}
-  hitBtn: {fileID: 184939222}
-  standBtn: {fileID: 1744321591}
-  GameHandler: {fileID: 571277393}
-  BetUi: {fileID: 667059521}
---- !u!224 &1418116611
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1418116609}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 50, y: -22}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1441927233
 GameObject:
   m_ObjectHideFlags: 0
@@ -10995,12 +10938,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4505b2f74fe7cfb4d8769cd0760589e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curSum: 0
-  GameHandler: {fileID: 571277393}
+  CardParent: {fileID: 355619182}
+  CardPrefab: {fileID: 1508639341}
+  CardBack: {fileID: 0}
   SPCSlotR: {fileID: 1751378607}
   CardHand: {fileID: 623070982}
-  CardPrefab: {fileID: 1508639341}
-  CardParent: {fileID: 355619182}
   AbilityBtn: {fileID: 53741036}
 --- !u!1 &1840568847
 GameObject:
@@ -12212,7 +12154,6 @@ SceneRoots:
   - {fileID: 1225717593}
   - {fileID: 1801515064}
   - {fileID: 571277395}
-  - {fileID: 1418116611}
   - {fileID: 1579593750}
   - {fileID: 623070984}
   - {fileID: 1054219269}

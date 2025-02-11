@@ -39,6 +39,7 @@ public class Dealer : Participant
     void Awake()
     {
         //Load Components & Objects
+        ParentAwake();
         Player = GameObject.Find("Player").GetComponent<Player>();
         DropHandler = GameObject.Find("SPCSlotL").GetComponent<DropHandler>(); //Could be betta
         SpecialCardsList = GameHandler.GetComponent<SpecialCardsList>();
