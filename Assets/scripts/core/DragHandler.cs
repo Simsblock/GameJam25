@@ -12,7 +12,7 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
     private Image image;
     private Transform Content;
     private EffectDto effects;
-    private PlayerHandler playerHandler;
+    private Player playerHandler;
     private SpecialCardsList SpecialCards;
     [HideInInspector] public string Shopname;
     private AudioManager audio;
@@ -214,7 +214,7 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
     {
         effects = GetComponent<EffectDto>();
         Content = transform.parent;
-        playerHandler = GameObject.Find("Player").GetComponent<PlayerHandler>();
+        playerHandler = GameObject.Find("Player").GetComponent<Player>();
         SpecialCards =GameObject.Find("GameHandler").GetComponent<SpecialCardsList>();
         audio = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         SlotRHandler = GameObject.Find("GameHandler").GetComponent<GameHandler>().GetSPCRHandler();

@@ -9,13 +9,13 @@ public class AbilityDecoder : MonoBehaviour
 {
     [SerializeField]
     internal GameHandler GameHandler;
-    internal PlayerHandler playerHandler;
+    internal Player playerHandler;
     internal Dealer Dealer;
     System.Random rand = new System.Random();
     [SerializeField]
     internal Sprite[] SPCSprites;
     [SerializeField]
-    private GameObject player,BetUi;
+    private GameObject BetUi;
     //+1
     private bool plusOne=false;
     private int drawAmt=0;
@@ -23,7 +23,7 @@ public class AbilityDecoder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerHandler = player.GetComponent<PlayerHandler>();
+        playerHandler = GameObject.Find("Player").GetComponent<Player>();
         Dealer = GameObject.Find("Dealer").GetComponent<Dealer>();
         GameHandler = GameObject.Find("GameHandler").GetComponent<GameHandler>();
         audioManager = GameObject.Find("AudioHandler").GetComponent<AudioManager>();
@@ -61,7 +61,7 @@ public class AbilityDecoder : MonoBehaviour
                         if (details[2] == "P")
                         {
                             StartCoroutine(DisplaySPC("SPC1"));
-                            playerHandler.PullMulti(int.Parse(details[1]));
+                            playerHandler.PullMultipleCards(int.Parse(details[1]));
                         }
                         if (details[2] == "D")
                         {
@@ -76,7 +76,7 @@ public class AbilityDecoder : MonoBehaviour
                     case "diceRoll":
                         Debug.Log(details[1]);
                         string[] numbers = details[1].Split(".");
-                        playerHandler.curSum+=(rand.Next(int.Parse(numbers[0]), int.Parse(numbers[1])+1));
+                        playerHandler.ValueModifier+=(rand.Next(int.Parse(numbers[0]), int.Parse(numbers[1])+1));
                         break;
                     //actual abilities laut notion
                     case "Seer":
@@ -143,7 +143,7 @@ public class AbilityDecoder : MonoBehaviour
         if (mode == "P")
         {
             StartCoroutine(SpawnCards(new Vector3(-2 * Dealer.GetHandCards().Count, 0, -6), Dealer.GetHandCards().Count, 3, Dealer.GetHandCards().Keys.ToArray(), true));
-            StartCoroutine(SpawnCards(new Vector3(-2 * Dealer.GetHandCards().Count, 0, -6), playerHandler.playerCards.Count, 4, playerHandler.playerCards.Keys.ToArray(), true));
+            StartCoroutine(SpawnCards(new Vector3(-2 * Dealer.GetHandCards().Count, 0, -6), playerHandler.GetHandCards().Count, 4, playerHandler.GetHandCards().Keys.ToArray(), true));
         }
         else if (mode == "D")
         {
@@ -168,7 +168,7 @@ public class AbilityDecoder : MonoBehaviour
     private IEnumerator ThreeKings(string mode)
     {
         yield return StartCoroutine(DisplaySPC("SPC4"));
-        if (mode == "P") playerHandler.curSum -= 3;
+        if (mode == "P") playerHandler.ValueModifier -= 3;
         else if (mode == "D") Dealer.ValueModifier -= 3;
     }
     private IEnumerator DisplaySPC(string SPC)
@@ -297,12 +297,12 @@ public class AbilityDecoder : MonoBehaviour
 
     private IEnumerator Restart()
     {
-        StartCoroutine(playerHandler.ClearBaseCards());
+        StartCoroutine(playerHandler.ClearHand());
         yield return StartCoroutine(Dealer.ClearHand());
         Deck.Clear();
         //Reset Cards
         Dealer.PullInit();
-        playerHandler.PullMulti(2);
+        playerHandler.PullMultipleCards(2);
     }
 }
 

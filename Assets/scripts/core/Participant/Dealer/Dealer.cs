@@ -23,10 +23,9 @@ public class Dealer : Participant
     public KeyValuePair<string, int> OpenCard { get; private set; } //The first card the Dealer pulls, is displayed to Player
 
     //Dealer Abilities
+    private Player Player;
     private List<string> Abilities;
 
-    [SerializeField]
-    public GameObject Player, SPCSlotL; //Slot is ugly af, aber es geht fast und das brauchma jetzt
     private DropHandler DropHandler;
     private SpecialCardsList SpecialCardsList;
     private int dealerName;
@@ -37,14 +36,19 @@ public class Dealer : Participant
     //Display Cards End
 
     // Start is called before the first frame update
+    void Awake()
+    {
+        //Load Components & Objects
+        ParentAwake();
+        Player = GameObject.Find("Player").GetComponent<Player>();
+        DropHandler = GameObject.Find("SPCSlotL").GetComponent<DropHandler>(); //Could be betta
+        SpecialCardsList = GameHandler.GetComponent<SpecialCardsList>();
+        SpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+    }
+    
     void Start()
     {
         WinCondition = GlobalData.DealerWinCond;
-        //Load Components & Objects
-        DropHandler = SPCSlotL.GetComponent<DropHandler>();
-        SpecialCardsList = GameHandler.GetComponent<SpecialCardsList>();
-        SpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        Audio = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         //Initialize First Dealer
         ChangeDealer();
     }
@@ -112,7 +116,6 @@ public class Dealer : Participant
         for (int i = 0; i < 2; i++)
         {
             System.Random rand = new System.Random();
-            PlayerHandler playerHandler = Player.GetComponent<PlayerHandler>();
             // Over 21 abilities
             string[] Filter = new string[] { };
             if (TotalValue > 21)
@@ -121,7 +124,7 @@ public class Dealer : Participant
             }
 
             // Player High Number
-            else if (playerHandler != null && playerHandler.curSum >= 17 && playerHandler.curSum <= 21)
+            else if (Player != null && Player.TotalValue >= 17 && Player.TotalValue <= 21)
             {
                 Debug.Log("whyy");
                 Filter = new string[] { "Player+1" }; //"Switcheroo"

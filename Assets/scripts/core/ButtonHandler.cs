@@ -40,7 +40,7 @@ public class ButtonHandler : MonoBehaviour
     {
         if (hitBtn != null && player != null)
         {
-            hitBtn.interactable = player.GetComponent<PlayerHandler>().curSum < 21 && !isHitButtonCooldown;
+            hitBtn.interactable = player.GetComponent<Player>().TotalValue < 21 && !isHitButtonCooldown;
         }
         if (standBtn != null && GameHandlerScript != null)
         {
@@ -51,7 +51,7 @@ public class ButtonHandler : MonoBehaviour
     //player buttons
     public void Hit()
     {
-        player.GetComponent<PlayerHandler>().PullCard();
+        player.GetComponent<Player>().PullCard();
         StartCoroutine(ReenableButtonAfterDelay(hitBtn, 0.1f));
         isHitButtonCooldown = true;
         audioManager.PlaySFX(audioManager.buttonClickSound);
@@ -81,7 +81,7 @@ public class ButtonHandler : MonoBehaviour
 
     public void DisplaySPC()
     {
-        player.GetComponent<PlayerHandler>().DisplaySpecialCards();
+        player.GetComponent<Player>().DisplaySpecialCards();
     }
 
     //betBtn

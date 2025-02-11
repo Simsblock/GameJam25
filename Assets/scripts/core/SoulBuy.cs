@@ -11,7 +11,7 @@ public class SoulBuy : MonoBehaviour,IPointerClickHandler
     private int price;
     [SerializeField]
     private TMP_Text priceTag;
-    private PlayerHandler playerHandler;
+    private Player playerHandler;
     private AudioManager audio;
     
 
@@ -29,7 +29,7 @@ public class SoulBuy : MonoBehaviour,IPointerClickHandler
     // Start is called before the first frame update
     void Start()
     {
-        playerHandler = GameObject.Find("Player").GetComponent<PlayerHandler>();
+        playerHandler = GameObject.Find("Player").GetComponent<Player>();
         audio = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         priceTag.text=price.ToString();
     }
