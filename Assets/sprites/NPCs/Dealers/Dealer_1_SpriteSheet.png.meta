@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0286fd150842106468e1a4c0991fb0c2
+guid: 6f520a83aaa075540b633804e1e732ef
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dealer_2_SpriteSheet_0
+      name: Dealer_1_SpriteSheet_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 172
-        width: 108
-        height: 86
+        y: 222
+        width: 82
+        height: 111
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e73a6fed88f809247ba8d2a8de08e29f
-      internalID: -1916677824
+      spriteID: a44cdaf7927e441439eb874da5d3116d
+      internalID: 395910294
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dealer_2_SpriteSheet_1
+      name: Dealer_1_SpriteSheet_1
       rect:
         serializedVersion: 2
-        x: 108
-        y: 172
-        width: 108
-        height: 86
+        x: 82
+        y: 222
+        width: 82
+        height: 111
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +132,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c0dfeafb0fd97dd478de7fdb5e63f0fe
-      internalID: 124034010
+      spriteID: 9c09b7f5460694b44ada7060ddb41dc9
+      internalID: 930186040
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dealer_2_SpriteSheet_2
+      name: Dealer_1_SpriteSheet_2
       rect:
         serializedVersion: 2
-        x: 216
-        y: 172
-        width: 108
-        height: 86
+        x: 164
+        y: 222
+        width: 82
+        height: 111
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +153,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9a3ca88db1558a943898814369a7db59
-      internalID: 461315239
+      spriteID: d4f33ee408355864484797ff069fb979
+      internalID: -521826435
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dealer_2_SpriteSheet_3
+      name: Dealer_1_SpriteSheet_3
       rect:
         serializedVersion: 2
         x: 0
-        y: 86
-        width: 108
-        height: 86
+        y: 111
+        width: 82
+        height: 111
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,20 +174,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b7a64e64b07c5eb408d3cf03a757225a
-      internalID: -386771922
+      spriteID: b64cbd1ddb0aa484ea500b5ee3541795
+      internalID: 1199832202
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dealer_2_SpriteSheet_4
+      name: Dealer_1_SpriteSheet_4
       rect:
         serializedVersion: 2
-        x: 108
-        y: 86
-        width: 108
-        height: 86
+        x: 82
+        y: 111
+        width: 82
+        height: 111
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,20 +195,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e5c41d3d6ef6eca429148069fff2f92d
-      internalID: -47390603
+      spriteID: 3fde37dd29e689e4aa2986ad23046ea9
+      internalID: -568969955
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dealer_2_SpriteSheet_5
+      name: Dealer_1_SpriteSheet_5
       rect:
         serializedVersion: 2
-        x: 216
-        y: 86
-        width: 108
-        height: 86
+        x: 164
+        y: 111
+        width: 82
+        height: 111
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,20 +216,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 68a8fb57e69628947b274712384b0a87
-      internalID: -568717144
+      spriteID: 7f270c20cdb9b0f4caccf34d0f73a33c
+      internalID: -1625652117
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dealer_2_SpriteSheet_6
+      name: Dealer_1_SpriteSheet_6
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 108
-        height: 86
+        width: 82
+        height: 111
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,20 +237,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c9db215f8d73de247af8f76d4a7afac3
-      internalID: 2087294211
+      spriteID: 40e203bf7ca60574d98aedcfecc44879
+      internalID: -1905314804
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dealer_2_SpriteSheet_7
+      name: Dealer_1_SpriteSheet_7
       rect:
         serializedVersion: 2
-        x: 108
+        x: 82
         y: 0
-        width: 108
-        height: 86
+        width: 82
+        height: 111
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -258,20 +258,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a6ce078128fffb4ca5939803f810759
-      internalID: -165844406
+      spriteID: 84ef87681cefd0044b08eb62bc581980
+      internalID: 1169798822
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dealer_2_SpriteSheet_8
+      name: Dealer_1_SpriteSheet_8
       rect:
         serializedVersion: 2
-        x: 216
+        x: 164
         y: 0
-        width: 108
-        height: 86
+        width: 82
+        height: 111
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -279,8 +279,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f012d30e2a873b644aba4ba7ec3cf0ee
-      internalID: 826285051
+      spriteID: b74809de96248fb47ac094a6acc0beba
+      internalID: 1855359599
       vertices: []
       indices: 
       edges: []
@@ -296,15 +296,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Dealer_2_SpriteSheet_0: -1916677824
-      Dealer_2_SpriteSheet_1: 124034010
-      Dealer_2_SpriteSheet_2: 461315239
-      Dealer_2_SpriteSheet_3: -386771922
-      Dealer_2_SpriteSheet_4: -47390603
-      Dealer_2_SpriteSheet_5: -568717144
-      Dealer_2_SpriteSheet_6: 2087294211
-      Dealer_2_SpriteSheet_7: -165844406
-      Dealer_2_SpriteSheet_8: 826285051
+      Dealer_1_SpriteSheet_0: 395910294
+      Dealer_1_SpriteSheet_1: 930186040
+      Dealer_1_SpriteSheet_2: -521826435
+      Dealer_1_SpriteSheet_3: 1199832202
+      Dealer_1_SpriteSheet_4: -568969955
+      Dealer_1_SpriteSheet_5: -1625652117
+      Dealer_1_SpriteSheet_6: -1905314804
+      Dealer_1_SpriteSheet_7: 1169798822
+      Dealer_1_SpriteSheet_8: 1855359599
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

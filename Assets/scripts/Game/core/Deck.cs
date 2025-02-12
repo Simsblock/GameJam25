@@ -16,7 +16,6 @@ public static class Deck
     {
         System.Random rand = new System.Random();
         KeyValuePair<string, int> pulled;
-        Debug.Log(PulledCards.Count);
         if (PulledCards.Count >= DeckCards.Count)
         {
             Debug.Log("Kooked");

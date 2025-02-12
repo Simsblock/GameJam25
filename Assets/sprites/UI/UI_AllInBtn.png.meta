@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ed0bd0fa25e54d54a93c1cc0a488b9d1
+guid: e538595389ee21a48bd718464493bad7
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dealer_1_Sprite-Sheet_0
+      name: UI_AllInBtn_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 80
-        height: 111
+        width: 64
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 66c20355871b99a409230f881044cb6d
-      internalID: 817662327
+      spriteID: 785ebd54c00cd5044938b5e4e1dd6e85
+      internalID: -1351588115
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dealer_1_Sprite-Sheet_1
+      name: UI_AllInBtn_1
       rect:
         serializedVersion: 2
-        x: 80
+        x: 64
         y: 0
-        width: 80
-        height: 111
+        width: 64
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,29 +132,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f2096684084f14549962f532e320f46d
-      internalID: 1017202616
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dealer_1_Sprite-Sheet_2
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 80
-        height: 111
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 680bb368e2d20854d8c859fae5159d98
-      internalID: -1145440809
+      spriteID: 12621a9393688fd42a12a948385d128a
+      internalID: -575646227
       vertices: []
       indices: 
       edges: []
@@ -170,9 +149,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Dealer_1_Sprite-Sheet_0: 817662327
-      Dealer_1_Sprite-Sheet_1: 1017202616
-      Dealer_1_Sprite-Sheet_2: -1145440809
+      UI_AllInBtn_0: -1351588115
+      UI_AllInBtn_1: -575646227
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

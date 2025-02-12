@@ -38,7 +38,11 @@ public class GameHandler : MonoBehaviour
     private AudioManager audio;
     [SerializeField]
     private GameObject ParticleSystem;
-        
+
+    private void Awake()
+    {
+        audio = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     // Start is called before the first frame updatet a
     void Start()
@@ -55,7 +59,6 @@ public class GameHandler : MonoBehaviour
         specialCards = GetComponent<SpecialCardsList>();
         displaydice.DisplayShop();
         displaySpecial.DisplayShop();
-        audio = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         //LoadShop();
     }
 
