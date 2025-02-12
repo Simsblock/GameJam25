@@ -1894,7 +1894,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameHandler: {fileID: 571277393}
   ViewField: {fileID: 798061859}
-  prefab: {fileID: 0}
+  ShopPrefab: {fileID: 0}
+  CardPref: {fileID: 6269149082423632149, guid: b992471870dde02449ddadf2225f44e9, type: 3}
   content: {fileID: 1770219039}
   Displaydice: 0
   diceShop: []
@@ -2043,7 +2044,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameHandler: {fileID: 571277393}
   ViewField: {fileID: 1042413294}
-  prefab: {fileID: 1069941342852602424, guid: 1bc3ac505a5267b489ce8390b98b5f4a, type: 3}
+  ShopPrefab: {fileID: 1069941342852602424, guid: 1bc3ac505a5267b489ce8390b98b5f4a, type: 3}
+  CardPref: {fileID: 0}
   content: {fileID: 1127078961}
   Displaydice: 1
   diceShop:
@@ -9792,7 +9794,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameHandler: {fileID: 571277393}
   ViewField: {fileID: 1441927233}
-  prefab: {fileID: 3431958805245865501, guid: 10efb2f6e40856d44907334cc78bc213, type: 3}
+  ShopPrefab: {fileID: 3431958805245865501, guid: 10efb2f6e40856d44907334cc78bc213, type: 3}
+  CardPref: {fileID: 0}
   content: {fileID: 1493733640}
   Displaydice: 0
   diceShop: []
