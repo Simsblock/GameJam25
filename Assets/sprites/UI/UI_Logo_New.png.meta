@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e538595389ee21a48bd718464493bad7
+guid: 1314ba6f84b20ae45afdec358f633329
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,43 +97,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UI_AllInBtn_0
+      name: UI_Logo_New_0
       rect:
         serializedVersion: 2
-        x: 14
+        x: 0
         y: 0
-        width: 39
-        height: 32
+        width: 150
+        height: 150
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 785ebd54c00cd5044938b5e4e1dd6e85
-      internalID: -1351588115
+      spriteID: e6c78c3127aae764db11f4c92ce578ab
+      internalID: 807400791
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_AllInBtn_1
+      name: UI_Logo_New_1
       rect:
         serializedVersion: 2
-        x: 78
+        x: 150
         y: 0
-        width: 39
-        height: 32
+        width: 150
+        height: 150
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 12621a9393688fd42a12a948385d128a
-      internalID: -575646227
+      spriteID: 5900be0b37fbf3d4cb1c05b730a08178
+      internalID: -169023347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Logo_New_2
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 0
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7c68ff39f83b4c4caf7e93ead999a8a
+      internalID: -1113662941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Logo_New_3
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 0
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 101f95b95a25abe4eab6451111e4c02a
+      internalID: -239284097
       vertices: []
       indices: 
       edges: []
@@ -149,8 +191,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      UI_AllInBtn_0: -1351588115
-      UI_AllInBtn_1: -575646227
+      UI_Logo_New_0: 807400791
+      UI_Logo_New_1: -169023347
+      UI_Logo_New_2: -1113662941
+      UI_Logo_New_3: -239284097
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

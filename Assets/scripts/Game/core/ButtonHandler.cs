@@ -105,6 +105,12 @@ public class ButtonHandler : MonoBehaviour
             Bet_text.text = (PlayerPrefs.GetInt("Bet")).ToString();
         }
     }
+    public void AllIn()
+    {
+        audioManager.PlaySFX(audioManager.buttonClickSound);
+        PlayerPrefs.SetInt("Bet", PlayerPrefs.GetInt("Money"));
+        Bet_text.text = (PlayerPrefs.GetInt("Bet")).ToString();
+    }
 
     public void Done()
     {
