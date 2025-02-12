@@ -15,6 +15,7 @@ public static class GlobalData
     public static int BetLossRate { get; set; } = 100;
     public static int BetPayoutRate { get; set; } = 100;
     public static int DuplicateAmt { get; set; } = 0;
+    public static List<PlayerSPEffectDto> Effects { get; set; }
 
     public static void ClearAll()
     {

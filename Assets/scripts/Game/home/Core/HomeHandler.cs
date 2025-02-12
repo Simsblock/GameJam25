@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -21,6 +22,17 @@ public class HomeHandler : MonoBehaviour
         LoaderBtn.interactable = GlobalData.LoadableCheck();
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         audioManager.ChangeBGMusic(audioManager.shopBackround);
+        StartCoroutine(JsonReader.ReadJsonTo<List<PlayerSPEffectDto>>("PlayerSPEffects.json", effect =>
+        {
+            if (effect != null)
+            {
+                GlobalData.Effects = effect;
+            }
+            else
+            {
+                Debug.LogError("Effects not read");
+            }
+        }));
     }
 
     public void Load()

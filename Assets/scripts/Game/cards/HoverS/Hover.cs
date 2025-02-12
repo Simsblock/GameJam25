@@ -22,7 +22,7 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerEnter(PointerEventData eventData)
     {
         descriptionText.SetActive(true);
-        if (Effect!=null && Effect.DynamicHover)
+        if (Effect != null && Effect.DynamicHover)
         {
             hovering = true;
         }
@@ -66,7 +66,8 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (Image != null)
         {
             SPCList = GameObject.Find("GameHandler").GetComponent<SpecialCardsList>();
-            Image.GetComponent<Image>().sprite = SPCList.SpecialCardsUi[GetComponent<EffectDto>().name].GetComponent<Image>().sprite;
+            //image mapping missing
+            //Image.GetComponent<Image>().sprite = SPCList.SpecialCardsUi[GetComponent<EffectDto>().name].GetComponent<Image>().sprite;
         }
         if (PriceText != null)
         {
@@ -76,7 +77,7 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     private void DynamicHover()
     {
-        if (canvas != null && descriptionRect!=null)
+        if (canvas != null && descriptionRect != null)
         {
             Vector3 worldPos;
             RectTransformUtility.ScreenPointToWorldPointInRectangle(

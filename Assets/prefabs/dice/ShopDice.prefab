@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1305786134530761675}
   - component: {fileID: 5865948774652132898}
   - component: {fileID: 4440006957017474766}
-  - component: {fileID: -9021804483616748234}
+  - component: {fileID: 5461581283592454276}
   m_Layer: 5
   m_Name: ShopDice
   m_TagString: Untagged
@@ -124,11 +124,10 @@ MonoBehaviour:
   Used: 0
   Price: 1000
   text: {fileID: 2524709011977301843}
-  name: 
   isDice: 1
   permanent: 0
   DynamicHover: 0
---- !u!114 &-9021804483616748234
+--- !u!114 &5461581283592454276
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

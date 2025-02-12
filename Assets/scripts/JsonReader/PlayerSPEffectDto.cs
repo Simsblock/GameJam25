@@ -1,16 +1,14 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-[Serializable]
-public class EffectDto:MonoBehaviour
+[SerializeField]
+public class PlayerSPEffectDto
 {
     public string effect;
     public bool preStand;
-    public bool Used;
     public int Price;
-    public TMP_Text text;
-    public bool isDice, permanent,DynamicHover;
+    public string name, Description;
+    public bool isDice, permanent;
 }

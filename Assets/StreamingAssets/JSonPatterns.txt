@@ -1,0 +1,19 @@
+PlayerSPEffect 
+The Dice and SpecialCard effects that the player has acces too
+{
+        "effect": "",
+        "preStand": ,
+        "Price": ,
+        "name": "",
+        "Description": "",
+        "isDice": ,
+        "permanent": ,
+      }
+
+string Effect -> determenst what the card does
+bool preStand -> determins wether the card is triggered on place or once the stand button is pressed
+int Price -> the price a card has in the shop
+string name -> the name of the card
+string Description -> the Description text
+bool isDice -> used to determin where a card should be placed and how it behaves
+bool permanent -> wether a card is deleted once used or gets reobtained after the round ends (only garantees a single instance remains)

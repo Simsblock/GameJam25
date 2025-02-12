@@ -1,0 +1,142 @@
+[
+      {
+        "effect": "Ass:P",
+        "preStand": true,
+        "Price": 1000,
+        "name": "Ass",
+        "Description": "Add an ace to your Hand",
+        "isDice": false,
+        "permanent": false
+      },
+      {
+        "effect": "Cashback",
+        "preStand": true,
+        "Price": 120,
+        "name": "Cashback",
+        "Description": "You retain 50% of your Bet, On a Win you only gain 70%",
+        "isDice": false,
+        "permanent": true
+      },
+      {
+        "effect": "draw:1:D",
+        "preStand": true,
+        "Price": 300,
+        "name": "Dealer+1",
+        "Description": "The opponent draws 1",
+        "isDice": true,
+        "permanent": false
+      },
+      {
+        "effect": "Destroy",
+        "preStand": true,
+        "Price": 500,
+        "name": "Destroy",
+        "Description": "Annull Enemies Played Effect",
+        "isDice": false,
+        "permanent": false
+      },{
+        "effect": "Gambit",
+        "preStand": true,
+        "Price": 1000,
+        "name": "Gambit",
+        "Description": "The bet gets doubled, however on a loss you loose double",
+        "isDice": false,
+        "permanent": false
+      },{
+        "effect": "Joker:P",
+        "preStand": true,
+        "Price": 1500,
+        "name": "Joker",
+        "Description": "Pull a card. Choose the card’s value among 1, 5 or 10.",
+        "isDice": false,
+        "permanent": false
+      },{
+        "effect": "Piggibank",
+        "preStand": true,
+        "Price": 100,
+        "name": "Piggibank",
+        "Description": "Allows you to change your current bet",
+        "isDice": false,
+        "permanent": false
+      },{
+        "effect": "Restart",
+        "preStand": true,
+        "Price": 800,
+        "name": "Restart",
+        "Description": "Allows you to change your current bet",
+        "isDice": false,
+        "permanent": false
+      },{
+        "effect": "Seer",
+        "preStand": true,
+        "Price": 350,
+        "name": "Seer",
+        "Description": "Look at the next card in the card pile.",
+        "isDice": false,
+        "permanent": false
+      },{
+        "effect": "Shortcut",
+        "preStand": false,
+        "Price": 1500,
+        "name": "Shortcut",
+        "Description": "The cutoff gets reduced to 17. If your count exceeds 17 you lose immediately.",
+        "isDice": false,
+        "permanent": false
+      },{
+        "effect": "TheTwins:P",
+        "preStand": true,
+        "Price": 900,
+        "name": "TheTwins",
+        "Description": "Pull 2 cards and look at them. Choose one to add to your Hand.",
+        "isDice": false,
+        "permanent": false
+      },{
+        "effect": "ThreeKings:P",
+        "preStand": false,
+        "Price": 100,
+        "name": "ThreeKings",
+        "Description": "This acts as a -3 card, reducing your final score by 3.",
+        "isDice": false,
+        "permanent": false
+      },{
+        "effect": "diceRoll:1.2",
+        "preStand": false,
+        "Price": 200,
+        "name": "Dice_d2",
+        "Description": "Rolls between 1 and 2.",
+        "isDice": true,
+        "permanent": false
+      },{
+        "effect": "diceRoll:-2.-1",
+        "preStand": false,
+        "Price": 200,
+        "name": "Dice_d-2",
+        "Description": "Rolls between -1 and -2.",
+        "isDice": true,
+        "permanent": false
+      },{
+        "effect": "diceRoll:1.4",
+        "preStand": false,
+        "Price": 300,
+        "name": "Dice_d4",
+        "Description": "Rolls between 1 and 4.",
+        "isDice": true,
+        "permanent": false
+      },{
+        "effect": "diceRoll:-4.-1",
+        "preStand": false,
+        "Price": 300,
+        "name": "Dice_d-4",
+        "Description": "Rolls between -1 and -4.",
+        "isDice": true,
+        "permanent": false
+      },{
+        "effect": "diceRoll:1.6",
+        "preStand": false,
+        "Price": 300,
+        "name": "Dice_Default",
+        "Description": "Rolls between 1 and 6.",
+        "isDice": true,
+        "permanent": false
+      }
+]
