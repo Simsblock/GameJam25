@@ -43,7 +43,7 @@ public class Dealer : Participant
         Player = GameObject.Find("Player").GetComponent<Player>();
         DropHandler = GameObject.Find("SPCSlotL").GetComponent<DropHandler>(); //Could be betta
         SpecialCardsList = GameHandler.GetComponent<SpecialCardsList>();
-        SpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        SpriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
     }
     
     void Start()
@@ -72,12 +72,8 @@ public class Dealer : Participant
         KeyValuePair<string, int> card;
         while (TotalValue < MaxVal)
         {
-            card = Deck.PullCard();
-            if (!HandCards.ContainsKey(card.Key)) //Kinda Useless Check init? cause Deck allready does the Deck-Check, what do u think Max
-            {
-                AddCard(card);
-                yield return StartCoroutine(DisplayCardWithDelay(card.Key));
-            }
+            yield return new WaitForSeconds(0.6f);
+            PullCard();
         }
         if (TotalValue < MaxVal) yield return StartCoroutine(PullRest());
     }
@@ -226,12 +222,6 @@ public class Dealer : Participant
     }
 
     //Animation
-    private IEnumerator DisplayCardWithDelay(string cardKey)
-    {
-        yield return new WaitForSeconds(0.6f);
-        yield return StartCoroutine(DisplayCard(cardKey));
-    }
-
     private IEnumerator BounceEffect(GameObject cardObject)
     {
         Vector3 originalPos = cardObject.transform.localPosition;
