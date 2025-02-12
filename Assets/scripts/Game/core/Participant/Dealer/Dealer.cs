@@ -61,10 +61,8 @@ public class Dealer : Participant
         //Pull open first Card
         KeyValuePair<string, int> card = PullCard();
         OpenCard = card;
-        StartCoroutine(DisplayCard(card.Key)); //eventuell DisplayCard gleich in Pullcard einbauen?
         //Pull second hidden Card
         card = PullCard();
-        StartCoroutine(DisplayCard(card.Key));
     }
 
     public IEnumerator PullRest()

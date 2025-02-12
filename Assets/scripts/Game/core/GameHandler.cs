@@ -119,7 +119,6 @@ public class GameHandler : MonoBehaviour
         RemainingTime = MaxTime;
         TimeIsRunning = true;
         audio.StartTimerAudio();
-        Debug.Log("StartRound Done");
     }
 
     //SetBet 

@@ -76,7 +76,7 @@ public abstract class Participant : MonoBehaviour
     public void AddCard(KeyValuePair<string, int> card)
     {
         HandCards.Add(card.Key, card.Value);
-        DisplayCard(card.Key);
+        StartCoroutine(DisplayCard(card.Key));
         AceCheck(true);
     }
 
@@ -93,7 +93,7 @@ public abstract class Participant : MonoBehaviour
     {
         KeyValuePair<string, int> card = Deck.PullCard();
         RandomDrawSound();
-        AddCard(card.Key,card.Value);
+        AddCard(card);
         return card;
     }
 
@@ -103,7 +103,6 @@ public abstract class Participant : MonoBehaviour
         {
             PullCard();
         }
-        AceCheck(true);
     }
     public virtual IEnumerator ClearHand()
     {
@@ -145,9 +144,11 @@ public abstract class Participant : MonoBehaviour
 
     protected GameObject CreateCard(string cardKey)
     {
+        Debug.Log(cardKey);
         GameObject card = Instantiate(CardPrefab);
         card.name = cardKey;
         card.transform.SetParent(CardParent.transform);
+        Debug.Log(CardParent.transform.lossyScale);
         return card;
     }
 

@@ -9634,11 +9634,6 @@ MonoBehaviour:
   m_Spacing: {x: 10, y: 25}
   m_Constraint: 1
   m_ConstraintCount: 5
---- !u!1 &1508639341 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3544959298542995658, guid: a1742591c2bf9dc409e07323b7af9a53, type: 3}
-  m_PrefabInstance: {fileID: 6704849532517153266}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1540353386
 GameObject:
   m_ObjectHideFlags: 0
@@ -10964,7 +10959,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CardParent: {fileID: 355619182}
-  CardPrefab: {fileID: 1508639341}
+  CardPrefab: {fileID: 3544959298542995658, guid: a1742591c2bf9dc409e07323b7af9a53, type: 3}
   CardBack: {fileID: 0}
   SPCSlotR: {fileID: 1751378607}
   CardHand: {fileID: 623070982}
@@ -12114,63 +12109,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5cf3fb881e3e69498f3b28ae4c6bcc8, type: 3}
---- !u!1001 &6704849532517153266
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 730887266985981383, guid: a1742591c2bf9dc409e07323b7af9a53, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 730887266985981383, guid: a1742591c2bf9dc409e07323b7af9a53, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 730887266985981383, guid: a1742591c2bf9dc409e07323b7af9a53, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 730887266985981383, guid: a1742591c2bf9dc409e07323b7af9a53, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 730887266985981383, guid: a1742591c2bf9dc409e07323b7af9a53, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 730887266985981383, guid: a1742591c2bf9dc409e07323b7af9a53, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 730887266985981383, guid: a1742591c2bf9dc409e07323b7af9a53, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 730887266985981383, guid: a1742591c2bf9dc409e07323b7af9a53, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 730887266985981383, guid: a1742591c2bf9dc409e07323b7af9a53, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 730887266985981383, guid: a1742591c2bf9dc409e07323b7af9a53, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3544959298542995658, guid: a1742591c2bf9dc409e07323b7af9a53, type: 3}
-      propertyPath: m_Name
-      value: BaseCardsPrefab
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a1742591c2bf9dc409e07323b7af9a53, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -12186,7 +12124,6 @@ SceneRoots:
   - {fileID: 2026084342}
   - {fileID: 355619183}
   - {fileID: 1329957890}
-  - {fileID: 6704849532517153266}
   - {fileID: 1262263325}
   - {fileID: 1903078514}
   - {fileID: 1977911827}

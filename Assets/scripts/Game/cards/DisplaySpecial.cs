@@ -82,7 +82,6 @@ public class DisplaySpecial : MonoBehaviour
         if (Displaydice)
         {
             List<PlayerSPEffectDto> dice = GlobalData.Effects.Where(e => e.isDice && !e.name.Contains("Default")).ToList();
-            Debug.Log(dice.Count);
             for (int i = 0; i < 4; i++)
             {
                 GameObject cShop = Instantiate(ShopPrefab, content);
