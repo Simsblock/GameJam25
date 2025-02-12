@@ -1928,7 +1928,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &666013058
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3759,10 +3759,11 @@ MonoBehaviour:
   CardPrefab: {fileID: 3544959298542995658, guid: a1742591c2bf9dc409e07323b7af9a53, type: 3}
   CardBack: {fileID: 1762930840, guid: c9ddd6f350e0b8647891e312b46d793b, type: 3}
   MaxVal: 17
-  Dealers:
-  - {fileID: 817662327, guid: ed0bd0fa25e54d54a93c1cc0a488b9d1, type: 3}
-  - {fileID: 1017202616, guid: ed0bd0fa25e54d54a93c1cc0a488b9d1, type: 3}
-  - {fileID: -1145440809, guid: ed0bd0fa25e54d54a93c1cc0a488b9d1, type: 3}
+  DealerSprites:
+    rows:
+    - row: []
+    - row: []
+    - row: []
 --- !u!1 &1248204969
 GameObject:
   m_ObjectHideFlags: 0

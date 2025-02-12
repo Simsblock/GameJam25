@@ -15,7 +15,7 @@ public class Dealer : Participant
 
     //Dealer Display
     [SerializeField]
-    public Sprite[] Dealers;
+    public Serializable2DArray<Sprite> DealerSprites;
     private SpriteRenderer SpriteRenderer;
     //Dealer Display End
 
@@ -95,8 +95,8 @@ public class Dealer : Participant
     public void ChangeDealer()
     {
         System.Random rand = new System.Random();
-        int index = rand.Next(Dealers.Length);
-        SpriteRenderer.sprite = Dealers[index];
+        int index = rand.Next(DealerSprites.RowCount);
+        SpriteRenderer.sprite = DealerSprites.GetValue(index,0);
         index++;
         if (index < 3) Abilities = DealerAbilities[index - 1].ToList();
         else Abilities = DealerAbilities[index / 3 - 1].ToList();
