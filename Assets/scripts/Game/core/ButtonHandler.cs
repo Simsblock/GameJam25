@@ -26,13 +26,15 @@ public class ButtonHandler : MonoBehaviour
     [SerializeField]
     private GameObject Bet_UI;
 
+    private int Bet => PlayerPrefs.GetInt("Bet");
+    private int Money => PlayerPrefs.GetInt("Money");
 
     // Start is called before the first frame update
     void Start()
     {
         GameHandlerScript = GameHandler.GetComponent<GameHandler>();
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-        Bet_text.text = $"{PlayerPrefs.GetInt("Bet")}";
+        Bet_text.text = Bet.ToString();
     }
 
     // Update is called once per frame
@@ -87,29 +89,28 @@ public class ButtonHandler : MonoBehaviour
     //betBtn
     public void Raise()
     {
-        if ((PlayerPrefs.GetInt("Bet")) + amount < 99900 && (PlayerPrefs.GetInt("Bet")) + amount <= PlayerPrefs.GetInt("Money"))
+        if ((Bet) + amount < 99900 && (Bet) + amount <= Money)
         {
             audioManager.PlaySFX(audioManager.buttonClickSound);
-            PlayerPrefs.SetInt("Bet", int.Parse(Bet_text.text));
-            PlayerPrefs.SetInt("Bet", PlayerPrefs.GetInt("Bet") + amount);
-            Bet_text.text = (PlayerPrefs.GetInt("Bet")).ToString();
+            PlayerPrefs.SetInt("Bet", Bet + amount);
+            Bet_text.text = Bet.ToString();
         }
     }
     public void Lower()
     {
-        if ((PlayerPrefs.GetInt("Bet")) - amount >= amount)
+        if ((Bet) - amount >= amount)
         {
             audioManager.PlaySFX(audioManager.buttonClickSound);
             PlayerPrefs.SetInt("Bet", int.Parse(Bet_text.text));
-            PlayerPrefs.SetInt("Bet", PlayerPrefs.GetInt("Bet") - amount);
-            Bet_text.text = (PlayerPrefs.GetInt("Bet")).ToString();
+            PlayerPrefs.SetInt("Bet", Bet - amount);
+            Bet_text.text = Bet.ToString();
         }
     }
     public void AllIn()
     {
         audioManager.PlaySFX(audioManager.buttonClickSound);
-        PlayerPrefs.SetInt("Bet", PlayerPrefs.GetInt("Money"));
-        Bet_text.text = (PlayerPrefs.GetInt("Bet")).ToString();
+        PlayerPrefs.SetInt("Bet", Money);
+        Bet_text.text = Bet.ToString();
     }
 
     public void Done()
