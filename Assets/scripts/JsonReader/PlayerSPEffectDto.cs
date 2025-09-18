@@ -11,4 +11,5 @@ public class PlayerSPEffectDto
     public int Price;
     public string name, Description;
     public bool isDice, permanent;
+    public string imageName;
 }

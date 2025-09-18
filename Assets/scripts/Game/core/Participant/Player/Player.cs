@@ -74,6 +74,7 @@ public class Player : Participant
     {
         specialCards.Add(name);
         GlobalData.SaveSPC(specialCards);
+        Debug.Log(specialCards);
     }
     public void RemoveSpecialCard(string name)
     {
@@ -92,18 +93,23 @@ public class Player : Participant
 
     public void DisplaySpecialCards()
     {
+        Debug.Log(DisplaySPC);
+        Debug.Log(specialCards.Count);
+            
         SPCSlotR.GetComponent<DropHandler>().ClearAssigned();
         if (!DisplaySPC)
         {
+            DisplaySPC = true;
             AbilityBtn.transform.localPosition = new Vector3(175, 180, 1);
             DisplaySpecial.Display(specialCards);
-            DisplaySPC = true;
+            
         }
         else
         {
+            DisplaySPC = false;
             AbilityBtn.transform.localPosition = new Vector3(365, 180, 1);
             DisplaySpecial.EndDisplay();
-            DisplaySPC = false;
+           
         }
         
     }

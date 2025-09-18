@@ -8,6 +8,7 @@ The Dice and SpecialCard effects that the player has acces too
         "Description": "",
         "isDice": ,
         "permanent": ,
+	"imageName":
       }
 
 string Effect -> determenst what the card does
@@ -17,3 +18,4 @@ string name -> the name of the card
 string Description -> the Description text
 bool isDice -> used to determin where a card should be placed and how it behaves
 bool permanent -> wether a card is deleted once used or gets reobtained after the round ends (only garantees a single instance remains)
+string imageName -> the Name of the sprite used

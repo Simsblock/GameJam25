@@ -15,12 +15,14 @@ public class DisplaySpecial : MonoBehaviour
     private bool Displaydice;
     [SerializeField]
     private List<Sprite> diceShop;
+    private IReadOnlyDictionary<string, Sprite> cardSprites;
     
     //[SerializeField]
     //private float spaicingAngle, radius, totalAngle;
     //private float spaicingInternal;
     private void Start()
     {
+        cardSprites = GameHandler.GetComponent<GameHandler>().SPCSpriteMapper.GetValue();
     }
     
     public void Display(List<string> Cards)
@@ -45,7 +47,7 @@ public class DisplaySpecial : MonoBehaviour
             cardeffect.permanent = effectMapper.permanent;
             cardeffect.Price = effectMapper.Price;
             cardeffect.preStand = effectMapper.preStand;
-            //missing image mapping
+            card.GetComponent<Image>().sprite = cardSprites[effectMapper.imageName];
 
             //sets scale depening on the card being a dice or not
             if (card.GetComponent<EffectDto>().isDice)
@@ -104,6 +106,7 @@ public class DisplaySpecial : MonoBehaviour
                 cShop.GetComponent<EffectDto>().text.text = cards[pos].Description;
                 cShop.GetComponent<EffectDto>().name = cards[pos].name;
                 cShop.GetComponent<EffectDto>().Price = cards[pos].Price;
+                cShop.transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite = cardSprites[cards[pos].imageName];
                 cShop.transform.localScale = Vector3.one;
             }
         }

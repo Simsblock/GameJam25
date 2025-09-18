@@ -6,7 +6,8 @@
         "name": "Ass",
         "Description": "Add an ace to your Hand",
         "isDice": false,
-        "permanent": false
+        "permanent": false,
+        "imageName":""
       },
       {
         "effect": "Cashback",
@@ -15,7 +16,8 @@
         "name": "Cashback",
         "Description": "You retain 50% of your Bet, On a Win you only gain 70%",
         "isDice": false,
-        "permanent": true
+        "permanent": true,
+        "imageName":""
       },
       {
         "effect": "draw:1:D",
@@ -33,7 +35,8 @@
         "name": "Destroy",
         "Description": "Annull Enemies Played Effect",
         "isDice": false,
-        "permanent": false
+        "permanent": false,
+        "imageName":""
       },{
         "effect": "Gambit",
         "preStand": true,
@@ -41,7 +44,8 @@
         "name": "Gambit",
         "Description": "The bet gets doubled, however on a loss you loose double",
         "isDice": false,
-        "permanent": false
+        "permanent": false,
+        "imageName":""
       },{
         "effect": "Joker:P",
         "preStand": true,
@@ -49,7 +53,8 @@
         "name": "Joker",
         "Description": "Pull a card. Choose the card’s value among 1, 5 or 10.",
         "isDice": false,
-        "permanent": false
+        "permanent": false,
+        "imageName":""
       },{
         "effect": "Piggibank",
         "preStand": true,
@@ -57,7 +62,8 @@
         "name": "Piggibank",
         "Description": "Allows you to change your current bet",
         "isDice": false,
-        "permanent": false
+        "permanent": false,
+        "imageName":""
       },{
         "effect": "Restart",
         "preStand": true,
@@ -65,7 +71,8 @@
         "name": "Restart",
         "Description": "Allows you to change your current bet",
         "isDice": false,
-        "permanent": false
+        "permanent": false,
+        "imageName":""
       },{
         "effect": "Seer",
         "preStand": true,
@@ -73,7 +80,8 @@
         "name": "Seer",
         "Description": "Look at the next card in the card pile.",
         "isDice": false,
-        "permanent": false
+        "permanent": false,
+        "imageName":""
       },{
         "effect": "Shortcut",
         "preStand": false,
@@ -81,7 +89,8 @@
         "name": "Shortcut",
         "Description": "The cutoff gets reduced to 17. If your count exceeds 17 you lose immediately.",
         "isDice": false,
-        "permanent": false
+        "permanent": false,
+        "imageName":""
       },{
         "effect": "TheTwins:P",
         "preStand": true,
@@ -89,7 +98,8 @@
         "name": "TheTwins",
         "Description": "Pull 2 cards and look at them. Choose one to add to your Hand.",
         "isDice": false,
-        "permanent": false
+        "permanent": false,
+        "imageName":""
       },{
         "effect": "ThreeKings:P",
         "preStand": false,
@@ -97,7 +107,8 @@
         "name": "ThreeKings",
         "Description": "This acts as a -3 card, reducing your final score by 3.",
         "isDice": false,
-        "permanent": false
+        "permanent": false,
+        "imageName":""
       },{
         "effect": "diceRoll:1.2",
         "preStand": false,
@@ -105,7 +116,8 @@
         "name": "Dice_d2",
         "Description": "Rolls between 1 and 2.",
         "isDice": true,
-        "permanent": false
+        "permanent": false,
+        "imageName":""
       },{
         "effect": "diceRoll:-2.-1",
         "preStand": false,
@@ -113,7 +125,8 @@
         "name": "Dice_d-2",
         "Description": "Rolls between -1 and -2.",
         "isDice": true,
-        "permanent": false
+        "permanent": false,
+        "imageName":""
       },{
         "effect": "diceRoll:1.4",
         "preStand": false,
@@ -121,7 +134,8 @@
         "name": "Dice_d4",
         "Description": "Rolls between 1 and 4.",
         "isDice": true,
-        "permanent": false
+        "permanent": false,
+        "imageName":""
       },{
         "effect": "diceRoll:-4.-1",
         "preStand": false,
@@ -129,7 +143,8 @@
         "name": "Dice_d-4",
         "Description": "Rolls between -1 and -4.",
         "isDice": true,
-        "permanent": false
+        "permanent": false,
+        "imageName":""
       },{
         "effect": "diceRoll:1.6",
         "preStand": false,
@@ -137,6 +152,7 @@
         "name": "Dice_Default",
         "Description": "Rolls between 1 and 6.",
         "isDice": true,
-        "permanent": false
+        "permanent": false,
+        "imageName":""
       }
 ]

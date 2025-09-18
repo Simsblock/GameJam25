@@ -1800,6 +1800,37 @@ MonoBehaviour:
   Timebar: {fileID: 445000193}
   PauseUI: {fileID: 104204748}
   ParticleSystem: {fileID: 1307912369}
+  SPCSpriteMapper:
+    Keys:
+    - Piggybank
+    - +1
+    - Seer
+    - Double-sided Blade
+    - Three-Kings
+    - Switcheroo
+    - Cashback
+    - Redo
+    - Ace
+    - Joker
+    - Destroy
+    - Twins
+    - Shortcut
+    - Gambit
+    Values:
+    - {fileID: -1778415586, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
+    - {fileID: 350925774, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
+    - {fileID: 622585713, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
+    - {fileID: 1850854098, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
+    - {fileID: -233234261, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
+    - {fileID: -1016338749, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
+    - {fileID: 1466429851, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
+    - {fileID: -1704545478, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
+    - {fileID: -835737131, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
+    - {fileID: 273602151, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
+    - {fileID: -487411826, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
+    - {fileID: -740738664, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
+    - {fileID: -1664188633, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
+    - {fileID: 1911769147, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
   stand: 0
 --- !u!4 &571277395
 Transform:
@@ -1828,50 +1859,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e51cc3d2709cb754cb4007e2aca5f770, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpecialCards:
-  - {fileID: 7489955442949369063, guid: d2fe85d1f20f81144829b4d560a2fcc1, type: 3}
-  - {fileID: 6269149082423632149, guid: b992471870dde02449ddadf2225f44e9, type: 3}
-  - {fileID: 6269149082423632149, guid: 26248f4b8bde49647bd386fc4ee23ea2, type: 3}
-  - {fileID: 6269149082423632149, guid: 2dbb94c07808a1949843c5f33666adcc, type: 3}
-  - {fileID: 6269149082423632149, guid: 2365222355667d8448ce34e7a9c1e126, type: 3}
-  - {fileID: 6269149082423632149, guid: b0ea8d1d4c33dae4292a5ebbc6d9041f, type: 3}
-  - {fileID: 6269149082423632149, guid: 4926d76f0b0f43d47933adde34a08205, type: 3}
-  - {fileID: 6269149082423632149, guid: ac3d29ddc99ec3d4e8bb29dec72bbd2c, type: 3}
-  - {fileID: 6269149082423632149, guid: 5270d536287cb644f9c659a7ddaa5ed0, type: 3}
-  - {fileID: 6269149082423632149, guid: 238676cbf7599934991a8e5fc445b55c, type: 3}
-  - {fileID: 1069941342852602424, guid: 789f3585bb6f26f40a95b442b114902d, type: 3}
-  - {fileID: 1069941342852602424, guid: 31cab7c4b20971f45bb9f4a3c1a1cb35, type: 3}
-  - {fileID: 1069941342852602424, guid: ff3a953d31eec5540ac244dc4445d7b7, type: 3}
-  - {fileID: 1069941342852602424, guid: ea22030f9ccb1464bbb3f09f3abbff26, type: 3}
-  - {fileID: 1069941342852602424, guid: 5345c120199eb364f9955f2977bf6f2f, type: 3}
-  CardNames:
-  - Dealer+1
-  - Ass
-  - Joker
-  - Gambit
-  - Restart
-  - Seer
-  - Shortcut
-  - TheTwins
-  - ThreeKings
-  - Piggibank
-  - Diced2
-  - Diced4
-  - Diced-2
-  - Diced-4
-  - DiceDefault
-  DealerSpecialCards:
-  - {fileID: 7489955442949369063, guid: 70fc5aebac64b654ab3a2847fb5acd77, type: 3}
-  - {fileID: 6269149082423632149, guid: 2790949dc2cc7df4fa31081a30210c1d, type: 3}
-  - {fileID: 6269149082423632149, guid: ddc84f6ad4952784d9dad0c2de76f1f6, type: 3}
-  - {fileID: 6269149082423632149, guid: dc4fb08f1d2b91c44aac854f9cd4d10f, type: 3}
-  - {fileID: 6269149082423632149, guid: b3fb8c318af78d34ebc30043ebaa7653, type: 3}
-  DealerCardNames:
-  - Player+1
-  - Ass
-  - Joker
-  - TheTwins
-  - ThreeKings
 --- !u!114 &571277397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1884,23 +1871,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06d5a4ffd88ab74469c6d6f251b076c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameHandler: {fileID: 571277394}
-  SPCSprites:
-  - {fileID: -1778415586, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
-  - {fileID: 350925774, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
-  - {fileID: 622585713, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
-  - {fileID: 1850854098, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
-  - {fileID: -233234261, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
-  - {fileID: -1016338749, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
-  - {fileID: 1466429851, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
-  - {fileID: -1704545478, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
-  - {fileID: -835737131, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
-  - {fileID: 273602151, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
-  - {fileID: -487411826, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
-  - {fileID: -740738664, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
-  - {fileID: -1664188633, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
-  - {fileID: 1911769147, guid: 07ad6e262d5561e4fb5e462835a17af9, type: 3}
-  BetUi: {fileID: 667059521}
 --- !u!1 &595710132
 GameObject:
   m_ObjectHideFlags: 0

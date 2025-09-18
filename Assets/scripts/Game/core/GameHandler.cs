@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -38,6 +39,9 @@ public class GameHandler : MonoBehaviour
     private AudioManager audio;
     [SerializeField]
     private GameObject ParticleSystem;
+    //spirets for card generation
+
+    public SerializableDictionary<string, Sprite> SPCSpriteMapper;
 
     private void Awake()
     {
@@ -60,7 +64,10 @@ public class GameHandler : MonoBehaviour
         displaydice.DisplayShop();
         displaySpecial.DisplayShop();
         //LoadShop();
+        
     }
+
+
 
     public int stand = 0;
     private void Update()
