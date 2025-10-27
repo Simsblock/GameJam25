@@ -7,7 +7,7 @@ using UnityEngine;
 [Serializable]
 public class EffectDto:MonoBehaviour
 {
-    public string effect;
+    public string effect,name;
     public bool preStand;
     public bool Used;
     public int Price;

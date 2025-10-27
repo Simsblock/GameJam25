@@ -22,6 +22,8 @@ public class HomeHandler : MonoBehaviour
         LoaderBtn.interactable = GlobalData.LoadableCheck();
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         audioManager.ChangeBGMusic(audioManager.shopBackround);
+        
+        //loading initial JSON data
         StartCoroutine(AssetsLoader.ReadJsonTo<List<PlayerSpEffectDto>>("PlayerSPEffects.json", effect =>
         {
             if (effect != null)
@@ -53,6 +55,7 @@ public class HomeHandler : MonoBehaviour
             GlobalData.SPCTextures.Add("Shortcut",LoadedSprites[12]);
             GlobalData.SPCTextures.Add("Gambit",LoadedSprites[13]);
         }));
+        
     }
 
     public void Load()

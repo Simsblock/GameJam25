@@ -153,6 +153,7 @@ public class DragHandler : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDrag
             }
             playerHandler.AddSpecialCard(effects.name);
             playerHandler.UpdateDisplay();
+            Debug.Log("card added");
             PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money")-effects.Price);
             StartCoroutine(BetShit());
             PlayBuySound();
