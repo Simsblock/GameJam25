@@ -13,7 +13,6 @@ public class HomeHandler : MonoBehaviour
     [SerializeField]
     private GameObject screen1, screen2;
     private AudioManager audioManager;
-
     void Start()
     {
         screen2.SetActive(false);
