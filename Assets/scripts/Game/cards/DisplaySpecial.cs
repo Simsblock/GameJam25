@@ -15,14 +15,14 @@ public class DisplaySpecial : MonoBehaviour
     private bool Displaydice;
     [SerializeField]
     private List<Sprite> diceShop;
-    private IReadOnlyDictionary<string, Sprite> cardSprites;
+    
     
     //[SerializeField]
     //private float spaicingAngle, radius, totalAngle;
     //private float spaicingInternal;
     private void Start()
     {
-        cardSprites = GameHandler.GetComponent<GameHandler>().SPCSpriteMapper.GetValue();
+        
     }
     
     public void Display(List<string> Cards)
@@ -34,33 +34,37 @@ public class DisplaySpecial : MonoBehaviour
 
         
         ViewField.SetActive(true);
-        Cards.ForEach(c =>
+        if (Cards.Count > 0)
         {
-            PlayerSPEffectDto effectMapper = GlobalData.Effects.First(e => e.name.Equals(c));
-
-            //build card from dto and prefab
-            GameObject card = Instantiate(CardPref,content);
-            EffectDto cardeffect = card.GetComponent<EffectDto>();
-            cardeffect.effect=effectMapper.effect;
-            cardeffect.text.text = effectMapper.Description;
-            cardeffect.isDice = effectMapper.isDice;
-            cardeffect.permanent = effectMapper.permanent;
-            cardeffect.Price = effectMapper.Price;
-            cardeffect.preStand = effectMapper.preStand;
-            card.GetComponent<Image>().sprite = cardSprites[effectMapper.imageName];
-
-            //sets scale depening on the card being a dice or not
-            if (card.GetComponent<EffectDto>().isDice)
+            Cards.ForEach(c =>
             {
-                card.transform.localScale = new Vector3(1, 0.75f, 1);
-                card.transform.GetChild(0).transform.localScale = new Vector3(1, 1.25f, 1);
-            }
-            else
-            {
-                card.transform.localScale = Vector3.one;
-            }
+                PlayerSpEffectDto effectMapper = GlobalData.Effects.First(e => e.Name.Equals(c));
 
-        });
+                //build card from dto and prefab
+                GameObject card = Instantiate(CardPref,content);
+                EffectDto cardeffect = card.GetComponent<EffectDto>();
+                cardeffect.effect=effectMapper.Effect;
+                cardeffect.text.text = effectMapper.Description;
+                cardeffect.isDice = effectMapper.IsDice;
+                cardeffect.permanent = effectMapper.Permanent;
+                cardeffect.Price = effectMapper.Price;
+                cardeffect.preStand = effectMapper.PreStand;
+                card.GetComponent<Image>().sprite = GlobalData.SPCTextures[effectMapper.ImageName];
+
+                //sets scale depening on the card being a dice or not
+                if (card.GetComponent<EffectDto>().isDice)
+                {
+                    card.transform.localScale = new Vector3(1, 0.75f, 1);
+                    card.transform.GetChild(0).transform.localScale = new Vector3(1, 1.25f, 1);
+                }
+                else
+                {
+                    card.transform.localScale = Vector3.one;
+                }
+
+            });
+        }
+        
 
 
     }
@@ -83,12 +87,12 @@ public class DisplaySpecial : MonoBehaviour
         System.Random r = new System.Random();
         if (Displaydice)
         {
-            List<PlayerSPEffectDto> dice = GlobalData.Effects.Where(e => e.isDice && !e.name.Contains("Default")).ToList();
+            List<PlayerSpEffectDto> dice = GlobalData.Effects.Where(e => e.IsDice && !e.Name.Contains("Default")).ToList();
             for (int i = 0; i < 4; i++)
             {
                 GameObject cShop = Instantiate(ShopPrefab, content);
                 cShop.GetComponent<EffectDto>().text.text = dice[i].Description;
-                cShop.GetComponent<EffectDto>().name = dice[i].name;
+                cShop.GetComponent<EffectDto>().name = dice[i].Name;
                 cShop.GetComponent<EffectDto>().Price = dice[i].Price;
                 cShop.GetComponent<Image>().sprite = diceShop[i];
                 cShop.transform.localScale = Vector3.one;
@@ -96,7 +100,7 @@ public class DisplaySpecial : MonoBehaviour
         }
         else
         {
-            List<PlayerSPEffectDto> cards = GlobalData.Effects.Where(e=>!e.isDice).ToList();
+            List<PlayerSpEffectDto> cards = GlobalData.Effects.Where(e=>!e.IsDice).ToList();
             for (int i = 0; i < 5; i++)
             {
 
@@ -104,9 +108,9 @@ public class DisplaySpecial : MonoBehaviour
 
                 GameObject cShop = Instantiate(ShopPrefab, content);
                 cShop.GetComponent<EffectDto>().text.text = cards[pos].Description;
-                cShop.GetComponent<EffectDto>().name = cards[pos].name;
+                cShop.GetComponent<EffectDto>().name = cards[pos].Name;
                 cShop.GetComponent<EffectDto>().Price = cards[pos].Price;
-                cShop.transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite = cardSprites[cards[pos].imageName];
+                cShop.transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite = GlobalData.SPCTextures[cards[pos].ImageName];
                 cShop.transform.localScale = Vector3.one;
             }
         }

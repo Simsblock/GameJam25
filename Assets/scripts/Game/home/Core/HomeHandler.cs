@@ -22,7 +22,7 @@ public class HomeHandler : MonoBehaviour
         LoaderBtn.interactable = GlobalData.LoadableCheck();
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         audioManager.ChangeBGMusic(audioManager.shopBackround);
-        StartCoroutine(JsonReader.ReadJsonTo<List<PlayerSPEffectDto>>("PlayerSPEffects.json", effect =>
+        StartCoroutine(AssetsLoader.ReadJsonTo<List<PlayerSpEffectDto>>("PlayerSPEffects.json", effect =>
         {
             if (effect != null)
             {
@@ -32,6 +32,26 @@ public class HomeHandler : MonoBehaviour
             {
                 Debug.LogError("Effects not read");
             }
+        }));
+        StartCoroutine(AssetsLoader.LoadTexture("SPCimgs/SPCard_SpriteSheet.png", sprite =>
+        {
+            List<Sprite> LoadedSprites= AssetsLoader.SliceTexture(sprite, 14, 1);
+            GlobalData.SPCTextures = new Dictionary<string, Sprite>();
+            //maping sprites to names :)
+            GlobalData.SPCTextures.Add("Piggibank",LoadedSprites[0]);
+            GlobalData.SPCTextures.Add("Dealer+1",LoadedSprites[1]);
+            GlobalData.SPCTextures.Add("Seer",LoadedSprites[2]);
+            GlobalData.SPCTextures.Add("DoubleEdgedSword",LoadedSprites[3]);
+            GlobalData.SPCTextures.Add("ThreeKings",LoadedSprites[4]);
+            GlobalData.SPCTextures.Add("Switch",LoadedSprites[5]);
+            GlobalData.SPCTextures.Add("Cashback",LoadedSprites[6]);
+            GlobalData.SPCTextures.Add("Restart",LoadedSprites[7]);
+            GlobalData.SPCTextures.Add("Ass",LoadedSprites[8]);
+            GlobalData.SPCTextures.Add("Joker",LoadedSprites[9]);
+            GlobalData.SPCTextures.Add("Destroy",LoadedSprites[10]);
+            GlobalData.SPCTextures.Add("TheTwins",LoadedSprites[11]);
+            GlobalData.SPCTextures.Add("Shortcut",LoadedSprites[12]);
+            GlobalData.SPCTextures.Add("Gambit",LoadedSprites[13]);
         }));
     }
 

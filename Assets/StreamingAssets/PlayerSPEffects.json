@@ -7,7 +7,7 @@
         "Description": "Add an ace to your Hand",
         "isDice": false,
         "permanent": false,
-        "imageName":""
+        "imageName":"Ass"
       },
       {
         "effect": "Cashback",
@@ -17,7 +17,7 @@
         "Description": "You retain 50% of your Bet, On a Win you only gain 70%",
         "isDice": false,
         "permanent": true,
-        "imageName":""
+        "imageName":"Cashback"
       },
       {
         "effect": "draw:1:D",
@@ -26,7 +26,8 @@
         "name": "Dealer+1",
         "Description": "The opponent draws 1",
         "isDice": true,
-        "permanent": false
+        "permanent": false,
+        "imageName":"Dealer+1"
       },
       {
         "effect": "Destroy",
@@ -36,7 +37,7 @@
         "Description": "Annull Enemies Played Effect",
         "isDice": false,
         "permanent": false,
-        "imageName":""
+        "imageName":"Destroy"
       },{
         "effect": "Gambit",
         "preStand": true,
@@ -45,7 +46,7 @@
         "Description": "The bet gets doubled, however on a loss you loose double",
         "isDice": false,
         "permanent": false,
-        "imageName":""
+        "imageName":"Gambit"
       },{
         "effect": "Joker:P",
         "preStand": true,
@@ -54,7 +55,7 @@
         "Description": "Pull a card. Choose the card’s value among 1, 5 or 10.",
         "isDice": false,
         "permanent": false,
-        "imageName":""
+        "imageName":"Joker"
       },{
         "effect": "Piggibank",
         "preStand": true,
@@ -63,7 +64,7 @@
         "Description": "Allows you to change your current bet",
         "isDice": false,
         "permanent": false,
-        "imageName":""
+        "imageName":"Piggibank"
       },{
         "effect": "Restart",
         "preStand": true,
@@ -72,7 +73,7 @@
         "Description": "Allows you to change your current bet",
         "isDice": false,
         "permanent": false,
-        "imageName":""
+        "imageName":"Restart"
       },{
         "effect": "Seer",
         "preStand": true,
@@ -81,7 +82,7 @@
         "Description": "Look at the next card in the card pile.",
         "isDice": false,
         "permanent": false,
-        "imageName":""
+        "imageName":"Seer"
       },{
         "effect": "Shortcut",
         "preStand": false,
@@ -90,7 +91,7 @@
         "Description": "The cutoff gets reduced to 17. If your count exceeds 17 you lose immediately.",
         "isDice": false,
         "permanent": false,
-        "imageName":""
+        "imageName":"Shortcut"
       },{
         "effect": "TheTwins:P",
         "preStand": true,
@@ -99,7 +100,7 @@
         "Description": "Pull 2 cards and look at them. Choose one to add to your Hand.",
         "isDice": false,
         "permanent": false,
-        "imageName":""
+        "imageName":"TheTwins"
       },{
         "effect": "ThreeKings:P",
         "preStand": false,
@@ -108,7 +109,7 @@
         "Description": "This acts as a -3 card, reducing your final score by 3.",
         "isDice": false,
         "permanent": false,
-        "imageName":""
+        "imageName":"ThreeKings"
       },{
         "effect": "diceRoll:1.2",
         "preStand": false,
