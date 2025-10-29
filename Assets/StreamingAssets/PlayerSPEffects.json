@@ -118,7 +118,7 @@
         "Description": "Rolls between 1 and 2.",
         "isDice": true,
         "permanent": false,
-        "imageName":""
+        "imageName":"d6_2_green"
       },{
         "effect": "diceRoll:-2.-1",
         "preStand": false,
@@ -127,7 +127,7 @@
         "Description": "Rolls between -1 and -2.",
         "isDice": true,
         "permanent": false,
-        "imageName":""
+        "imageName":"d6_2_red"
       },{
         "effect": "diceRoll:1.4",
         "preStand": false,
@@ -136,7 +136,7 @@
         "Description": "Rolls between 1 and 4.",
         "isDice": true,
         "permanent": false,
-        "imageName":""
+        "imageName":"d6_4_green"
       },{
         "effect": "diceRoll:-4.-1",
         "preStand": false,
@@ -145,7 +145,7 @@
         "Description": "Rolls between -1 and -4.",
         "isDice": true,
         "permanent": false,
-        "imageName":""
+        "imageName":"d6_4_red"
       },{
         "effect": "diceRoll:1.6",
         "preStand": false,
@@ -154,6 +154,6 @@
         "Description": "Rolls between 1 and 6.",
         "isDice": true,
         "permanent": false,
-        "imageName":""
+        "imageName":"d6_6_white"
       }
 ]

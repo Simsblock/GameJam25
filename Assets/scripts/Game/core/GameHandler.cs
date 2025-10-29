@@ -327,9 +327,10 @@ public class GameHandler : MonoBehaviour
         //SPCL
         if (SPCSlotL.transform.childCount == 1)
         {
-            if (!SPCSlotL.transform.GetChild(0).GetComponent<EffectDto>().permanent)
+            EffectDto card = SPCSlotL.transform.GetChild(0).GetComponent<EffectDto>();
+            if (!card.permanent)
             {
-                playerHandler.RemoveSpecialCard(specialCards.GetName(SPCSlotL.transform.GetChild(0).gameObject));
+                playerHandler.RemoveSpecialCard(card.name);
                 Destroy(SPCSlotL.transform.GetChild(0).gameObject);
             }
         }
@@ -339,9 +340,10 @@ public class GameHandler : MonoBehaviour
         //SPCR
         if (SPCSlotR.transform.childCount == 1)
         {
-            if (!SPCSlotR.transform.GetChild(0).GetComponent<EffectDto>().permanent)
+            EffectDto card = SPCSlotR.transform.GetChild(0).GetComponent<EffectDto>();
+            if (!card.permanent)
             {
-                playerHandler.RemoveSpecialCard(specialCards.GetName(SPCSlotR.transform.GetChild(0).gameObject));
+                playerHandler.RemoveSpecialCard(card.name);
                 Destroy(SPCSlotR.transform.GetChild(0).gameObject);
             }
                 
@@ -351,9 +353,10 @@ public class GameHandler : MonoBehaviour
         if (DiceDrop.transform.childCount == 1)
         {
             Debug.Log("1");
-            if (!DiceDrop.transform.GetChild(0).GetComponent<EffectDto>().permanent)
+            EffectDto dice = DiceDrop.transform.GetChild(0).GetComponent<EffectDto>();
+            if (!dice.permanent)
             {
-                playerHandler.RemoveSpecialCard(specialCards.GetName(DiceDrop.transform.GetChild(0).gameObject));
+                playerHandler.RemoveSpecialCard(dice.name);
                 Destroy(DiceDrop.transform.GetChild(0).gameObject);
             }
             else

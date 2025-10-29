@@ -35,10 +35,10 @@ public class HomeHandler : MonoBehaviour
                 Debug.LogError("Effects not read");
             }
         }));
+        GlobalData.SPCTextures = new Dictionary<string, Sprite>();
         StartCoroutine(AssetsLoader.LoadTexture("SPCimgs/SPCard_SpriteSheet.png", sprite =>
         {
             List<Sprite> LoadedSprites= AssetsLoader.SliceTexture(sprite, 14, 1);
-            GlobalData.SPCTextures = new Dictionary<string, Sprite>();
             //maping sprites to names :)
             GlobalData.SPCTextures.Add("Piggibank",LoadedSprites[0]);
             GlobalData.SPCTextures.Add("Dealer+1",LoadedSprites[1]);
@@ -55,7 +55,35 @@ public class HomeHandler : MonoBehaviour
             GlobalData.SPCTextures.Add("Shortcut",LoadedSprites[12]);
             GlobalData.SPCTextures.Add("Gambit",LoadedSprites[13]);
         }));
-        
+        StartCoroutine(AssetsLoader.LoadTexture("SPCimgs/Dice_SpriteSheet.png", sprite =>
+        {
+            List<Sprite> loadedSprites= AssetsLoader.SliceTexture(sprite, 5, 5);
+            //maping sprites to names :)
+            GlobalData.SPCTextures.Add("d6_6_white",loadedSprites[20]);
+            GlobalData.SPCTextures.Add("d6_5_white",loadedSprites[21]);
+            GlobalData.SPCTextures.Add("d6_4_white",loadedSprites[22]);
+            GlobalData.SPCTextures.Add("d6_3_white",loadedSprites[23]);
+            GlobalData.SPCTextures.Add("d6_2_white",loadedSprites[24]);
+            GlobalData.SPCTextures.Add("d6_1_white",loadedSprites[15]); //15
+            GlobalData.SPCTextures.Add("d6_1_green",loadedSprites[16]);
+            GlobalData.SPCTextures.Add("d6_2_green",loadedSprites[17]);
+            GlobalData.SPCTextures.Add("d6_3_green",loadedSprites[18]);
+            GlobalData.SPCTextures.Add("d6_4_green",loadedSprites[19]);
+            GlobalData.SPCTextures.Add("d6_5_green",loadedSprites[10]); //10
+            GlobalData.SPCTextures.Add("d6_6_green",loadedSprites[11]); //11
+            GlobalData.SPCTextures.Add("d6_6_red",loadedSprites[12]); //12
+            GlobalData.SPCTextures.Add("d6_5_red",loadedSprites[13]); //13
+            GlobalData.SPCTextures.Add("d6_4_red",loadedSprites[14]); //14
+            GlobalData.SPCTextures.Add("d6_3_red",loadedSprites[5]); //5
+            GlobalData.SPCTextures.Add("d6_2_red",loadedSprites[6]); //6
+            GlobalData.SPCTextures.Add("d6_1_red",loadedSprites[7]); //7
+            GlobalData.SPCTextures.Add("d6_1_yellow",loadedSprites[8]); //8
+            GlobalData.SPCTextures.Add("d6_2_yellow",loadedSprites[9]); //9
+            GlobalData.SPCTextures.Add("d6_3_yellow",loadedSprites[0]); //0
+            GlobalData.SPCTextures.Add("d6_4_yellow",loadedSprites[1]); //1
+            GlobalData.SPCTextures.Add("d6_5_yellow",loadedSprites[2]); //2
+            GlobalData.SPCTextures.Add("d6_6_yellow",loadedSprites[3]); //3
+        }));
     }
 
     public void Load()

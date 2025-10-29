@@ -37,7 +37,7 @@ public class Player : Participant
         //SPC
         DisplaySPC = false;
         specialCards = GlobalData.LoadSPC();
-        AddSpecialCard("DiceDefault");
+        AddSpecialCard("Dice_Default");
     }
 
     //Display

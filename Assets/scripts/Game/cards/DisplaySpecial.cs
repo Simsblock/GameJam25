@@ -76,7 +76,6 @@ public class DisplaySpecial : MonoBehaviour
 
     public void DisplayShop()
     {
-        
         foreach (Transform t in content.transform)
         {
             Destroy(t.gameObject);
