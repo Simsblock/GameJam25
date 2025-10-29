@@ -167,9 +167,9 @@ public class Dealer : Participant
         string selectedAbility = validAbilities[UnityEngine.Random.Range(0, validAbilities.Count)];
         // Call Ability
 
-        if (SpecialCardsList.DealerSpecialCardsUi.ContainsKey(selectedAbility))
+        if (GlobalData.Effects.Any(e=>e.Name.Equals(selectedAbility)))
         {
-            DropHandler.TriggerSPCEffect(SpecialCardsList.DealerSpecialCardsUi[selectedAbility]);
+            DropHandler.TriggerSPCEffect(GlobalData.Effects.Where(e=>e.Name.Equals(selectedAbility)).FirstOrDefault().Effect);
             yield return new WaitForSeconds(2f);
             Debug.Log($"Used ability: {selectedAbility}");
         }

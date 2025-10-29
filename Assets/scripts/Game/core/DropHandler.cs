@@ -87,6 +87,14 @@ public class DropHandler : MonoBehaviour, IDropHandler, IPointerClickHandler
         }
             
     }
+    public void TriggerSPCEffect(string effect)
+    {
+        if (effect != null)
+        {
+            abilityDecoder.Use(effect);
+        }
+            
+    }
 
     private void PlayRandomPlaceSound()
     {
