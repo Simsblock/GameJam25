@@ -15,6 +15,5 @@ namespace Systems.Helpers
         {
             Operations = new List<UnityEngine.AsyncOperation>(initialCapacity);
         }
-        
     }
 }

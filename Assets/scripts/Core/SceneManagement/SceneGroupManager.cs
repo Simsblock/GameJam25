@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 namespace Systems.SceneManagement
 {
-    public class SceneGroupManager
+    public class SceneGroupManager : ISceneGroupManager
     {
         public event Action<string> OnSceneLoaded = delegate { }; //durch delegate spar ich mir das invoke!!!
         public event Action<string> OnSceneUnloaded = delegate { };
@@ -95,8 +95,6 @@ namespace Systems.SceneManagement
             {
                 await Task.Delay(100); //delay to avoid tight loop
             }
-            
-            
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System.Threading.Tasks;
+using Reflex.Attributes;
+using Reflex.Core;
 using Systems.Helpers;
 using UnityEngine;
 
@@ -7,7 +9,7 @@ namespace Systems.SceneManagement
     public class SceneLoader : MonoBehaviour
     {
         [SerializeField] SceneGroup[] sceneGroups;
-        public readonly SceneGroupManager manager = new SceneGroupManager();
+        [Inject] public readonly ISceneGroupManager manager;
 
         async void Start()
         {
