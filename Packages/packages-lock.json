@@ -10,6 +10,13 @@
       },
       "hash": "b849990020c30ac6ead4e4fb4881428f86dcde0d"
     },
+    "com.gustavopsantos.reflex": {
+      "version": "https://github.com/gustavopsantos/reflex.git?path=/Assets/Reflex/#13.0.3",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "3d382e6e1d479380685887ef0c7a7a5492911b99"
+    },
     "com.unity.2d.animation": {
       "version": "12.0.2",
       "depth": 1,
